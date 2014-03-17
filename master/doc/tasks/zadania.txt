@@ -1,11 +1,5 @@
 Programowanie zespołowe - Zadania - Egazminy ustne
 
-Grupa: 
-
-Project Owner: Zbigniew Rębacz;
-SCRUM Master: Michał Pachel;
-Contributors: Arkadisz Koszczan Michał Szura, Michał Gawryluk, Mateusz Jancarz, Konrad Welc;
-
 *   - Oznacza zadanie opcjonalne
 **  - Oznacza zadanie opcjonalne o wysokim stopniu trudności
 !   - Oznacza możliwość rozbicia na zadanie niezależne
