@@ -1,0 +1,12 @@
+body 
+{
+	background-size: 100%; 
+	background-repeat: no-repeat;
+	background-position: fixed; 
+	background-attachment: fixed;
+}
+
+a#contact, a#authors, a#help
+{
+	color: #999;
+}
