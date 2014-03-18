@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS `Records`;
 DROP TABLE IF EXISTS `Students`;
 DROP TABLE IF EXISTS `ExamUnits`;
 DROP TABLE IF EXISTS `Exams`;
-DROP TABLE IF EXISTS `Subjects`;
 DROP TABLE IF EXISTS `UsersSettings`;
 DROP TABLE IF EXISTS `Users`;
 
@@ -33,36 +32,27 @@ CREATE TABLE `UsersSettings` (
 	INDEX (`UserID`)
 ) ENGINE=InnoDB;
 
-/* Subject */
-CREATE TABLE `Subjects` (
-	`ID`          INT            AUTO_INCREMENT,
-	`UserID`      INT,
-	`Name`        VARCHAR (80)   NOT NULL,
-	`Description` VARCHAR (1000),
-	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`UserID`) REFERENCES `Users` (`ID`),
-	INDEX (`UserID`)
-) ENGINE=InnoDB;
-
 /* Exam */
 CREATE TABLE `Exams` (
 	`ID`        INT                                         AUTO_INCREMENT,
-	`SubjectID` INT,
+	`UserID`    INT,
 	`Year`      YEAR                                        NOT NULL,
 	`Term`      ENUM ('I', 'II', 'III', 'IV', 'V', 'other') NOT NULL,
 	`Semester`  ENUM ('Z', 'L')                             NOT NULL,
+	`Name`      VARCHAR(100)                                NOT NULL,
 	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`SubjectID`) REFERENCES `Subjects` (`ID`),
-	INDEX (`SubjectID`)
+	FOREIGN KEY (`UserID`) REFERENCES `Users` (`ID`),
+	INDEX (`UserID`)
 ) ENGINE=InnoDB;
 
 /* ExamUnit */
 CREATE TABLE `ExamUnits` (
 	`ID`       INT  AUTO_INCREMENT,
 	`ExamID`   INT,
-	`Day`      DATE NOT NULL,
-	`TimeFrom` TIME NOT NULL,
-	`TimeTo`   TIME NOT NULL,
+	`Day`      DATE                        NOT NULL,
+	`TimeFrom` TIME                        NOT NULL,
+	`TimeTo`   TIME                        NOT NULL,
+	`State`    ENUM ('unlocked', 'locked') NOT NULL,
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`),
 	INDEX (`ExamID`)
