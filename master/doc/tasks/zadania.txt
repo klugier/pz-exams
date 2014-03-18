@@ -94,8 +94,8 @@ Programowanie zespołowe - Zadania - Egazminy ustne
 		- Skonsultować z zespołem.
 		- Skonsultowany projekt wyeksportować do pliku graficznego i umieścić w miejscu widocznym. dla wszystkich programistów(np. grupa na facebooku)
 	b) Stworzyć kod odpowiedzialny za tworzenie bazy danych. (8)
-	// b) Stworzyć skrypt odpowiedzialny za instalację/reinstalację bazy danych.
-	c) Dodać do bazy danych kilka przykładowych danych. (1)
+	c) Stworzyć skrypt odpowiedzialny za instalację/reinstalację bazy danych dla systemu GNU/Linux.
+	d) Dodać do bazy danych kilka przykładowych danych. (1)
 		- Znów powinien być to skrypt powłoki, który w szybkim czasie i na wielu maszynach pozwoli nam testować naszą aplikację.
 		- Zastanowić się czy dane można generować przy pomocy programu.
 
