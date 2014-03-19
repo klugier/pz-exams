@@ -15,7 +15,7 @@
 
           <ul class="nav navbar-nav pull-right">
 
-            <li><a href="?" id="my_acc">Zaloguj</a></li>
+            <li><a href="register_form.php" id="my_acc">Zaloguj</a></li>
           </ul>
         </div>
       </div>

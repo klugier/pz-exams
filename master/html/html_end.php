@@ -5,8 +5,8 @@
 			<p class="pull-left" style="letter-spacing:1px">Mati Development ©</p>
 			<span class="pull-right" style="margin-top: 1px; margin-left: 80px;">
 				<span><a id="contact" href="?">Kontakt</a></span>
-				<span>| <a id="authors" href="?">Autorzy</a> |</span>
-				<span> <a id="help" href="?">Pomoc</a></span>
+				<span>| <a id="authors" href="authors.php">Autorzy</a> |</span>
+				<span> <a id="help" href="help.php">Pomoc</a></span>
 			</span>
 		</div>
 	</body>
