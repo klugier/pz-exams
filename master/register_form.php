@@ -11,13 +11,27 @@
 				<label for="email" class="col-xs-2 col-sm-2 col-md-2 control-label">E-mail </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="email" required class="form-control" id="email" placeholder="Wprowadź e-mail" title="">
-				</div>
+				</div> 
+				<span class="help-block" id="email-error-message" style="visibility:hidden">
+						<span style="background-color:#F13333;" class="badge pull-left ">!</span>
+					  <span style="padding:5px"> Nieprawidłowy adress.</span>
+				</span>
 			</div>
 			<div class="form-group">
 				<label for="passwd" class="col-xs-2 col-sm-2 col-md-2 control-label"> Hasło </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="password" class="form-control inputPassword" id="passwd" placeholder="Wprowadź Haslo">
 				</div>
+			</div>
+			<div class="form-group">
+				<label for="passwd-repat" class="col-xs-2 col-sm-2 col-md-2 control-label"> Potwierdź </label>
+				<div class="col-xs-4 col-sm-4 col-md-4">
+					<input type="password" class="form-control inputPassword" id="passwd-repeat" placeholder="Wprowadź Ponownie Haslo">
+				</div>
+				<span class="help-block" id="passwd-repat-error-message" style="visibility:hidden">
+						<span style="background-color:#F13333;" class="badge pull-left ">!</span>
+					  <span style="padding:5px"> Hasło różni się od pierwotnego </span>
+				</span>
 			</div>
 			<div class="form-group">
 				<label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Imie </label>
