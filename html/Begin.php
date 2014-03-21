@@ -21,10 +21,8 @@
 			}
 		?>
 		
-		<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script language="javascript" type="text/javascript" src="js/jquery-1.9.1.js"></script>
-		<script language="javascript" type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script language="javascript" type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script language="javascript" type="text/javascript" src="js/Lib/bootstrap.min.js"></script>
+		<script language="javascript" type="text/javascript" src="js/Lib/jquery-1.11.0.min.js"></script>
 		<?php
 			$dataPrinted = false;
 			if (isset($scripts)) {
