@@ -3,8 +3,7 @@
 	
 	$title = "$appName - Autorzy";
 	include("html/Begin.php");
-?>  
-<?php include("html/Begin1.php"); ?>
+?>
 
 <div class="container"> 
 	<ul>

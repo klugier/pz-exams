@@ -2,10 +2,10 @@
 	include_once("lib/Lib.php");
 
 	$title = "$appName - Rejestracja";
+	$scriptsDefer = array("js/validate_form.js");
 	include("html/Begin.php"); 
 ?>
-<script src="js/validate_form.js" defer></script> 
-<?php include("html/Begin1.php"); ?>  
+
 	<div class="container"> 
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
@@ -33,8 +33,8 @@
 					<input type="password" class="form-control inputPassword" id="passwd-repeat" placeholder="Wprowadź Ponownie Haslo">
 				</div>
 				<span class="help-block" id="passwd-repat-error-message" style="visibility:hidden">
-						<span style="background-color:#F13333;" class="badge pull-left ">!</span>
-					  <span style="padding:5px"> Hasło różni się od pierwotnego </span>
+					<span style="background-color:#F13333;" class="badge pull-left ">!</span>
+					<span style="padding:5px"> Hasło różni się od pierwotnego </span>
 				</span>
 			</div>
 			<div class="form-group">
@@ -64,5 +64,6 @@
 				</div>
 			</div>
 		</form>
-	</div>  
+	</div>
+
 <?php include ("html/End.php"); ?> 
