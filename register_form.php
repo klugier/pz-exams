@@ -2,7 +2,7 @@
 	include_once("lib/Lib.php");
 
 	$title = "$appName - Rejestracja";
-	$scriptsDefer = array("js/validate_form.js");
+	$scriptsDefer = array("js/ValidateForm.js");
 	include("html/Begin.php"); 
 ?>
 

@@ -15,7 +15,7 @@ for arg in "$@" ; do
 	elif [ "$arg" == "-q" ] || [ "$arg" == "--quite" ] ; then
 		isQuite=1
 	elif [ "$arg" == "--help" ] || [ "$arg" == "--help" ] ; then
-		printf "Przykładowy sposób użycia: ./create.sh -u root -d new_database\n\n"
+		printf "Przykładowy sposób użycia: ./Create.sh -u root -d new_database\n\n"
 		printf "Opcje:\n"
 		printf "    -u lub --user     - ustawia nazwę użytkownika\n"
 		printf "    -d lub --database - ustawia nazwę bazydanych\n"
@@ -43,7 +43,7 @@ fi
 
 /usr/bin/mysql -u $databaseUser -p -e "
 	SET @databaseName:='$databaseName';
-	SOURCE create/database.sql;
+	SOURCE Create/database.sql;
 	USE $databaseName;
-	SOURCE create/tables.sql;
+	SOURCE Create/tables.sql;
 "
