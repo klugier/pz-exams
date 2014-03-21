@@ -3,7 +3,9 @@
 <html>
 	<head>
 		<?php
-			echo "<title>$title</title>";
+			if (isset($title)) {
+				echo "<title>$title</title>";
+			}
 		?>
 		
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
@@ -12,8 +14,10 @@
 		<link rel="stylesheet" type="text/css" href="css/custom.css">
 		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 		<?php
-			foreach ($csses as $value) {
-				echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"$value\">";
+			if (isset($csses)) {
+				foreach ($csses as $value) {
+					echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"$value\">";
+				}
 			}
 		?>
 		
@@ -22,13 +26,24 @@
 		<script language="javascript" type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script language="javascript" type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<?php
-			foreach ($scripts as $value) {
-				echo "<script language=\"javascript\" type=\"text/javascript\" src=\"$value\"></script>";
+			$dataPrinted = false;
+			if (isset($scripts)) {
+				foreach ($scripts as $value) {
+					echo "<script language=\"javascript\" type=\"text/javascript\" src=\"$value\"></script>";
+					if ($dataPrinted == false) {
+						$dataPrinted = true;
+					}
+				}
 			}
-			foreach ($scriptsDefer as $value) {
-				echo "<script language=\"javascript\" type=\"text/javascript\" src=\"$value\" defer></script>";
+			if (isset($scriptsDefer)) {
+				foreach ($scriptsDefer as $value) {
+					echo "<script language=\"javascript\" type=\"text/javascript\" src=\"$value\" defer></script>";
+					if ($dataPrinted == false) {
+						$dataPrinted = true;
+					}
+				}
 			}
-			if (!empty($csses) || !empty($scripts) || !empty($scriptsDefer)) {
+			if ($dataPrinted == true) {
 				echo "\n";
 			}
 		?>
