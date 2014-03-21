@@ -43,7 +43,7 @@ fi
 
 /usr/bin/mysql -u $databaseUser -p -e "
 	SET @databaseName:='$databaseName';
-	SOURCE Create/database.sql;
+	SOURCE Create/Database.sql;
 	USE $databaseName;
-	SOURCE Create/tables.sql;
+	SOURCE Create/Tables.sql;
 "
