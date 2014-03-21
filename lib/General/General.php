@@ -1,0 +1,3 @@
+<?php
+	$appName = "PZ-Exams";
+?>

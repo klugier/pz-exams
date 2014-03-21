@@ -5,7 +5,7 @@
 
 	<body style="background-image: url('img/books.jpg'); padding-top: 70px;">
 
-		<?php include("navbar.php"); ?>
+		<?php include("Navbar.php"); ?>
 
 		<div style="min-height: 92%; height: auto !important; height: 100%; margin: 0 auto 0;">
 			<div class="container col-md-8 col-md-offset-2" style="padding: 0px; padding-top:0px;">
