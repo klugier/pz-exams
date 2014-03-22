@@ -25,9 +25,11 @@
       				<label class="checkbox">
       				<input type="checkbox" value="remember-me"> Zapamiętaj mnie
       				</label>
-      				<button class="btn btn-lg btn-success btn-block" type="submit">Zaloguj</button>
-      			    	<a href="register_form.php" style="text-decoration:underline;font-weight:bold;">Nie masz konta?</a>
-      			    </form>
+				<button type="submit" class="btn btn-success btn-lg btn-block"><b>Zaloguj</b></button>
+      	                    </form>
+      			    <form style="margin-left:10px; margin-right:10px; margin-top:20px;" action="register_form.php">
+                    		<button type="submit" class="btn btn-info btn-lg btn-block"><b>Rejestracja</b></button>
+			    </form>
       		       </li>
                     </ul>
                 </li>              
