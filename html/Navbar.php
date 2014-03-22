@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav pull-right">
                 <li class="dropdown navbar-form">
-                    <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Logowanie</button>
+                    <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><b>Logowanie</b></button>
 				    <!--<button type="submit" class="btn btn-danger">Wyloguj</button>-->
                     <ul class="dropdown-menu" style="width:300px; background: rgba(255,255,255,0.8);-webkit-border-radius: 5px; -khtml-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px;">
                         <li> 
@@ -31,6 +31,11 @@
                     		<button type="submit" class="btn btn-info btn-lg btn-block"><b>Rejestracja</b></button>
 			    </form>
       		       </li>
+      		       <li class="navbar-form">
+      		       	<form  action="register_form.php">
+              	 		<button type="submit" class="btn btn-info"><b>Rejestracja</b></button>
+			</form>
+	      	       </li> 
                     </ul>
                 </li>              
             </ul>
