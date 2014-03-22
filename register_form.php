@@ -9,12 +9,15 @@
 	<div class="container"> 
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
-				<div class="row">
+			<fieldset>
+			<legend>Zarejestruj się</legend>
+				
+				<!--<div class="row">
 					<h2 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-5 col-sm-5 col-md-5"> Zarejestruj Konto </h2>
 				</div>
 				<div class="row">
 					<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-5 col-sm-5 col-md-5">  <hr style="color: #123455;">  </div>
-				</div> 
+				</div> -->
 			</div>
 			
 			<div class="form-group">
@@ -84,6 +87,7 @@
 					<button type="submit" class="btn btn-success btn-lg btn-block">Zarejestruj konto</button>
 				</div>
 			</div>
+			</fieldset>
 		</form>
 	</div>
 
