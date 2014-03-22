@@ -12,13 +12,26 @@
           <a class="navbar-brand" href="help.php">Pomoc</a>
         </div>
         <div class="collapse navbar-collapse">
-<!--           <ul class="nav navbar-nav">
-            <li><a href="?">Dodaj egzamin</a></li>
-          </ul> -->
-
-          <ul class="nav navbar-nav pull-right">
-            <li><a href="register_form.php" id="my_acc">Zarejestruj się</a></li>
-          </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown navbar-form">
+                    <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Logowanie</button>
+				    <!--<button type="submit" class="btn btn-danger">Wyloguj</button>-->
+                    <ul class="dropdown-menu" style="width:300px; background: rgba(255,255,255,0.8);-webkit-border-radius: 5px; -khtml-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px;">
+                        <li> 
+                  	    <form class="form-signin" role="form" style="margin-right:10px;margin-left:10px;" method="post" action="user_panel.php">
+      				        <h3 style="text-align:center; font-weight:bold;">WprowadĹş login i hasĹ‚o</h3>
+      					    <input type="email" class="form-control" placeholder="adres email" required autofocus style="margin-bottom:3px;"">
+      				  	    <input type="password" class="form-control" placeholder="hasĹ‚o" required>
+      				        <label class="checkbox">
+      						<input type="checkbox" value="remember-me"> ZapamiÄ™taj mnie
+      					    </label>
+      					    <button class="btn btn-lg btn-success btn-block" type="submit">Zaloguj</button>
+      					    <a href="#?" style="text-decoration:underline;font-weight:bold;">Nie masz konta?</a>
+      				    </form>
+      			        </li>
+                    </ul>
+                </li>              
+            </ul>
         </div>
       </div>
     </div>
