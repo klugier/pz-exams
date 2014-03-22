@@ -29,13 +29,13 @@
       	                    </form>
 
       		       </li>
-      		       <li class="navbar-form">
+                    </ul>
+                </li>
+                <li class="navbar-form">
       		       	<form  action="register_form.php">
               	 		<button type="submit" class="btn btn-info"><b>Rejestracja</b></button>
 			</form>
-	      	       </li> 
-                    </ul>
-                </li>              
+	      	</li> 
             </ul>
         </div>
       </div>
