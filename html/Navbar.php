@@ -19,16 +19,16 @@
                     <ul class="dropdown-menu" style="width:300px; background: rgba(255,255,255,0.8);-webkit-border-radius: 5px; -khtml-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px;">
                         <li> 
                   	    <form class="form-signin" role="form" style="margin-right:10px;margin-left:10px;" method="post" action="user_panel.php">
-      				        <h3 style="text-align:center; font-weight:bold;">WprowadĹş login i hasĹ‚o</h3>
-      					    <input type="email" class="form-control" placeholder="adres email" required autofocus style="margin-bottom:3px;"">
-      				  	    <input type="password" class="form-control" placeholder="hasĹ‚o" required>
-      				        <label class="checkbox">
-      						<input type="checkbox" value="remember-me"> ZapamiÄ™taj mnie
-      					    </label>
-      					    <button class="btn btn-lg btn-success btn-block" type="submit">Zaloguj</button>
-      					    <a href="#?" style="text-decoration:underline;font-weight:bold;">Nie masz konta?</a>
-      				    </form>
-      			        </li>
+      				<h3 style="text-align:center; font-weight:bold;">Wprowadadź login i hasło</h3>
+      				<input type="email" class="form-control" placeholder="adres email" required autofocus style="margin-bottom:3px;"">
+      				<input type="password" class="form-control" placeholder="hasło" required>
+      				<label class="checkbox">
+      				<input type="checkbox" value="remember-me"> Zapamiętaj mnie
+      				</label>
+      				<button class="btn btn-lg btn-success btn-block" type="submit">Zaloguj</button>
+      			    	<a href="register_form.php" style="text-decoration:underline;font-weight:bold;">Nie masz konta?</a>
+      			    </form>
+      		       </li>
                     </ul>
                 </li>              
             </ul>
