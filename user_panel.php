@@ -1,5 +1,5 @@
-<?php include("html/html_begin.php"); ?>
-<h1 style="margin-top:-30px;font-weight:bold;text-decoration:underline;">Panel egzaminatora</h1>
+<?php include("html/Begin.php"); ?>
+<h1 style="font-weight:bold;text-decoration:underline;">Panel egzaminatora</h1>
    <div class="navbar navbar-inverse " style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;">
 
           <a class="navbar-brand" href="user_panel.php" id="user_m" >Dodaj egzamin</a>
@@ -32,4 +32,4 @@
  
  }
 ?>
-<?php include("html/html_end.php"); ?>
+<?php include("html/End.php"); ?>
