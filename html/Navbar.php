@@ -27,9 +27,7 @@
       				</label>
 				<button type="submit" class="btn btn-success btn-lg btn-block"><b>Zaloguj</b></button>
       	                    </form>
-      			    <form style="margin-left:10px; margin-right:10px; margin-top:20px;" action="register_form.php">
-                    		<button type="submit" class="btn btn-info btn-lg btn-block"><b>Rejestracja</b></button>
-			    </form>
+
       		       </li>
       		       <li class="navbar-form">
       		       	<form  action="register_form.php">
