@@ -18,11 +18,8 @@
 				foreach ($csses as $value) {
 					echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"$value\">";
 				}
+				echo "\n";
 			}
-		?>
-		<script language="javascript" type="text/javascript" src="js/Lib/jquery-1.11.0.min.js"></script>
-		
-		<?php
 			$dataPrinted = false;
 			if (isset($scripts)) {
 				foreach ($scripts as $value) {
