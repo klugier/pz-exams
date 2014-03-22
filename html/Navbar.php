@@ -25,7 +25,7 @@
       				<label class="checkbox">
       				<input type="checkbox" value="remember-me"> Zapamiętaj mnie
       				</label>
-				<button type="submit" class="btn btn-success btn-lg btn-block"><b>Zaloguj</b></button>
+				<button type="submit" class="btn btn-success btn-lg btn-block" style="margin-top:15px;"><b>Zaloguj</b></button>
       	                    </form>
 
       		       </li>
