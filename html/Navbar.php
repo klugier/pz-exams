@@ -16,26 +16,26 @@
                 <li class="dropdown navbar-form">
                     <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><b>Logowanie</b></button>
 				    <!--<button type="submit" class="btn btn-danger">Wyloguj</button>-->
-                    <ul class="dropdown-menu" style="width:300px; background: rgba(255,255,255,0.8);-webkit-border-radius: 5px; -khtml-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px;">
+                    <ul class="dropdown-menu" style="width:300px; background: rgba(255,255,255,0.9);-webkit-border-radius: 5px; -khtml-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px; margin-top:8px;">
                         <li> 
                   	    <form class="form-signin" role="form" style="margin-right:10px;margin-left:10px;" method="post" action="user_panel.php">
-      				<h3 style="text-align:center; font-weight:bold;">Wprowadadź login i hasło</h3>
-      				<input type="email" class="form-control" placeholder="adres email" required autofocus style="margin-bottom:3px;"">
+      				<h3 style="text-align:center; font-weight:bold; padding-bottom:15px;">Logowanie do systemu</h3>
+      				<input type="email" class="form-control" placeholder="adres email" required autofocus style="margin-bottom:3px;">
       				<input type="password" class="form-control" placeholder="hasło" required>
       				<label class="checkbox">
       				<input type="checkbox" value="remember-me"> Zapamiętaj mnie
       				</label>
-				<button type="submit" class="btn btn-success btn-lg btn-block" style="margin-top:15px;"><b>Zaloguj</b></button>
+					<button type="submit" class="btn btn-success btn-lg btn-block" style="margin-top:20px; margin-bottom:5px;"><b>Zaloguj</b></button>
       	                    </form>
 
       		       </li>
                     </ul>
                 </li>
-                <li class="navbar-form">
+                <li class="navbar-form" style="margin-left:-20px">
       		       	<form  action="register_form.php">
               	 		<button type="submit" class="btn btn-info"><b>Rejestracja</b></button>
-			</form>
-	      	</li> 
+					</form>
+				</li> 
             </ul>
         </div>
       </div>
