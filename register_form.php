@@ -66,11 +66,11 @@
 			</div>
 			<div class="form-group" > 
 				<div class="col-xs-4 col-sm-4 col-md-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
-					<img id="captcha" src="/securimage/securimage_show.php"  class="img-thumbnail .img-rounded:2px" alt="CAPTCHA IMAGE" />
+					<img id="captcha" src="lib/secureImage/securimage_show.php"  class="img-thumbnail .img-rounded:2px" alt="CAPTCHA IMAGE" />
 				</div> 
 				<div class="col-xs-2 col-sm-2 col-md-2">
 					<div class="row">
-						<a href="#" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false"> Reload Image </a>
+						<a href="#" onclick="document.getElementById('captcha').src = 'lib/secureImage/securimage_show.php?' + Math.random(); return false"> Reload Image </a>
 					</div> 
 					<div class="row">
 						<input type="text" class="form-control" name="captcha_code"  />
