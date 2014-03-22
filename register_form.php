@@ -31,9 +31,9 @@
 				</span>
 			</div>
 			<div class="form-group">
-				<label for="email-repet" class="col-xs-2 col-sm-2 col-md-2 control-label">E-mail </label>
+				<label for="email-repet" class="col-xs-2 col-sm-2 col-md-2 control-label">Potwierdź E-mail </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="email" required class="form-control" id="email" placeholder="Wprowadź e-mail" title="">
+					<input type="email" required class="form-control" id="email" placeholder="Wprowadź ponownie e-mail" title="">
 				</div> 
 				<span class="help-block" id="email-error-message" style="visibility:hidden">
 						<span style="background-color:#F13333;" class="badge pull-left ">!</span>
@@ -53,7 +53,7 @@
 				</div>
 				<span class="help-block" id="passwd-repat-error-message" style="visibility:hidden">
 					<span style="background-color:#F13333;" class="badge pull-left ">!</span>
-					<span style="padding:5px"> Hasło różni się od pierwotnego </span>
+					<span style="padding:5px"> Podane hasła nie są takie same! </span>
 				</span>
 			</div>
 			<div class="form-group">
