@@ -11,6 +11,8 @@ $(document).ready()
 		return false;
 	}) ; 
 	
+	
+	
 	$("#email").focusout( function ( event){
 		var email = $(this).val();
 		var $formGroup = $(this).closest('div[class^="form-group"]') ;
@@ -44,33 +46,70 @@ $(document).ready()
 	$("#passwd-repeat").focusout( function (event) { 
 		var repeatedPasswd = $(this).val();
 		var passwd = $('input[id="passwd"]').val(); 
-		var $formGroup = $(this).closest('div[class^="form-group"]') ;
+		var $repatedPasswdFormGroup = $(this).closest('div[class^="form-group"]') ;
 		var $passwdFormGroup = $("#passwd").closest('div[class^="form-group"]') ;
 		// alert ( passwd +" -- "+ repeatedPasswd ) ; // only testing purposes 
 
-		if ( repeatedPasswd == 0 )
+		if ( repeatedPasswd.length == 0 && passwd.length == 0)
 		{ 
 			$("#passwd-repat-error-message").css('visibility' , 'hidden');			
-			$formGroup.removeClass('has-error');
-			$formGroup.removeClass('has-success');
-			$passwdFormGroup.removeClass('has-success');
+			$repatedPasswdFormGroup.attr( "class", "form-group");
+			$passwdFormGroup.attr( "class", "form-group"); 
 		} 
-
-		if ( repeatedPasswd != passwd ) 
+		else if ( repeatedPasswd != passwd ) 
 		{ 
-			$("#passwd-repat-error-message").css('visibility' , 'visible');			
-			$formGroup.addClass('has-error');
-			$formGroup.removeClass('has-success');
-			$passwdFormGroup.removeClass('has-success'); 
+			$("#passwd-repat-error-message").css('visibility' , 'visible');
+			$repatedPasswdFormGroup.attr( "class", "form-group");
+			$passwdFormGroup.attr( "class", "form-group");
+			$repatedPasswdFormGroup.addClass('has-error'); 
 		}    
 		else 
 		{ 
 			$("#passwd-repat-error-message").css('visibility' , 'hidden');
-			$formGroup.removeClass('has-error');
+			$repatedPasswdFormGroup.attr( "class", "form-group");
+			$passwdFormGroup.attr( "class", "form-group");
 			$passwdFormGroup.addClass('has-success');
-			$formGroup.addClass('has-success');
+			$repatedPasswdFormGroup.addClass('has-success');
 		} 
 	} ) ; 
+	
+	$("#passwd").focusout( function (event) { 
+		var passwd = $(this).val();
+		var repeatedPasswd = $('input[id="passwd-repeat"]').val(); 
+		var $passwdFormGroup = $(this).closest('div[class^="form-group"]') ;
+		var $repeatedPasswdFormGroup = $("#passwd-repeat").closest('div[class^="form-group"]') ;
+		if ( repeatedPasswd.length == 0 && passwd.length == 0)
+		{ 	
+			$("#passwd-repat-error-message").css('visibility' , 'hidden');			
+			$passwdFormGroup.attr( "class", "form-group");
+			$repeatedPasswdFormGroup.attr( "class", "form-group"); 
+		} 
+		else if ( repeatedPasswd != passwd )
+		{
+			if ( repeatedPasswd.length === 0  )
+			{ 
+				$("#passwd-repat-error-message").css('visibility' , 'hidden');			
+				$passwdFormGroup.attr( "class", "form-group");
+				$repeatedPasswdFormGroup.attr( "class", "form-group");
+			} 
+			else
+			{ 
+				$("#passwd-repat-error-message").css('visibility' , 'visible');			
+				$repeatedPasswdFormGroup.attr( "class", "form-group");
+				$passwdFormGroup.attr( "class", "form-group"); 
+				$repeatedPasswdFormGroup.addClass('has-error');
+			} 
+		}
+		else 
+		{ 
+			$("#passwd-repat-error-message").css('visibility' , 'hidden');
+			$repeatedPasswdFormGroup.attr( "class", "form-group");
+			$passwdFormGroup.attr( "class", "form-group");
+			$repeatedPasswdFormGroup.addClass('has-success');
+			$passwdFormGroup.addClass('has-success');
+		} 
+	} ) ; 
+	
 	
 	/*$("#passwd-repeat").keyup( function (event) { 
 		var repeatedPasswd = $(this).val();
