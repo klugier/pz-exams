@@ -29,7 +29,7 @@
 					<span style="padding:5px"> Nieprawidłowy adress.</span>
 				</span>
 			</div>
-			<div class="form-group">
+			<!-- <div class="form-group">
 				<label for="email-repet" class="col-xs-2 col-sm-2 col-md-2 control-label">Potwierdź e-mail </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="email" required class="form-control" id="email" placeholder="Wprowadź ponownie e-mail" title="">
@@ -38,17 +38,17 @@
 						<span style="background-color:#F13333;" class="badge pull-left ">!</span>
 					<span style="padding:5px"> Nieprawidłowy adress.</span>
 				</span>
-			</div>
+			</div> --> 
 			<div class="form-group">
 				<label for="passwd" class="col-xs-2 col-sm-2 col-md-2 control-label"> Hasło </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="password" class="form-control inputPassword" id="passwd" placeholder="Wprowadź Haslo">
+					<input type="password" required class="form-control inputPassword" id="passwd" placeholder="Wprowadź Haslo" title="">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="passwd-repat" class="col-xs-2 col-sm-2 col-md-2 control-label"> Potwierdź hasło </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="password" class="form-control inputPassword" id="passwd-repeat" placeholder="Wprowadź Ponownie Haslo">
+					<input type="password" required class="form-control inputPassword" id="passwd-repeat" placeholder="Powtórz Haslo" title="">
 				</div>
 				<span class="help-block" id="passwd-repat-error-message" style="visibility:hidden">
 					<span style="background-color:#F13333;" class="badge pull-left ">!</span>
@@ -60,12 +60,14 @@
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="text" class="form-control" id="firstname" placeholder="Wprowadź Imię">
 				</div>
+				<label class="control-label"> * </label> 
 			</div>
 			<div class="form-group">
 				<label for="lastname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nazwisko</label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="text" class="form-control" id="lastname" placeholder="Wprowadź Nazwisko">
 				</div>
+				<label class="control-label"> * </label>  
 			</div>  
 			<div class="form-group">
 				<label for="gender"  class="col-xs-2 col-sm-2 col-md-2 control-label"> Płeć </label>
@@ -91,6 +93,11 @@
 					</div> 
 				</div> 
 			</div>
+			<div class="form-group">
+				<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
+					<h6> * - pola opcjonalne przy rejestracji </h6> 
+				</div> 
+			</div> 	
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
 					<button type="submit" class="btn btn-success btn-lg btn-block">Zarejestruj konto</button>
