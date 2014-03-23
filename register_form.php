@@ -78,6 +78,7 @@
 						<option>Mężczyzna</option>
 					</select>
 				</div> 
+				<label class="control-label"> * </label> 
 			</div>
 			<div class="form-group" > 
 				<label class="col-xs-2 col-sm-2 col-md-2 control-label"> Przepisz kod z obrazka </label>
@@ -89,7 +90,13 @@
 						<a href="#" onclick="document.getElementById('captcha').src = 'lib/SecureImage/securimage_show.php?' + Math.random(); return false"> Odśwież obrazek </a>
 					</div> 
 					<div class="row">
-						<input type="text" class="form-control" name="captcha_code"/>
+						<input type="text" class="form-control" name="captcha_code" id="captcha_code"/>
+					</div> 
+					<div class="row"> 
+						<span class="help-block" id="captcha-error-message" style="visibility:hidden">
+							<span style="background-color:#F13333;" class="badge pull-left">!</span>
+							<span style="padding:5px">Niepełny kod</span>
+						</span>
 					</div> 
 				</div> 
 			</div>

@@ -69,11 +69,13 @@ $img = new Securimage();
 //                                             rand(128, 255));  // random signature color
 
 // see securimage.php for more options that can be set
+// captcha code always consist from 6 chars , important for validation 
+$img->code_length = 6;
+$img->text_color = new Securimage_Color("#6495ED");
+
 
 // set namespace if supplied to script via HTTP GET
-if (!empty($_GET['namespace'])) $img->setNamespace($_GET['namespace']);
-
-
+if (!empty($_GET['namespace'])) $img->setNamespace($_GET['namespace']); 
 $img->show();  // outputs the image and content headers to the browser
 // alternate use:
 // $img->show('/path/to/background_image.jpg');

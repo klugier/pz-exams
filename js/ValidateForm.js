@@ -6,12 +6,16 @@ $(document).ready()
 		var regex_pattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		if (  !regex_pattern.test( $("#email").val() )  )
 		{
-			alert ("can't  submit email "); 
+			//alert ("can't  submit email "); 
 			return false ;
 		} 
 		if ( $('input[id="passwd-repeat"]').val() != $('input[id="passwd"]').val() ) 
 		{  
-			alert ("can not submit password");
+			//alert ("can not submit password");
+			return false ; 
+		} 
+		if ( $("#captcha_code").val().length != 6 ) 
+		{ 
 			return false ; 
 		} 
 		return true ; 
@@ -115,6 +119,17 @@ $(document).ready()
 		} 
 	} ) ; 
 	
+	
+	$("#captcha_code").focusout( function (event) {
+		if ( $(this).val().length != 6 &&  $(this).val().length != 0   ) 
+		{ 
+			$("#captcha-error-message").css('visibility' , 'visible');	
+		}
+		else 
+		{ 
+			$("#captcha-error-message").css('visibility' , 'hidden');
+		} 
+	} ) ; 
 	
 	/*$("#passwd-repeat").keyup( function (event) { 
 		var repeatedPasswd = $(this).val();
