@@ -6,7 +6,7 @@
 	include("html/Begin.php"); 
 ?>
 	<div class="container"> 
-		<form class="form-horizontal" role="form" id="register_form">
+		<form class="form-horizontal" role="form" id="register_form" method="post" action="ValidateForm.php">
 			<div class="form-group">
 			<fieldset>
 			<legend>Zarejestruj się</legend>
@@ -89,7 +89,7 @@
 						<a href="#" onclick="document.getElementById('captcha').src = 'lib/SecureImage/securimage_show.php?' + Math.random(); return false"> Odśwież obrazek </a>
 					</div> 
 					<div class="row">
-						<input type="text" class="form-control" name="captcha_code"  />
+						<input type="text" class="form-control" name="captcha_code"/>
 					</div> 
 				</div> 
 			</div>

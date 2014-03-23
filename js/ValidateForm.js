@@ -1,14 +1,20 @@
 // validate register form functionality 
 $(document).ready() 
 {
-	var flagsForValidation = new Array();
 	
 	$("#register_form").submit(function(e){
-		for ( var i in flagsForValidation ) 
-		{ 
-			alert(flagsForValidation[i]);
+		var regex_pattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if (  !regex_pattern.test( $("#email").val() )  )
+		{
+			alert ("can't  submit email "); 
+			return false ;
 		} 
-		return false;
+		if ( $('input[id="passwd-repeat"]').val() != $('input[id="passwd"]').val() ) 
+		{  
+			alert ("can not submit password");
+			return false ; 
+		} 
+		return true ; 
 	}) ; 
 	
 	
@@ -17,7 +23,7 @@ $(document).ready()
 		var email = $(this).val();
 		var $formGroup = $(this).closest('div[class^="form-group"]') ;
 		if ( email.length == 0 )
-		{ 
+		{  
 			// alert("email length ");
 			$formGroup.removeClass('has-error');
 			$formGroup.removeClass('has-success');
@@ -34,8 +40,7 @@ $(document).ready()
 			$formGroup.addClass('has-error');
 		} 
 		else 
-		{
-			flagsForValidation[0]="test purpose"; 
+		{ 
 			//alert($(this).val()) ;
 			$("#email-error-message").css('visibility' , 'hidden');
 			$formGroup.removeClass('has-error');
@@ -51,7 +56,7 @@ $(document).ready()
 		// alert ( passwd +" -- "+ repeatedPasswd ) ; // only testing purposes 
 
 		if ( repeatedPasswd.length == 0 && passwd.length == 0)
-		{ 
+		{  
 			$("#passwd-repat-error-message").css('visibility' , 'hidden');			
 			$repatedPasswdFormGroup.attr( "class", "form-group");
 			$passwdFormGroup.attr( "class", "form-group"); 
@@ -64,7 +69,7 @@ $(document).ready()
 			$repatedPasswdFormGroup.addClass('has-error'); 
 		}    
 		else 
-		{ 
+		{  
 			$("#passwd-repat-error-message").css('visibility' , 'hidden');
 			$repatedPasswdFormGroup.attr( "class", "form-group");
 			$passwdFormGroup.attr( "class", "form-group");
@@ -85,7 +90,7 @@ $(document).ready()
 			$repeatedPasswdFormGroup.attr( "class", "form-group"); 
 		} 
 		else if ( repeatedPasswd != passwd )
-		{
+		{ 
 			if ( repeatedPasswd.length === 0  )
 			{ 
 				$("#passwd-repat-error-message").css('visibility' , 'hidden');			
@@ -101,7 +106,7 @@ $(document).ready()
 			} 
 		}
 		else 
-		{ 
+		{  
 			$("#passwd-repat-error-message").css('visibility' , 'hidden');
 			$repeatedPasswdFormGroup.attr( "class", "form-group");
 			$passwdFormGroup.attr( "class", "form-group");
