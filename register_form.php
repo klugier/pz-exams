@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php 
 	include_once("lib/Lib.php");
 
@@ -31,7 +30,7 @@
 				</span>
 			</div>
 			<div class="form-group">
-				<label for="email-repet" class="col-xs-2 col-sm-2 col-md-2 control-label">Potwierdź E-mail </label>
+				<label for="email-repet" class="col-xs-2 col-sm-2 col-md-2 control-label">Potwierdź e-mail </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="email" required class="form-control" id="email" placeholder="Wprowadź ponownie e-mail" title="">
 				</div> 
