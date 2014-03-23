@@ -1,6 +1,16 @@
 // validate register form functionality 
 $(document).ready() 
 {
+	var flagsForValidation = new Array();
+	
+	$("#register_form").submit(function(e){
+		for ( var i in flagsForValidation ) 
+		{ 
+			alert(flagsForValidation[i]);
+		} 
+		return false;
+	}) ; 
+	
 	$("#email").focusout( function ( event){
 		var email = $(this).val();
 		var $formGroup = $(this).closest('div[class^="form-group"]') ;
@@ -23,6 +33,7 @@ $(document).ready()
 		} 
 		else 
 		{
+			flagsForValidation[0]="test purpose"; 
 			//alert($(this).val()) ;
 			$("#email-error-message").css('visibility' , 'hidden');
 			$formGroup.removeClass('has-error');

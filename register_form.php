@@ -6,7 +6,7 @@
 	include("html/Begin.php"); 
 ?>
 	<div class="container"> 
-		<form class="form-horizontal" role="form">
+		<form class="form-horizontal" role="form" id="register_form">
 			<div class="form-group">
 			<fieldset>
 			<legend>Zarejestruj się</legend>
