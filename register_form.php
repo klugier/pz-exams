@@ -1,12 +1,11 @@
 <?php 
 	include_once("lib/Lib.php");
-
 	$title = "$appName - Rejestracja";
 	$scriptsDefer = array("js/ValidateForm.js");
 	include("html/Begin.php"); 
 ?>
 	<div class="container"> 
-		<form class="form-horizontal" role="form" id="register_form" method="post" action="ValidateForm.php">
+		<form class="form-horizontal" role="form" id="register_form" method="post" action="HandlingRegisterForm.php">
 			<div class="form-group">
 			<fieldset>
 			<legend>Zarejestruj się</legend>
@@ -22,7 +21,7 @@
 			<div class="form-group">
 				<label for="email" class="col-xs-2 col-sm-2 col-md-2 control-label">E-mail </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="email" required class="form-control" id="email" placeholder="Wprowadź e-mail" title="">
+					<input type="email" required class="form-control" id="email" placeholder="Wprowadź e-mail" title="" name="email" value="<?php if(isset($_SESSION['email'])){ echo $_SESSION['email']; } else { echo '';  }?>">
 				</div> 
 				<span class="help-block" id="email-error-message" style="visibility:hidden">
 						<span style="background-color:#F13333;" class="badge pull-left ">!</span>
@@ -58,21 +57,21 @@
 			<div class="form-group">
 				<label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Imie </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="text" class="form-control" id="firstname" placeholder="Wprowadź Imię">
+					<input type="text" class="form-control" id="firstname" placeholder="Wprowadź Imię" name="name" value="<?php if(isset($_SESSION['name'])){ echo $_SESSION['name']; } else { echo '';  }?>">
 				</div>
 				<label class="control-label"> * </label> 
 			</div>
 			<div class="form-group">
 				<label for="lastname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nazwisko</label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="text" class="form-control" id="lastname" placeholder="Wprowadź Nazwisko">
+					<input type="text" class="form-control" id="lastname" placeholder="Wprowadź Nazwisko" name="surname" value="<?php if(isset($_SESSION['surname'])){ echo $_SESSION['surname']; } else { echo '';  }?>">
 				</div>
 				<label class="control-label"> * </label>  
 			</div>  
 			<div class="form-group">
 				<label for="gender"  class="col-xs-2 col-sm-2 col-md-2 control-label"> Płeć </label>
 				<div class="col-xs-4 col-sm-4 col-md-4" >
-					<select class="form-control" id="gender">
+					<select class="form-control" id="gender" name="gender" value="<?php if(isset($_SESSION['gender'])){ echo $_SESSION['gender']; } else { echo '- Wybierz płeć -';  }?>">
 						<option>- Wybierz płeć -</option>
 						<option>Kobieta</option>
 						<option>Mężczyzna</option>
@@ -95,7 +94,7 @@
 					<div class="row"> 
 						<span class="help-block" id="captcha-error-message" style="visibility:hidden">
 							<span style="background-color:#F13333;" class="badge pull-left">!</span>
-							<span style="padding:5px">Niepełny kod</span>
+							<span style="padding:5px">Długość kodu niepoprawna</span>
 						</span>
 					</div> 
 				</div> 
