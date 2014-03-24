@@ -16,6 +16,7 @@ $(document).ready()
 		} 
 		if ( $("#captcha_code").val().length != 6 ) 
 		{ 
+			$("#captcha-error-message").css('visibility' , 'visible');	
 			return false ; 
 		} 
 		return true ; 
@@ -130,6 +131,8 @@ $(document).ready()
 			$("#captcha-error-message").css('visibility' , 'hidden');
 		} 
 	} ) ; 
+	
+	$( "div#invalid-captcha-code" ).delay(1800).slideUp("slow");
 	
 	/*$("#passwd-repeat").keyup( function (event) { 
 		var repeatedPasswd = $(this).val();

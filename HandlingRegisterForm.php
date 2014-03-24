@@ -9,11 +9,11 @@ $captcha_code = $_POST['captcha_code'];
 
 $securimage = new Securimage();
 
-if (  $securimage->check($captcha_code) == true )  { 
+if ($securimage->check($captcha_code) == true) { 
 
 	echo 'captcha code valid' ; 
-} 
-else {
+} else {
+	$_SESSION['captchaInvalidValue'] = true ; 
 	// echo 'captcha code invalid' ;
 	header('Location: register_form.php'); 
 }

@@ -71,7 +71,7 @@
 			<div class="form-group">
 				<label for="gender"  class="col-xs-2 col-sm-2 col-md-2 control-label"> Płeć </label>
 				<div class="col-xs-4 col-sm-4 col-md-4" >
-					<select class="form-control" id="gender" name="gender" value="<?php if(isset($_SESSION['gender'])){ echo $_SESSION['gender']; } else { echo '- Wybierz płeć -';  }?>">
+					<select class="form-control" id="gender" name="gender">
 						<option>- Wybierz płeć -</option>
 						<option>Kobieta</option>
 						<option>Mężczyzna</option>
@@ -97,8 +97,21 @@
 							<span style="padding:5px">Długość kodu niepoprawna</span>
 						</span>
 					</div> 
-				</div> 
+				</div>
 			</div>
+			<?php 
+				if ((isset($_SESSION['captchaInvalidValue']))
+					and ($_SESSION['captchaInvalidValue'] == true ) 
+				) {
+					echo '<div class="form-group" id="invalid-captcha-code">';
+					echo '<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">';
+					echo '<h6 style="color:red">Wprowadzono nieprawidłowy kod CAPTCHA!!! </h6>'; 
+					echo '</div>';
+					echo '</div>'; 
+					$_SESSION['captchaInvalidValue'] == false ; 
+				} 
+			?>
+			
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
 					<h6> * - pola opcjonalne przy rejestracji </h6> 
@@ -109,6 +122,7 @@
 					<button type="submit" class="btn btn-success btn-lg btn-block">Zarejestruj konto</button>
 				</div>
 			</div>
+			
 			</fieldset>
 		</form>
 	</div>
