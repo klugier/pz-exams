@@ -1,18 +1,18 @@
     <div class="navbar navbar-inverse navbar-fixed-top" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;">
-      <div class="container">
+      <div class="container col-md-8 col-md-offset-2" style="padding: 0px;">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Strona główna</a>
+          <a id="home" class="navbar-brand" href="index.php">Strona główna</a>
           <a class="navbar-brand" href="index.php">Kontakt</a>
           <a class="navbar-brand" href="authors.php">Autorzy</a>
           <a class="navbar-brand" href="help.php">Pomoc</a>
         </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav pull-right">
+        <div class="collapse navbar-collapse" style="padding: 0px;">
+            <ul class="nav navbar-nav pull-right" style="padding-right: 0px;">
                 <li class="dropdown navbar-form">
                     <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><b>Logowanie</b></button>
 				    <!--<button type="submit" class="btn btn-danger">Wyloguj</button>-->
@@ -31,7 +31,7 @@
       		       </li>
                     </ul>
                 </li>
-                <li class="navbar-form" style="margin-left:-20px">
+                <li class="navbar-form" style="margin-left:-20px; padding-right: 0px;">
       		       	<form  action="register_form.php">
               	 		<button type="submit" class="btn btn-info"><b>Rejestracja</b></button>
 					</form>
