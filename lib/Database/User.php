@@ -19,6 +19,11 @@ class User
 		return $this->password;
 	}
 	
+	public function getId()
+	{
+		return $this->id;
+	}
+	
 	// *****************************************************
 	
 	public function setEmail($email)
@@ -31,10 +36,15 @@ class User
 		$this->password = $password;
 	}
 	
+	public function setId($id)
+	{
+		$this->id = $id;		
+	}
 	// *****************************************************
 	
 	private $email;
 	private $password;
+	private $id;
 }
 
 ?>
