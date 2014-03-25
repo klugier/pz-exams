@@ -9,7 +9,14 @@ class UserDatabase
 	 */
 	static public function checkEmail($user)
 	{
-		// return false;
+		$sql = "Select * from Users where Email = '$user->getEmail()'";
+        	$result = mysql_query($sql);
+        	$numRows = mysql_num_rows($result); // <- Styl kodowania Zend!!!
+        	if ($numRows == 1) {
+            		return true;
+        	} else { // <- Zend
+            		return false;
+        	}
 	}
 	
 	/*
@@ -17,7 +24,14 @@ class UserDatabase
 	 */
 	static public function checkPassword($user)
 	{
-		// return false;
+		$sql = "Select * from Users where Email = '$user->getEmail()' && Password = '$user->getPassword()'";
+        	$res = mysql_query($sql);
+        	$numRows = mysql_num_rows($result);
+        	if ($num_rows == 1) {            
+            		return true;
+        	} else {
+            		return false;
+        	}   
 	}
 	
 	// Nie pozwalamy na utworzenie obiektu, chemy utrzymać obiektowy styl aplikacji
