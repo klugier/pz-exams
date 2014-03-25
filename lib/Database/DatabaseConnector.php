@@ -1,12 +1,7 @@
 <?php
 
-class ConnectorDB  
-{ 
-	private $mysqliConnection ;
-	private $localhost ; 
-	private $user ; 
-	private $password ; 
-	private $database ; 
+class DatabaseConnector
+{
 	function __construct( $l , $u , $p , $d  ) 
 	{ 
 		$this->localhost = $l;
@@ -14,7 +9,8 @@ class ConnectorDB
 		$this->password = $p ;   
 		$this->database = $d ;
 	} 
-	public function connectDB (  )
+	
+	public function connect()
 	{ 
 		$this->mysqliConnection = new mysqli($this->localhost, $this->user, $this->password, $this->database);
 		if ( $this->mysqliConnection->connect_errno) {
@@ -22,13 +18,20 @@ class ConnectorDB
 		} else {
 			echo $this->mysqliConnection->host_info . "\n";
 		}
-	} 
-	public function getConnection ( ) 
+	}
+	
+	public function getConnection() 
 	{ 
 		return $this->mysqliConnection  ; 
-	} 
-} 
-
+	}
+	
+	private $mysqliConnection;
+	private $localhost; 
+	private $user; 
+	private $password; 
+	private $database;
+}
+    // TODO: Zrobić prawdziwe połączenie z bazą danych
 
 	// testing code it works !!!   
 	// change connection for your local mysql settings 
@@ -41,6 +44,4 @@ class ConnectorDB
 			printf("Select returned %d rows.\n", $result->num_rows);
 			$result->close();
 	}*/
-
-	
 ?>
