@@ -31,6 +31,10 @@ class DatabaseConnector
 	private $password; 
 	private $database;
 }
+$conn = new DatabaseConnector('spk.if.uj.edu.pl','pachel','mowuFezY','PACHEL');
+$conn ->connect();
+$conn ->getConnection();
+
     // TODO: Zrobić prawdziwe połączenie z bazą danych
 
 	// testing code it works !!!   
