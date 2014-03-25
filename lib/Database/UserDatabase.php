@@ -11,10 +11,10 @@ class UserDatabase
 	{
 		$sql = "Select * from Users where Email = '$user->getEmail()'";
 		$result = mysql_query($sql);
-		$numRows = mysql_num_rows($result); // <- Styl kodowania Zend!!!
+		$numRows = mysql_num_rows($result);
 		if ($numRows == 1) {
 			return true;
-		} else { // <- Zend
+		} else {
 			return false;
 		}
 	}
@@ -27,7 +27,7 @@ class UserDatabase
 		$sql = "Select * from Users where Email = '$user->getEmail()' && Password = '$user->getPassword()'";
 		$res = mysql_query($sql);
 		$numRows = mysql_num_rows($result);
-		if ($num_rows == 1) {            
+		if ($numRows == 1) {            
 			return true;
 		} else {
 			return false;
