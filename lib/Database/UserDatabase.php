@@ -25,7 +25,7 @@ class UserDatabase
 	static public function checkPassword($user)
 	{
 		$sql = "Select * from Users where Email = '$user->getEmail()' && Password = '$user->getPassword()'";
-		$res = mysql_query($sql);
+		$result = mysql_query($sql);
 		$numRows = mysql_num_rows($result);
 		if ($numRows == 1) {
 			while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
