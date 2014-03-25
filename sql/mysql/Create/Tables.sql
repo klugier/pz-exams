@@ -16,7 +16,7 @@ CREATE TABLE `Users` (
 	`Visibility`       ENUM ('private', 'public')         NOT NULL,
 	`Rights`           ENUM ('administrator', 'examiner') NOT NULL,
 	`Gender`           ENUM ('female', 'male')            NOT NULL,
-	`RegistretionDate` DATE                               NOT NULL,
+	`RegistrationDate` DATE                               NOT NULL,
 	`University`       VARCHAR(120),
 	`Telephone`        VARCHAR(15),
 	`WebSite`          VARCHAR(150),
