@@ -7,8 +7,10 @@
 				echo "<title>$title</title>";
 			}
 		?>
+
+		<link rel="shortcut icon" href="img/fav_icon.png" type="image/x-icon">
 		
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
 		
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/custom.css">
@@ -47,4 +49,4 @@
 		<?php include_once("Navbar.php"); ?>
  		<div id="container">
 			<div class="container col-md-8 col-md-offset-2" style="padding: 0px; padding-top:0px;">
-				<div class="panel col-md-12" style="padding: 20px; background: rgba(255, 255, 255, 0.9);">
+				<div class="panel col-md-12" style="padding: 20px; background: rgba(255, 255, 255, 0.9); margin-bottom: 6em;">

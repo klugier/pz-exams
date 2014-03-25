@@ -25,7 +25,7 @@
 				</div> 
 				<span class="help-block" id="email-error-message" style="visibility:hidden">
 						<span style="background-color:#F13333;" class="badge pull-left ">!</span>
-					<span style="padding:5px"> Nieprawidłowy adress.</span>
+					<span style="padding:5px"> Nieprawidłowy adres.</span>
 				</span>
 			</div>
 			<!-- <div class="form-group">
@@ -55,7 +55,7 @@
 				</span>
 			</div>
 			<div class="form-group">
-				<label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Imie </label>
+				<label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Imię</label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="text" class="form-control" id="firstname" placeholder="Wprowadź Imię" name="name" value="<?php if(isset($_SESSION['name'])){ echo $_SESSION['name']; } else { echo '';  }?>">
 				</div>

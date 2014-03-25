@@ -4,11 +4,12 @@ body
 
 	background-size: 100% 100%; 
 	background-repeat: no-repeat;
-	background-position: fixed; 
 	background-attachment: fixed;
 }
 
-html, #container { height: 100%; }
+html, #container { 
+	height: 100%; 
+}
 
 a#contact, a#authors, a#help
 {
@@ -22,16 +23,15 @@ div.navbar-header a:not(#home)
 
 div#footer
 {
-	padding: 4px 8px 4px; */
+	padding: 4px 8px 4px;
 
 	clear: both;
  	position: relative;
  	z-index: 10;
- 	height: 5em;
- 	margin-top: -5em;
+ 	height: 4em;
+ 	margin-top: -4em;
 
-
-	background: rgba(0,0,0,0.7); 
+	background: rgba(0,0,0,0.8); 
 	color: #999; 
 	box-shadow: 2px -2px 20px #444444; 
 	text-align: center; 
