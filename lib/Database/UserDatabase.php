@@ -40,7 +40,7 @@ final class UserDatabase
 				        . $user->getName() . "','arek ','private','examiner' , 'female' , '"
 				        . date("Y/m/d") . "')";  
 				
-		$sql =  "INSERT INTO Users (Email, Password, FirstName , Surname, Visibility , Rights , Gender , RegistretionDate)" 
+		$sql =  "INSERT INTO Users (Email, Password, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate)" 
 			 .	"VALUES $values";
 
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
