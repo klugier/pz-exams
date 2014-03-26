@@ -8,9 +8,9 @@ final class UserDatabase
 	/*
 	 * Metoda sprawdza czy użytkownik o zadanym e-mailu istnieje w bazie danych.
 	 */
-	static public function checkEmail($user)
+	static public function checkEmail($basicUser)
 	{
-		$sql = "Select * from Users where Email = '$user->getEmail()'";
+		$sql = "Select * from Users where Email = '$basicUser->getEmail()'";
 		
 		DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
@@ -18,9 +18,9 @@ final class UserDatabase
 	/*
 	 * Metoda sprawdza czy przypisane hasło do klasy $user jest poprawne.
 	 */
-	static public function checkPassword($user)
+	static public function checkPassword($basicUser)
 	{
-		$sql = "Select * from Users where Email = '$user->getEmail()' && Password = '$user->getPassword()'";
+		$sql = "Select * from Users where Email = '$basicUser->getEmail()' && Password = '$basicUser->getPassword()'";
 		$result = mysql_query($sql);
 		$numRows = mysql_num_rows($result);
 		if ($numRows == 1) {

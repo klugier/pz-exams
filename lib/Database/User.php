@@ -1,13 +1,11 @@
 <?php
 
-class User
+class BasicUser
 {
 	public function __construct()
 	{
 		
 	}
-	
-	// *****************************************************
 	
 	public function getID()
 	{
@@ -24,14 +22,7 @@ class User
 		return $this->password;
 	}
 	
-	public function getName()
-	{
-		return $this->name;
-	}
-	
-	
-	// *****************************************************
-	
+
 	public function setID($id)
 	{
 		$this->id = $id;
@@ -46,13 +37,32 @@ class User
 	{
 		$this->password = $password;
 	}
+	
+	
+	private $id;
+	private $email;
+	private $password;
+}
 
+class User extends BasicUser
+{
+	public function __construct()
+	{
+		
+	}
+	
+	
+	public function getName()
+	{
+		return $this->name;
+	}
+	
+	
 	public function setName($name)
 	{
 		return $this->name = $name ;
 	}
 	
-	// *****************************************************
 	
 	private $id;
 	private $email;
