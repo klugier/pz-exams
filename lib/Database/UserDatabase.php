@@ -10,8 +10,8 @@ final class UserDatabase
 	 */
 	static public function checkEmail($basicUser)
 	{
-		$sql = "Select * from Users where Email = '$basicUser->getEmail()'";
-		
+		$sql = "Select * from Users where Email = '".$basicUser->getEmail()."'";
+
 		DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
 	
@@ -20,17 +20,18 @@ final class UserDatabase
 	 */
 	static public function checkPassword($basicUser)
 	{
-		$sql = "Select * from Users where Email = '$basicUser->getEmail()' && Password = '$basicUser->getPassword()'";
-		$result = mysql_query($sql);
-		$numRows = mysql_num_rows($result);
-		if ($numRows == 1) {
-			while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
-				$user->setId($row[0]);
-			}     
+		$sql = "Select * from Users where Email = '". $basicUser->getEmail()."' && Password = '". $basicUser->getPassword()."'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$row_num = $result ->num_rows;
+		if($row_num == 1)
+		{
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+			$user->setID($row['ID']);
+			$_SESSION['USER'] = $basicUser;
 			return true;
-		} else {
-			return false;
-		}   
+		}
+		return false;		
 	}
 	
 	static public function addUser($user)
