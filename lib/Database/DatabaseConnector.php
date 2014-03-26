@@ -25,7 +25,7 @@ final class DatabaseConnector
 	{
 		$lines = file($cfgPath);
 		foreach ($lines as $lineNumber => $line) {
-			$line = str_replace("\n", "", $line);
+			$line = rtrim($line);
 			
 			switch ($lineNumber) {
 				case 0:
