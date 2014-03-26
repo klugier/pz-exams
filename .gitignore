@@ -2,4 +2,4 @@
 !/.gitignore
 
 # Wykluczamy wszystkie pliki konfiguracyjne
-*.cfg
+cfg/Database.cfg

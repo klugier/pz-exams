@@ -4,10 +4,15 @@ class User
 {
 	public function __construct()
 	{
-		$this->name = "unknown" ; 
+		
 	}
 	
 	// *****************************************************
+	
+	public function getID()
+	{
+		return $this->id;
+	}
 	
 	public function getEmail()
 	{
@@ -27,6 +32,11 @@ class User
 	
 	// *****************************************************
 	
+	public function setID($id)
+	{
+		$this->id = $id;
+	}
+	
 	public function setEmail($email)
 	{
 		$this->email = $email;
@@ -44,9 +54,10 @@ class User
 	
 	// *****************************************************
 	
+	private $id;
 	private $email;
 	private $password;
-	private $name ; 
+	private $name; 
 }
 
 ?>

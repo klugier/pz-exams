@@ -1,8 +1,9 @@
 <?php
 
 include_once("User.php");
+include_once("DatabaseConnector.php");
 
-class UserDatabase
+final class UserDatabase
 {
 	/*
 	 * Metoda sprawdza czy użytkownik o zadanym e-mailu istnieje w bazie danych.
@@ -10,13 +11,8 @@ class UserDatabase
 	static public function checkEmail($user)
 	{
 		$sql = "Select * from Users where Email = '$user->getEmail()'";
-		$result = mysql_query($sql);
-		$numRows = mysql_num_rows($result);
-		if ($numRows == 1) {
-			return true;
-		} else {
-			return false;
-		}
+		
+		DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
 	
 	/*
@@ -37,32 +33,21 @@ class UserDatabase
 		}   
 	}
 	
-	public function addUser ( $user )
+	static public function addUser($user)
 	{ 
 		$values = "('"	. $user->getEmail() . "','"
-				. $user->getPassword() . "','" 
-				. $user->getName() . "','arek ','private','examiner' , 'female' , '"
-				. date("Y/m/d") . "' )";  
+				        . $user->getPassword() . "','" 
+				        . $user->getName() . "','arek ','private','examiner' , 'female' , '"
+				        . date("Y/m/d") . "')";  
 				
-		$sql =  "INSERT INTO Users  ( Email, Password, FirstName , Surname, Visibility , Rights , Gender , RegistretionDate)" 
-			 .	"VALUES $values" ;
+		$sql =  "INSERT INTO Users (Email, Password, FirstName , Surname, Visibility , Rights , Gender , RegistretionDate)" 
+			 .	"VALUES $values";
 
-		if ($result = $this->activeConnection->getConnection()->query($sql)) {
-			
-			return true ; 
-		} else { 
-			return false ; 
-		} 
+		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	} 
 	
-	// Nie pozwalamy na utworzenie obiektu, chemy utrzymać obiektowy styl aplikacji
-	function __construct(  ) 
-	{ 
-		$this->activeConnection = new DatabaseConnector('localhost','root','haslo','bazaZbigniew');
-		$this->activeConnection -> connect();
-	}
-	
-	private $activeConnection ;
+	// Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)
+	private function __construct() { }
 }
 
 ?>
