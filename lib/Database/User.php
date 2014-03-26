@@ -60,7 +60,29 @@ class User extends BasicUser
 	
 	public function setName($name)
 	{
-		return $this->name = $name ;
+		$this->name = $name ;
+	}
+	
+	public function getSurname()
+	{
+		return $this->surname;
+	}
+	
+	
+	public function setSurname($surname)
+	{
+		 $this->surname = $surname ;
+	}
+	
+	public function getGender()
+	{
+		return $this->gender;
+	}
+	
+	
+	public function setGender($gender)
+	{
+		 $this->gender = $gender ;
 	}
 	
 	
@@ -68,6 +90,8 @@ class User extends BasicUser
 	private $email;
 	private $password;
 	private $name; 
+	private $surname ;
+	private $gender ; 
 }
 
 ?>

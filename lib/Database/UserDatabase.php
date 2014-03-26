@@ -37,15 +37,18 @@ final class UserDatabase
 	static public function addUser($user)
 	{ 
 		$values = "('"	. $user->getEmail() . "','"
-				        . $user->getPassword() . "','" 
-				        . $user->getName() . "','arek ','private','examiner' , 'female' , '"
-				        . date("Y/m/d") . "')";  
+						. $user->getPassword() . "'," 
+						. (is_null($user->getName()) ? "NULL" : "'" . $user->getName() . "'")  . "," 
+						. (is_null($user->getSurname()) ? "NULL" : "'" . $user->getSurname() . "'") . ",'private','examiner' ," 
+						. (is_null($user->getGender()) ? "NULL" : "'" .$user->getGender() . "'" ) . " , '"
+						. date("Y/m/d") . "')";  
 				
 		$sql =  "INSERT INTO Users (Email, Password, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate)" 
 			 .	"VALUES $values";
 
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	} 
+	
 	
 	// Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)
 	private function __construct() { }
