@@ -11,8 +11,13 @@ final class UserDatabase
 	static public function checkEmail($basicUser)
 	{
 		$sql = "Select * from Users where Email = '".$basicUser->getEmail()."'";
-
-		DatabaseConnector::getConnection()->query($sql) ? true : false;
+		echo $sql;
+		if(DatabaseConnector::getConnection()->query($sql))
+		{
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/*
@@ -27,7 +32,7 @@ final class UserDatabase
 		{
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-			$user->setID($row['ID']);
+			$basicUser->setID($row['ID']);
 			$_SESSION['USER'] = $basicUser;
 			return true;
 		}
@@ -51,7 +56,7 @@ final class UserDatabase
 	
 	
 	// Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)
-	private function __construct() { }
+	
 }
 
 ?>
