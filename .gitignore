@@ -1,3 +1,5 @@
 .*
 !/.gitignore
 
+# Wykluczamy wszystkie pliki konfiguracyjne
+*.cfg
