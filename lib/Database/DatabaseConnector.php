@@ -1,51 +1,78 @@
 <?php
 
-class DatabaseConnector
+final class DatabaseConnector
 {
-	function __construct( $l , $u , $p , $d  ) 
-	{ 
-		$this->localhost = $l;
-		$this->user =  $u; 
-		$this->password = $p ;   
-		$this->database = $d ;
-	} 
-	
-	public function connect()
-	{ 
-		$this->mysqliConnection = new mysqli($this->localhost, $this->user, $this->password, $this->database);
-		/*if ( $this->mysqliConnection->connect_errno) {
-			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-		} else {
-			echo $this->mysqliConnection->host_info . "\n";
-		}*/
-	}
-	
 	public function getConnection() 
-	{ 
-		return $this->mysqliConnection  ; 
+	{
+		return self::getInstance()->connection; 
 	}
 	
-	private $mysqliConnection;
-	private $localhost; 
+	private static function getInstance()
+	{
+		if (self::$instance == false) {
+			self::$instance = new DatabaseConnector("cfg/Database.cfg");
+			self::$instance->connect();
+		}
+		return self::$instance;
+	}
+	
+	/*
+	 * Wszystkie dane potrzebne do połączenia z bazą danych będzeimy wczytywać z pliku.
+	 * Jest to uzasadanione rozwiązanie ponieważ, każdy u siebie lokalnie będzie mógł sobie zdefiniować
+	 * ten plik.
+	 */
+	private function __construct($cfgPath) 
+	{
+		$lines = file($cfgPath);
+		foreach ($lines as $lineNumber => $line) {
+			$line = str_replace("\n", "", $line);
+			
+			switch ($lineNumber) {
+				case 0:
+					$this->server = $line;
+					break;
+					
+				case 1:
+					$this->user = $line;
+					break;
+					
+				case 2:
+					$this->password = $line;
+					break;
+					
+				case 3:
+					$this->database = $line;
+					break;
+			}
+		}
+	}
+	
+	private function connect()
+	{
+		$this->connection = new mysqli($this->server, $this->user, $this->password, $this->database);
+		if ($this->connection->connect_errno) {
+			echo "<b>Nie udało się połączyć z bazą danych MySQL: (" . $this->connection->connect_errno . ")</b>";
+		}
+	}
+	
+	private function toString()
+	{
+		$str = "Server:   " . $this->server   . "<br \>" .
+		       "User:     " . $this->user     . "<br \>" .
+			   "Password: " . $this->password . "<br \>" .
+			   "Database: " . $this->database . "<br \>"
+			   ;
+		
+		return $str;
+	}
+	
+	private $connection;
+	private $server; 
 	private $user; 
 	private $password; 
 	private $database;
+	
+	private static $instance = false;
 }
-//$conn = new DatabaseConnector('spk.if.uj.edu.pl','pachel','mowuFezY','PACHEL');
-//$conn ->connect();
-//$conn ->getConnection();
 
-    // TODO: Zrobić prawdziwe połączenie z bazą danych
-
-	// testing code it works !!!   
-	// change connection for your local mysql settings 
-	//$db = new ConnectorDB ( "localhost" , "root" , "password" , "bazaZbigniew") ;
-	//$db -> connectDB ( ) ; 
-	
-	// example querry for our database 
-	
-	/*if ($result = $db->getConnection()->query("SELECT * FROM Users LIMIT 10")) {
-			printf("Select returned %d rows.\n", $result->num_rows);
-			$result->close();
-	}*/
 ?>
