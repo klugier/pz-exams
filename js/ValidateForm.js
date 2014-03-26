@@ -132,7 +132,7 @@ $(document).ready()
 		} 
 	} ) ; 
 	
-	$( "div#invalid-captcha-code" ).delay(1800).slideUp("slow");
+	$( "div#invalid-captcha-code" ).delay(5000).slideUp("slow");
 	
 	/*$("#passwd-repeat").keyup( function (event) { 
 		var repeatedPasswd = $(this).val();
