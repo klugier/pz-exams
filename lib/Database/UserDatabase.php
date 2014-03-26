@@ -56,7 +56,7 @@ final class UserDatabase
 	
 	
 	// Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)
-	
+	private function __construct();
 }
 
 ?>
