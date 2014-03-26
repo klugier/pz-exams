@@ -13,11 +13,11 @@ class DatabaseConnector
 	public function connect()
 	{ 
 		$this->mysqliConnection = new mysqli($this->localhost, $this->user, $this->password, $this->database);
-		if ( $this->mysqliConnection->connect_errno) {
+		/*if ( $this->mysqliConnection->connect_errno) {
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 		} else {
 			echo $this->mysqliConnection->host_info . "\n";
-		}
+		}*/
 	}
 	
 	public function getConnection() 
@@ -31,9 +31,9 @@ class DatabaseConnector
 	private $password; 
 	private $database;
 }
-$conn = new DatabaseConnector('spk.if.uj.edu.pl','pachel','mowuFezY','PACHEL');
-$conn ->connect();
-$conn ->getConnection();
+//$conn = new DatabaseConnector('spk.if.uj.edu.pl','pachel','mowuFezY','PACHEL');
+//$conn ->connect();
+//$conn ->getConnection();
 
     // TODO: Zrobić prawdziwe połączenie z bazą danych
 

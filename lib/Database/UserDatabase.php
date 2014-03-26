@@ -37,8 +37,32 @@ class UserDatabase
 		}   
 	}
 	
+	public function addUser ( $user )
+	{ 
+		$values = "('"	. $user->getEmail() . "','"
+				. $user->getPassword() . "','" 
+				. $user->getName() . "','arek ','private','examiner' , 'female' , '"
+				. date("Y/m/d") . "' )";  
+				
+		$sql =  "INSERT INTO Users  ( Email, Password, FirstName , Surname, Visibility , Rights , Gender , RegistretionDate)" 
+			 .	"VALUES $values" ;
+
+		if ($result = $this->activeConnection->getConnection()->query($sql)) {
+			
+			return true ; 
+		} else { 
+			return false ; 
+		} 
+	} 
+	
 	// Nie pozwalamy na utworzenie obiektu, chemy utrzymać obiektowy styl aplikacji
-	private function __construct() { }
+	function __construct(  ) 
+	{ 
+		$this->activeConnection = new DatabaseConnector('localhost','root','haslo','bazaZbigniew');
+		$this->activeConnection -> connect();
+	}
+	
+	private $activeConnection ;
 }
 
 ?>

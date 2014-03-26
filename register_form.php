@@ -41,7 +41,7 @@
 			<div class="form-group">
 				<label for="passwd" class="col-xs-2 col-sm-2 col-md-2 control-label"> Hasło </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="password" required class="form-control inputPassword" id="passwd" placeholder="Wprowadź Haslo" title="">
+					<input type="password" required class="form-control inputPassword" id="passwd" name="passwd" placeholder="Wprowadź Haslo" title="">
 				</div>
 			</div>
 			<div class="form-group">

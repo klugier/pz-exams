@@ -4,7 +4,7 @@ class User
 {
 	public function __construct()
 	{
-		
+		$this->name = "unknown" ; 
 	}
 	
 	// *****************************************************
@@ -19,10 +19,11 @@ class User
 		return $this->password;
 	}
 	
-	public function getId()
+	public function getName()
 	{
-		return $this->id;
+		return $this->name;
 	}
+	
 	
 	// *****************************************************
 	
@@ -35,16 +36,17 @@ class User
 	{
 		$this->password = $password;
 	}
-	
-	public function setId($id)
+
+	public function setName($name)
 	{
-		$this->id = $id;		
+		return $this->name = $name ;
 	}
+	
 	// *****************************************************
 	
 	private $email;
 	private $password;
-	private $id;
+	private $name ; 
 }
 
 ?>
