@@ -12,12 +12,16 @@ final class UserDatabase
 	{
 		$sql = "Select * from Users where Email = '".$basicUser->getEmail()."'";
 		echo $sql;
-		if(DatabaseConnector::getConnection()->query($sql))
+		
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$row_num = $result ->num_rows;
+		if($row_num == 1)
 		{
 			return true;
 		} else {
 			return false;
 		}
+
 	}
 	
 	/*
@@ -33,7 +37,6 @@ final class UserDatabase
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 			$basicUser->setID($row['ID']);
-			$_SESSION['USER'] = $basicUser;
 			return true;
 		}
 		return false;		
