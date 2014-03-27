@@ -21,14 +21,14 @@
 		</li>
             	<li class="navbar-form" style="padding-right: 0px;">
       		    	<form  action="logoff.php">
-              	 		<button type="submit" class="btn btn-info"><b>Wyloguj <?php echo ' '.unserialize($_SESSION['USER'])->getEmail(); ?></b></button>
+              	 		<button type="submit" class="btn btn-danger"><b>Wyloguj <?php echo ' '.unserialize($_SESSION['USER'])->getEmail(); ?></b></button>
 			</form>
 		</li> 
 		<?php } else { ?>
             		
                 <li class="dropdown navbar-form">
                     <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><b>Logowanie</b></button>
-				    <!--<button type="submit" class="btn btn-danger">Wyloguj</button>-->
+				    
                     <ul class="dropdown-menu" style="width:300px; background: rgba(255,255,255,0.9);-webkit-border-radius: 5px; -khtml-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px; margin-top:8px;">
                         <li> 
                   	    <form class="form-signin" role="form" style="margin-right:10px;margin-left:10px;" method="post" action="login.php">
