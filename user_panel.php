@@ -1,4 +1,7 @@
-<?php include("html/Begin.php"); ?>
+<?php 
+include_once("lib/Lib.php");
+include("html/Begin.php"); 
+?>
 <h1 style="font-weight:bold;text-decoration:underline;">Panel egzaminatora</h1>
    <div class="navbar navbar-inverse " style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;">
 

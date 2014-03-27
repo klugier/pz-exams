@@ -50,7 +50,17 @@ class User extends BasicUser
 	{
 		
 	}
-	
+	// only testing function 
+	public function toString ( ) 
+	{ 
+		echo "Object User Info <br /> "  ; 
+		echo "Id : " . $this->getID() . "<br /> " ;
+		echo "Email : " . $this->getEmail() . "<br /> " ; 
+		echo "Password : " . $this->getPassword() . "<br /> " ;
+		echo "Name : " . $this->getName() . "<br /> " ;  
+		echo "Surname : " . $this->getSurname() . "<br /> " ;
+		echo "Gender : " . $this->getGender() . "<br /> " ;
+	} 
 	
 	public function getName()
 	{
@@ -85,7 +95,30 @@ class User extends BasicUser
 		 $this->gender = $gender ;
 	}
 	
+	/*public function getVisibility ()
+	{
+		return $this->$visibility ;
+	}
 	
+	
+	public function setVisibility (  $visibility  )  
+	{
+		 $this->visibility  = $visibility  ;
+	}
+	//
+	
+	public function getRights ()
+	{
+		return $this->$rights ;
+	}
+	
+	
+	public function setRights (  $rights  )  
+	{
+		 $this->rights  = $rights ;
+	}
+	
+	private $visibility; */
 	private $id;
 	private $email;
 	private $password;

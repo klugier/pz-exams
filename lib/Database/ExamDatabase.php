@@ -4,7 +4,7 @@ include_once("User.php");
 include_once("Exam.php");
 include_once("DatabaseConnector.php");
 
-final class UserDatabase
+final class ExamDatabase
 {
 	/*
 	 * Metoda sprawdza czy egz o zadanej nazwie istnieje w bazie danych.

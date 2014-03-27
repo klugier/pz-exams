@@ -12,12 +12,16 @@ final class UserDatabase
 	{
 		$sql = "Select * from Users where Email = '".$basicUser->getEmail()."'";
 		echo $sql;
-		if(DatabaseConnector::getConnection()->query($sql))
+		
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$row_num = $result ->num_rows;
+		if($row_num == 1)
 		{
 			return true;
 		} else {
 			return false;
 		}
+
 	}
 	
 	/*
@@ -33,7 +37,6 @@ final class UserDatabase
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 			$basicUser->setID($row['ID']);
-			$_SESSION['USER'] = $basicUser;
 			return true;
 		}
 		return false;		
@@ -54,9 +57,28 @@ final class UserDatabase
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	} 
 	
-	
+	static public function  getId (  $id ) 
+	{ 
+		$sql =  "SELECT * FROM Users WHERE ID = " . $id ;
+		$result = DatabaseConnector::getConnection() -> query($sql) ;
+		// user does not exist 
+		if ( $result->num_rows != 1 )
+			return null ; 
+		$row = $result->fetch_array(MYSQLI_ASSOC);
+		 
+		$resultUser = new User ( ) ; 
+		$resultUser->setID ($row['ID'])  ;
+		$resultUser->setEmail ($row['Email'])  ;
+		$resultUser->setPassword ($row['Password'])  ;
+		$resultUser->setName ($row['FirstName'])  ;
+		$resultUser->setSurname ($row['Surname'])  ;
+		$resultUser->setGender ($row['Gender'])  ;
+		
+		return $resultUser ;
+	} 
+		
 	// Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)
-	private function __construct();
+	private function __construct() { }
 }
 
 ?>
