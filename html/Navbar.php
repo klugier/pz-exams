@@ -13,6 +13,19 @@
         </div>
         <div class="collapse navbar-collapse" style="padding: 0px;">
             <ul class="nav navbar-nav pull-right" style="padding-right: 0px;">
+            	<?php if(isset($_SESSION['USER']) && $_SESSION['USER'] != ""){ ?>
+            	<li class="navbar-form" style="padding-right: 0px;">
+      		    	<form  action="user_panel.php">
+              	 		<button type="submit" class="btn btn-info"><b>Panel użytkownika</b></button>
+			</form>
+		</li>
+            	<li class="navbar-form" style="padding-right: 0px;">
+      		    	<form  action="logoff.php">
+              	 		<button type="submit" class="btn btn-info"><b>Wyloguj <?php echo ' '.unserialize($_SESSION['USER'])->getEmail(); ?></b></button>
+			</form>
+		</li> 
+		<?php } else { ?>
+            		
                 <li class="dropdown navbar-form">
                     <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><b>Logowanie</b></button>
 				    <!--<button type="submit" class="btn btn-danger">Wyloguj</button>-->
@@ -34,8 +47,9 @@
                 <li class="navbar-form" style="margin-left:-20px; padding-right: 0px;">
       		       	<form  action="register_form.php">
               	 		<button type="submit" class="btn btn-info"><b>Rejestracja</b></button>
-					</form>
-				</li> 
+			</form>
+		</li> 
+		<?php } ?>
             </ul>
         </div>
       </div>
