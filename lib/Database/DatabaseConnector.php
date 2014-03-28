@@ -2,9 +2,14 @@
 
 final class DatabaseConnector
 {
-	public function getConnection() 
+	public static function getConnection() 
 	{
 		return self::getInstance()->connection; 
+	}
+	
+	public static function getLastError()
+	{
+		// return self::getInstance()->connection->error;
 	}
 	
 	private static function getInstance()
@@ -45,6 +50,11 @@ final class DatabaseConnector
 					break;
 			}
 		}
+	}
+	
+	private function __destruct()
+	{
+		$connection->close();
 	}
 	
 	private function connect()

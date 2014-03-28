@@ -11,6 +11,7 @@ CREATE TABLE `Users` (
 	`ID`               INT                                AUTO_INCREMENT,
 	`Email`            VARCHAR (80)                       UNIQUE NOT NULL,
 	`Password`         VARCHAR (50)                       NOT NULL,
+	`Activated`        BOOLEAN                            NOT NULL,
 	`FirstName`        VARCHAR (50),
 	`Surname`          VARCHAR (70),
 	`Visibility`       ENUM ('private', 'public')         NOT NULL,

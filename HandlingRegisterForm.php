@@ -13,21 +13,22 @@ $securimage = new Securimage();
 
 if ($securimage->check($captcha_code) == true) { 
 	$user = new User();
-	if ( empty ( $_POST['name'] )   ) { 
+	
+	if (empty($_POST['name'])) { 
 		$user->setName(null);
 		//echo "imie puste <br />" ;
 	} else { 
 		$user->setName($_POST['name']);
 	}
 	
-	if ( empty ($_POST['surname'] )   ) { 
+	if (empty($_POST['surname'])) { 
 		$user->setSurname(null);
 		//echo "nazwisko puste <br /> " ; 
 	} else { 
 		$user->setSurname($_POST['surname']);
 	} 
 	
-	if (  $_POST['gender']  == "- Wybierz płeć -"   ) { 
+	if ($_POST['gender']  == "- Wybierz płeć -") { 
 		$user->setGender(null);
 		//echo "płeć pusta <br />" ;
 	} else {

@@ -4,7 +4,7 @@ class BasicUser
 {
 	public function __construct()
 	{
-		
+		$this->activated = true;
 	}
 	
 	public function getID()
@@ -20,6 +20,11 @@ class BasicUser
 	public function getPassword()
 	{
 		return $this->password;
+	}
+	
+	public function getActivated()
+	{
+		return $this->activated;
 	}
 	
 
@@ -38,10 +43,15 @@ class BasicUser
 		$this->password = $password;
 	}
 	
+	public function setActivated($activated)
+	{
+		$this->activated = $activated;
+	}
 	
 	private $id;
 	private $email;
 	private $password;
+	private $activated;
 }
 
 class User extends BasicUser
@@ -50,16 +60,16 @@ class User extends BasicUser
 	{
 		
 	}
-	// only testing function 
-	public function toString ( ) 
+	
+	public function toString() 
 	{ 
-		echo "Object User Info <br /> "  ; 
-		echo "Id : " . $this->getID() . "<br /> " ;
-		echo "Email : " . $this->getEmail() . "<br /> " ; 
-		echo "Password : " . $this->getPassword() . "<br /> " ;
-		echo "Name : " . $this->getName() . "<br /> " ;  
-		echo "Surname : " . $this->getSurname() . "<br /> " ;
-		echo "Gender : " . $this->getGender() . "<br /> " ;
+		echo "Object User Info <br /> "; 
+		echo "Id: "       . $this->id       . "<br /> " ;
+		echo "Email: "    . $this->getEmail()    . "<br /> " ; 
+		echo "Password: " . $this->getPassword() . "<br /> " ;
+		echo "Name: "     . $this->getName()     . "<br /> " ;  
+		echo "Surname: "  . $this->getSurname()  . "<br /> " ;
+		echo "Gender: "   . $this->getGender()   . "<br /> " ;
 	} 
 	
 	public function getName()
@@ -92,7 +102,7 @@ class User extends BasicUser
 	
 	public function setGender($gender)
 	{
-		 $this->gender = $gender ;
+		 $this->gender = $gender;
 	}
 	
 	/*public function getVisibility ()

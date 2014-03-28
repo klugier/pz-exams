@@ -10,7 +10,7 @@
 
 		<link rel="shortcut icon" href="img/fav_icon.png" type="image/x-icon">
 		
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/custom.css">
