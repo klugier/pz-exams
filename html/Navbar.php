@@ -8,8 +8,8 @@
           </button>
           <a id="home" class="navbar-brand" href="index.php">Strona główna</a>
           <a class="navbar-brand" href="index.php">Kontakt</a>
-          <a class="navbar-brand" href="authors.php">Autorzy</a>
-          <a class="navbar-brand" href="help.php">Pomoc</a>
+          <a class="navbar-brand" href="Authors.php">Autorzy</a>
+          <a class="navbar-brand" href="Help.php">Pomoc</a>
         </div>
         <div class="collapse navbar-collapse" style="padding: 0px;">
             <ul class="nav navbar-nav pull-right" style="padding-right: 0px;">
@@ -45,7 +45,7 @@
                     </ul>
                 </li>
                 <li class="navbar-form" style="margin-left:-20px; padding-right: 0px;">
-      		       	<form  action="register_form.php">
+      		       	<form  action="RegisterForm.php">
               	 		<button type="submit" class="btn btn-info"><b>Rejestracja</b></button>
 			</form>
 		</li> 
