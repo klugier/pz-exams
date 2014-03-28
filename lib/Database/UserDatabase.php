@@ -47,17 +47,19 @@ final class UserDatabase
 	
 	static public function addUser($user)
 	{ 
-		$values = "('"	. $user->getEmail()    . "','"
-						. $user->getPassword() . "','"
+		$values = "('"	. $user->getEmail()    . "', '"
+						. $user->getPassword() . "', '"
 						. ($user->getActivated()        ? "TRUE" : "FALSE") . "',"
-						. (is_null($user->getName())    ? "NULL" : "'" . $user->getName()    . "'")  . "," 
+						. (is_null($user->getName())    ? "NULL" : "'" . $user->getName()    . "'")  . ", " 
 						. (is_null($user->getSurname()) ? "NULL" : "'" . $user->getSurname() . "'")  . ", 'private', 'examiner'," 
 						. (is_null($user->getGender())  ? "NULL" : "'" . $user->getGender()  . "'" ) . " , '"
 						. date("Y/m/d") . "')";  
 		
 		$sql =  "INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) " 
 			 .	"VALUES $values";
-
+		
+		echo $sql;
+		
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	} 
 	

@@ -2,6 +2,7 @@
 # Sposób użycia: ./create.sh -u root -d new_database
 
 isQuite=0
+isEmpty=0;
 databaseName=""
 databaseUser=""
 
@@ -14,11 +15,14 @@ for arg in "$@" ; do
 		databaseName=${args[$i + 1]}
 	elif [ "$arg" == "-q" ] || [ "$arg" == "--quite" ] ; then
 		isQuite=1
+	elif [ "$arg" == "-e" ] || [ "$arg" == "--empty" ] ; then
+		isEmpty=1
 	elif [ "$arg" == "--help" ] || [ "$arg" == "--help" ] ; then
 		printf "Przykładowy sposób użycia: ./Create.sh -u root -d new_database\n\n"
 		printf "Opcje:\n"
 		printf "    -u lub --user     - ustawia nazwę użytkownika\n"
 		printf "    -d lub --database - ustawia nazwę bazydanych\n"
+		printf "    -e lub --empty    - do bazy danych nie będą wstawiane przykładowe dane\n"
 		printf "    -h lub --help     - wyświetla informację z pomocą\n"
 		exit 0
 	fi
@@ -41,9 +45,19 @@ if [ "$databaseUser" == "" ] ; then
 	exit -1
 fi
 
-/usr/bin/mysql -u $databaseUser -p -e "
-	SET @databaseName:='$databaseName';
-	SOURCE Create/Database.sql;
-	USE $databaseName;
-	SOURCE Create/Tables.sql;
-"
+if [ $isEmpty == 0 ] ; then
+	/usr/bin/mysql -u $databaseUser -p -e "
+		SET @databaseName:='$databaseName';
+		SOURCE Create/Database.sql;
+		USE $databaseName;
+		SOURCE Create/Tables.sql;
+		SOURCE Create/Content.sql;
+	"
+else
+	/usr/bin/mysql -u $databaseUser -p -e "
+		SET @databaseName:='$databaseName';
+		SOURCE Create/Database.sql;
+		USE $databaseName;
+		SOURCE Create/Tables.sql;
+	"
+fi
