@@ -11,7 +11,6 @@
 			</span>
 		</div>
 		
-		<script language="javascript" type="text/javascript" src="js/Lib/jquery-1.11.0.min.js"></script>
 		<script language="javascript" type="text/javascript" src="js/Lib/bootstrap.min.js"></script>
 		
 	</body>

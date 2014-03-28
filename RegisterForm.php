@@ -2,7 +2,6 @@
 	include_once("lib/Lib.php");
 	$title = "$appName - Rejestracja";
 	$scriptsDefer = array("js/ValidateForm.js");
-	$scripts = array("http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js");
 	include("html/Begin.php"); 
 ?>
 	<div class="container"> 

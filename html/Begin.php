@@ -15,6 +15,8 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/custom.css">
 		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<!-- włączenie jQuery ma być tutaj inaczej nie dziala pod operą --> 
+		<script language="javascript" type="text/javascript" src="js/Lib/jquery-1.11.0.min.js"></script>
 		<?php
 			if (isset($csses)) {
 				foreach ($csses as $value) {
