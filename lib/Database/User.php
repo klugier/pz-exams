@@ -48,10 +48,10 @@ class BasicUser
 		$this->activated = $activated;
 	}
 	
-	private $id;
-	private $email;
-	private $password;
-	private $activated;
+	protected $id;
+	protected $email;
+	protected $password;
+	protected $activated;
 }
 
 class User extends BasicUser
@@ -64,23 +64,23 @@ class User extends BasicUser
 	public function toString() 
 	{ 
 		echo "Object User Info <br /> "; 
-		echo "Id: "       . $this->id       . "<br /> " ;
-		echo "Email: "    . $this->getEmail()    . "<br /> " ; 
-		echo "Password: " . $this->getPassword() . "<br /> " ;
-		echo "Name: "     . $this->getName()     . "<br /> " ;  
-		echo "Surname: "  . $this->getSurname()  . "<br /> " ;
-		echo "Gender: "   . $this->getGender()   . "<br /> " ;
+		echo "Id: "       . $this->id        . "<br /> " ;
+		echo "Email: "    . $this->email     . "<br /> " ; 
+		echo "Password: " . $this->password  . "<br /> " ;
+		echo "Name: "     . $this->firstName . "<br /> " ;  
+		echo "Surname: "  . $this->surname   . "<br /> " ;
+		echo "Gender: "   . $this->gender    . "<br /> " ;
 	} 
 	
-	public function getName()
+	public function getFirstName()
 	{
-		return $this->name;
+		return $this->firstName;
 	}
 	
 	
-	public function setName($name)
+	public function setFirstName($firstName)
 	{
-		$this->name = $name ;
+		$this->firstName = $firstName;
 	}
 	
 	public function getSurname()
@@ -129,10 +129,7 @@ class User extends BasicUser
 	}
 	
 	private $visibility; */
-	private $id;
-	private $email;
-	private $password;
-	private $name; 
+	private $firstName; 
 	private $surname ;
 	private $gender ; 
 }

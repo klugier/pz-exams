@@ -77,7 +77,7 @@ final class UserDatabase
 		$resultUser->setEmail($row['Email']);
 		$resultUser->setActivated($row['Activated']);
 		$resultUser->setPassword($row['Password']);
-		$resultUser->setName($row['FirstName']);
+		$resultUser->setFirstName($row['FirstName']);
 		$resultUser->setSurname($row['Surname']);
 		$resultUser->setGender($row['Gender']);
 		
