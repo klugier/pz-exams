@@ -4,7 +4,6 @@ final class DatabaseConnector
 {
 	public static function getConnection() 
 	{
-		echo dirname(__FILE__);
 		return self::getInstance()->connection; 
 	}
 	

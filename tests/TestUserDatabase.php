@@ -15,7 +15,7 @@
 				echo DatabaseConnector::getLastError();
 			}
 			else {
-				echo "$user->toString()"; 
+				echo $user->toString(); 
 			}
 		?>
 	</body>
