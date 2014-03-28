@@ -52,11 +52,6 @@ final class DatabaseConnector
 		}
 	}
 	
-	private function __destruct()
-	{
-		$connection->close();
-	}
-	
 	private function connect()
 	{
 		$this->connection = new mysqli($this->server, $this->user, $this->password, $this->database);
