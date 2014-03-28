@@ -49,7 +49,7 @@ if ($securimage->check($captcha_code) == true) {
 	echo 'captcha code valid'; 
 } else {
 	$_SESSION['captchaInvalidValue'] = true;
-	header('Location: register_form.php'); 
+	header('Location: RegisterForm.php'); 
 }
 
 ?>
