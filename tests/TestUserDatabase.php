@@ -7,7 +7,8 @@
 	
 	<body>
 		<?php
-			include('../lib/Lib.php');
+			include_once('../lib/Lib.php');
+			
 			$user = UserDatabase::getUser(1);
 			if ($user == null) {
 				echo "Następujący test zakończył się niepowodzeniem: \"UserDatabase::getUser(1);\"" . "<br \>";

@@ -4,6 +4,7 @@ final class DatabaseConnector
 {
 	public static function getConnection() 
 	{
+		echo dirname(__FILE__);
 		return self::getInstance()->connection; 
 	}
 	
@@ -15,7 +16,7 @@ final class DatabaseConnector
 	private static function getInstance()
 	{
 		if (self::$instance == false) {
-			self::$instance = new DatabaseConnector("cfg/Database.cfg");
+			self::$instance = new DatabaseConnector(dirname(__FILE__) . "/../../cfg/Database.cfg");
 			self::$instance->connect();
 		}
 		return self::$instance;
