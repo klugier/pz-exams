@@ -47,5 +47,5 @@ Aby ujednolicić kod wszystkie funkcję, które bezpośrednio odwołują się do
 Jeżeli znaleźliście błąd w kodzie, to zgłoście go używujacą trackera na githubie.
 
 ### Przydatne linki ###
-* [Stylko kodowania (Zend framework)](http://framework.zend.com/manual/1.12/en/coding-standard.coding-style.html)
+* [Styl kodowania (Zend framework)](http://framework.zend.com/manual/1.12/en/coding-standard.coding-style.html)
 * [Pivotal Tracker (Zarządzanie Scrumem)](http://www.pivotaltracker.com/)
