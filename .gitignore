@@ -3,3 +3,4 @@
 
 # Wykluczamy wszystkie pliki konfiguracyjne
 cfg/Database.xml
+cfg/Settings.xml
