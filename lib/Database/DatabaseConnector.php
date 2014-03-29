@@ -1,6 +1,6 @@
 <?php
 
-include_once("/../General/Settings.php");
+include_once(__DIR__ . "/../General/Settings.php");
 
 final class DatabaseConnector
 {
