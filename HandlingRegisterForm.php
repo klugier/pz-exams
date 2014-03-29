@@ -42,21 +42,22 @@ if ($securimage->check($captcha_code) == true) {
 	//$user->setName($_POST['name']);
 	if ( UserDatabase::checkActivated($user) ) { 
 		$_SESSION['formErrorCode'] = 'userAlreadyInDB';
-		header('Location: RegisterForm.php?'. http_build_query($_GET) );
+		header('Location: RegisterForm.php' );
 	} 
 	
 	if (UserDatabase::addUser($user)) { 
-		echo "Użytkownik wprowadzony do bazy poprawnie"; 
+		$_SESSION['formSuccessCode'] = TRUE ; 
+		header('Location: index.php' );
 	} else { 
 		// echo "Użytkownika nie udało sie wprowadzić do bazy ";
 		$_SESSION['formErrorCode'] = 'userAlreadyInDB';
-		header('Location: RegisterForm.php?'. http_build_query($_GET) );
+		header('Location: RegisterForm.php' );
 	} 
 		
 	echo 'captcha code valid'; 
 } else {
 	$_SESSION['formErrorCode'] = 'invalidCaptcha';
-	header('Location: RegisterForm.php?'. http_build_query($_GET) ); 
+	header('Location: RegisterForm.php' ); 
 }
 
 ?>

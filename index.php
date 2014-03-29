@@ -5,6 +5,16 @@
 	include("html/Begin.php");
 ?>
 
+<?php 
+	if (isset($_SESSION['formSuccessCode'])) {
+		echo '<div class="alert alert-success">' ;
+		echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
+		echo '<strong>Użytownik zarejestrowany poprawnie. E-mail z linkiem aktywacyjnym został wysłany. </strong>'; 			
+		echo '</div>' ; 
+		unset($_SESSION['formSuccessCode']);
+	}
+?> 
+
 <h3>Witaj na platformie</h3>
 
 <p style="text-align: justify; margin-top: 30px;">
