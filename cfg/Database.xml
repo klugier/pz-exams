@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Database>
+	<Server>server</Server>
+	<User>user</User>
+	<Password>password</Password>
+	<Name>database</Name>
+</Database>

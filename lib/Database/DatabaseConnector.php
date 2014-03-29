@@ -15,7 +15,7 @@ final class DatabaseConnector
 	private static function getInstance()
 	{
 		if (self::$instance == false) {
-			self::$instance = new DatabaseConnector(dirname(__FILE__) . "/../../cfg/Database.cfg");
+			self::$instance = new DatabaseConnector(dirname(__FILE__) . "/../../cfg/Database.xml");
 			self::$instance->connect();
 		}
 		return self::$instance;
@@ -28,28 +28,17 @@ final class DatabaseConnector
 	 */
 	private function __construct($cfgPath) 
 	{
-		$lines = file($cfgPath);
-		foreach ($lines as $lineNumber => $line) {
-			$line = rtrim($line);
-			
-			switch ($lineNumber) {
-				case 0:
-					$this->server = $line;
-					break;
-					
-				case 1:
-					$this->user = $line;
-					break;
-					
-				case 2:
-					$this->password = $line;
-					break;
-					
-				case 3:
-					$this->database = $line;
-					break;
-			}
+		if (!file_exists($cfgPath)) {
+			echo "Nie udało się odnaleźść pliku \"" . $cfgPath . "\".\n";
+			return;
 		}
+		
+		$xml = simplexml_load_file($cfgPath);
+		
+		$this->server   = $xml->Server;
+		$this->user     = $xml->User;
+		$this->password = $xml->Password;
+		$this->database = $xml->Name;
 	}
 	
 	private function connect()
