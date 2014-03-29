@@ -10,6 +10,13 @@
           <a class="navbar-brand" href="index.php">Kontakt</a>
           <a class="navbar-brand" href="Authors.php">Autorzy</a>
           <a class="navbar-brand" href="Help.php">Pomoc</a>
+			<?php
+				include_once("../lib/Lib.php");
+				
+				if (Settings::getDebug() == 1) {
+					echo "<a class=\"navbar-brand\" href=\"tests/Tests.php\">Testy</a>\n";
+				}
+			?>
         </div>
         <div class="collapse navbar-collapse" style="padding: 0px;">
             <ul class="nav navbar-nav pull-right" style="padding-right: 0px;">
