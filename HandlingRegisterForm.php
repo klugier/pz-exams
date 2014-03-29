@@ -41,7 +41,7 @@ if ($securimage->check($captcha_code) == true) {
 	$user->setPassword ($_POST['passwd']);
 	//$user->setName($_POST['name']);
 	if ( UserDatabase::checkActivated($user) ) { 
-		$_GET['formErrorCode'] = 'userAlreadyInDB';
+		$_SESSION['formErrorCode'] = 'userAlreadyInDB';
 		header('Location: RegisterForm.php?'. http_build_query($_GET) );
 	} 
 	
@@ -49,13 +49,13 @@ if ($securimage->check($captcha_code) == true) {
 		echo "Użytkownik wprowadzony do bazy poprawnie"; 
 	} else { 
 		// echo "Użytkownika nie udało sie wprowadzić do bazy ";
-		$_GET['formErrorCode'] = 'userAlreadyInDB';
+		$_SESSION['formErrorCode'] = 'userAlreadyInDB';
 		header('Location: RegisterForm.php?'. http_build_query($_GET) );
 	} 
 		
 	echo 'captcha code valid'; 
 } else {
-	$_GET['formErrorCode'] = 'invalidCaptcha';
+	$_SESSION['formErrorCode'] = 'invalidCaptcha';
 	header('Location: RegisterForm.php?'. http_build_query($_GET) ); 
 }
 
