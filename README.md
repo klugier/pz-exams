@@ -41,6 +41,8 @@ Ponadto każda klasa powinna posiadać prywatny konstruktor, w celu eliminacji t
 
 *private function __construct() { }*
 
+Aby ujednolicić kod wszystkie funkcję, które bezpośrednio odwołują się do komend SQL powinny zaiwerać je w nazwie. I tak kilka przykładowych nazw: selectUser, insertUser, deleteUser itp.
+
 ### Zgłaszanie błędów ###
 Jeżeli znaleźliście błąd w kodzie, to zgłoście go używujacą trackera na githubie.
 
