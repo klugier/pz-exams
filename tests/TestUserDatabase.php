@@ -15,7 +15,11 @@
 				echo DatabaseConnector::getLastError();
 			}
 			else {
-				echo $user->toString(); 
+				if ( $user->getEmail() == "test@uj.edu.pl"   ) {  
+					echo "Następujący test zakończył się powodzeniem: \"UserDatabase::getUser(1);\"" . "<br \>";
+				} else { 
+					echo "Następujący test zakończył się niepowodzeniem: \"UserDatabase::getUser(1);\"" . "<br \>";
+				}
 			}
 		?>
 	</body>
