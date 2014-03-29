@@ -6,12 +6,15 @@
 ?>
 	<div class="container"> 
 		<?php 
-			if ((isset($_GET['formErrorCode']))
-				 and ( $_GET['formErrorCode'] == 'invalidCaptcha' ) 
-			) {
+			if (isset($_GET['formErrorCode'])) {
 				echo '<div class="alert alert-danger">' ;
 				echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
-				echo '<strong>Uwaga!!!</strong> Wprowadzono nieprawidłowy kod CAPTCHA.'; 
+				if ($_GET['formErrorCode'] == 'invalidCaptcha') {  
+					echo '<strong>Uwaga!!! Rejestracja nie powiodła się. Wprowadzony kod jest nieprawidłowy. </strong>'; 
+				} 
+				else if ($_GET['formErrorCode'] == 'userAlreadyInDB') {  
+					echo '<strong>Uwaga!!! Rejestracja nie powiodła się. Na podany email już zarejestrowano konto. </strong>'; 
+				} 
 				echo '</div>' ; 
 			}
 		?> 
@@ -110,19 +113,6 @@
 					</div> 
 				</div>
 			</div>
-			<?php 
-				if ((isset($_SESSION['captchaInvalidValue']))
-					and ($_SESSION['captchaInvalidValue'] == true ) 
-				) {
-					echo '<div class="form-group" id="invalid-captcha-code">';
-					echo '<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">';
-					echo '<h6 style="color:red">Wprowadzono nieprawidłowy kod CAPTCHA!!! </h6>'; 
-					echo '</div>';
-					echo '</div>'; 
-					$_SESSION['captchaInvalidValue'] == false ; 
-				} 
-			?>
-			
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
 					<h6> * - pola opcjonalne przy rejestracji </h6> 

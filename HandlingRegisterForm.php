@@ -12,13 +12,14 @@ $captcha_code        = $_POST['captcha_code'];
 $securimage = new Securimage();
 
 if ($securimage->check($captcha_code) == true) { 
+
 	$user = new User();
 	
 	if (empty($_POST['name'])) { 
-		$user->setName(null);
+		$user->setFirstName(null);
 		//echo "imie puste <br />" ;
 	} else { 
-		$user->setName($_POST['name']);
+		$user->setFirstName($_POST['name']);
 	}
 	
 	if (empty($_POST['surname'])) { 
@@ -39,16 +40,21 @@ if ($securimage->check($captcha_code) == true) {
 	$user->setEmail($_POST['email']);
 	$user->setPassword ($_POST['passwd']);
 	//$user->setName($_POST['name']);
+	if ( UserDatabase::checkActivated($user) ) { 
+		$_GET['formErrorCode'] = 'userAlreadyInDB';
+		header('Location: RegisterForm.php?'. http_build_query($_GET) );
+	} 
 	
 	if (UserDatabase::addUser($user)) { 
 		echo "Użytkownik wprowadzony do bazy poprawnie"; 
 	} else { 
-		echo "Użytkownika nie udało sie wprowadzić do bazy "; 
+		// echo "Użytkownika nie udało sie wprowadzić do bazy ";
+		$_GET['formErrorCode'] = 'userAlreadyInDB';
+		header('Location: RegisterForm.php?'. http_build_query($_GET) );
 	} 
 		
 	echo 'captcha code valid'; 
 } else {
-	$_SESSION['captchaInvalidValue'] = true;
 	$_GET['formErrorCode'] = 'invalidCaptcha';
 	header('Location: RegisterForm.php?'. http_build_query($_GET) ); 
 }
