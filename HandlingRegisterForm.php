@@ -40,10 +40,6 @@ if ($securimage->check($captcha_code) == true) {
 	$user->setEmail($_POST['email']);
 	$user->setPassword ($_POST['passwd']);
 	//$user->setName($_POST['name']);
-	if ( UserDatabase::checkActivated($user) ) { 
-		$_SESSION['formErrorCode'] = 'userAlreadyInDB';
-		header('Location: RegisterForm.php' );
-	} 
 	
 	if (UserDatabase::addUser($user)) { 
 		$_SESSION['formSuccessCode'] = TRUE ; 
