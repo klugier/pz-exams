@@ -5,6 +5,17 @@
 	include("html/Begin.php"); 
 ?>
 	<div class="container"> 
+		<?php 
+			if ((isset($_GET['formErrorCode']))
+				 and ( $_GET['formErrorCode'] == 'invalidCaptcha' ) 
+			) {
+				echo '<div class="alert alert-danger">' ;
+				echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
+				echo '<strong>Uwaga!!!</strong> Wprowadzono nieprawidłowy kod CAPTCHA.'; 
+				echo '</div>' ; 
+			}
+		?> 
+		
 		<form class="form-horizontal" role="form" id="register_form" method="post" action="HandlingRegisterForm.php">
 			<div class="form-group">
 			<fieldset>
