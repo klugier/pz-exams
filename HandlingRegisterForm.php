@@ -3,6 +3,17 @@
 require_once 'lib/SecureImage/securimage.php';
 include_once("lib/Lib.php");
 
+// checking if form wasn't reload just to clear form 
+if (isset($_POST['submitButton']))	{
+	//echo "przekierowanie poszło" ; 
+	unset ( $_SESSION['email'] )  ;
+	unset ( $_SESSION['gender'] )  ;
+	unset ( $_SESSION['name'] )  ;
+	unset ($_SESSION['surname']);
+    header('Location: RegisterForm.php' ); 
+} 
+
+
 $_SESSION['email']   = $_POST['email'];
 $_SESSION['gender']  = $_POST['gender'];
 $_SESSION['name']    = $_POST['name'];

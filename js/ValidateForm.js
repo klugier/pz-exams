@@ -116,7 +116,9 @@ jQuery( document ).ready(function( $ ) {
 			//alert ("can't  submit email "); 
 			return false ;
 		} 
-		if ( passValidationManager.bothEmailValid != true  ) {  
+		if ( (passValidationManager.emailConfirmed != true)  
+			 || (passValidationManager.emailLenghtProper  != true  ) 
+		) {  
 			//alert ("can not submit password");
 			return false ; 
 		} 

@@ -122,9 +122,13 @@
 				</div> 
 			</div> 	
 			<div class="form-group">
-				<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
-					<button type="submit" class="btn btn-success btn-lg btn-block">Zarejestruj konto</button>
-				</div>
+				<div class="row"> 
+					<span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3 col-md-3">
+						<button type="submit" class="btn btn-success btn-lg btn-block" name="submitButton" >Zarejestruj konto</button>
+					</span>
+					<span class="col-xs-2 col-sm-2 col-md-2">
+						<button type="submit" class="btn btn-lg btn-primary btn-block" name="clearButton" id="clearButton">Wyczyść</button>
+					</span>
 			</div>
 			
 			</fieldset>
