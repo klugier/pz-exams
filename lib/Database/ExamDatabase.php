@@ -7,7 +7,7 @@ include_once("DatabaseConnector.php");
 final class ExamDatabase
 {
 	/*
-	 * Sprawdza czy egz o danym ID istnieje w bazie danych.
+	 * Sprawdza czy egzamin o danym ID istnieje w bazie danych.
 	 */
 	static public function checkExamID($id)
 	{
@@ -17,7 +17,7 @@ final class ExamDatabase
 	}
     
 	/*
-	 * Sprawdza czy egz o danej nazwie istnieje w bazie danych.
+	 * Sprawdza czy egzamin o danej nazwie istnieje w bazie danych.
 	 */
     static public function checkExamName($name)
 	{
@@ -38,14 +38,14 @@ final class ExamDatabase
 		}
         
 		$i = 0;
-		while($row = mysql_fetch_array($result, MYSQLI_ASSOC)){
+		while($row = $result->fetch_array(MYSQLI_ASSOC)){
             
-			$resultExam[i] = new Exam(); 
-			$resultExam[i]->setID($row['ID']);
-			$resultExam[i]->setName($row['Name']);
-			$resultExam[i]->setDuration($row['Duration']);
-			$resultExam[i]->setUserID($row['UserID']);
-			$i = $i + 1;
+			$resultExam[$i] = new Exam(); 
+			$resultExam[$i]->setID($row['ID']);
+			$resultExam[$i]->setName($row['Name']);
+			$resultExam[$i]->setDuration($row['Duration']);
+			$resultExam[$i]->setUserID($row['UserID']);
+			$i++;
 		
         }
         
@@ -58,10 +58,10 @@ final class ExamDatabase
     static public function getExamNum($userid)
     {
         $sql = "Select * from Exams WHERE UserID = " . $userid;
-        $result = mysql_query($sql);
-		$numRows = mysql_num_rows($result);
+        $result = DatabaseConnector::getConnection()->query($sql);
+		$numRows = $result->num_rows();
         
-        return $numRows ; 
+        return $numRows;
     }
     
 	/*
@@ -74,7 +74,7 @@ final class ExamDatabase
 		                . $exam->getDuration() . "')";  
 				
 		$sql =  "INSERT INTO Exams (UserID, Name, Duration)" 
-			 .  "VALUES $values";
+		        .  "VALUES $values";
 
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	} 
@@ -90,10 +90,14 @@ final class ExamDatabase
 		$numRows = mysql_num_rows($result);
 		if ($numRows == 0) { 
             return false;
-        }else{
-            $sql = "UPDATE Exams SET Name  = '$exam->getName()', Duration = '$exam->getDuration()' WHERE ID = $exam->getID";
-            DatabaseConnector::getConnection()->query($sql) ? true : false;
         }
+		
+		$sql = "UPDATE Exams SET 
+		        Name  = '$exam->getName()', 
+		        Duration = '$exam->getDuration()' 
+		        WHERE ID = $exam->getID";
+					
+		DatabaseConnector::getConnection()->query($sql) ? true : false;
     } 
     
     /*
@@ -107,10 +111,10 @@ final class ExamDatabase
 		$numRows = mysql_num_rows($result);
 		if ($numRows == 0) { 
             return false;
-        }else{
-            $sql = "Delete from Exams WHERE ID  = '$exam->getID()'";
-            DatabaseConnector::getConnection()->query($sql) ? true : false;
         }
+		
+		$sql = "Delete from Exams WHERE ID  = '$exam->getID()'";
+		DatabaseConnector::getConnection()->query($sql) ? true : false;
     }
     
 	// Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)
