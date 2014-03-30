@@ -39,9 +39,8 @@
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="email" required class="form-control" id="email" placeholder="Wprowadź e-mail" title="" name="email" value="<?php if(isset($_SESSION['email'])){ echo $_SESSION['email']; } else { echo '';  }?>">
 				</div> 
-				<span class="help-block" id="email-error-message" style="visibility:hidden">
-						<span style="background-color:#F13333;" class="badge pull-left ">!</span>
-					<span style="padding:5px"> Nieprawidłowy adres.</span>
+				<span class="help-block" id="email-error-message" >
+					
 				</span>
 			</div>
 			<!-- <div class="form-group">
@@ -49,7 +48,7 @@
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="email" required class="form-control" id="email" placeholder="Wprowadź ponownie e-mail" title="">
 				</div> 
-				<span class="help-block" id="email-error-message" style="visibility:hidden">
+				<span class="help-block" id="email-error-message" >
 						<span style="background-color:#F13333;" class="badge pull-left ">!</span>
 					<span style="padding:5px"> Nieprawidłowy adress.</span>
 				</span>
@@ -65,7 +64,7 @@
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="password" required class="form-control inputPassword" id="passwd-repeat" placeholder="Powtórz Haslo" title="">
 				</div>
-				<span class="help-block" id="passwd-repat-error-message" style="visibility:hidden">
+				<span class="help-block" id="passwd-repat-error-message" >
 					<span style="background-color:#F13333;" class="badge pull-left ">!</span>
 					<span style="padding:5px"> Podane hasła nie są takie same! </span>
 				</span>
@@ -108,7 +107,7 @@
 						<input type="text" class="form-control" name="captcha_code" id="captcha_code"/>
 					</div> 
 					<div class="row"> 
-						<span class="help-block" id="captcha-error-message" style="visibility:hidden">
+						<span class="help-block" id="captcha-error-message">
 							<span style="background-color:#F13333;" class="badge pull-left">!</span>
 							<span style="padding:5px">Długość kodu niepoprawna</span>
 						</span>

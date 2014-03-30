@@ -1,5 +1,30 @@
 jQuery( document ).ready(function( $ ) {
 	
+	// enums error service 
+	var emailFieldErrorType =  { 
+		BAD_DOMAIN : 0 , 
+		NOT_AN_EMAIL : 1
+	} ;  
+	// functions error service  
+	function emailError ( $errorCode ) 
+	{ 
+		if  ($errorCode ==  emailFieldErrorType.NOT_AN_EMAIL) {
+			$("#email-error-message").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Podany adress nie jest emailem.</span>') ; 
+			return ; 
+		} 
+		if  ($errorCode ==  emailFieldErrorType.BAD_DOMAIN) { 
+			$("#email-error-message").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px"> Nieprawidłowa domena( obowiązuje domena uj.edu.pl ).</span>') ; 
+			return ; 
+		} 
+	} 
+	
+	function deleteSelectorError ( $selector )
+	{ 
+		$($selector).html("");
+	} 
+	
 	$("#register_form").submit(function(e){
 		var regex_pattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		if (  !regex_pattern.test( $("#email").val() )  )
@@ -25,27 +50,29 @@ jQuery( document ).ready(function( $ ) {
 	$("#email").focusout( function ( event){
 		var email = $(this).val();
 		var $formGroup = $(this).closest('div[class^="form-group"]') ;
-		if ( email.length == 0 )
-		{  
+		if ( email.length == 0 ) {  
 			// alert("email length ");
 			$formGroup.removeClass('has-error');
 			$formGroup.removeClass('has-success');
-			$("#email-error-message").css('visibility' , 'hidden');
-			return ; 
+			deleteSelectorError ( "#email-error-message" );
 		} 
-		var regex_pattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		var emailRegexPattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		 
-		if ( !regex_pattern.test(email) ) 
-		{ 
+		if (!emailRegexPattern.test(email)) { 
 			// alert() ;
-			$("#email-error-message").css('visibility' , 'visible');
+			emailError ( emailFieldErrorType.NOT_AN_EMAIL  ) ;
+			$formGroup.removeClass('has-success');
+			$formGroup.addClass('has-error');
+		} 
+		else if (email.indexOf("uj.edu.pl") == -1) { 
+			emailError ( emailFieldErrorType.BAD_DOMAIN  ) ;
 			$formGroup.removeClass('has-success');
 			$formGroup.addClass('has-error');
 		} 
 		else 
 		{ 
 			//alert($(this).val()) ;
-			$("#email-error-message").css('visibility' , 'hidden');
+			deleteSelectorError ( "#email-error-message" ); 
 			$formGroup.removeClass('has-error');
 			$formGroup.addClass('has-success');
 		}
