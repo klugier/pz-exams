@@ -61,7 +61,7 @@ final class ExamDatabase
         $result = mysql_query($sql);
 		$numRows = mysql_num_rows($result);
         
-        return $numRows
+        return $numRows ; 
     }
     
 	/*
