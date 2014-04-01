@@ -60,8 +60,11 @@ CREATE TABLE `ExamUnits` (
 
 /* Students */
 CREATE TABLE `Students` (
-	`ID`    INT          AUTO_INCREMENT,
-	`Email` VARCHAR (80) NOT NULL,
+	`ID`        INT          AUTO_INCREMENT,
+	`Email`     VARCHAR (80) NOT NULL,
+	`Code`      VARCHAR (10) NOT NULL,
+	`FirstName` VARCHAR (50) NOT NULL,
+	`Surname`   VARCHAR (70) NOT NULL,
 	PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB;
 
