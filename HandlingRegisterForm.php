@@ -51,10 +51,32 @@ else {
 		
 		$user->setEmail($_POST['email']);
 		$user->setPassword ($_POST['passwd']);
+		$user->setActivationCode(md5(microtime()));
 		//$user->setName($_POST['name']);
 		
 		if (UserDatabase::addUser($user)) { 
 			$_SESSION['formSuccessCode'] = TRUE ; 
+
+			$headers    = array
+    		(
+		        'MIME-Version: 1.0',
+		        'Content-Type: text/html; charset="UTF-8";',
+		        'Content-Transfer-Encoding: 7bit',
+		        'Date: ' . date('r', $_SERVER['REQUEST_TIME']),
+		        'From: ' . 'pz-exams@pz-exams.com',
+		        'X-Mailer: PHP v' . phpversion(),
+		        'X-Originating-IP: ' . $_SERVER['SERVER_ADDR'],
+	    	);
+		
+			mail($user->getEmail(), 'Aktywacja konta na pz-exams', 
+			"Witaj,<br/><br/>
+			aby aktywować swoje konto kliknij w poniższy link:<br/><br/>
+			<a href=\"http://localhost/index.php?email=" . $user->getEmail() . "&code=" . $user->getActivationCode() . "\">Aktywuj</a><br/>
+			__________<br/>
+			- pz-exams
+			"
+			, implode("\n", $headers));
+
 			header('Location: index.php' );
 		} else { 
 			// echo "Użytkownika nie udało sie wprowadzić do bazy ";
