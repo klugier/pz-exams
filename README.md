@@ -33,7 +33,7 @@ Co w skrócie oznacza, że każda metoda rozpoczyna się od słówka kluczowego 
 
 **Przykładowy deklaracja metody:**
 
-*static public function checkEmail($basicUser)*
+* static public function checkEmail($basicUser)*
 
 Ponadto każda klasa powinna posiadać prywatny konstruktor, w celu eliminacji tworzenia obiektu przez klienta programiste.
 
@@ -45,6 +45,18 @@ Aby ujednolicić kod wszystkie funkcję, które bezpośrednio odwołują się do
 
 ### Zgłaszanie błędów ###
 Jeżeli znaleźliście błąd w kodzie, to zgłoście go używujacą trackera na githubie.
+
+### Opis struktury katalogów ###
+* cfg   - pliki konfiguracyjne
+* css   - arkusze stylów
+* doc   - pliki z dokumentacją
+* html  - pliki szkieletu strony
+* img   - obrazki
+* js    - pliki ze skryptami JavaScript
+* lib   - biblioteka zawierająca najważniejsze moduły naszej aplikacji napisane w PHP
+* php   - pliki PHP, które zawierają jedynie obsługę strony WWW
+* sql   - pliki źródłowe związane z bazą danych
+* tests - pliki zawierające wszelkiego rodzaju testy
 
 ### Przydatne linki ###
 * [Styl kodowania (Zend framework)](http://framework.zend.com/manual/1.12/en/coding-standard.coding-style.html)
