@@ -1,7 +1,7 @@
 <?php 
 	include_once("lib/Lib.php");
 	$title = "$appName - Rejestracja";
-	$scriptsDefer = array("js/ValidateForm.js");
+	$scriptsDefer = array("js/ValidateRegisterForm.js");
 	include("html/Begin.php"); 
 ?>
 	<div class="container"> 
@@ -21,7 +21,7 @@
 			}
 		?> 
 		
-		<form class="form-horizontal" role="form" id="register_form" method="post" action="HandlingRegisterForm.php">
+		<form class="form-horizontal" role="form" id="register_form" method="post" action="php/HandlingRegisterForm.php">
 			<div class="form-group">
 			<fieldset>
 			<legend>Zarejestruj się</legend>
@@ -127,7 +127,7 @@
 						<button type="submit" class="btn btn-success btn-lg btn-block" name="submitButton" value="submit">Zarejestruj konto</button>
 					</span>
 					<span class="col-xs-2 col-sm-2 col-md-2">
-					  <a href="HandlingRegisterForm.php">
+					  <a href="php/HandlingRegisterForm.php">
 						<button type="button" class="btn btn-lg btn-primary btn-block" name="clearButton"  >Wyczyść</button>
 					  </a>
 					</span>
