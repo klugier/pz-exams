@@ -1,7 +1,7 @@
 <?php
    include("lib/Lib.php");
-   
    $title = "$appName - Kontakt";
+   $scriptsDefer = array("js/ValidateContactForm.js");
    include("html/Begin.php");
 ?>
 <div vlass="container">
@@ -37,27 +37,5 @@
     
     <script src="js/main.js"></script>
     
-    <script>
-      $("#contactForm").validate({
-      errorClass: "text-error",
-      rules: {
-      subject: "required",
-      message: "required",
-      email: {
-      required: true,
-      email: true,
-      message:true
-      }
-      },
-      messages: {
-      subject: "Prosz podac temat",
-      message: "Prosze wpisac tresc wiadomosci",
-      email: {
-      required: "Prosze podac swoj kontaktowy adres e-mail",
-      email: "Adres powinien posiadac format name@domain.com"
-      }
-      }
-      });
-    </script>
 </div>
 <?php include ("html/End.php"); ?>
