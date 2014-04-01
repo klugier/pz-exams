@@ -1,6 +1,6 @@
 <?php
 	
-	include("lib/Lib.php");
+	include("../lib/Lib.php");
 
 	if(isset($_POST['email']) && isset($_POST['pass']))
 	{
@@ -17,16 +17,16 @@
 			if(UserDatabase::checkPassword($basicUser))
 			{
 				$_SESSION['USER'] = serialize($basicUser);
-				header('Location: UserSite.php');
+				header('Location: ../UserSite.php');
 			} else {
-				header('Location: index.php?err=2');
+				header('Location: ../index.php?error=2');
 			}
 		} else {
-			header('Location: index.php?err=1');
+			header('Location: ../index.php?error=1');
 		}
 		
 	} else {
-		header('Location: index.php');
+		header('Location: ../index.php');
 	}
 
 ?>
