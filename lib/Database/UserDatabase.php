@@ -49,16 +49,17 @@ final class UserDatabase
 	{ 
 		$values = "('"	. $user->getEmail()    . "', '"
 						. $user->getPassword() . "', '"
-						. ($user->getActivated()        ? "TRUE" : "FALSE") . "',"
+						. ($user->getActivated()        ? "TRUE" : "FALSE") . "', '"
+						. $user->getActivationCode() . "', "
 						. (is_null($user->getFirstName())    ? "NULL" : "'" . $user->getFirstName()    . "'")  . ", " 
 						. (is_null($user->getSurname()) ? "NULL" : "'" . $user->getSurname() . "'")  . ", 'private', 'examiner'," 
 						. (is_null($user->getGender())  ? "NULL" : "'" . $user->getGender()  . "'" ) . " , '"
 						. date("Y/m/d") . "')";  
 		
-		$sql =  "INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) " 
+		$sql =  "INSERT INTO Users (Email, Password, Activated, ActivationCode, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) " 
 			 .	"VALUES $values";
-		
-		// echo $sql;
+
+		// echo($sql);
 		
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	} 

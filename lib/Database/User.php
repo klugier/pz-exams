@@ -26,6 +26,11 @@ class BasicUser
 	{
 		return $this->activated;
 	}
+
+	public function getActivationCode()
+	{
+		return $this->activation_code;
+	}
 	
 
 	public function setID($id)
@@ -47,11 +52,17 @@ class BasicUser
 	{
 		$this->activated = $activated;
 	}
+
+	public function setActivationcode($activation_code)
+	{
+		$this->activation_code = $activation_code;
+	}
 	
 	protected $id;
 	protected $email;
 	protected $password;
 	protected $activated;
+	protected $activation_code;
 }
 
 class User extends BasicUser
