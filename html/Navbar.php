@@ -10,6 +10,7 @@
           <a class="navbar-brand" href="index.php">Kontakt</a>
           <a class="navbar-brand" href="Authors.php">Autorzy</a>
           <a class="navbar-brand" href="Help.php">Pomoc</a>
+          <a class="navbar-brand" href="add_exam.php">Dodaj egzamin</a>
 			<?php
 				if (Settings::getDebug() == 1) {
 					echo "<a class=\"navbar-brand\" href=\"tests/Tests.php\">Testy</a>\n";
