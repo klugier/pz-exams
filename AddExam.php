@@ -3,7 +3,7 @@
 	$title = "$appName - Dodawanie egzaminu";
 	$scripts = array("js/AddExam.js");
 	include("html/Begin.php");
-	include("html/UserPanel.php")
+	include("html/UserPanel.php");
 ?>
 
 
