@@ -59,7 +59,7 @@ final class ExamDatabase
     {
         $sql = "Select * from Exams WHERE UserID = " . $userid;
         $result = DatabaseConnector::getConnection()->query($sql);
-		$numRows = $result->num_rows();
+		$numRows = $result->num_rows;
         
         return $numRows;
     }
@@ -86,9 +86,8 @@ final class ExamDatabase
     static public function updateExam($user, $exam)
     {
         $sql = "Select * from Exams WHERE ID  = '$exam->getID()' AND UserID = '$user->getID()'";
-        $result = mysql_query($sql);
-		$numRows = mysql_num_rows($result);
-		if ($numRows == 0) { 
+        $result = DatabaseConnector::getConnection()->query($sql);
+		if ($result->num_rows == 0) { 
             return false;
         }
 		
@@ -107,9 +106,8 @@ final class ExamDatabase
     static public function deleteExam($user, $exam)
     {
         $sql = "Select * from Exams WHERE ID  = '$exam->getID()' AND UserID = '$user->getID()'";
-        $result = mysql_query($sql);
-		$numRows = mysql_num_rows($result);
-		if ($numRows == 0) { 
+        $result = DatabaseConnector::getConnection()->query($sql);
+		if ($result->num_rows == 0) { 
             return false;
         }
 		
