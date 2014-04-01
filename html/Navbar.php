@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
           </button>
           <a id="home" class="navbar-brand" href="index.php">Strona główna</a>
-          <a class="navbar-brand" href="index.php">Kontakt</a>
+          <a class="navbar-brand" href="Kontakt.php">Kontakt</a>
           <a class="navbar-brand" href="Authors.php">Autorzy</a>
           <a class="navbar-brand" href="Help.php">Pomoc</a>
           <a class="navbar-brand" href="AddExam.php">Dodaj egzamin</a>
