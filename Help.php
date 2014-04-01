@@ -6,7 +6,7 @@
 ?> 
 
 <div class="container"> 
-	Help should be here.
+	Help should be here!
 </div>  
 
 <?php include ("html/End.php"); ?>
