@@ -12,7 +12,7 @@ CREATE TABLE `Users` (
 	`Email`            VARCHAR (80)                       UNIQUE NOT NULL,
 	`Password`         VARCHAR (50)                       NOT NULL,
 	`Activated`        BOOLEAN                            NOT NULL,
-	`ActivationCode`   VARCHAR (10),
+	`ActivationCode`   VARCHAR (32),
 	`FirstName`        VARCHAR (50),
 	`Surname`          VARCHAR (70),
 	`Visibility`       ENUM ('private', 'public')         NOT NULL,
