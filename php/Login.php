@@ -17,7 +17,7 @@
 			if(UserDatabase::checkPassword($basicUser))
 			{
 				$_SESSION['USER'] = serialize($basicUser);
-				header('Location: user_panel.php');
+				header('Location: UserSite.php');
 			} else {
 				header('Location: index.php?err=2');
 			}
