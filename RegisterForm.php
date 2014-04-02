@@ -110,8 +110,7 @@
 					</div> 
 					<div class="row"> 
 						<span class="help-block" id="captcha-error-message">
-							<span style="background-color:#F13333;" class="badge pull-left">!</span>
-							<span style="padding:5px">Długość kodu niepoprawna</span>
+							
 						</span>
 					</div> 
 				</div>

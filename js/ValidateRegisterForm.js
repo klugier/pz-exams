@@ -11,6 +11,9 @@ jQuery( document ).ready(function( $ ) {
 		PASSWD_TOO_SHORT : 1
 	} ;
 	
+	var captchaFieldErrorType = { 
+		LENGTH_IMPROPER : 0 
+	} ; 
 	// functions error service  
 	function deleteSelectorError ( $selector )
 	{ 
@@ -34,6 +37,16 @@ jQuery( document ).ready(function( $ ) {
 											'<span style="padding:5px">Na podany adres zarejestrowano już konto.</span>') ; 
 			return ; 
 		}
+	} 
+	
+	function captchaError ( $errorCode )
+	{ 
+		if ( $errorCode == captchaFieldErrorType.LENGTH_IMPROPER  ) { 
+			$("#captcha-error-message").html('<span style="background-color:#F13333;" class="badge pull-left">!</span>' + 
+											  '<span style="padding:5px">Długość kodu niepoprawna</span>') ; 
+			return ; 
+		} 
+		
 	} 
 	
 	function PasswordValidationManager ( ) 
@@ -256,13 +269,10 @@ jQuery( document ).ready(function( $ ) {
 	
 	
 	$("#captcha_code").focusout( function (event) {
-		if ( $(this).val().length != 6 &&  $(this).val().length != 0   ) 
-		{ 
-			$("#captcha-error-message").css('visibility' , 'visible');	
-		}
-		else 
-		{ 
-			$("#captcha-error-message").css('visibility' , 'hidden');
+		if ( $(this).val().length != 6 &&  $(this).val().length != 0   )  { 
+			captchaError ( captchaFieldErrorType.LENGTH_IMPROPER  ) ; 
+		} else { 
+			deleteSelectorError( "#captcha-error-message");
 		} 
 	} ) ; 
 	
