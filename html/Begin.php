@@ -49,7 +49,7 @@
 
 	<body style="background-image: url('img/books.jpg'); padding-top: 70px; height: 100%;">
 		<?php include_once("Navbar.php"); ?>
- 		<div id="wrapper" class="container col-md-12" style="padding-left: 0px; padding-right: 0px;">
+ 		<div id="wrapper" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px;">
 <!-- 			<div class="container col-md-12" style="padding: 0px; padding-top:0px;"> -->
 				<div id="content_wrapper">
-				<div class="panel col-md-12" style="padding: 20px; background: rgba(255, 255, 255, 0.9);">
+				<div class="panel col-md-12 col-sm-12" style="padding: 20px; background: rgba(255, 255, 255, 0.9);">
