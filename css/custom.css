@@ -47,13 +47,25 @@ div#footer {
     left: 0;
 }
 
-span#author {
-    font-size: 22px;
+div #author {
+    font-size: 24px;
+	padding-top: 30px;
+	text-align: center;
+	font-weight: bold;
 }
 
-span#creator {
+div #creatorFirst {
+	font-size: 15px;
+	margin-top: 5px;
+	text-align: center;
+	font-weight: bold;
+}
+
+div #creator {
     font-size: 15px;
-    margin-left: 50px;
+	margin-top: 3px;
+	text-align: center;
+	font-weight: bold;
 }
 
 .center {
