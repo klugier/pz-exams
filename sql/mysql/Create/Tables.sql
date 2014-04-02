@@ -12,7 +12,7 @@ CREATE TABLE `Users` (
 	`Email`            VARCHAR (80)                       UNIQUE NOT NULL,
 	`Password`         VARCHAR (50)                       NOT NULL,
 	`Activated`        BOOLEAN                            NOT NULL,
-	`ActivationCode`   VARCHAR (32),
+	`ActivationCode`   VARCHAR (32)                       UNIQUE,
 	`FirstName`        VARCHAR (50),
 	`Surname`          VARCHAR (70),
 	`Visibility`       ENUM ('private', 'public')         NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `ExamUnits` (
 CREATE TABLE `Students` (
 	`ID`        INT          AUTO_INCREMENT,
 	`Email`     VARCHAR (80) NOT NULL,
-	`Code`      VARCHAR (10) NOT NULL,
+	`Code`      VARCHAR (10) UNIQUE NOT NULL,
 	`FirstName` VARCHAR (50) NOT NULL,
 	`Surname`   VARCHAR (70) NOT NULL,
 	PRIMARY KEY (`ID`)
