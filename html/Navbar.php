@@ -25,12 +25,16 @@
             	<?php if(isset($_SESSION['USER']) && $_SESSION['USER'] != ""){ ?>
             	<li class="navbar-form" style="padding-right: 0px;">
       		    	<form  action="UserSite.php">
-              	 		<button type="submit" class="btn btn-info"><b>Panel użytkownika</b></button>
+              	 		<button type="submit" class="btn btn-info"><b>
+              	 		<?php
+							// TODO: Jeżeli użytkownik posiada imie i/lub nazwisko należ je tutaj wyświetlić zamiast adresu email
+							echo ' '.unserialize($_SESSION['USER'])->getEmail();
+              	 		?></b></button>
 			</form>
 		</li>
             	<li class="navbar-form" style="padding-right: 0px;">
       		    	<form  action="php/LogOff.php">
-              	 		<button type="submit" class="btn btn-danger"><b>Wyloguj <?php echo ' '.unserialize($_SESSION['USER'])->getEmail(); ?></b></button>
+              	 		<button type="submit" class="btn btn-danger"><b>Wyloguj</b></button>
 			</form>
 		</li> 
 		<?php } else { ?>
