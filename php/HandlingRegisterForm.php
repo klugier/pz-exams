@@ -57,7 +57,7 @@ else {
 		if (UserDatabase::addUser($user)) { 
 			$_SESSION['formSuccessCode'] = TRUE ; 
 
-			$headers    = array
+			$headers = array
     		(
 		        'MIME-Version: 1.0',
 		        'Content-Type: text/html; charset="UTF-8";',
