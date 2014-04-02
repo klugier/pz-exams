@@ -77,18 +77,22 @@ $('button#add_students').click( function(){
 	 var emails = new Array();
 	 var first_names = new Array();
 
-	 var email_p = /<.+>/gm;
-	 var f_name_p = /.+</gm;
-	 var l_name_p = /.+</gm;
+	 var email_p = /<(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))>/gm;
+	 var f_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
+	 var l_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
 	 var elements = $();
 
   	emails = $('#student_list').val().match(email_p);
   	first_names = $('#student_list').val().match(f_name_p);
   	last_names = $('#student_list').val().match(l_name_p);
 
+  	// alert(emails);
+  	// alert(first_names);
+  	// alert(last_names);
+
   	if (emails != null && first_names != null && last_names != null)
   	{
-	  	for (var i = 0; i < first_names.length; i++){ first_names[i] = first_names[i].split(" ")[0];}
+	  	for (var i = 0; i < first_names.length; i++){ first_names[i] = first_names[i].replace("<", "").replace(">", "").split(" ")[0].trim();}
 
 	  	for (var i = 0; i < last_names.length; i++)
 	  	{

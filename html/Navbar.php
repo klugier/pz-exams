@@ -1,16 +1,19 @@
     <div class="navbar navbar-inverse navbar-fixed-top" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;">
-      <div class="container col-md-8 col-md-offset-2" style="padding: 0px;">
-        <div class="navbar-header">
+      <div class="container col-md-12" style="padding: 0px;">
+        <div class="navbar-header" style="padding-left: 0px;">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a id="home" class="navbar-brand" href="index.php">Strona główna</a>
-          <a class="navbar-brand" href="Kontakt.php">Kontakt</a>
-          <a class="navbar-brand" href="Authors.php">Autorzy</a>
-          <a class="navbar-brand" href="Help.php">Pomoc</a>
-          <a class="navbar-brand" href="AddExam.php">Dodaj egzamin</a>
+
+          <ul class="nav navbar-nav pull-left" style="padding-right: 0px;">
+            <li><a id="home" class="navbar-brand" href="index.php">Strona główna</a></li>
+            <li><a class="navbar-brand" href="Kontakt.php">Kontakt</a></li>
+            <li><a class="navbar-brand" href="Authors.php">Autorzy</a></li>
+            <li><a class="navbar-brand" href="Help.php">Pomoc</a></li>
+            <li><a class="navbar-brand" href="AddExam.php">Dodaj egzamin</a></li>
+          </ul>
 			<?php
 				if (Settings::getDebug() == 1) {
 					echo "<a class=\"navbar-brand\" href=\"tests/Tests.php\">Testy</a>\n";

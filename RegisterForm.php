@@ -4,7 +4,7 @@
 	$scriptsDefer = array("js/ValidateRegisterForm.js");
 	include("html/Begin.php"); 
 ?>
-	<div class="container"> 
+
 		<?php 
 			if (isset($_SESSION['formErrorCode'])) {
 				echo '<div class="alert alert-danger">' ;
