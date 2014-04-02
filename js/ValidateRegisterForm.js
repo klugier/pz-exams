@@ -2,7 +2,8 @@ jQuery( document ).ready(function( $ ) {
 	// enums error service 
 	var emailFieldErrorType =  { 
 		BAD_DOMAIN : 0 , 
-		NOT_AN_EMAIL : 1
+		NOT_AN_EMAIL : 1 , 
+		ADRESS_ALREADY_USED : 2 
 	} ;  
 	
 	var passwdFieldErrorType =  { 
@@ -28,6 +29,11 @@ jQuery( document ).ready(function( $ ) {
 											'<span style="padding:5px"> Nieprawidłowa domena( obowiązuje domena uj.edu.pl ).</span>') ; 
 			return ; 
 		} 
+		if  ($errorCode ==  emailFieldErrorType.ADRESS_ALREADY_USED) { 
+			$("#email-error-message").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Na podany adres zarejestrowano już konto.</span>') ; 
+			return ; 
+		}
 	} 
 	
 	function PasswordValidationManager ( ) 
@@ -103,10 +109,42 @@ jQuery( document ).ready(function( $ ) {
 		{ 
 			$($selector).html("");
 		} ;
-			
 	} 
 	
+	function checkIfUserInDatabase ( $email )
+	{ 
+		var emailInDB = false ; 
+			$.ajax({
+			url: 'lib/Ajax/AjaxUserRequest.php',
+			async: false , 
+			type: 'post',
+			data: { 'email' : $email },
+			success: function(data, status) { 
+				//alert (data.status ) ; 
+				if(data.status.trim() === "dataRecived") {
+					if ( data.email.trim() === "existsInDB" ) { 
+						//alert("email in DB ") ; 
+						emailInDB = true ;
+					} else { 
+						//alert("email not in DB ") ;
+						emailInDB = false ; 
+					} 
+				} else { 
+					//alert("nothing received") ;
+					console.log("Zapytanie ajax dla użytkownika nie powiodło się ( Nie udało się sprawdzić czy email występuje w bazie )");  
+					emailInDB = false ;
+				} 
+			},
+			error: function(jqXHR, textStatus, errorThrown ) {
+				console.log(textStatus);
+			}
+		});
+		//alert ( " before return " + emailInDB ) ; 
+		return emailInDB ; 
+	} 
 	var passValidationManager = new PasswordValidationManager () ;  
+	
+	// jQuery events 
 	
 	$("#register_form").submit(function(e){
 		var regex_pattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -142,6 +180,8 @@ jQuery( document ).ready(function( $ ) {
 		} 
 		var emailRegexPattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		 
+		// alert ( checkIfUserInDatabase(email)   ) ;  
+		
 		if (!emailRegexPattern.test(email)) { 
 			// alert() ;
 			emailError ( emailFieldErrorType.NOT_AN_EMAIL  ) ;
@@ -150,6 +190,11 @@ jQuery( document ).ready(function( $ ) {
 		} 
 		else if (email.indexOf("uj.edu.pl") == -1) { 
 			emailError ( emailFieldErrorType.BAD_DOMAIN  ) ;
+			$formGroup.removeClass('has-success');
+			$formGroup.addClass('has-error');
+		} 
+		else if ( checkIfUserInDatabase(email) == true ) { 
+			emailError ( emailFieldErrorType.ADRESS_ALREADY_USED ) ; 
 			$formGroup.removeClass('has-success');
 			$formGroup.addClass('has-error');
 		} 
