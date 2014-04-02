@@ -11,7 +11,7 @@ final class UserDatabase
 	static public function checkEmail($basicUser)
 	{
 		$sql = "Select * from Users WHERE Email = '".$basicUser->getEmail()."'";
-		echo $sql;
+		// echo $sql;
 		
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 1)
@@ -84,6 +84,28 @@ final class UserDatabase
 		
 		return $resultUser;
 	} 
+
+	static public function activate($email, $code)
+	{
+		$email = mysql_real_escape_string($email);
+		$code = mysql_real_escape_string($code);
+
+		$user = new User();
+		$user->setEmail($email);
+
+		$sql =  "SELECT ID From Users WHERE email = '$email' AND ActivationCode = '$code' AND Activated = 0";
+
+		if (DatabaseConnector::getConnection()->query($sql)->num_rows == 1)
+		{
+			$sql =  "UPDATE Users SET Activated = 1 WHERE Email = '$email'";
+
+			return DatabaseConnector::getConnection()->query($sql) ? true : false;
+		}
+		else
+		{
+			return false;
+		}
+	}
 		
 	// Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)
 	private function __construct() { }

@@ -71,7 +71,7 @@ else {
 			mail($user->getEmail(), 'Aktywacja konta na pz-exams', 
 			"Witaj,<br/><br/>
 			aby aktywować swoje konto kliknij w poniższy link:<br/><br/>
-			<a href=\"http://localhost/index.php?email=" . $user->getEmail() . "&code=" . $user->getActivationCode() . "\">Aktywuj</a><br/>
+			<a href=\"http://localhost/ActivationPage.php?email=" . $user->getEmail() . "&code=" . $user->getActivationCode() . "\">Aktywuj</a><br/>
 			__________<br/>
 			- pz-exams
 			"
