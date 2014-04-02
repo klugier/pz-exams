@@ -48,7 +48,7 @@ final class UserDatabase
 	static public function addUser($user)
 	{ 
 		$values = "('"	. $user->getEmail()    . "', '"
-						. $user->getPassword() . "', '"
+						. sha1($user->getPassword()) . "', '"
 						. ($user->getActivated()        ? "TRUE" : "FALSE") . "', '"
 						. $user->getActivationCode() . "', "
 						. (is_null($user->getFirstName())    ? "NULL" : "'" . $user->getFirstName()    . "'")  . ", " 
