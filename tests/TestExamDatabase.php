@@ -21,6 +21,22 @@
 					     $exam[$i]->getUserID() . ", " .
 						 $exam[$i]->getName() . ", " .
 						 $exam[$i]->getDuration() . "<br/>";
+						 
+				
+				/*$testUser = new User;
+				$testUser->setID(1);
+				$testExam = new Exam;
+				$testExam->setName('Test');
+				$testExam->setDuration('1:00:00');
+			
+			
+				if (!ExamDatabase::checkExamName($testExam->getName())){
+					echo 'start<br/>';
+					ExamDatabase::deleteExam($testUser, $testExam);
+					echo 'Usunięte <br/>';
+				}*/
+				
+				//ExamDatabase::insertExam($testUser, $testExam);
 			}
 		?>
 	</body>

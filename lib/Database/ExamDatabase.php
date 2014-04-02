@@ -11,7 +11,7 @@ final class ExamDatabase
 	 */
 	static public function checkExamID($id)
 	{
-		$sql = "Select * from Exams where ID = " . $id;
+		$sql = "Select * from Exams where ID = '" . $id . "'";
 		
 		DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
@@ -21,9 +21,9 @@ final class ExamDatabase
 	 */
     static public function checkExamName($name)
 	{
-		$sql = "Select * from Exams where Name = " . $name;
+		$sql = "Select * from Exams where Name = '" . $name . "'";
 		
-		DatabaseConnector::getConnection()->query($sql) ? true : false;
+		echo DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
 	
 	/*
@@ -31,7 +31,7 @@ final class ExamDatabase
 	 */
     static public function getExamList($userid)
 	{
-		$sql = "SELECT * FROM Exams WHERE UserID = " . $userid ;
+		$sql = "SELECT * FROM Exams WHERE UserID = '" . $userid . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if (!$result) {
 			return null;
@@ -57,7 +57,7 @@ final class ExamDatabase
      */
     static public function getExamNum($userid)
     {
-        $sql = "Select * from Exams WHERE UserID = " . $userid;
+        $sql = "Select * from Exams WHERE UserID = '" . $userid . "'";
         $result = DatabaseConnector::getConnection()->query($sql);
 		$numRows = $result->num_rows;
         
@@ -85,7 +85,7 @@ final class ExamDatabase
      */ 
     static public function updateExam($user, $exam)
     {
-        $sql = "Select * from Exams WHERE ID  = '$exam->getID()' AND UserID = '$user->getID()'";
+        $sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $user->getID() . "'";
         $result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 
             return false;
@@ -105,13 +105,14 @@ final class ExamDatabase
      */ 
     static public function deleteExam($user, $exam)
     {
-        $sql = "Select * from Exams WHERE ID  = '$exam->getID()' AND UserID = '$user->getID()'";
+        $sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $user->getID() . "'";
+		echo $sql;
         $result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 
             return false;
         }
 		
-		$sql = "Delete from Exams WHERE ID  = '$exam->getID()'";
+		$sql = "Delete from Exams WHERE ID  = '" . $exam->getID() . "'";
 		DatabaseConnector::getConnection()->query($sql) ? true : false;
     }
     
