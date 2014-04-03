@@ -100,12 +100,13 @@
 			<br /> 
 			<div class="form-group" >
 					<label class="col-xs-2 col-sm-2 col-md-2 control-label"> Przepisz kod z obrazka </label>
-					<div class="col-xs-2 col-sm-2 col-md-2">
-						<img id="captcha" src="lib/SecureImage/securimage_show.php"  class="img-thumbnail .img-rounded:2px" alt="CAPTCHA IMAGE" />
+					<div class="col-xs-4 col-sm-4 col-md-4">
+						<img id="captcha" src="lib/SecureImage/securimage_show.php"  class="img-thumbnail .img-rounded:2px" style="margin-right:20px;" alt="CAPTCHA IMAGE" />
+						<div style="display:inline-block;vertical-align:middle;float:none;">
+						<a href="#" onclick="document.getElementById('captcha').src = 'lib/SecureImage/securimage_show.php?' + Math.random(); return false"> 
+							<img id="reload-image" src="lib/SecureImage/images/refresh.png" alt="Odśwież Obrazek" />
+						</a> 
 					</div>
-					
-					<div class="col-xs-2 col-sm-2 col-md-2 help-block ">
-						<a href="#" onclick="document.getElementById('captcha').src = 'lib/SecureImage/securimage_show.php?' + Math.random(); return false"> Odśwież obrazek </a> 
 					</div>
 			</div>
 			
