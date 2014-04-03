@@ -9,7 +9,7 @@
 
           <ul class="nav navbar-nav pull-left" style="padding-right: 0px;">
             <li><a id="home" class="navbar-brand" href="index.php">Strona główna</a></li>
-            <li><a class="navbar-brand" href="Kontakt.php">Kontakt</a></li>
+            <li><a class="navbar-brand" href="Contact.php">Kontakt</a></li>
             <li><a class="navbar-brand" href="Authors.php">Autorzy</a></li>
             <li><a class="navbar-brand" href="Help.php">Pomoc</a></li>
             <li><a class="navbar-brand" href="AddExam.php">Dodaj egzamin</a></li>
