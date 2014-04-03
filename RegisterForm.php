@@ -71,6 +71,7 @@
 					
 				</span>
 			</div>
+			<br />
 			<div class="form-group">
 				<label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Imię</label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
@@ -96,25 +97,27 @@
 				</div> 
 				<label class="control-label"> * </label> 
 			</div>
-			<div class="form-group" > 
-				<label class="col-xs-2 col-sm-2 col-md-2 control-label"> Przepisz kod z obrazka </label>
-				<div class="col-xs-4 col-sm-4 col-md-4">
-					<img id="captcha" src="lib/SecureImage/securimage_show.php"  class="img-thumbnail .img-rounded:2px" alt="CAPTCHA IMAGE" />
-				</div> 
-				<div class="col-xs-2 col-sm-2 col-md-2">
-					<div class="row">
-						<a href="#" onclick="document.getElementById('captcha').src = 'lib/SecureImage/securimage_show.php?' + Math.random(); return false"> Odśwież obrazek </a>
-					</div> 
-					<div class="row">
-						<input type="text" class="form-control" name="captcha_code" id="captcha_code"/>
-					</div> 
-					<div class="row"> 
-						<span class="help-block" id="captcha-error-message">
-							
-						</span>
-					</div> 
-				</div>
+			<br /> 
+			<div class="form-group" >
+					<label class="col-xs-2 col-sm-2 col-md-2 control-label"> Przepisz kod z obrazka </label>
+					<div class="col-xs-2 col-sm-2 col-md-2">
+						<img id="captcha" src="lib/SecureImage/securimage_show.php"  class="img-thumbnail .img-rounded:2px" alt="CAPTCHA IMAGE" />
+					</div>
+					
+					<div class="col-xs-2 col-sm-2 col-md-2 help-block ">
+						<a href="#" onclick="document.getElementById('captcha').src = 'lib/SecureImage/securimage_show.php?' + Math.random(); return false"> Odśwież obrazek </a> 
+					</div>
 			</div>
+			
+			<div class="form-group">
+				<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
+					<input type="text" class="form-control" name="captcha_code" id="captcha_code"/> 
+					<span class="help-block" id="captcha-error-message">
+
+					</span>
+				</div>
+			</div> 
+					
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
 					<h6> * - pola opcjonalne przy rejestracji </h6> 
