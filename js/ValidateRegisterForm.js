@@ -51,21 +51,21 @@ jQuery( document ).ready(function( $ ) {
 	
 	function PasswordValidationManager ( ) 
 	{ 
-		this.emailConfirmed = false ; 
-		this.emailLenghtProper = false ; 
+		this.passwdConfirmed = false ; 
+		this.passwdLenghtProper = false ; 
 		this.passwdFormGroup = $("#passwd").closest('div[class^="form-group"]') ;
 		this.repeatedPasswdFormGroup = $("#passwd-repeat").closest('div[class^="form-group"]') ;
 		
 		this.passwordValid  = function ( ) 
 		{ 
-			return ( this.emailConfirmed && this.emailLenghtProper ) ; 
+			return ( this.passwdConfirmed && this.passwdLenghtProper ) ; 
 		} ;
 		
 		this.passwdLengthInvalid = function ( ) 
 		{ 
 			this.passwdError ( passwdFieldErrorType.PASSWD_TOO_SHORT ) ; 
 			this.passwdFormGroup.addClass('has-error') ;
-			this.emailLenghtProper = false ; 
+			this.passwdLenghtProper = false ; 
 		} ;
 		
 		this.passwdLengthValid = function ( ) 
@@ -73,7 +73,7 @@ jQuery( document ).ready(function( $ ) {
 			this.deletePasswdError ("#passwd-error-message") ; 
 			this.passwdFormGroup.attr( "class", "form-group");
 			this.passwdFormGroup.addClass('has-success');
-			this.emailLenghtProper = true ; 
+			this.passwdLenghtProper = true ; 
 		} ;
 		
 		this.passwdsDifferent = function ( ) 
@@ -81,7 +81,7 @@ jQuery( document ).ready(function( $ ) {
 			this.passwdError( passwdFieldErrorType.PASSWD_UNCONFIRMED ) ; 
 			this.repeatedPasswdFormGroup.attr( "class", "form-group") ;
 			this.repeatedPasswdFormGroup.addClass('has-error') ;
-			this.emailConfirmed = false ;
+			this.passwdConfirmed = false ;
 		} ;
 		
 		this.passwdsTheSame = function ( ) 
@@ -89,7 +89,7 @@ jQuery( document ).ready(function( $ ) {
 			this.deletePasswdError ("#passwd-repat-error-message") ; 
 			this.repeatedPasswdFormGroup.attr( "class", "form-group") ;
 			this.repeatedPasswdFormGroup.addClass('has-success') ;
-			this.emailConfirmed = true ;
+			this.passwdConfirmed = true ;
 		} ;
 		
 		this.clearBothFieldStyle = function  ( ) 
@@ -98,8 +98,8 @@ jQuery( document ).ready(function( $ ) {
 			this.passwdFormGroup.attr( "class", "form-group"); 
 			this.deletePasswdError ("#passwd-repat-error-message") ;
 			this.deletePasswdError ("#passwd-error-message") ; 
-			this.emailConfirmed = false ;
-			this.emailLenghtProper = false ; 
+			this.passwdConfirmed = false ;
+			this.passwdLenghtProper = false ; 
 		} ;
 		
 		
@@ -167,8 +167,8 @@ jQuery( document ).ready(function( $ ) {
 			//alert ("can't  submit email "); 
 			return false ;
 		} 
-		if ( (passValidationManager.emailConfirmed != true)  
-			 || (passValidationManager.emailLenghtProper  != true  ) 
+		if ( (passValidationManager.passwdConfirmed != true)  
+			 || (passValidationManager.passwdLenghtProper  != true  ) 
 		) {  
 			//alert ("can not submit password");
 			return false ; 
@@ -190,6 +190,7 @@ jQuery( document ).ready(function( $ ) {
 			$formGroup.removeClass('has-error');
 			$formGroup.removeClass('has-success');
 			deleteSelectorError ( "#email-error-message" );
+			return ; 
 		} 
 		var emailRegexPattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		 
