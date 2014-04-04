@@ -1,5 +1,4 @@
 <?php
-	
 	include("../lib/Lib.php");
 
 	if(isset($_POST['email']) && isset($_POST['pass']))
@@ -10,7 +9,6 @@
 		$basicUser = new basicUser();
 		$basicUser->setEmail($email);
 		$basicUser->setPassword($pass);
-		
 		
 		if(UserDatabase::checkEmail($basicUser))
 		{
@@ -28,5 +26,4 @@
 	} else {
 		header('Location: ../index.php');
 	}
-
 ?>
