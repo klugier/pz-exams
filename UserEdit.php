@@ -1,6 +1,6 @@
 <?php
     include_once("lib/Lib.php");
-	$title = "Edycja Danych";
+	$title = "$appName - Edycja Danych";
 	include("html/Begin.php");
 	include("html/UserPanel.php");
 ?>

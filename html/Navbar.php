@@ -44,7 +44,7 @@
 				    
                     <ul class="dropdown-menu" style="width:250px; background: rgba(255,255,255,0.9);-webkit-border-radius: 5px; -khtml-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px; margin-top:8px;">
                         <li> 
-                  	    <form class="form-signin" role="form" style="margin-right:10px;margin-left:10px;" method="post" action="php/Login.php">
+                  	    <form class="form-signin" role="form" style="margin-right:10px;margin-left:10px;" method="post" action="php/LogIn.php">
       				<h3 style="text-align:center; font-weight:bold; padding-bottom:15px;">Logowanie do systemu</h3>
       				<input type="email" name="email" class="form-control" placeholder="adres email" required autofocus style="margin-bottom:3px;">
       				<input type="password" name="pass" class="form-control" placeholder="hasło" required>
