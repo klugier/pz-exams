@@ -40,6 +40,7 @@ CREATE TABLE `Exams` (
 	`UserID`    INT,
 	`Name`      VARCHAR(100) NOT NULL,
 	`Duration`  TIME         NOT NULL,
+	`Activated` BOOLEAN      NOT NULL,
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`UserID`) REFERENCES `Users` (`ID`),
 	INDEX (`UserID`)
@@ -61,8 +62,8 @@ CREATE TABLE `ExamUnits` (
 /* Students */
 CREATE TABLE `Students` (
 	`ID`        INT          AUTO_INCREMENT,
-	`Email`     VARCHAR (80) NOT NULL,
-	`Code`      VARCHAR (10) UNIQUE NOT NULL,
+	`Email`     VARCHAR (80) UNIQUE NULL,
+	`Code`      VARCHAR (32) UNIQUE NOT NULL,
 	`FirstName` VARCHAR (50) NOT NULL,
 	`Surname`   VARCHAR (70) NOT NULL,
 	PRIMARY KEY (`ID`)
@@ -73,7 +74,6 @@ CREATE TABLE `Records` (
 	`StudentID`  INT,
 	`ExamID`     INT,
 	`ExamUnitID` INT          NULL,
-	`Code`       VARCHAR (32) UNIQUE NOT NULL,
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`StudentID`) REFERENCES `Students` (`ID`),
 	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`)
