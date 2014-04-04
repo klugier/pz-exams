@@ -73,7 +73,7 @@ CREATE TABLE `Records` (
 	`StudentID`  INT,
 	`ExamID`     INT,
 	`ExamUnitID` INT          NULL,
-	`Code`       VARCHAR (25) NOT NULL,
+	`Code`       VARCHAR (32) UNIQUE NOT NULL,
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`StudentID`) REFERENCES `Students` (`ID`),
 	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`)
