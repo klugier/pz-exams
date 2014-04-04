@@ -63,7 +63,7 @@ CREATE TABLE `ExamUnits` (
 CREATE TABLE `Students` (
 	`ID`        INT          AUTO_INCREMENT,
 	`Email`     VARCHAR (80) UNIQUE NULL,
-	`Code`      VARCHAR (32) UNIQUE NOT NULL,
+	`Code`      VARCHAR (32) UNIQUE,
 	`FirstName` VARCHAR (50) NOT NULL,
 	`Surname`   VARCHAR (70) NOT NULL,
 	PRIMARY KEY (`ID`)
