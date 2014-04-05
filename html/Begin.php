@@ -52,6 +52,6 @@
  		<div id="wrapper" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px;">
 <!-- 			<div class="container col-md-12" style="padding: 0px; padding-top:0px;"> -->
 				<div id="content_wrapper">
-				<div class="panel col-md-12 col-sm-12" style="padding: 20px; background: rgba(255, 255, 255, 0.9);
+				<div class="panel col-md-12 col-sm-12" style="padding: 20px; background: rgba(250, 250, 250, 1.0);
 				box-shadow: 2px 2px 12px #666; box-shadow: -2px -2px 12px #666;
 				">

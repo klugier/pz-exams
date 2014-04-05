@@ -42,7 +42,7 @@
 			if ($exam->getActivated()) {
 				echo "<center style=\"color: #156815;\"><b>Tak</b></center>";
 			} else {
-				echo "<center style=\"color: #801313;\"><b>Nie</b></center>";
+				echo "<center><b><a href=\"#\" style=\"color: #801313;\">Nie</a></b></center>";
 			}
 			echo "</td>";
 			
