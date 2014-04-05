@@ -1,11 +1,18 @@
 <?php
+	ob_start();
+	
 	include_once("lib/Lib.php");
 	$title = "$appName - Lista egzaminów";
 	include("html/Begin.php");
 	include("html/UserPanel.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
-		header('Location: index.php' ); 
+		echo "<div class=\"alert alert-danger\"><b>Strona widoczna jedynie dla zalogowanych użytkowników.</b></div>";
+		header("refresh: 3; url=index.php");
+		include("html/End.php");
+		
+		ob_end_flush();
+		return;
 	}
 
 	$id = unserialize($_SESSION['USER'])->getID();
@@ -65,4 +72,5 @@
 	}
 
 	include("html/End.php");
+	ob_end_flush();
 ?>
