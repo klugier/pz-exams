@@ -9,9 +9,9 @@ final class ExamDatabase
 	/*
 	 * Sprawdza czy egzamin o danym ID istnieje w bazie danych.
 	 */
-	static public function checkExamID($id)
+	static public function checkExamID($ID)
 	{
-		$sql = "Select * from Exams where ID = '" . $id . "'";
+		$sql = "Select * from Exams where ID = '" . $ID . "'";
 		
 		DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
@@ -54,13 +54,13 @@ final class ExamDatabase
 	/*
 	 * Zwraca ilość egzaminów danego usera
 	 */
-	static public function getExamNum($userid)
+	static public function countExams($userID)
 	{
-		$sql = "Select * from Exams WHERE UserID = '" . $userid . "'";
+		$sql = "SELECT COUNT(UserID) AS UserExams FROM Exams
+		        WHERE UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
-		$numRows = $result->num_rows;
-        
-		return $numRows;
+		
+		return $result->fetch_array(MYSQLI_NUM)[0];
 	}
 	
 	/*
