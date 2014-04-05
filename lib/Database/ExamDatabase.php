@@ -29,9 +29,9 @@ final class ExamDatabase
 	/*
 	 * Zwraca listę egzaminów w tabeli danego usera
 	 */
-	static public function getExamList($userid)
+	static public function getExamList($userID)
 	{
-		$sql = "SELECT * FROM Exams WHERE UserID = '" . $userid . "'";
+		$sql = "SELECT * FROM Exams WHERE UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if (!$result) {
 			return null;

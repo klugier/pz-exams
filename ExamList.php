@@ -10,9 +10,13 @@
 ?>
 
 <table class="table">
-	<thread>
-		<th>#</th>
-		<th>Nazwa</th>
+	<thead>
+		<tr>
+			<th><center>Lp.</center></th>
+			<th>Nazwa</th>
+			<th><center>Aktywowany</center></th>
+			<th><center>Operacje</center></th>
+		</tr>
 	</thead>
 	<tbody>
 	
@@ -23,8 +27,25 @@
 		$i = 1;
 		foreach ($exams as $exam) {
 			echo "<tr>";
-			echo "<td>" . $i . "</td>\n";
+			echo "<td><center>" . $i . ".</center></td>\n";
 			echo "<td>" . $exam->getName() . "</td>\n";
+			
+			// Activated
+			echo "<td>";
+			if ($exam->getActivated()) {
+				echo "<center>Tak</center>";
+			}
+			else {
+				echo "<center>Nie</center>";
+			}
+			echo "</td>";
+			
+			// Options
+			echo "<td><center>" .
+				 "<i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\"></i>" .
+				 "<i class=\"glyphicon glyphicon-remove\"></i>" .
+				 "</center></td>";
+			
 			echo "</tr>";
 			
 			$i++;

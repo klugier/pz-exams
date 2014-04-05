@@ -5,6 +5,6 @@ INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility ,
 INSERT INTO Exams (UserID, Name, Duration, Activated) VALUES ('1', 'Metody Numeryczne I - Egzamin I termin', '0:30:00', False);
 INSERT INTO Exams (UserID, Name, Duration, Activated) VALUES ('1', 'Metody Numeryczne I - Egzamin II termin', '0:15:00', False);
 INSERT INTO Exams (UserID, Name, Duration, Activated) VALUES ('1', 'Język C++ - Egzamin I termin', '00:15:00', False);
-INSERT INTO Exams (UserID, Name, Duration, Activated) VALUES ('1', 'Języj C++ - Egzamin II termin', '00:20:00', False);
+INSERT INTO Exams (UserID, Name, Duration, Activated) VALUES ('1', 'Język C++ - Egzamin II termin', '00:20:00', False);
 INSERT INTO Exams (UserID, Name, Duration, Activated) VALUES ('1', 'Język C - Egzamin I termin', '0:05:00', False);
 INSERT INTO Exams (UserID, Name, Duration, Activated) VALUES ('1', 'Język C - Egzamin II termin', '0:10:00', False);
