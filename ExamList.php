@@ -23,7 +23,7 @@
 				<tr>
 					<th><center>Lp.</center></th>
 					<th>Nazwa</th>
-					<th><center>Aktywowany</center></th>
+					<th><center>Aktywny</center></th>
 					<th><center>Operacje</center></th>
 				</tr>
 			</thead>
@@ -40,16 +40,16 @@
 			// Activated
 			echo "<td>";
 			if ($exam->getActivated()) {
-				echo "<center>Tak</center>";
+				echo "<center style=\"color: #156815;\"><b>Tak</b></center>";
 			} else {
-				echo "<center>Nie</center>";
+				echo "<center style=\"color: #801313;\"><b>Nie</b></center>";
 			}
 			echo "</td>";
 			
 			// Options
 			echo "<td><center>" .
-				"<i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\"></i>" .
-				"<i class=\"glyphicon glyphicon-remove\"></i>" .
+				"<a href=\"#\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\"></i></a>" .
+				"<a href=\"#\"><i class=\"glyphicon glyphicon-remove\"></i></a>" .
 				"</center></td>";
 			
 			echo "</tr>";
