@@ -36,6 +36,12 @@
       <input type="text" class="form-control" id="duration" placeholder="" maxlength="2">
     </div>
   </div>
+
+  <span class="pull-right">
+  	<button type="button" class="btn btn-primary" id="next1">Dalej</button>
+  </span>
+
+  </form>
   
   <div class="btn-group dropdown">
     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" title="Dodaj nowy termin">
@@ -55,12 +61,6 @@
       </li>    
     </ul>
   </div>
-
-  <span class="pull-right">
-  	<button type="button" class="btn btn-primary" id="next1">Dalej</button>
-  </span>
-
-  </form>
 
 </div>
 
