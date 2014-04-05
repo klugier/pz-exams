@@ -12,7 +12,9 @@
 	$exams = ExamDatabase::getExamList($id);
 	
 	if ($exams == null) {
-		echo "<h4>Nie dodałeś jeszcze żadnych egzaminów! Zobacz jakie to proste i <a href=\"AddExam.php\">utwórz</a> swój pierwszy egzamin.</h4>";
+		echo "<div class=\"alert alert-info\">";
+		echo "<b>Nie dodałeś jeszcze żadnych egzaminów!</b> Zobacz jakie to proste i <u><b><a href=\"AddExam.php\">utwórz</a></b></u> swój pierwszy egzamin.";
+		echo "</div>";
 		return;
 	}
 	
