@@ -22,7 +22,7 @@
 
 	<div class="form-group" id="exam_name_group">
 		<label for="exam_name" class="col-sm-3 control-label">Nazwa egzaminu</label>
-		<div class="col-sm-4">
+		<div class="col-sm-6 col-md-4">
 			<input type="text" class="form-control" id="exam_name" placeholder="" maxlength="200">
 		</div>
 	</div>

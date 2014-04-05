@@ -1,4 +1,4 @@
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background: rgba(0,0,0,0.85); box-shadow: 2px 2px 20px #444444;">
       <div class="container col-md-12" style="padding: 0px;">
         <div class="navbar-header" style="padding-left: 0px;">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
