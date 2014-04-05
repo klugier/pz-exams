@@ -21,14 +21,18 @@ class Exam
 	
 	public function getDuration ()
 	{
-		return $this->durat;
+		return $this->duration;
 	}
     
-    public function getUserID ()
+	public function getUserID ()
 	{
 		return $this->userid;
 	}
 	
+	public function getActivated()
+	{
+		return $this->activated;
+	}
 	
 	// *****************************************************
 	
@@ -44,7 +48,7 @@ class Exam
 	
 	public function setDuration($durat)
 	{
-		$this->durat = $durat;
+		$this->duration = $durat;
 	}
 
 	public function setUserID($userid)
@@ -52,12 +56,18 @@ class Exam
 		return $this->userid = $userid ;
 	}
 	
+	public finction setActivated($activate)
+	{
+		return $this->activated = $activate;
+	}
+	
 	// *****************************************************
 	
 	private $id;
 	private $name; 
-    private $durat;
-    private $userid;
+	private $duration;
+	private $userid;
+	private $activated;
 	 
 }
 
