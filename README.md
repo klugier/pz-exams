@@ -58,7 +58,7 @@ Jeżeli znaleźliście błąd w kodzie, to zgłoście go używujacą trackera na
 * sql   - pliki źródłowe związane z bazą danych
 * tests - pliki zawierające wszelkiego rodzaju testy
 
-### Stl kodowania ###
+### Styl kodowania ###
 Patrz sekcja "Przydatne linki" (tam znajduje się odnośnik do stylu kodowania).
 
 *Uwaga: Wcięcia nie powinny być robione na spacjach, zamiast tego należy używać tabulacji!*
