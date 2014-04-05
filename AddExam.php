@@ -36,6 +36,25 @@
       <input type="text" class="form-control" id="duration" placeholder="" maxlength="2">
     </div>
   </div>
+  
+  <div class="btn-group dropdown">
+    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" title="Dodaj nowy termin">
+      <i class="glyphicon glyphicon-plus" style="font-size:30px; font-weight:bold;"></i>
+    </button>
+
+    <ul class="dropdown-menu" role="menu">
+      <li>
+        <form class="form-signin" role="form" style="margin:10px; margin-right:10px;margin-left:10px;" method="post" action="">
+          <label> Czas trawnia</label><input type="number" name="durration" class="form-control" placeholder="czas trwania" required autofocus style="margin-bottom:3px;" value="20">
+          <label> Dzień </label><input type="date" name="data" class="form-control" placeholder="Data" required style="margin-bottom:3px;">
+          <label> Godzina rozpoczęcia </label><input type="time" name="timeFrom" class="form-control" placeholder="Czas rozpoczęcia" style="margin-bottom:3px;">
+          <label> Godzina zakończenia </label><input type="time" name="timeTo" class="form-control" placeholder="Czas zakończenia" style="margin-bottom:3px;">
+
+          <button type="submit" class="btn btn-success btn-lg btn-block" style="margin-top:20px; margin-bottom:5px;"><b>Dodaj termin</b></button>
+        </form>
+      </li>    
+    </ul>
+  </div>
 
   <span class="pull-right">
   	<button type="button" class="btn btn-primary" id="next1">Dalej</button>
