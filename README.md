@@ -58,6 +58,11 @@ Jeżeli znaleźliście błąd w kodzie, to zgłoście go używujacą trackera na
 * sql   - pliki źródłowe związane z bazą danych
 * tests - pliki zawierające wszelkiego rodzaju testy
 
+### Stl kodowania ###
+Patrz sekcja "Przydatne linki" (tam znajduje się odnośnik do stylu kodowania).
+
+*Uwaga: Wcięcia nie powinny być robione na spacjach, zamiast tego należy używać tabulacji!*
+
 ### Przydatne linki ###
 * [Styl kodowania (Zend framework)](http://framework.zend.com/manual/1.12/en/coding-standard.coding-style.html)
 * [Pivotal Tracker (Zarządzanie Scrumem)](http://www.pivotaltracker.com/)
