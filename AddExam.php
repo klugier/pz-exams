@@ -1,19 +1,13 @@
 <?php 
 	include_once("lib/Lib.php");
-	$title = "$appName - Dodawanie egzaminu";
+	$title = "$appName - Dodaj egzamin - Podstawowe dane";
 	$scripts = array("js/AddExam.js");
 	include("html/Begin.php");
 	include("html/UserPanel.php");
+	
+	$examSideMenuAcctualStep = 0;
+	include("html/ExamSideMenuBegin.php");
 ?>
-
-<ul class="nav nav-tabs" id="tabs">
-	<li id="tab1" class="active">
-		<a href="#data" data-toggle="tab" id="tab1a" class="">1. Dane o egzaminie</a>
-	</li>
-	<li id="tab2">
-		<a href="#students" data-toggle="tab" id="tab2a" class="">2. Lista studentów</a>
-	</li>
-</ul>
 
 <div class="tab-content">
 	<div></div>
@@ -69,6 +63,9 @@
 
 </div>
 
+<!--
+Trzeba to przenieś do osobnego pliku.
+Każdy plik powinien zawierać jedną opcję z bocznego menu
 <div class="tab-pane fade" id="students" style="padding-left: 20px; padding-right: 20px;">
 
 	<h2>Lista studentów</h2>
@@ -108,6 +105,9 @@
 		</div>
 
 	</div>
+-->
 
-
-<?php include ("html/End.php"); ?> 
+<?php
+	include("html/ExamSideMenuEnd.php");
+	include("html/End.php");
+?> 
