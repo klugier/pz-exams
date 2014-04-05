@@ -38,19 +38,17 @@ final class ExamDatabase
 		}
         
 		$i = 0;
-		while($row = $result->fetch_array(MYSQLI_ASSOC)){
-            
-			$resultExam[$i] = new Exam(); 
-			$resultExam[$i]->setID($row['ID']);
-			$resultExam[$i]->setUserID($row['UserID']);
-			$resultExam[$i]->setName($row['Name']);
-			$resultExam[$i]->setDuration($row['Duration']);
-			$resultExam[$i]->setActivated($row['Activated']);
+		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+			$exams[$i] = new Exam(); 
+			$exams[$i]->setID($row['ID']);
+			$exams[$i]->setUserID($row['UserID']);
+			$exams[$i]->setName($row['Name']);
+			$exams[$i]->setDuration($row['Duration']);
+			$exams[$i]->setActivated($row['Activated']);
 			$i++;
-		
         }
         
-		return $resultExam;
+		return $exams;
 	}  
     
 	/*

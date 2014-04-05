@@ -57,7 +57,10 @@ final class DatabaseConnector
 				echo "<br \> <br \>\n";
 				echo $this->toString();
 			}
+			return;
 		}
+		
+		$this->connection->query('SET NAMES \'utf8\'');
 	}
 	
 	private function toString()
