@@ -33,9 +33,7 @@ final class ExamDatabase
 	{
 		$sql = "SELECT * FROM Exams WHERE UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
-		if (!$result) {
-			return null;
-		}
+		$exams = null;
         
 		$i = 0;
 		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
