@@ -4,7 +4,7 @@
 	if(isset($_POST['email']) && isset($_POST['pass']))
 	{
 		$email = $_POST['email'];
-		$pass = $_POST['pass'];
+		$pass = sha1($_POST['pass']);
 
 		$basicUser = new basicUser();
 		$basicUser->setEmail($email);
