@@ -56,7 +56,7 @@ class Exam
 		return $this->userid = $userid ;
 	}
 	
-	public finction setActivated($activate)
+	public function setActivated($activate)
 	{
 		return $this->activated = $activate;
 	}
