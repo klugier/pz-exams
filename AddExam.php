@@ -1,7 +1,7 @@
 <?php 
 	include_once("lib/Lib.php");
 	$title = "$appName - Dodaj egzamin - Podstawowe dane";
-	$scripts = array("js/AddExam.js");
+	$scripts = array(  "js/CalendarManager.js" , "js/AddExam.js" );
 	include("html/Begin.php");
 	include("html/UserPanel.php");
 	
@@ -33,7 +33,11 @@
 			<input type="text" class="form-control" id="duration" placeholder="" maxlength="2">
 		</div>
 	</div>
-
+	
+	<div id="calendar-control"> 
+		
+	</div> 
+	
 	<span class="pull-right">
 		<button type="button" class="btn btn-primary" id="next1">Dalej</button>
 	</span>
