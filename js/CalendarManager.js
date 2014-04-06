@@ -4,6 +4,8 @@ jQuery( document ).ready(function( $ ) {
 		stringDate = ((dateStart.getDate().length === 2 ) ?  dateStart.getDate() : ( "0" + dateStart.getDate() ) ) + separator + 
 					 ((dateStart.getMonth().length === 2 ) ?  dateStart.getMonth() : ( "0" + dateStart.getMonth() ) ) + separator + 
 					 dateStart.getFullYear() ; 
+					 
+		//alert  ( stringDate) ; 
 		return stringDate ;   
 	}  
 	
@@ -18,27 +20,24 @@ jQuery( document ).ready(function( $ ) {
 			if ( examUnits.length == 0 ) { 
 				return ; 
 			} 
-			
+
 			blockDate = createDateKey ( examUnits[0].date ,  '-' ); 
 			htmlControl = this.controlStyleBegin ( blockDate ); 
 			
-			
-			for ( var item in examUnits ) 
-			{ 
-				//alert ( item +" is item " ) ; 
-				/*$("#calendar-control").html(  createDateKey ( examUnits[item].date ,  '.' ) ) ;
-				// alert (  this.prepareTimeString ( examUnits[item].date  ) ) ;
-				//alert (  this.prepareTimeString ( this.addDurationToDate ( examUnits[item].date, examUnits[item].duration ) ) ) ;
-			    $("#calendar-control").html(  this.prepareTimeString ( examUnits[item].date  ) ) ;
-				$("#calendar-control").html( this.prepareTimeString ( this.addDurationToDate ( examUnits[item].date, examUnits[item].duration ) )) ; 
-				
-				$("#calendar-control").html( this.controlStyleBegin() ) ; */
+			for ( var item in examUnits )  { 
+				htmlControl += this.controlAddExamUnit( this.prepareTimeString ( examUnits[item].date  ) , this.prepareTimeString ( this.addDurationToDate ( examUnits[item].date, examUnits[item].duration ) ));
 			} 
+			htmlControl += this.controlAddSeparator () ;
+			
+			htmlControl += this.controlAddExamUnit ( "20:13" , "12:20" ) ; 
+			htmlControl += this.controlAddExamUnit ( "20:13" , "12:20" ) ;
+			htmlControl += this.controlAddExamUnit ( "20:13" , "12:20" ) ;
+			htmlControl += this.controlAddExamUnit ( "20:13" , "12:20" ) ;
+			
 			
 			htmlControl += this.controlStyleEnd () ;
-			
+		    // document.write ( htmlControl  ); 
 			//$("#calendar-control").html(htmlControl);
-			
 		} ;  
 		
 		this.prepareTimeString = function ( date , duration ) {
@@ -51,35 +50,49 @@ jQuery( document ).ready(function( $ ) {
 		} ; 
 		
 		this.controlStyleBegin = function ( date) {
-			begin = '<div class="row"  style="' + this.height + 'px">'  
-					+ '<div class="col-md-3">'	 
-					+ '	<div class="panel panel-primary "> ' 
-					+ '		<div class="panel-heading"> ' + date + ' </div> '  
-					+ '			<div class="panel-body">'  
-					+ ' 				<table class="table">'  
-					+ ' 					<thead> '  
-					+ '						<tr> '  
-					+ '							<th>blokuj</th>'  
-					+ '							<th>godzina</th>'
-					+ '						</tr>'
-					+ '						</thead>' ; 
+			//alert ( "height : " + this.height) ; 
+			begin = '<div class="row" >' +  
+				    '<div class="col-md-3" style="height:' + this.height + 'px;" >' +	 
+					'	<div class="panel panel-primary "> ' +
+					'		<div class="panel-heading"> ' + date + ' </div> ' +  
+					'			<div class="panel-body">' +
+					' 				<table class="table">' +  
+					' 					<thead> ' + 
+					'						<tr> ' + 
+					'							<th>blokuj</th>' +  
+					'							<th>godzina</th>' +
+					'						</tr>' +
+					'						</thead> ' +
+					'						<tbody>' ; 
 			return begin  ; 
 		} ; 
 			
 		
 		this.controlStyleEnd = function ( end) {
-			end = '				</table>'
-				  + '			</div>'
-				  + '			<button type="button" class="btn btn-success" style="float:right;">'
-				  + '				<i class="glyphicon glyphicon-plus" style="font-size:20px; font-weight:bold;"></i>'
-				  + '			</button>'
-				  + '		</div>'
-				  + '		</div>'
-				  + '</div>' ; 
+			end = '						</tbody>' +
+				  '				</table>' +
+				  '			</div>'+
+				  '			<button type="button" class="btn btn-success" style="float:right;">' +
+				  '				<i class="glyphicon glyphicon-plus" style="font-size:20px; font-weight:bold;"></i>'+
+				  '			</button>'+
+				  '		</div>'+
+				  '		</div>'+
+				  '</div>' ; 
 			return end  ; 
 		} ;
 		
+		this.controlAddExamUnit = function ( startTime , endTime ) { 
+			//alert ( startTime +" aa  " +  endTime ) ; 
+			examUnit =	'<tr> '
+						+ '		<td><input type="checkbox" ></td> '
+						+ '		<td> od ' + startTime + ' do ' + endTime + '</td> ' 
+						+ '</tr> ' ; 
+			return examUnit ; 
+		} ; 
 		
+		this.controlAddSeparator = function ( ) { 
+			return '<tr><td colspan="2" style="text-align:center;"> *** </td></tr>' ; 
+		} ;
 	}
 
 	CalendarDayControl.prototype.height = 300; 
