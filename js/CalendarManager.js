@@ -51,15 +51,15 @@ jQuery( document ).ready(function( $ ) {
 		
 		this.controlStyleBegin = function ( date) {
 			//alert ( "height : " + this.height) ; 
-			begin = '<div class="row" style="height:' + this.height + 'px;">' +  
+			begin = '<div class="row" >' +  
 				    '<div class="col-md-3" >' +	 
 					'	<div class="panel panel-primary "> ' +
 					'		<div class="panel-heading"> ' + date + ' </div> ' +  
-					'			<div class="panel-body">' +
+					'			<div class="panel-body" style="height:' + this.height +  'px; overflow-y: scroll;">' +
 					' 				<table class="table">' +  
 					' 					<thead> ' + 
 					'						<tr> ' + 
-					'							<th>blokuj</th>' +  
+					'							<th>usuń</th>' +  
 					'							<th>godzina</th>' +
 					'						</tr>' +
 					'						</thead> ' +
@@ -95,7 +95,7 @@ jQuery( document ).ready(function( $ ) {
 		} ;
 	}
 
-	CalendarDayControl.prototype.height = 100; 
+	CalendarDayControl.prototype.height = 400; 
 
 
 	function CalendarControl ( )  { 
