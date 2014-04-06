@@ -51,8 +51,8 @@ jQuery( document ).ready(function( $ ) {
 		
 		this.controlStyleBegin = function ( date) {
 			//alert ( "height : " + this.height) ; 
-			begin = '<div class="row" >' +  
-				    '<div class="col-md-3" style="height:' + this.height + 'px;" >' +	 
+			begin = '<div class="row" style="height:' + this.height + 'px;">' +  
+				    '<div class="col-md-3" >' +	 
 					'	<div class="panel panel-primary "> ' +
 					'		<div class="panel-heading"> ' + date + ' </div> ' +  
 					'			<div class="panel-body">' +
@@ -95,7 +95,7 @@ jQuery( document ).ready(function( $ ) {
 		} ;
 	}
 
-	CalendarDayControl.prototype.height = 300; 
+	CalendarDayControl.prototype.height = 100; 
 
 
 	function CalendarControl ( )  { 

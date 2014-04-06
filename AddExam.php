@@ -33,13 +33,14 @@
 			<input type="text" class="form-control" id="duration" placeholder="" maxlength="2">
 		</div>
 	</div>
-	
-	<div id="calendar-control"> 
-		
-	</div> 
 
 	</form>
 	
+	<div class="row"> 
+		<div id="calendar-control"> 
+			
+		</div> 
+	</div>
 	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" title="Dodaj termin">
   		<i class="glyphicon glyphicon-plus" style="font-size:30px; font-weight:bold;"></i>
 	</button>
