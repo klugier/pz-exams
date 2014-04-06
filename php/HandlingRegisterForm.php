@@ -77,6 +77,11 @@ else {
 			"
 			, implode("\n", $headers));
 
+			$_SESSION['email'] = ""    ;
+			$_SESSION['gender'] = ""  ;
+			$_SESSION['name'] = ""   ;
+			$_SESSION['surname'] = "" ;
+			
 			header('Location: ../index.php' );
 		} else { 
 			// echo "Użytkownika nie udało sie wprowadzić do bazy ";
