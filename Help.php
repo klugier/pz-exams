@@ -7,7 +7,7 @@
 
 <div class="container"> 
 	<h2>Obsługiwane domeny</h2>
-	W chwili obecnej obsługujemy następujące domeny: <br />
+	W chwili obecnej obsługujemy urzytkowników posiadających adresy e-mail z następujących domen: <br />
 	<ul>
 		<?php
 			$domains = Settings::getDomains();
@@ -23,4 +23,6 @@
 	
 </div>
 
-<?php include ("html/End.php"); ?>
+<?php
+	include ("html/End.php");
+?>
