@@ -57,8 +57,9 @@ final class ExamDatabase
 		$sql = "SELECT COUNT(UserID) AS UserExams FROM Exams
 		        WHERE UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
+		$row = $result->fetch_array(MYSQLI_NUM);
 		
-		return $result->fetch_array(MYSQLI_NUM)[0];
+		return $row[0];
 	}
 	
 	/*
