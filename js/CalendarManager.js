@@ -75,7 +75,9 @@ jQuery( document ).ready(function( $ ) {
 	}    
 	
 	
-	function CalendarDayControl ( day , examUnits) { 
+	function CalendarDayControl ( day , examUnits) {
+		
+		this.separatorPositions = new Array () ; 
 		this.printControl = function ( ) { 
 			
 			if ( examUnits.length == 0 ) { 
@@ -83,9 +85,19 @@ jQuery( document ).ready(function( $ ) {
 			} 
  
 			htmlControl = this.controlStyleBegin ( day ); 
+			this.findSeparatorPositions(); 
 			
+			//alert ( this.separatorPositions.toString() ) ;  
+			
+			var i = 0 ; 
+			var separatorIndex = this.separatorPositions.shift(); 
 			for ( var item in examUnits )  { 
 				htmlControl += this.controlAddExamUnit(  examUnits[item].bHour , examUnits[item].eHour );
+				if ( separatorIndex == i ) { 
+					separatorIndex = this.separatorPositions.shift(); 
+					htmlControl += this.controlAddSeparator () ;
+				} 
+				i++ ; 
 			} 
 			htmlControl += this.controlAddSeparator () ;
 			
@@ -93,6 +105,14 @@ jQuery( document ).ready(function( $ ) {
 		    // document.write ( htmlControl  ); 
 			//$("#calendar-control").html(htmlControl);
 		} ;  
+		
+		this.findSeparatorPositions = function ( ) { 
+			for ( var i=0; i<examUnits.length-1 ; i++ ) { 
+				if ( examUnits[i].eHour !== examUnits[i+1].bHour  ) { 
+					this.separatorPositions.push(i);
+				} 
+			} 
+		} ; 
 		
 		this.controlStyleBegin = function ( date) {
 			//alert ( "height : " + this.height) ; 
@@ -160,6 +180,8 @@ jQuery( document ).ready(function( $ ) {
 	exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
 	
 	exam.addTerm( "21.02.03" , "14:20", "15:20", 30) ;
+	
+	exam.addTerm( "21.02.03" , "19:20", "21:20", 30) ;
 	
 	calendarControl = new CalendarControl(exam.day) ;    
 	calendarControl.printCalendar() ; 
