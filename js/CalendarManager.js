@@ -103,7 +103,7 @@ jQuery( document ).ready(function( $ ) {
 			
 			htmlControl += this.controlStyleEnd () ;
 		    // document.write ( htmlControl  ); 
-			//$("#calendar-control").html(htmlControl);
+			return htmlControl ; 
 		} ;  
 		
 		this.findSeparatorPositions = function ( ) { 
@@ -116,8 +116,7 @@ jQuery( document ).ready(function( $ ) {
 		
 		this.controlStyleBegin = function ( date) {
 			//alert ( "height : " + this.height) ; 
-			begin = '<div class="row" >' +  
-				    '<div class="col-md-3" >' +	 
+			begin = '<div class="col-md-3" >' +	 
 					'	<div class="panel panel-primary "> ' +
 					'		<div class="panel-heading"> ' + date + ' </div> ' +  
 					'			<div class="panel-body" style="height:' + this.height +  'px; overflow-y: scroll;">' +
@@ -141,8 +140,7 @@ jQuery( document ).ready(function( $ ) {
 				  '				<i class="glyphicon glyphicon-plus" style="font-size:20px; font-weight:bold;"></i>'+
 				  '			</button>'+
 				  '		</div>'+
-				  '		</div>'+
-				  '</div>' ; 
+				  '		</div>' ; 
 			return end  ; 
 		} ;
 		
@@ -165,23 +163,52 @@ jQuery( document ).ready(function( $ ) {
 
 	function CalendarControl ( examDays )  { 
 		this.printCalendar = function ( ) 	{ 
-			//alert ( this.examDays.length ) ; 
+			//alert ( this.examDays.length ) ;
+			
+			var calendarControl = "" ; 
+			
+			calendarControl+=this.addRibbonStart() ; 
+			
 			for(var day in examDays)
     		{
 				calendarDayControl = new CalendarDayControl ( day , examDays[day]) ;
-				calendarDayControl.printControl(); 
+				calendarControl+=calendarDayControl.printControl(); 
 			} 
+			
+			calendarControl+=this.addRibbonEnd ();
+		
+			//$("#calendar-control").html(calendarControl);
 		} ; 
+		
+		
+		this.addRibbonStart = function ( ) 
+		{ 
+			start = ' <div class="row" style="background:url(img/calendarPanel.png);" >' ;  
+			
+			return start ; 
+			
+		} ; 
+		
+		this.addRibbonEnd = function () 
+		{ 
+			end = '</div>' ;  
+			
+			return end ; 
+		} ;
 	} 
 	
 	// test
 	name = "egzamin z WOS " ; 
-	exam = new Exam ( name , duration ) ; 
+	exam = new Exam ( name , 30 ) ; 
 	exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
 	
 	exam.addTerm( "21.02.03" , "14:20", "15:20", 30) ;
 	
 	exam.addTerm( "21.02.03" , "19:20", "21:20", 30) ;
+	
+	exam.addTerm( "11.02.03" , "14:20", "15:20", 30) ;
+	
+	exam.addTerm( "11.02.03" , "19:20", "21:20", 30) ;
 	
 	calendarControl = new CalendarControl(exam.day) ;    
 	calendarControl.printCalendar() ; 
