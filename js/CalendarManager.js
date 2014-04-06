@@ -1,35 +1,91 @@
 jQuery( document ).ready(function( $ ) {
 
-	function createDateKey ( date , separator ) 
-	{ 
+	function createDateKey ( date , separator ) { 
 		stringDate = ((dateStart.getDate().length === 2 ) ?  dateStart.getDate() : ( "0" + dateStart.getDate() ) ) + separator + 
 					 ((dateStart.getMonth().length === 2 ) ?  dateStart.getMonth() : ( "0" + dateStart.getMonth() ) ) + separator + 
 					 dateStart.getFullYear() ; 
 		return stringDate ;   
 	}  
 	
-	function ExamUnit (  date , duration  )
-	{ 
+	function ExamUnit (  date , duration  ) { 
 		this.date = date ;  
 		this.duration = duration  ;
 	}  
 
 	function CalendarDayControl ( examUnits) { 
 		this.printControl = function ( ) { 
+			
+			if ( examUnits.length == 0 ) { 
+				return ; 
+			} 
+			
+			blockDate = createDateKey ( examUnits[0].date ,  '-' ); 
+			htmlControl = this.controlStyleBegin ( blockDate ); 
+			
+			
 			for ( var item in examUnits ) 
 			{ 
 				//alert ( item +" is item " ) ; 
-				//$("#calendar-control").html(  createDateKey ( examUnits[item].date ,  '.' ) ) ; 
-							
+				/*$("#calendar-control").html(  createDateKey ( examUnits[item].date ,  '.' ) ) ;
+				// alert (  this.prepareTimeString ( examUnits[item].date  ) ) ;
+				//alert (  this.prepareTimeString ( this.addDurationToDate ( examUnits[item].date, examUnits[item].duration ) ) ) ;
+			    $("#calendar-control").html(  this.prepareTimeString ( examUnits[item].date  ) ) ;
+				$("#calendar-control").html( this.prepareTimeString ( this.addDurationToDate ( examUnits[item].date, examUnits[item].duration ) )) ; 
+				
+				$("#calendar-control").html( this.controlStyleBegin() ) ; */
 			} 
+			
+			htmlControl += this.controlStyleEnd () ;
+			
+			//$("#calendar-control").html(htmlControl);
+			
 		} ;  
+		
+		this.prepareTimeString = function ( date , duration ) {
+			stringTime = date.getHours() + ":" + date.getMinutes(); 
+			return stringTime ; 
+		} ; 
+		
+		this.addDurationToDate = function( date , duration ) {
+			return new Date(date.getTime() + duration * 60000 ) ; 
+		} ; 
+		
+		this.controlStyleBegin = function ( date) {
+			begin = '<div class="row"  style="' + this.height + 'px">'  
+					+ '<div class="col-md-3">'	 
+					+ '	<div class="panel panel-primary "> ' 
+					+ '		<div class="panel-heading"> ' + date + ' </div> '  
+					+ '			<div class="panel-body">'  
+					+ ' 				<table class="table">'  
+					+ ' 					<thead> '  
+					+ '						<tr> '  
+					+ '							<th>blokuj</th>'  
+					+ '							<th>godzina</th>'
+					+ '						</tr>'
+					+ '						</thead>' ; 
+			return begin  ; 
+		} ; 
+			
+		
+		this.controlStyleEnd = function ( end) {
+			end = '				</table>'
+				  + '			</div>'
+				  + '			<button type="button" class="btn btn-success" style="float:right;">'
+				  + '				<i class="glyphicon glyphicon-plus" style="font-size:20px; font-weight:bold;"></i>'
+				  + '			</button>'
+				  + '		</div>'
+				  + '		</div>'
+				  + '</div>' ; 
+			return end  ; 
+		} ;
+		
+		
 	}
 
-	CalendarDayControl.prototype.height = 200; 
+	CalendarDayControl.prototype.height = 300; 
 
 
-	function CalendarControl ( ) 
-	{ 
+	function CalendarControl ( )  { 
 		this.examDays = new Array () ; 
 		this.addExamBlock = function ( dateStart , dateEnd , duration  ) { 
         	 numOfExams = (  (dateEnd.getHours() * 60 + dateEnd.getMinutes()) - (dateStart.getHours() *60 + dateStart.getMinutes()) ) / duration ;
@@ -47,8 +103,7 @@ jQuery( document ).ready(function( $ ) {
 			//alert ( this.examDays.length ) ;
 		} ;	
 
-		this.printCalendar = function ( ) 
-		{ 
+		this.printCalendar = function ( ) 	{ 
 			//alert ( this.examDays.length ) ; 
 			for(var day in this.examDays)
     		{
