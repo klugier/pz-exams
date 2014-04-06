@@ -148,14 +148,43 @@ jQuery( document ).ready(function( $ ) {
 					emailInDB = false ;
 				} 
 			},
-			error: function(jqXHR, textStatus, errorThrown ) {
+			error: function(jqXHR, textStatus, errorThrown) {
 				console.log(textStatus);
 			}
 		});
 		//alert ( " before return " + emailInDB ) ; 
 		return emailInDB ; 
-	} 
-	var passValidationManager = new PasswordValidationManager () ;  
+	}
+	
+	function checkDomain($email) {
+		var isCorrectDomain = false;
+		
+		$.ajax({
+			url:   'lib/Ajax/AjaxUserDomainRequest.php',
+			async: false,
+			type:  'post',
+			data: { 'email' : $email },
+			success:
+				function(data, status) {
+					if (data.status.trim() === "dataRecived") {
+						if (data.domain.trim() === "exists") {
+							isCorrectDomain = true;
+						}
+					} else {
+						console.log("Zapytanie ajax dla użytkownika nie powiodło się ( Nie udało się sprawdzić czy email występuje w bazie )");
+					}
+				}
+			,
+			error:
+				function(jqXHR, textStatus, errorThrown) {
+					console.log(textStatus);
+				}
+		});
+		
+		return isCorrectDomain;
+	}
+	
+	var passValidationManager = new PasswordValidationManager();
 	
 	// jQuery events 
 	
@@ -202,7 +231,7 @@ jQuery( document ).ready(function( $ ) {
 			$formGroup.removeClass('has-success');
 			$formGroup.addClass('has-error');
 		} 
-		else if (email.indexOf("uj.edu.pl") == -1) { 
+		else if (checkDomain(email) == false) { 
 			emailError ( emailFieldErrorType.BAD_DOMAIN  ) ;
 			$formGroup.removeClass('has-success');
 			$formGroup.addClass('has-error');

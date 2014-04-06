@@ -17,6 +17,11 @@ final class Settings
 		return self::getInstance()->domains;
 	}
 	
+	public static function getPath()
+	{
+		return dirname(__FILE__) . "/../../cfg/Settings.xml";
+	}
+	
 	public static function setDebug($debug)
 	{
 		self::getInstance()->debug = $debug;
@@ -63,7 +68,7 @@ final class Settings
 		if ($dom->getElementsByTagName("Domains")->length > 0) {
 			$i = 0;
 			foreach ($xml->Domains->Domain as $domain) {
-				$this->domain[$i] = $domain;
+				$this->domains[$i] = $domain;
 			}
 		}
 	}
