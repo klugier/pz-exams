@@ -29,7 +29,7 @@ jQuery( document ).ready(function( $ ) {
 		} 
 		if  ($errorCode ==  emailFieldErrorType.BAD_DOMAIN) { 
 			$("#email-error-message").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px"> Nieprawidłowa domena( obowiązuje domena uj.edu.pl ).</span>') ; 
+											'<span style="padding:5px"> Przepraszamy w chwiki opecnej ta domena nie jest obsługiwana.</span>') ; 
 			return ; 
 		} 
 		if  ($errorCode ==  emailFieldErrorType.ADRESS_ALREADY_USED) { 
@@ -170,8 +170,6 @@ jQuery( document ).ready(function( $ ) {
 						if (data.domain.trim() === "exists") {
 							isCorrectDomain = true;
 						}
-					} else {
-						console.log("Zapytanie ajax dla użytkownika nie powiodło się ( Nie udało się sprawdzić czy email występuje w bazie )");
 					}
 				}
 			,

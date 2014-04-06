@@ -16,7 +16,7 @@
 		$wantedDomain = substr($_POST['email'], strpos($_POST['email'], '@') + 1, strlen($_POST['email']));
 		
 		foreach ($domains as $domain) {
-			if ("$domain" == "$wantedDomain") {
+			if ("$wantedDomain" == "$domain") {
 				echo json_encode($domainExistsJSON);
 				return;
 			}

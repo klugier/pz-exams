@@ -3,5 +3,6 @@
 	<Debug>1</Debug>
 	<Domains>
 		<Domain>uj.edu.pl</Domain>
+		<Domain>agh.edu.pl</Domain>
 	</Domains>
 </Settings>

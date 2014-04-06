@@ -69,6 +69,7 @@ final class Settings
 			$i = 0;
 			foreach ($xml->Domains->Domain as $domain) {
 				$this->domains[$i] = $domain;
+				$i++;
 			}
 		}
 	}
