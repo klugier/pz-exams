@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Database>
-	<Server>localhost</Server>
-	<User>root</User>
-	<Password>kk50fmis</Password>
-	<Name>pz_exams</Name>
+	<Server>server</Server>
+	<User>user</User>
+	<Password>password</Password>
+	<Name>database</Name>
 </Database>

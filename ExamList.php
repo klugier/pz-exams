@@ -7,7 +7,7 @@
 	include("html/UserPanel.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
-		echo "<div class=\"alert alert-danger\"><b>Strona widoczna jedynie dla zalogowanych użytkowników.</b></div>";
+		echo "<div class=\"alert alert-danger\"><b>Strona widoczna jedynie dla zalogowanych użytkowników.</b> Za 3 sekundy zostaniesz przeniesiony na stronę główną.</div>";
 		header("refresh: 3; url=index.php");
 		include("html/End.php");
 		
