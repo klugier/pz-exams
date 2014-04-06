@@ -37,31 +37,39 @@
 	<div id="calendar-control"> 
 		
 	</div> 
-	
-	<span class="pull-right">
-		<button type="button" class="btn btn-primary" id="next1">Dalej</button>
-	</span>
 
 	</form>
 	
-	<div class="btn-group dropdown">
-		<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" title="Dodaj nowy termin">
-			<i class="glyphicon glyphicon-plus" style="font-size:30px; font-weight:bold;"></i>
-		</button>
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" title="Dodaj termin">
+  		<i class="glyphicon glyphicon-plus" style="font-size:30px; font-weight:bold;"></i>
+	</button>
+	<div class="modal fade modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  		<div class="modal-dialog modal-sm">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        				<h4 class="modal-title" id="myModalLabel">Dodawanie terminu</h4>
+      				</div>
+      				<form class="form-signin" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="">
+      					<div class="modal-body">
+          					<label> Czas trawnia</label><input type="number" name="durration" class="form-control" placeholder="Czas na jednego studenta" required autofocus style="margin-bottom:3px;" value="20">
+          					<label> Dzień </label><input type="date" name="data" class="form-control" placeholder="Data" required style="margin-bottom:3px;">
+          					<label> Godzina rozpoczęcia </label><input type="time" name="timeFrom" class="form-control" placeholder="Czas rozpoczęcia" style="margin-bottom:3px;">
+          					<label> Godzina zakończenia </label><input type="time" name="timeTo" class="form-control" placeholder="Czas zakończenia" style="margin-bottom:3px;">         
+      					</div>   
+      					<div class="modal-footer">
+        					<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+        					<button type="submit" class="btn btn-success"><b>Dodaj termin</b></button>          
+      					</div>
+      				</form>
+    			</div>
+  		</div>
+	</div>	
+	
 
-		<ul class="dropdown-menu" role="menu">
-			<li>
-				<form class="form-signin" role="form" style="margin:10px; margin-right:10px;margin-left:10px;" method="post" action="">
-					<label> Czas trawnia</label><input type="number" name="durration" class="form-control" placeholder="czas trwania" required autofocus style="margin-bottom:3px;" value="20">
-					<label> Dzień </label><input type="date" name="data" class="form-control" placeholder="Data" required style="margin-bottom:3px;">
-					<label> Godzina rozpoczęcia </label><input type="time" name="timeFrom" class="form-control" placeholder="Czas rozpoczęcia" style="margin-bottom:3px;">
-					<label> Godzina zakończenia </label><input type="time" name="timeTo" class="form-control" placeholder="Czas zakończenia" style="margin-bottom:3px;">
-
-					<button type="submit" class="btn btn-success btn-lg btn-block" style="margin-top:20px; margin-bottom:5px;"><b>Dodaj termin</b></button>
-				</form>
-			</li>    
-		</ul>
-	</div>
+	<span class="pull-right">
+		<button type="button" class="btn btn-primary" id="next1">Dalej</button>
+	</span>
 
 </div>
 
