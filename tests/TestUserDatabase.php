@@ -21,6 +21,16 @@
 					echo "Następujący test zakończył się niepowodzeniem: \"UserDatabase::getUser(1);\"" . "<br \>";
 				}
 			}
+			
+			if (UserDatabase::updateUserPassword($user, 'test12')){
+			    $user->setPassword('test12');
+				echo $user->getPassword();
+			}else{
+				echo "Nope";
+			}
+			
+			
+			
 		?>
 	</body>
 </html>

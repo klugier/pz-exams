@@ -106,7 +106,56 @@ final class UserDatabase
 			return false;
 		}
 	}
+	
+	/*
+	 * Aktualizacja imienia usera
+	 */
+	static public function updateUserFirstName($user, $firstName)
+	{ 
+		$sql = "UPDATE Users SET 
+		        FirstName  = '" . $firstName . "' 
+		        WHERE ID = '" . $user->getID() . "'";
 		
+		return DatabaseConnector::getConnection()->query($sql) ? true : false;
+	} 
+	
+	/*
+	 * Aktualizacja hasla usera
+	 */
+	static public function updateUserPassword($user, $password)
+	{ 
+		$sql = "UPDATE Users SET 
+		        Password  = '" . $password . "' 
+		        WHERE ID = '" . $user->getID() . "'";
+		
+		return DatabaseConnector::getConnection()->query($sql) ? true : false;
+	} 
+		
+	/*
+	 * Aktualizacja nicku usera
+	 */
+	static public function updateUserSurname($user, $surname)
+	{ 
+		$sql = "UPDATE Users SET 
+		        Surname  = '" . $surname . "' 
+		        WHERE ID = '" . $user->getID() . "'";
+		
+		return DatabaseConnector::getConnection()->query($sql) ? true : false;
+	} 
+	
+	/*
+	 * Aktualizacja plci usera
+	 */
+	static public function updateUserGender($user, $gender)
+	{ 
+		$sql = "UPDATE Users SET 
+		        Gender  = '" . $gender . "'
+		        WHERE ID = '" . $user->getID() . "'";
+		
+		return DatabaseConnector::getConnection()->query($sql) ? true : false;
+	} 
+	
+	
 	// Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)
 	private function __construct() { }
 }
