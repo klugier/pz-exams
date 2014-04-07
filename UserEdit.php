@@ -1,30 +1,65 @@
 <?php
-    include_once("lib/Lib.php");
+        include_once("lib/Lib.php");
     
-    if ($_SESSION['USER'] == "")  {
+       if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
         header('Location: index.php' ); 
     }
     
-    $title = "$appName - Edycja Danych";
-    $scriptsDefer = array("js/ValidateRegisterForm.js");
-    include("html/Begin.php");
-    include("html/UserPanel.php");
+        $title = "$appName - Edycja Danych";
+        $scriptsDefer = array("js/ValidateRegisterForm.js");
+        include("html/Begin.php");
+        include("html/UserPanel.php");
+        /*
+        echo $_SESSION['USER']."</br>";
+        //$user = unserialize($_SESSION['USER']);
+        $user = UserDatabase::getUser(unserialize($_SESSION['USER'])->getID());
+        echo "Object User Info <br /> "; 
+        echo "Id: "       . $user->getID()        . "<br /> " ;
+        echo "Email: "    . $user->getEmail()     . "<br /> " ; 
+        echo "Password: " . $user->getPassword()  . "<br /> " ;
+        echo "Name: "     . $user->getFirstName() . "<br /> " ;//Not in session User
+        echo "Surname: "  . $user->getSurname()   . "<br /> " ;//Not in session User
+        echo "Gender: "   . $user->getGender()    . "<br /> " ;//Not in session User
+        */
 ?>
 
 <?php
     
+    if (isset($_SESSION['formSuccessCode'])) {
+        echo '<div class="alert alert-success">' ;
+        echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 		
+    
+        if ($_SESSION['formSuccessCode'] == 'passwordChanged') {  
+            echo '<strong>Poprawnie zmineiono hasło.</strong>'; 
+            unset($_SESSION['formSuccessCode']);
+        }
+        else if ($_SESSION['formSuccessCode'] == 'nameChanged') {  
+            echo '<strong>Poprawnie zmineiono imię.</strong>'; 
+            unset($_SESSION['formSuccessCode']);
+        }
+        else if ($_SESSION['formSuccessCode'] == 'surnameChanged') {  
+            echo '<strong>Poprawnie zmineiono nazwisko.</strong>'; 
+            unset($_SESSION['formSuccessCode']);
+        }
+        else if ($_SESSION['formSuccessCode'] == 'genderChanged') {  
+            echo '<strong>Poprawnie zmineiono płeć.</strong>'; 
+            unset($_SESSION['formSuccessCode']);
+        }
+        echo '</div>' ; 
+    }
+    
     if (isset($_SESSION['formErrorCode'])) {
         echo '<div class="alert alert-danger">' ;
         echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
-        if ($_SESSION['formErrorCode'] == 'invalidCaptcha') {  
-            echo '<strong>Uwaga!!! Rejestracja nie powiodła się. Wprowadzony kod jest nieprawidłowy. </strong>'; 
+        if ($_SESSION['formErrorCode'] == 'passwordIncorrect') {  
+            echo '<strong>Uwaga!!! Zmiana Hasła nie powiodła się. Wprowadzone hasło jest nieprawidłowe. </strong>'; 
             unset($_SESSION['formErrorCode']);
         } 
         echo '</div>' ; 
     }
 ?>
 
-<form class="form-horizontal" role="form" id="register_form" method="post" action="php/HandlingUserEdit.php">
+<form class="form-horizontal" role="form" id="passwd_form" method="post" action="php/HandlingUserEdit.php">
     <fieldset>
         <legend>Menu edycji</legend>
         <div class="form-group">
@@ -61,11 +96,12 @@
         </div>
     </fieldset>
 </form>
-<form class="form-horizontal" role="form" id="register_form" method="post" action="php/HandlingUserEdit.php">
+<hr>
+<form class="form-horizontal" role="form" id="firstname_form" method="post" action="php/HandlingUserEdit.php">
     <fieldset>
         <br />
         <div class="form-group">
-            <label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Imię</label>
+            <label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowe Imię</label>
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <input type="text" class="form-control" id="firstname" placeholder="Wprowadź Imię" name="name" value="<?php if(isset($_SESSION['name'])){ echo $_SESSION['name']; } else { echo '';  }?>">
             </div>
@@ -79,11 +115,12 @@
         </div>
     </fieldset>
 </form>
-<form class="form-horizontal" role="form" id="register_form" method="post" action="php/HandlingUserEdit.php">
+<hr>
+<form class="form-horizontal" role="form" id="lastname_form" method="post" action="php/HandlingUserEdit.php">
     <fieldset>
         <br />
         <div class="form-group">
-            <label for="lastname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nazwisko</label>
+            <label for="lastname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowe Nazwisko</label>
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <input type="text" class="form-control" id="lastname" placeholder="Wprowadź Nazwisko" name="surname" value="<?php if(isset($_SESSION['surname'])){ echo $_SESSION['surname']; } else { echo '';  }?>">
             </div>
@@ -97,11 +134,12 @@
         </div>
     </fieldset>
 </form>
-<form class="form-horizontal" role="form" id="register_form" method="post" action="php/HandlingUserEdit.php">
+<hr>
+<form class="form-horizontal" role="form" id="gender_form" method="post" action="php/HandlingUserEdit.php">
     <fieldset>
         <br />
         <div class="form-group">
-            <label for="gender" class="col-xs-2 col-sm-2 col-md-2 control-label"> Płeć </label>
+            <label for="gender" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowa Płeć </label>
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <select class="form-control" id="gender" name="gender">
                     <option>- Wybierz płeć -</option>
@@ -119,6 +157,7 @@
         </div>
     </fieldset>
 </form>
+<hr>
 <form class="form-horizontal" role="form" id="clear_form" method="post" action="php/HandlingUserEdit.php">
     <fieldset>
         <br />
