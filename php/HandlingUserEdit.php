@@ -15,11 +15,13 @@
     if (isset($_POST['submitButtonPassword']) == true) {
         
         $user = unserialize($_SESSION['USER']);
+        $user = UserDatabase::getUser($user->getID());
         if( $user->getPassword() !=  $_POST['passwd-old']){// Check if present passord is correct
             $_SESSION['formErrorCode'] = 'passwordIncorrect';
         }else{
             if (UserDatabase::updateUserPassword($user, $_POST['passwd'])) { 
                 $_SESSION['formSuccessCode'] = 'passwordChanged';
+                $user->setPassword($_POST['passwd']);
             }else {
 			    $_SESSION['formErrorCode'] = 'databaseError';
 		    }
