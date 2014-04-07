@@ -46,7 +46,7 @@ final class ExamUnitDatabase
 				State = '" . $examUnit->getState() . "'
 		        WHERE ID = '" . $examUnit->getID() . "'";
 					
-		echo $sql . "<br/>";
+		//echo $sql . "<br/>";
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	} 
     
