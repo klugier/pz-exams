@@ -54,7 +54,11 @@
         if ($_SESSION['formErrorCode'] == 'passwordIncorrect') {  
             echo '<strong>Uwaga!!! Zmiana Hasła nie powiodła się. Wprowadzone hasło jest nieprawidłowe. </strong>'; 
             unset($_SESSION['formErrorCode']);
-        } 
+        }
+        else if ($_SESSION['formErrorCode'] == 'databaseError') {  
+            echo '<strong>Uwaga!!! Zmiana nie powiodła się. Błąd Bazy Danych. </strong>'; 
+            unset($_SESSION['formErrorCode']);
+        }  
         echo '</div>' ; 
     }
 ?>
