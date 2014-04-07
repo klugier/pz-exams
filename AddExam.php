@@ -41,9 +41,9 @@
 			
 		</div> 
 	</div>
-	
+	<?php
 	include("lib/Dialog/ModalButton.php");
-
+	?>
 	<span class="pull-right">
 		<button type="button" class="btn btn-primary" id="next1">Dalej</button>
 	</span>
