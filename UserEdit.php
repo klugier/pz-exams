@@ -83,7 +83,7 @@
 <legend>Menu edycji</legend>
 <form class="form-horizontal" role="form" id="passwd_form" method="post" action="php/HandlingUserEdit.php">
     <fieldset class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-12 col-md-12">
-        <legend>Zmień Hasło</legend>
+        <legend>Zmiana hasła</legend>
         <div class="form-group">
             <label for="passwd-old" class="col-xs-2 col-sm-2 col-md-2 control-label"> Stare Hasło </label>
             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -111,7 +111,7 @@
         <div class="form-group">
             <div class="row">
                 <span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-2 col-sm-2 col-md-2">
-                    <button type="submit" class="btn btn-success btn-lg pull-left" name="submitButtonPassword" value="submit">Zmień  Hasło</button>
+                    <button type="submit" class="btn btn-primary" name="submitButtonPassword" value="submit">Zmień  Hasło</button>
                 </span>
             </div>
         </div>
@@ -119,7 +119,7 @@
 </form>
 <form class="form-horizontal" role="form" id="firstname_form" method="post" action="php/HandlingUserEdit.php">
     <fieldset class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-12 col-md-12">
-        <legend>Zmień ustawienia osobiste</legend>
+        <legend>Zmiana ustawień osobistych</legend>
         <div class="form-group">
             <label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowe Imię</label>
             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -144,7 +144,7 @@
         <div class="form-group">
             <div class="row">
                 <span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3 col-md-3">
-                    <button type="submit" class="btn btn-success btn-lg" name="submitButton" value="submit">Zmień  ustawienia osobiste</button>
+                    <button type="submit" class="btn btn-primary" name="submitButton" value="submit">Zmień  ustawienia osobiste</button>
                 </span>
             </div>
         </div>
