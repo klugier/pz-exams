@@ -4,27 +4,19 @@
 			<nav>
 				<ul class="nav nav-pills nav-stacked span2">
 					<?php
-						echo '<li id="exam_option1" style="font-weight: bold;"><a href="#">';
+						echo '<li id="exam_option0" style="font-weight: bold;"><a href="#">';
 						if ($examSideMenuAcctualStep == 0) {
-							echo '1. Podstawowe dane';
+							echo '1. Podstawowe informacje';
 						} else {
-							echo '1. Podstawowe dane';
+							echo '1. Podstawowe informacje';
 						}
 						echo '</a></li>';
 						
-						echo '<li id="exam_option2"><a href="#">';
+						echo '<li id="exam_option1"><a href="#">';
 						if ($examSideMenuAcctualStep == 1) {
-							echo '2. Harmonogram';
+							echo '2. Lista studentów';
 						} else {
-							echo '2. Harmonogram';
-						}
-						echo '</a></li>';
-						
-						echo '<li id="exam_option3"><a href="#">';
-						if ($examSideMenuAcctualStep == 2) {
-							echo '3. Lista studentów';
-						} else {
-							echo '3. Lista studentów';
+							echo '2. Lista studentów';
 						}
 						echo '</a></li>';
 					?>
