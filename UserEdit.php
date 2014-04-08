@@ -85,7 +85,7 @@
     <fieldset class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-12 col-md-12">
         <legend>Zmień Hasło</legend>
         <div class="form-group">
-            <label for="passwd" class="col-xs-2 col-sm-2 col-md-2 control-label"> Stare Hasło </label>
+            <label for="passwd-old" class="col-xs-2 col-sm-2 col-md-2 control-label"> Stare Hasło </label>
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <input type="password" required class="form-control inputPassword" id="passwd-old" name="passwd-old" placeholder="Wprowadź Stare Haslo" title="">
             </div>
@@ -110,8 +110,8 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <span class="col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-xs-2 col-sm-2 col-md-2">
-                    <button type="submit" class="btn btn-success btn-lg btn-block" name="submitButtonPassword" value="submit">Zmień  Hasło</button>
+                <span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-2 col-sm-2 col-md-2">
+                    <button type="submit" class="btn btn-success btn-lg pull-left" name="submitButtonPassword" value="submit">Zmień  Hasło</button>
                 </span>
             </div>
         </div>
@@ -143,8 +143,8 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <span class="col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-xs-3 col-sm-3 col-md-3">
-                    <button type="submit" class="btn btn-success btn-lg btn-block" name="submitButton" value="submit">Zmień  ustawienia osobiste</button>
+                <span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3 col-md-3">
+                    <button type="submit" class="btn btn-success btn-lg" name="submitButton" value="submit">Zmień  ustawienia osobiste</button>
                 </span>
             </div>
         </div>
