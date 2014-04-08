@@ -9,7 +9,7 @@
         			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         			<h3 class="modal-title" id="myModalLabel"><b>Dodawanie terminu</b></h3>
       			</div>
-      			<form name="modalForm" class="form-signin form-horizontal" data-toggle="validator" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="" onsubmit="return checkvalue(this)">
+      			<form name="modalForm" class="form-signin form-horizontal" id="addExamForm" data-toggle="validator" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="" onsubmit="return checkvalue(this)">
       				<div class="modal-body">
       					<div class="form-group" id="duration_group">
 							<label for="duration" class="col-sm-5 control-label">Czas egzaminu</label>
@@ -20,7 +20,7 @@
       					<div class="form-group">
                 			<label for="dtp_input2" class="col-sm-5 control-label">Dzień</label>
                 			<div class="input-group date form_date col-md-6" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    			<input name="date" class="form-control" size="16" type="text" value="" readonly>
+                    			<input name="date" class="form-control"  id="exam-date" size="16" type="text" value="" readonly>
                     			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar glyphicon-nonescaped"></span></span>
                 			</div>
@@ -30,7 +30,7 @@
 						<div class="form-group">
                 			<label for="dtp_input3" class="col-sm-5 control-label">Godzina rozpoczęcia</label>
                 			<div class="input-group date form_time col-md-6" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                    			<input name="bHour" class="form-control" size="16" type="text" value="" readonly>
+                    			<input name="bHour" class="form-control" id="start-hour" size="16" type="text" value="" readonly>
                     			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                 			</div>
@@ -39,7 +39,7 @@
             			<div class="form-group">
 	                		<label for="dtp_input3" class="col-sm-5 control-label">Godzina zakończenia</label>
     	            		<div class="input-group date form_time col-md-6" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-        	            		<input name="eHour" class="form-control" size="16" type="text" value="" readonly>
+        	            		<input name="eHour" class="form-control" id="end-hour" size="16" type="text" value="" readonly>
             	        		<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                 			</div>
@@ -49,7 +49,7 @@
           			</div>   
       					<div class="modal-footer">
         					<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-        					<button type="submit" class="btn btn-success" onclick="return validModal()">Dodaj termin</button>
+        					<button type="submit" class="btn btn-success"  id="add-exam-date" onclick="return validModal()">Dodaj termin</button>
       					</div>
       			</form>
     		</div>

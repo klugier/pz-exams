@@ -148,7 +148,7 @@ jQuery( document ).ready(function( $ ) {
 			//alert ( startTime +" aa  " +  endTime ) ; 
 			examUnit =	'<tr> '
 						+ '		<td><input type="checkbox" ></td> '
-						+ '		<td> od ' + startTime + ' do ' + endTime + '</td> ' 
+						+ '		<td>' + startTime + '-' + endTime + '</td> ' 
 						+ '</tr> ' ; 
 			return examUnit ; 
 		} ; 
@@ -161,7 +161,8 @@ jQuery( document ).ready(function( $ ) {
 	CalendarDayControl.prototype.height = 400; 
 
 
-	function CalendarControl ( examDays )  { 
+	function CalendarControl (  )  { 
+		this.examDays = new Array() ; 
 		this.printCalendar = function ( ) 	{ 
 			//alert ( this.examDays.length ) ;
 			
@@ -169,38 +170,43 @@ jQuery( document ).ready(function( $ ) {
 			
 			calendarControl+=this.addRibbonStart() ; 
 			
-			for(var day in examDays)
+			for(var day in this.examDays)
     		{
-				calendarDayControl = new CalendarDayControl ( day , examDays[day]) ;
+				calendarDayControl = new CalendarDayControl ( day , this.examDays[day]) ;
 				calendarControl+=calendarDayControl.printControl(); 
 			} 
 			
 			calendarControl+=this.addRibbonEnd ();
 		
-			//$("#calendar-control").html(calendarControl);
+			$("#calendar-control").html(calendarControl);
 		} ; 
 		
 		
-		this.addRibbonStart = function ( ) 
-		{ 
+		this.clearCalendar = function ( ) {
+			$("#calendar-control").html("");
+		} ; 
+		
+		this.addRibbonStart = function ( ) { 
 			start = ' <div class="row" style="background:url(img/calendarPanel.png);" >' ;  
 			
 			return start ; 
 			
 		} ; 
 		
-		this.addRibbonEnd = function () 
-		{ 
+		this.addRibbonEnd = function () { 
 			end = '</div>' ;  
 			
 			return end ; 
 		} ;
 	} 
 	
+	
+	
+	
 	// test
 	name = "egzamin z WOS " ; 
-	exam = new Exam ( name , 30 ) ; 
-	exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
+	var exam = new Exam ( name , 30 ) ; 
+	/*exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
 	
 	exam.addTerm( "21.02.03" , "14:20", "15:20", 30) ;
 	
@@ -208,8 +214,19 @@ jQuery( document ).ready(function( $ ) {
 	
 	exam.addTerm( "11.02.03" , "14:20", "15:20", 30) ;
 	
-	exam.addTerm( "11.02.03" , "19:20", "21:20", 30) ;
+	exam.addTerm( "11.02.03" , "19:20", "21:20", 30) ;*/
 	
-	calendarControl = new CalendarControl(exam.day) ;    
-	calendarControl.printCalendar() ; 
+	var calendarControl = new CalendarControl() ;
+	
+	// jQuery functions 
+	
+	$('#addExamForm').submit(function () {
+		exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ; 
+		//calendarControl.clearCalendar(); 
+		calendarControl.examDays = exam.day ;
+		calendarControl.printCalendar() ;
+		$('#myModal').modal('hide') ; 
+		return false ; 
+	} );
+	
 } ); 
