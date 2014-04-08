@@ -3,19 +3,19 @@
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><br/>
+consequat.</p><br/>
 
-<div class="container col-md-12">
-
-</div>
+<div class="container col-md-12" style="margin-top: 20px; padding-left: 0px; padding-right: 0px;">
+		
+<hr/>
 
 <span class="pull-left">
-		<button type="button" class="btn btn-primary" id="prev1">Cofnij</button>
+		<button type="button" class="btn btn-primary" id="prev1" style="padding-left: 30px; padding-right: 30px;">Cofnij</button>
 </span>
 
 <span class="pull-right">
-		<button type="button" class="btn btn-primary" id="next2">Dalej</button>
+		<button type="button" class="btn btn-primary" id="next2" style="padding-left: 30px; padding-right: 30px;">Dalej</button>
 	</span>
+</div>
+
 </div>
