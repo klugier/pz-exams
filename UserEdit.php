@@ -82,7 +82,7 @@
 ?>
 <legend>Menu edycji</legend>
 <form class="form-horizontal" role="form" id="passwd_form" method="post" action="php/HandlingUserEdit.php">
-    <fieldset style="padding-left:5em">
+    <fieldset class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-12 col-md-12">
         <legend>Zmień Hasło</legend>
         <div class="form-group">
             <label for="passwd" class="col-xs-2 col-sm-2 col-md-2 control-label"> Stare Hasło </label>
@@ -110,16 +110,15 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3 col-md-3">
+                <span class="col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-xs-2 col-sm-2 col-md-2">
                     <button type="submit" class="btn btn-success btn-lg btn-block" name="submitButtonPassword" value="submit">Zmień  Hasło</button>
                 </span>
             </div>
-
         </div>
     </fieldset>
 </form>
 <form class="form-horizontal" role="form" id="firstname_form" method="post" action="php/HandlingUserEdit.php">
-    <fieldset style="padding-left:5em">
+    <fieldset class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-12 col-md-12">
         <legend>Zmień ustawienia osobiste</legend>
         <div class="form-group">
             <label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowe Imię</label>
@@ -144,7 +143,7 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3 col-md-3">
+                <span class="col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-xs-3 col-sm-3 col-md-3">
                     <button type="submit" class="btn btn-success btn-lg btn-block" name="submitButton" value="submit">Zmień  ustawienia osobiste</button>
                 </span>
             </div>
