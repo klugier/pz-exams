@@ -36,7 +36,6 @@
         $user = UserDatabase::getUser($user->getID());
         
         if($_POST['name'] != $user->getFirstName()){
-	    $_SESSION['name']    = $_POST['name'];
         if (UserDatabase::updateUserFirstName($user, $_SESSION['name'])) { 
             $_SESSION['formSuccessCode1'] = 'nameChanged';
         }else {
@@ -44,7 +43,6 @@
 		}}
         
         if($_POST['surname'] != $user->getSurname()){
-        $_SESSION['surname'] = $_POST['surname'];
         if (UserDatabase::updateUserSurname($user, $_SESSION['surname'])) { 
             $_SESSION['formSuccessCode2'] = 'surnameChanged';
         }else {
@@ -54,7 +52,6 @@
         
         ( $_POST['gender'] == "Kobieta" ) ? $user2->setGender("female") : $user2->setGender("male") ;
         if($user2->getGender() != $user->getGender()){
-        $_SESSION['gender']  = $_POST['gender'];
         if (UserDatabase::updateUserGender($user, $user2->getGender())) { 
             $_SESSION['formSuccessCode3'] = 'genderChanged';
         }else {
