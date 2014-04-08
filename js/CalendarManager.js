@@ -15,6 +15,13 @@ jQuery( document ).ready(function( $ ) {
 		}
 	}
 
+	// when hour is in format like this 
+	// 12:3 it converts this time to 12:30 
+	function prepareValidHourFormat ( hour ) { 
+		var hourArray = hour.split(':') ; 
+		return hourArray[0] + ':' + ( ( hourArray[1].length == 1 ) ? hourArray[1]+"0"  : hourArray[1] ) ;   
+	} 
+	
 	function ExamUnit(bHour, eHour){
 		this.bHour = bHour;
 		this.eHour = eHour;
@@ -136,8 +143,8 @@ jQuery( document ).ready(function( $ ) {
 			end = '						</tbody>' +
 				  '				</table>' +
 				  '			</div>'+
-				  '			<button type="button" class="btn btn-success" style="float:right;">' +
-				  '				<i class="glyphicon glyphicon-plus" style="font-size:20px; font-weight:bold;"></i>'+
+				  '			<button type="button" class="btn btn-danger" style="float:right;">' +
+				  '				<i class="glyphicon glyphicon-minus" style="font-size:20px; font-weight:bold;"></i>'+
 				  '			</button>'+
 				  '		</div>'+
 				  '		</div>' ; 
@@ -147,8 +154,8 @@ jQuery( document ).ready(function( $ ) {
 		this.controlAddExamUnit = function ( startTime , endTime ) { 
 			//alert ( startTime +" aa  " +  endTime ) ; 
 			examUnit =	'<tr> '
-						+ '		<td><input type="checkbox" ></td> '
-						+ '		<td style="white-space:nowrap">' + startTime + '-' + endTime + '</td> ' 
+						+ '		<td><input type="checkbox" checked ></td> '
+						+ '		<td style="white-space:nowrap">' + prepareValidHourFormat ( startTime )  + '-' + prepareValidHourFormat ( endTime )  + '</td> ' 
 						+ '</tr> ' ; 
 			return examUnit ; 
 		} ; 
