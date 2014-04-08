@@ -5,9 +5,9 @@
      header('Location: index.php' ); 
      }else{
         $user = UserDatabase::getUser(unserialize($_SESSION['USER'])->getID());
-        $_SESSION['name'] = $user->getFirstName();
-        $_SESSION['surname'] = $user->getSurname();
-        $_SESSION['gender'] = $user->getGender();
+        $_SESSION['nameEdit'] = $user->getFirstName();
+        $_SESSION['surnameEdit'] = $user->getSurname();
+        $_SESSION['genderEdit'] = $user->getGender();
      }
     
      $title = "$appName - Edycja Danych";
@@ -124,21 +124,21 @@
         <div class="form-group">
             <label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowe Imię</label>
             <div class="col-xs-4 col-sm-4 col-md-4">
-                <input type="text" class="form-control" id="firstname" placeholder="Wprowadź Imię" name="name" value="<?php if(isset($_SESSION['name'])){ echo $_SESSION['name']; } else { echo '';  }?>">
+                <input type="text" class="form-control" id="firstname" placeholder="Wprowadź Imię" name="name" value="<?php if(isset($_SESSION['nameEdit'])){ echo $_SESSION['nameEdit']; } else { echo '';  }?>">
             </div>
         </div>
         <div class="form-group">
             <label for="lastname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowe Nazwisko</label>
             <div class="col-xs-4 col-sm-4 col-md-4">
-                <input type="text" class="form-control" id="lastname" placeholder="Wprowadź Nazwisko" name="surname" value="<?php if(isset($_SESSION['surname'])){ echo $_SESSION['surname']; } else { echo '';  }?>">
+                <input type="text" class="form-control" id="lastname" placeholder="Wprowadź Nazwisko" name="surname" value="<?php if(isset($_SESSION['surnameEdit'])){ echo $_SESSION['surnameEdit']; } else { echo '';  }?>">
             </div>
         </div>
         <div class="form-group">
             <label for="gender" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowa Płeć </label>
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <select class="form-control" id="gender" name="gender">
-                    <option><?php if($_SESSION['gender'] == 'male'){ echo 'Mężczyzna'; } else { echo 'Kobieta';  }?></option>
-                    <option><?php if($_SESSION['gender'] == 'male'){ echo 'Kobieta'; } else { echo 'Mężczyzna';  }?></option>
+                    <option><?php if($_SESSION['genderEdit'] == 'male'){ echo 'Mężczyzna'; } else { echo 'Kobieta';  }?></option>
+                    <option><?php if($_SESSION['genderEdit'] == 'male'){ echo 'Kobieta'; } else { echo 'Mężczyzna';  }?></option>
                 </select>
             </div>
         </div>
