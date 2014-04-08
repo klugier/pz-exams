@@ -108,7 +108,7 @@ jQuery( document ).ready(function( $ ) {
 			} 
 			htmlControl += this.controlAddSeparator () ;
 			
-			htmlControl += this.controlStyleEnd () ;
+			htmlControl += this.controlStyleEnd (day) ;
 		    // document.write ( htmlControl  ); 
 			return htmlControl ; 
 		} ;  
@@ -123,9 +123,9 @@ jQuery( document ).ready(function( $ ) {
 		
 		this.controlStyleBegin = function ( date) {
 			//alert ( "height : " + this.height) ; 
-			begin = '<div class="col-md-3" >' +	 
+			begin = '<div class="col-md-3">' +	 
 					'	<div class="panel panel-primary "> ' +
-					'		<div class="panel-heading"> ' + date + ' </div> ' +  
+					'		<div class="panel-heading" >' + date + ' </div> ' +  
 					'			<div class="panel-body" style="height:' + this.height +  'px; overflow-y: scroll;">' +
 					' 				<table class="table">' +  
 					' 					<thead> ' + 
@@ -139,11 +139,11 @@ jQuery( document ).ready(function( $ ) {
 		} ; 
 			
 		
-		this.controlStyleEnd = function ( end) {
+		this.controlStyleEnd = function (date) {
 			end = '						</tbody>' +
 				  '				</table>' +
 				  '			</div>'+
-				  '			<button type="button" class="btn btn-danger" style="float:right;">' +
+				  '			<button type="button" class="btn btn-danger" id="removeDayButton" style="float:right;" name="'+ date + '">' +
 				  '				<i class="glyphicon glyphicon-minus" style="font-size:20px; font-weight:bold;"></i>'+
 				  '			</button>'+
 				  '		</div>'+
@@ -188,11 +188,6 @@ jQuery( document ).ready(function( $ ) {
 			$("#calendar-control").html(calendarControl);
 		} ; 
 		
-		
-		this.clearCalendar = function ( ) {
-			$("#calendar-control").html("");
-		} ; 
-		
 		this.addRibbonStart = function ( ) { 
 			start = ' <div class="row" style="background:url(img/calendarPanel.png);" >' ;  
 			
@@ -235,5 +230,13 @@ jQuery( document ).ready(function( $ ) {
 		$('#myModal').modal('hide') ; 
 		return false ; 
 	} );
+	
+	
+	$(document).on("click", "#removeDayButton", function() {  
+		// alert( $(this).attr("name") ) ; 
+		exam.delTerm($(this).attr("name"));
+		calendarControl.examDays = exam.day ;
+		calendarControl.printCalendar() ;
+	});  
 	
 } ); 
