@@ -9,12 +9,11 @@
 	include("html/ExamSideMenuBegin.php");
 ?>
 
-<div class="tab-content">
-	<div></div>
+<div id="stages">
 
-	<div class="tab-pane fade in active" id="data" style="padding-left: 20px;">
+<div id="stage1">
 
-	<h2>Dane o egzaminie</h2>
+ 	<h2>Dane o egzaminie</h2>
 
 	<div class="container col-md-12">
 
@@ -48,55 +47,15 @@
 		<button type="button" class="btn btn-primary" id="next1">Dalej</button>
 	</span>
 
-</div>
-
-</div>
-
-<!--
-Trzeba to przenieś do osobnego pliku.
-Każdy plik powinien zawierać jedną opcję z bocznego menu
-<div class="tab-pane fade" id="students" style="padding-left: 20px; padding-right: 20px;">
-
-	<h2>Lista studentów</h2>
-
-	<p id="exam_info" style="margin-top: 20px;"></p>
-
-	<label for="duration" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: imię nazwisko &lt;adres e-mail&gt;</label>
-		
-	<div class="container col-md-12" style="padding-left: 0px;">
-	
-	<div class="container col-md-6" style="padding-left: 0px; padding-top: 0px;">
-			<textarea class="form-control" rows="3" id="student_list"></textarea>
-
-			<span class="pull-right">
-				<button type="button" class="btn btn-primary btn-sm" id="add_students" style="margin-top: 10px;">Dodaj</button>
-			</span>
-		</div>
-
-		<div class="container col-md-5" id="student_data"></div>
-
-		</div>
-
-		<div class="container col-md-12" style="margin-top: 20px; padding-left: 0px; padding-right: 0px;">
-		
-		<hr/>
-
-		<span class="pull-left">
-			<button type="button" class="btn btn-primary" id="prev1">Cofnij</button>
-		</span>
-
-		<span class="pull-right">
-			<button type="button" class="btn btn-primary" id="next2">Zatwierdź</button>
-		</span>
-
-		</div>
-
-		</div>
-
 	</div>
--->
+
+</div>
+
+</div>
 
 <?php
+	include("html/ExamStage2.php");
+	include("html/ExamStage3.php");
 	include("html/ExamSideMenuEnd.php");
 	include("html/End.php");
 ?> 
