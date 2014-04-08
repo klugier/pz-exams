@@ -1,26 +1,29 @@
 <?php
-        include_once("lib/Lib.php");
+     include_once("lib/Lib.php");
     
-       if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
-        header('Location: index.php' ); 
-    }
-    
-        $title = "$appName - Edycja Danych";
-        $scriptsDefer = array("js/ValidateRegisterForm.js");
-        include("html/Begin.php");
-        include("html/UserPanel.php");
-        /*
-        echo $_SESSION['USER']."</br>";
-        //$user = unserialize($_SESSION['USER']);
+    if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
+     header('Location: index.php' ); 
+     }else{
         $user = UserDatabase::getUser(unserialize($_SESSION['USER'])->getID());
-        echo "Object User Info <br /> "; 
-        echo "Id: "       . $user->getID()        . "<br /> " ;
-        echo "Email: "    . $user->getEmail()     . "<br /> " ; 
-        echo "Password: " . $user->getPassword()  . "<br /> " ;
-        echo "Name: "     . $user->getFirstName() . "<br /> " ;//Not in session User
-        echo "Surname: "  . $user->getSurname()   . "<br /> " ;//Not in session User
-        echo "Gender: "   . $user->getGender()    . "<br /> " ;//Not in session User
-        */
+        $_SESSION['name'] = $user->getFirstName();
+        $_SESSION['surname'] = $user->getSurname();
+        $_SESSION['gender'] = $user->getGender();
+     }
+    
+     $title = "$appName - Edycja Danych";
+     $scriptsDefer = array("js/ValidateRegisterForm.js");
+     include("html/Begin.php");
+     include("html/UserPanel.php");
+     /*
+     echo $_SESSION['USER']."</br>";
+     echo "Object User Info <br /> "; 
+     echo "Id: "       . $user->getID()        . "<br /> " ;
+     echo "Email: "    . $user->getEmail()     . "<br /> " ; 
+     echo "Password: " . $user->getPassword()  . "<br /> " ;
+     echo "Name: "     . $user->getFirstName() . "<br /> " ;//Not in session User
+     echo "Surname: "  . $user->getSurname()   . "<br /> " ;//Not in session User
+     echo "Gender: "   . $user->getGender()    . "<br /> " ;//Not in session User
+     */
 ?>
 
 <?php
@@ -30,20 +33,35 @@
         echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 		
     
         if ($_SESSION['formSuccessCode'] == 'passwordChanged') {  
-            echo '<strong>Poprawnie zmineiono hasło.</strong>'; 
+            echo '<strong>Poprawnie zmieniono hasło.</strong>'; 
             unset($_SESSION['formSuccessCode']);
         }
-        else if ($_SESSION['formSuccessCode'] == 'nameChanged') {  
-            echo '<strong>Poprawnie zmineiono imię.</strong>'; 
-            unset($_SESSION['formSuccessCode']);
+        echo '</div>' ; 
+    }
+    if (isset($_SESSION['formSuccessCode1'])) {
+        echo '<div class="alert alert-success">' ;
+        echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 	
+        if ($_SESSION['formSuccessCode1'] == 'nameChanged') {  
+            echo '<strong>Poprawnie zmieniono imię.</strong>'; 
+            unset($_SESSION['formSuccessCode1']);
         }
-        else if ($_SESSION['formSuccessCode'] == 'surnameChanged') {  
-            echo '<strong>Poprawnie zmineiono nazwisko.</strong>'; 
-            unset($_SESSION['formSuccessCode']);
+        echo '</div>' ; 
+    }
+    if (isset($_SESSION['formSuccessCode2'])) {
+        echo '<div class="alert alert-success">' ;
+        echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 	
+        if ($_SESSION['formSuccessCode2'] == 'surnameChanged') {  
+            echo '<strong>Poprawnie zmieniono nazwisko.</strong>'; 
+            unset($_SESSION['formSuccessCode2']);
         }
-        else if ($_SESSION['formSuccessCode'] == 'genderChanged') {  
-            echo '<strong>Poprawnie zmineiono płeć.</strong>'; 
-            unset($_SESSION['formSuccessCode']);
+        echo '</div>' ; 
+    }
+    if (isset($_SESSION['formSuccessCode3'])) {
+        echo '<div class="alert alert-success">' ;
+        echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 	
+        if ($_SESSION['formSuccessCode3'] == 'genderChanged') {  
+            echo '<strong>Poprawnie zmieniono płeć.</strong>'; 
+            unset($_SESSION['formSuccessCode3']);
         }
         echo '</div>' ; 
     }
@@ -62,10 +80,10 @@
         echo '</div>' ; 
     }
 ?>
-
+<legend>Menu edycji</legend>
 <form class="form-horizontal" role="form" id="passwd_form" method="post" action="php/HandlingUserEdit.php">
-    <fieldset>
-        <legend>Menu edycji</legend>
+    <fieldset style="padding-left:5em">
+        <legend>Zmień Hasło</legend>
         <div class="form-group">
             <label for="passwd" class="col-xs-2 col-sm-2 col-md-2 control-label"> Stare Hasło </label>
             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -100,10 +118,9 @@
         </div>
     </fieldset>
 </form>
-<hr>
 <form class="form-horizontal" role="form" id="firstname_form" method="post" action="php/HandlingUserEdit.php">
-    <fieldset>
-        <br />
+    <fieldset style="padding-left:5em">
+        <legend>Zmień ustawienia osobiste</legend>
         <div class="form-group">
             <label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowe Imię</label>
             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -111,66 +128,24 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="row">
-                <span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3 col-md-3">
-                    <button type="submit" class="btn btn-success btn-lg btn-block" name="submitButtonName" value="submit">Zmień  Imię</button>
-                </span>
-            </div>
-        </div>
-    </fieldset>
-</form>
-<hr>
-<form class="form-horizontal" role="form" id="lastname_form" method="post" action="php/HandlingUserEdit.php">
-    <fieldset>
-        <br />
-        <div class="form-group">
             <label for="lastname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowe Nazwisko</label>
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <input type="text" class="form-control" id="lastname" placeholder="Wprowadź Nazwisko" name="surname" value="<?php if(isset($_SESSION['surname'])){ echo $_SESSION['surname']; } else { echo '';  }?>">
             </div>
         </div>
         <div class="form-group">
-            <div class="row">
-                <span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3 col-md-3">
-                    <button type="submit" class="btn btn-success btn-lg btn-block" name="submitButtonSurname" value="submit">Zmień  Nazwisko</button>
-                </span>
-            </div>
-        </div>
-    </fieldset>
-</form>
-<hr>
-<form class="form-horizontal" role="form" id="gender_form" method="post" action="php/HandlingUserEdit.php">
-    <fieldset>
-        <br />
-        <div class="form-group">
             <label for="gender" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowa Płeć </label>
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <select class="form-control" id="gender" name="gender">
-                    <option>- Wybierz płeć -</option>
-                    <option>Kobieta</option>
-                    <option>Mężczyzna</option>
+                    <option><?php if($_SESSION['gender'] == 'male'){ echo 'Mężczyzna'; } else { echo 'Kobieta';  }?></option>
+                    <option><?php if($_SESSION['gender'] == 'male'){ echo 'Kobieta'; } else { echo 'Mężczyzna';  }?></option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <div class="row">
                 <span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3 col-md-3">
-                    <button type="submit" class="btn btn-success btn-lg btn-block" name="submitButtonGender" value="submit">Zmień  Płeć</button>
-                </span>
-            </div>
-        </div>
-    </fieldset>
-</form>
-<hr>
-<form class="form-horizontal" role="form" id="clear_form" method="post" action="php/HandlingUserEdit.php">
-    <fieldset>
-        <br />
-        <div class="form-group">
-            <div class="row">
-                <span class="col-xs-2 col-sm-2 col-md-2">
-                    <a href="php/HandlingUserEdit.php">
-                        <button type="button" class="btn btn-lg btn-primary btn-block" name="clearButton">Wyczyść Pola</button>
-                    </a>
+                    <button type="submit" class="btn btn-success btn-lg btn-block" name="submitButton" value="submit">Zmień  ustawienia osobiste</button>
                 </span>
             </div>
         </div>
