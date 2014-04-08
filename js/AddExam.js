@@ -64,10 +64,10 @@ $('button#next1').click(function () {
 	$('#stage1').hide(300);
 
 	$('#stages').append($('#stage2'));
-	$('#stage2').show(400);
+	$('#stage3').show(400);
 
-	$('li#exam_option2').css("font-weight", "bold");
-	$('li#exam_option1').css("font-weight", "");
+	$('li#exam_option1').css("font-weight", "bold");
+	$('li#exam_option0').css("font-weight", "");
 
 });
 
@@ -98,10 +98,10 @@ $('button#prev2').click(function () {
 
 	$('#stage3').hide(300);
 
-	$('#stages').append($('#stage2').show(400));
+	$('#stages').append($('#stage1').show(400));
 
-	$('li#exam_option2').css("font-weight", "bold");
-	$('li#exam_option3').css("font-weight", "");
+	$('li#exam_option0').css("font-weight", "bold");
+	$('li#exam_option1').css("font-weight", "");
 
 });
 
