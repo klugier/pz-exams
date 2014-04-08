@@ -6,9 +6,9 @@
 
 	<label for="duration" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: imię nazwisko &lt;adres e-mail&gt;</label>
 		
-	<div class="container col-md-12" style="padding-left: 0px;">
+	<div class="container col-md-12 col-sm-12" style="padding-left: 0px;">
 	
-	<div class="container col-md-6" style="padding-left: 0px; padding-top: 0px;">
+	<div class="container col-md-6 col-sm-6" style="padding-left: 0px; padding-top: 0px;">
 			<textarea class="form-control" rows="3" id="student_list"></textarea>
 
 			<span class="pull-right">
@@ -16,7 +16,7 @@
 			</span>
 		</div>
 
-		<div class="container col-md-6" id="student_data"></div>
+		<div class="container col-md-6 col-sm-6" id="student_data"></div>
 
 		</div>
 

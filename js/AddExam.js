@@ -61,10 +61,7 @@ $('button#next1').click(function () {
 			}
 	}
 
-	//$('#stage1').fadeOut(500);
 	$('#stage1').hide(300);
-
-
 
 	$('#stages').append($('#stage2'));
 	$('#stage2').show(400);
@@ -72,10 +69,6 @@ $('button#next1').click(function () {
 	$('li#exam_option2').css("font-weight", "bold");
 	$('li#exam_option1').css("font-weight", "");
 
-
-	//$('p#exam_info').text("Dla egzaminu: " + $('input#exam_name').val() + " (" + $('input#duration').val() + " min)");
-
-		//$('#tabs a[href="#students"]').tab('show');
 });
 
 $('button#next2').click(function () {
@@ -112,13 +105,6 @@ $('button#prev2').click(function () {
 
 });
 
-
-
-
-
-
-
-
 $('button#add_students').click( function(){
 
 	 var emails = new Array();
@@ -143,7 +129,7 @@ $('button#add_students').click( function(){
 			}
 
 		for (var i = 0; i < emails.length; i++) {
-			elements = elements.add('<div class="panel col-md-12" style="margin: 2px; padding-right: 6px; padding-left: 6px; box-shadow: 2px 2px 5px #AAA;" id="student">' + first_names[i] + " " + last_names[i] + " (" + emails[i].replace("<", "").replace(">", "")+ ')<span class="pull-right"><span class="glyphicon glyphicon-remove"></span></span></div>');
+			elements = elements.add('<div class="panel col-md-12" style="margin: 2px; margin-right: 10px; padding-right: 0px; padding-left: 6px; box-shadow: 2px 2px 5px #AAA;" id="student"><span>' + first_names[i] + " " + last_names[i] + " (" + emails[i].replace("<", "").replace(">", "")+ ')</span><i class="glyphicon glyphicon-remove pull-right" style="vertical-align: middle; font-size: 20px; margin-left:20px;"></i></div>');
 		}
 
 		$('#student_list').val("");
