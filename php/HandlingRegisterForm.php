@@ -2,6 +2,7 @@
 
 require_once '../lib/SecureImage/securimage.php';
 include_once("../lib/Lib.php");
+require_once '../php/mail.php';
  
 
 //var_dump (isset($_POST['submitButton'])) ; 
@@ -67,15 +68,20 @@ else {
 		        'X-Mailer: PHP v' . phpversion(),
 		        'X-Originating-IP: ' . $_SERVER['SERVER_ADDR'],
 	    	);
-		
-			mail($user->getEmail(), 'Aktywacja konta na pz-exams', 
+
+			mailer($user->getEmail(), 'pz.exams@gmail.com', 'PZ-Exams', 'Aktywacja konta na PZ-Exams', 
 			"Witaj,<br/><br/>
 			aby aktywować swoje konto kliknij w poniższy link:<br/><br/>
 			<a href=\"http://localhost/ActivationPage.php?email=" . $user->getEmail() . "&code=" . $user->getActivationCode() . "\">Aktywuj</a><br/>
 			__________<br/>
-			- pz-exams
-			"
-			, implode("\n", $headers));
+			- PZ-Exams
+			", true
+			);
+
+
+
+
+
 
 			$_SESSION['email'] = ""    ;
 			$_SESSION['gender'] = ""  ;
