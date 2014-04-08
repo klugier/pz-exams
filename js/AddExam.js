@@ -1,5 +1,8 @@
 $( document ).ready(function() {
 
+$('#stage2').hide();
+$('#stage3').hide();
+
 $('#tab1a').attr('class', 'disabled');
 $('#tab2a').attr('class', 'disabled active');
 
@@ -58,10 +61,62 @@ $('button#next1').click(function () {
   		}
 	}
 
-	$('p#exam_info').text("Dla egzaminu: " + $('input#exam_name').val() + " (" + $('input#duration').val() + " min)");
+  //$('#stage1').fadeOut(500);
+  $('#stage1').hide(300);
 
-  	$('#tabs a[href="#students"]').tab('show');
+
+
+  $('#stages').append($('#stage2'));
+  $('#stage2').show(400);
+
+  $('li#exam_option2').css("font-weight", "bold");
+  $('li#exam_option1').css("font-weight", "");
+
+
+	//$('p#exam_info').text("Dla egzaminu: " + $('input#exam_name').val() + " (" + $('input#duration').val() + " min)");
+
+  	//$('#tabs a[href="#students"]').tab('show');
 });
+
+$('button#next2').click(function () {
+
+  $('#stage2').hide(300);
+
+
+  $('#stages').append($('#stage3').show(400));
+
+  $('li#exam_option3').css("font-weight", "bold");
+  $('li#exam_option2').css("font-weight", "");
+
+});
+
+$('button#prev1').click(function () {
+
+  $('#stage2').hide(300);
+
+  $('#stages').append($('#stage1').show(400));
+
+  $('li#exam_option1').css("font-weight", "bold");
+  $('li#exam_option2').css("font-weight", "");
+
+});
+
+$('button#prev2').click(function () {
+
+  $('#stage3').hide(300);
+
+  $('#stages').append($('#stage2').show(400));
+
+  $('li#exam_option2').css("font-weight", "bold");
+  $('li#exam_option3').css("font-weight", "");
+
+});
+
+
+
+
+
+
 
 
 $('button#add_students').click( function(){
