@@ -148,7 +148,7 @@ jQuery( document ).ready(function( $ ) {
 			//alert ( startTime +" aa  " +  endTime ) ; 
 			examUnit =	'<tr> '
 						+ '		<td><input type="checkbox" ></td> '
-						+ '		<td>' + startTime + '-' + endTime + '</td> ' 
+						+ '		<td style="white-space:nowrap">' + startTime + '-' + endTime + '</td> ' 
 						+ '</tr> ' ; 
 			return examUnit ; 
 		} ; 
