@@ -60,8 +60,7 @@
 	$('.form_date').datetimepicker({
         language:  'pl',
         format: 'yyyy-mm-dd',
-        weekStart: 1,
-        todayBtn:  1,
+        weekStart: 1,        
 		autoclose: 1,
 		todayHighlight: 1,
 		startView: 2,
@@ -71,8 +70,7 @@
     });
 	$('.form_time').datetimepicker({
         language:  'pl',
-        weekStart: 1,
-        todayBtn:  1,
+        weekStart: 1,        
 		autoclose: 1,
 		startView: 1,
 		minView: 0,
