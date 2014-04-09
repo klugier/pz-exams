@@ -123,7 +123,7 @@ jQuery( document ).ready(function( $ ) {
 		
 		this.controlStyleBegin = function ( date) {
 			//alert ( "height : " + this.height) ; 
-			begin = '<div class="col-md-3">' +	 
+			begin = '<div class="col-xs-3 col-sm-3 col-md-3">' +	 
 					'	<div class="panel panel-primary "> ' +
 					'		<div class="panel-heading" >' + date + ' </div> ' +  
 					'			<div class="panel-body" style="height:' + this.height +  'px; overflow-y: scroll;">' +
@@ -174,13 +174,20 @@ jQuery( document ).ready(function( $ ) {
 			//alert ( this.examDays.length ) ;
 			
 			var calendarControl = "" ; 
+			var maxDaysNumPerRibbon = 4 ; 
+			var daysCounter = 0 ; 
 			
 			calendarControl+=this.addRibbonStart() ; 
 			
-			for(var day in this.examDays)
-    		{
+			for(var day in this.examDays) {
+				if ( (daysCounter % maxDaysNumPerRibbon == 0) && ( daysCounter != 0 )    ) { 
+					calendarControl+=this.addRibbonEnd ();
+					calendarControl+="<hr>" ;
+					calendarControl+=this.addRibbonStart() ; 
+				} 
 				calendarDayControl = new CalendarDayControl ( day , this.examDays[day]) ;
-				calendarControl+=calendarDayControl.printControl(); 
+				calendarControl+=calendarDayControl.printControl();
+				daysCounter++; 
 			} 
 			
 			calendarControl+=this.addRibbonEnd ();
