@@ -142,8 +142,9 @@
                     <option>Mężczyzna</option>
                     <option>Kobieta</option>
                     <?php } ?>
+
                     <option><?php if($_SESSION['genderEdit'] == 'male'){ echo 'Mężczyzna'; } else { echo 'Kobieta';  }?></option>
-                    <option><?php if($_SESSION['genderEdit'] == 'female'){ echo 'Kobieta'; } else { echo 'Mężczyzna';  }?></option>
+                    <option><?php if($_SESSION['genderEdit'] == 'male'){ echo 'Kobieta'; } else { echo 'Mężczyzna';  }?></option>
                 </select>
             </div>
         </div>
