@@ -47,6 +47,9 @@ jQuery( document ).ready(function( $ ) {
 				var ExmUnit = new ExamUnit(conv1, conv2);
 				this.day[date].push(ExmUnit);
 			}
+			
+			// sort days 
+			this.sortDaysArray ( )  ;  
 		};
 
 		this.delTerm = function(date) {
@@ -79,6 +82,29 @@ jQuery( document ).ready(function( $ ) {
 				this.day[date].push(exmUnit);
 			}
 		};
+		
+		
+		this.sortDaysArray  = function ( ) { 
+			var sortedDaysArray = new Array( ); 
+			var keyOrder = new Array () ; 
+			for (var key in this.day) {
+				keyOrder.push(key);
+			}
+			keyOrder.sort ( this.sortDaysKey ) ;
+			for ( var i= 0 ; i < keyOrder.length ; i++ ) { 
+				sortedDaysArray[keyOrder[i]] = ( this.day[ keyOrder[i] ] )  ;
+			} 
+			this.day = sortedDaysArray ; 
+		} ; 
+		
+		this.sortDaysKey = function ( arg1 , arg2 ) {  
+			var dateRegexPattern = /^(\d{4})[\/\- ](\d{2})[\/\- ](\d{2})/;
+			a1 = arg1.replace(dateRegexPattern,"$1$2$3");
+			a2 = arg2.replace(dateRegexPattern,"$1$2$3");
+			if ( a1 > a2 ) return 1 ; 
+			else if ( a2 > a1 ) return -1 ; 
+			else return 0 ;
+		} ; 
 	}    
 	
 	
@@ -220,6 +246,8 @@ jQuery( document ).ready(function( $ ) {
 	exam.addTerm( "11.02.03" , "14:20", "15:20", 30) ;
 	
 	exam.addTerm( "11.02.03" , "19:20", "21:20", 30) ;*/
+	
+	// exam.sortDaysArray("2014-12-01" , "2014-02-02") ;
 	
 	var calendarControl = new CalendarControl() ;
 	
