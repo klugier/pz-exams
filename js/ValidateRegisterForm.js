@@ -189,7 +189,7 @@ jQuery( document ).ready(function( $ ) {
 	$("#register_form").submit(function(e){
 		var regex_pattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		if (!regex_pattern.test($("#email").val())
-			|| ($("#email").val().indexOf("uj.edu.pl") == -1)
+			|| checkDomain($("#email").val()) == false
 		) {
 			//alert ("can't  submit email "); 
 			return false ;

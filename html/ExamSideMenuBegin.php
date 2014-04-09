@@ -3,31 +3,8 @@
 		<div class="col-xs-6 col-sm-3 nav nav-pills nav-stacked span2" id="sidebar" role="navigation">
 			<nav>
 				<ul class="nav nav-pills nav-stacked span2">
-					<?php
-						echo '<li id="exam_option1" style="font-weight: bold;"><a href="#">';
-						if ($examSideMenuAcctualStep == 0) {
-							echo '1. Podstawowe dane';
-						} else {
-							echo '1. Podstawowe dane';
-						}
-						echo '</a></li>';
-						
-						echo '<li id="exam_option2"><a href="#">';
-						if ($examSideMenuAcctualStep == 1) {
-							echo '2. Harmonogram';
-						} else {
-							echo '2. Harmonogram';
-						}
-						echo '</a></li>';
-						
-						echo '<li id="exam_option3"><a href="#">';
-						if ($examSideMenuAcctualStep == 2) {
-							echo '3. Lista studentów';
-						} else {
-							echo '3. Lista studentów';
-						}
-						echo '</a></li>';
-					?>
+					<li id="exam_option0" style="font-weight: bold;"><a href="#">1. Podstawowe informacje</a></li>
+					<li id="exam_option1"><a href="#">2. Lista studentów</a></li>
 				</ul>
 			</nav>
 		</div>

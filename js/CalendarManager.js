@@ -11,16 +11,19 @@ jQuery( document ).ready(function( $ ) {
 		if (parseInt(s) % 60 == 0){
 			return Math.floor(parseInt(s) / 60) + ":" + "00";
 		} else {
-			return Math.floor(parseInt(s) / 60) + ":" + parseInt(s) % 60;
+			return Math.floor(parseInt(s) / 60) + ":" + (( parseInt(s) % 60  < 10 ) ?  "0"+(parseInt(s)%60) : (parseInt(s)%60) )  ;
 		}
 	}
+
+	// when hour is in format like this 
+	// 12:3 it converts this time to 12:30 
 
 	function ExamUnit(bHour, eHour){
 		this.bHour = bHour;
 		this.eHour = eHour;
 	}
 	function Exam(name, durration){
-		this.name = "name";
+		this.name = name;
 		this.durration = durration;
 		this.day = new Array();
 		this.blockedUnits = new Array();
@@ -40,6 +43,9 @@ jQuery( document ).ready(function( $ ) {
 				var ExmUnit = new ExamUnit(conv1, conv2);
 				this.day[date].push(ExmUnit);
 			}
+			
+			// sort days 
+			this.sortDaysArray ( )  ;  
 		};
 
 		this.delTerm = function(date) {
@@ -72,6 +78,29 @@ jQuery( document ).ready(function( $ ) {
 				this.day[date].push(exmUnit);
 			}
 		};
+		
+		
+		this.sortDaysArray  = function ( ) { 
+			var sortedDaysArray = new Array( ); 
+			var keyOrder = new Array () ; 
+			for (var key in this.day) {
+				keyOrder.push(key);
+			}
+			keyOrder.sort ( this.sortDaysKey ) ;
+			for ( var i= 0 ; i < keyOrder.length ; i++ ) { 
+				sortedDaysArray[keyOrder[i]] = ( this.day[ keyOrder[i] ] )  ;
+			} 
+			this.day = sortedDaysArray ; 
+		} ; 
+		
+		this.sortDaysKey = function ( arg1 , arg2 ) {  
+			var dateRegexPattern = /^(\d{4})[\/\- ](\d{2})[\/\- ](\d{2})/;
+			a1 = arg1.replace(dateRegexPattern,"$1$2$3");
+			a2 = arg2.replace(dateRegexPattern,"$1$2$3");
+			if ( a1 > a2 ) return 1 ; 
+			else if ( a2 > a1 ) return -1 ; 
+			else return 0 ;
+		} ; 
 	}    
 	
 	
@@ -101,7 +130,7 @@ jQuery( document ).ready(function( $ ) {
 			} 
 			htmlControl += this.controlAddSeparator () ;
 			
-			htmlControl += this.controlStyleEnd () ;
+			htmlControl += this.controlStyleEnd (day) ;
 		    // document.write ( htmlControl  ); 
 			return htmlControl ; 
 		} ;  
@@ -116,9 +145,9 @@ jQuery( document ).ready(function( $ ) {
 		
 		this.controlStyleBegin = function ( date) {
 			//alert ( "height : " + this.height) ; 
-			begin = '<div class="col-md-3" >' +	 
+			begin = '<div class="col-xs-3 col-sm-3 col-md-3">' +	 
 					'	<div class="panel panel-primary "> ' +
-					'		<div class="panel-heading"> ' + date + ' </div> ' +  
+					'		<div class="panel-heading" >' + date + ' </div> ' +  
 					'			<div class="panel-body" style="height:' + this.height +  'px; overflow-y: scroll;">' +
 					' 				<table class="table">' +  
 					' 					<thead> ' + 
@@ -132,12 +161,12 @@ jQuery( document ).ready(function( $ ) {
 		} ; 
 			
 		
-		this.controlStyleEnd = function ( end) {
+		this.controlStyleEnd = function (date) {
 			end = '						</tbody>' +
 				  '				</table>' +
 				  '			</div>'+
-				  '			<button type="button" class="btn btn-success" style="float:right;">' +
-				  '				<i class="glyphicon glyphicon-plus" style="font-size:20px; font-weight:bold;"></i>'+
+				  '			<button type="button" class="btn btn-danger" id="removeDayButton" style="float:right;" name="'+ date + '">' +
+				  '				<i class="glyphicon glyphicon-minus" style="font-size:20px; font-weight:bold;"></i>'+
 				  '			</button>'+
 				  '		</div>'+
 				  '		</div>' ; 
@@ -147,8 +176,8 @@ jQuery( document ).ready(function( $ ) {
 		this.controlAddExamUnit = function ( startTime , endTime ) { 
 			//alert ( startTime +" aa  " +  endTime ) ; 
 			examUnit =	'<tr> '
-						+ '		<td><input type="checkbox" ></td> '
-						+ '		<td> od ' + startTime + ' do ' + endTime + '</td> ' 
+						+ '		<td><input type="checkbox" checked ></td> '
+						+ '		<td style="white-space:nowrap">' +  startTime   + '-' +   endTime   + '</td> ' 
 						+ '</tr> ' ; 
 			return examUnit ; 
 		} ; 
@@ -161,36 +190,41 @@ jQuery( document ).ready(function( $ ) {
 	CalendarDayControl.prototype.height = 400; 
 
 
-	function CalendarControl ( examDays )  { 
+	function CalendarControl (  )  { 
+		this.examDays = new Array() ; 
 		this.printCalendar = function ( ) 	{ 
 			//alert ( this.examDays.length ) ;
 			
 			var calendarControl = "" ; 
+			var maxDaysNumPerRibbon = 4 ; 
+			var daysCounter = 0 ; 
 			
 			calendarControl+=this.addRibbonStart() ; 
 			
-			for(var day in examDays)
-    		{
-				calendarDayControl = new CalendarDayControl ( day , examDays[day]) ;
-				calendarControl+=calendarDayControl.printControl(); 
+			for(var day in this.examDays) {
+				if ( (daysCounter % maxDaysNumPerRibbon == 0) && ( daysCounter != 0 )    ) { 
+					calendarControl+=this.addRibbonEnd ();
+					calendarControl+="<hr>" ;
+					calendarControl+=this.addRibbonStart() ; 
+				} 
+				calendarDayControl = new CalendarDayControl ( day , this.examDays[day]) ;
+				calendarControl+=calendarDayControl.printControl();
+				daysCounter++; 
 			} 
 			
 			calendarControl+=this.addRibbonEnd ();
 		
-			//$("#calendar-control").html(calendarControl);
+			$("#calendar-control").html(calendarControl);
 		} ; 
 		
-		
-		this.addRibbonStart = function ( ) 
-		{ 
+		this.addRibbonStart = function ( ) { 
 			start = ' <div class="row" style="background:url(img/calendarPanel.png);" >' ;  
 			
 			return start ; 
 			
 		} ; 
 		
-		this.addRibbonEnd = function () 
-		{ 
+		this.addRibbonEnd = function () { 
 			end = '</div>' ;  
 			
 			return end ; 
@@ -198,9 +232,8 @@ jQuery( document ).ready(function( $ ) {
 	} 
 	
 	// test
-	name = "egzamin z WOS " ; 
-	exam = new Exam ( name , 30 ) ; 
-	exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
+	var exam = new Exam ( "" , 20 ) ; 
+	/*exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
 	
 	exam.addTerm( "21.02.03" , "14:20", "15:20", 30) ;
 	
@@ -208,8 +241,43 @@ jQuery( document ).ready(function( $ ) {
 	
 	exam.addTerm( "11.02.03" , "14:20", "15:20", 30) ;
 	
-	exam.addTerm( "11.02.03" , "19:20", "21:20", 30) ;
+	exam.addTerm( "11.02.03" , "19:20", "21:20", 30) ;*/
 	
-	calendarControl = new CalendarControl(exam.day) ;    
-	calendarControl.printCalendar() ; 
+	// exam.sortDaysArray("2014-12-01" , "2014-02-02") ;
+	
+	var calendarControl = new CalendarControl() ;
+	
+	// jQuery functions 
+	
+	$('#addExamForm').submit(function () {
+		exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  
+		calendarControl.examDays = exam.day ;
+		calendarControl.printCalendar() ;
+		$('#myModal').modal('hide') ; 
+		// alert  ( exam.name + " --- " + exam.duration  ) ; 
+		return false ; 
+	} );
+	
+	
+	$('#exam_name').focusout ( function ( ) {  
+		//alert("exam name is " + $(this).val() );
+		exam.name =  $(this).val() ; 
+		exam.duration = $('#exam_duration').val();  
+	}); 
+	
+	$('#exam_duration').focusout ( function ( ) {  
+		exam.duration = $(this).val() ;
+	}); 
+	
+	$(document).on("click", "#removeDayButton", function() {  
+		// alert( $(this).attr("name") ) ; 
+		exam.delTerm($(this).attr("name"));
+		calendarControl.examDays = exam.day ;
+		calendarControl.printCalendar() ;
+	});  
+	
+	$("#addExamDayGlyph").click( function ( ) { 
+		 $("#duration").val( $('#exam_duration').val() );
+	}); 
+	
 } ); 

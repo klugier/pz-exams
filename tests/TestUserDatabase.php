@@ -16,12 +16,7 @@
 		}
 	}
 	
-	if (UserDatabase::updateUserPassword($user, 'test12')){
-	    $user->setPassword('test12');
-		echo $user->getPassword();
-	}else{
-		echo "Nope";
-	}
+	/* TODO: Wypisywać wszystkie informację o aktualnie zalogowanym użytkowniku */
 	
 	include("TestEnd.php");
 	
