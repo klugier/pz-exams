@@ -35,22 +35,22 @@
         $user2 = UserDatabase::getUser($user->getID());
         $user = UserDatabase::getUser($user->getID());
         
-        if($_POST['name'] != $user->getFirstName()){
-        if (UserDatabase::updateUserFirstName($user, $_SESSION['name'])) { 
+        if($_POST['nameEdit'] != $user->getFirstName()){
+        if (UserDatabase::updateUserFirstName($user, $_POST['nameEdit'])) { 
             $_SESSION['formSuccessCode1'] = 'nameChanged';
         }else {
 			$_SESSION['formErrorCode'] = 'databaseError';
 		}}
         
-        if($_POST['surname'] != $user->getSurname()){
-        if (UserDatabase::updateUserSurname($user, $_SESSION['surname'])) { 
+        if($_POST['surnameEdit'] != $user->getSurname()){
+        if (UserDatabase::updateUserSurname($user, $_POST['surnameEdit'])) { 
             $_SESSION['formSuccessCode2'] = 'surnameChanged';
         }else {
 			$_SESSION['formErrorCode'] = 'databaseError';
 		}}
         
         
-        ( $_POST['gender'] == "Kobieta" ) ? $user2->setGender("female") : $user2->setGender("male") ;
+        ( $_POST['genderEdit'] == "Kobieta" ) ? $user2->setGender("female") : $user2->setGender("male") ;
         if($user2->getGender() != $user->getGender()){
         if (UserDatabase::updateUserGender($user, $user2->getGender())) { 
             $_SESSION['formSuccessCode3'] = 'genderChanged';
