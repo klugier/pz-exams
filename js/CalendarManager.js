@@ -11,17 +11,13 @@ jQuery( document ).ready(function( $ ) {
 		if (parseInt(s) % 60 == 0){
 			return Math.floor(parseInt(s) / 60) + ":" + "00";
 		} else {
-			return Math.floor(parseInt(s) / 60) + ":" + parseInt(s) % 60;
+			return Math.floor(parseInt(s) / 60) + ":" + (( parseInt(s) % 60  < 10 ) ?  "0"+(parseInt(s)%60) : (parseInt(s)%60) )  ;
 		}
 	}
 
 	// when hour is in format like this 
 	// 12:3 it converts this time to 12:30 
-	function prepareValidHourFormat ( hour ) { 
-		var hourArray = hour.split(':') ; 
-		return hourArray[0] + ':' + ( ( hourArray[1].length == 1 ) ? hourArray[1]+"0"  : hourArray[1] ) ;   
-	} 
-	
+
 	function ExamUnit(bHour, eHour){
 		this.bHour = bHour;
 		this.eHour = eHour;
@@ -181,7 +177,7 @@ jQuery( document ).ready(function( $ ) {
 			//alert ( startTime +" aa  " +  endTime ) ; 
 			examUnit =	'<tr> '
 						+ '		<td><input type="checkbox" checked ></td> '
-						+ '		<td style="white-space:nowrap">' + prepareValidHourFormat ( startTime )  + '-' + prepareValidHourFormat ( endTime )  + '</td> ' 
+						+ '		<td style="white-space:nowrap">' +  startTime   + '-' +   endTime   + '</td> ' 
 						+ '</tr> ' ; 
 			return examUnit ; 
 		} ; 
