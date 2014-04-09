@@ -6,3 +6,4 @@
 	</head>
 	
 	<body>
+		<p><a href="Tests.php">Wróć do listy testów</a></p>
