@@ -27,6 +27,91 @@ $('button#prev1').click(function () {
 
 $('button#next1').click(function () {
 
+	go_to_stage2();
+
+});
+
+$('button#next2').click(function () {
+
+	$('#stage2').hide(300);
+
+
+	$('#stages').append($('#stage3').show(400));
+
+	$('li#exam_option3').css("font-weight", "bold");
+	$('li#exam_option2').css("font-weight", "");
+
+});
+
+$('button#prev1').click(function () {
+
+	$('#stage2').hide(300);
+
+	$('#stages').append($('#stage1').show(400));
+
+	$('li#exam_option1').css("font-weight", "bold");
+	$('li#exam_option2').css("font-weight", "");
+
+});
+
+$('button#prev2').click(function () {
+
+	back_to_stage1();
+
+});
+
+$('li#exam_option0').click(function(){
+
+	back_to_stage1();
+
+})
+
+$('li#exam_option1').click(function(){
+
+	go_to_stage2();
+	
+})
+
+$('button#add_students').click( function(){
+
+	 var emails = new Array();
+	 var first_names = new Array();
+
+	 var email_p = /<(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))>/gm;
+	 var f_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
+	 var l_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
+	 var elements = $();
+
+		emails = $('#student_list').val().match(email_p);
+		first_names = $('#student_list').val().match(f_name_p);
+		last_names = $('#student_list').val().match(l_name_p);
+
+		if (emails != null && first_names != null && last_names != null) {
+			for (var i = 0; i < first_names.length; i++){ 
+				first_names[i] = first_names[i].replace("<", "").replace(">", "").split(" ")[0].trim();
+			}
+
+			for (var i = 0; i < last_names.length; i++) {
+				last_names[i] = last_names[i].split(" ").splice(1, 2).join(' ').replace("<", "").trim();;
+			}
+
+		for (var i = 0; i < emails.length; i++) {
+			elements = elements.add('<div class="panel col-md-12" style="margin: 2px; margin-right: 10px; padding-right: 0px; padding-left: 6px; box-shadow: 2px 2px 5px #AAA;" id="student"><span>' + first_names[i] + " " + last_names[i] + " (" + emails[i].replace("<", "").replace(">", "")+ ')</span><i class="glyphicon glyphicon-remove pull-right" style="vertical-align: middle; font-size: 20px; margin-left:20px;"></i></div>');
+		}
+
+		$('#student_list').val("");
+		$('#student_data').append(elements);
+
+		$('div#student').hide();
+		$('div#student').fadeIn(500);
+	}
+
+});
+
+});
+
+function go_to_stage2()
+{
 	var errors = new Array();
 
 	if($('input#exam_name').val().trim() == "") {
@@ -68,77 +153,14 @@ $('button#next1').click(function () {
 
 	$('li#exam_option1').css("font-weight", "bold");
 	$('li#exam_option0').css("font-weight", "");
+}
 
-});
-
-$('button#next2').click(function () {
-
-	$('#stage2').hide(300);
-
-
-	$('#stages').append($('#stage3').show(400));
-
-	$('li#exam_option3').css("font-weight", "bold");
-	$('li#exam_option2').css("font-weight", "");
-
-});
-
-$('button#prev1').click(function () {
-
-	$('#stage2').hide(300);
-
-	$('#stages').append($('#stage1').show(400));
-
-	$('li#exam_option1').css("font-weight", "bold");
-	$('li#exam_option2').css("font-weight", "");
-
-});
-
-$('button#prev2').click(function () {
-
+function back_to_stage1()
+{
 	$('#stage3').hide(300);
 
 	$('#stages').append($('#stage1').show(400));
 
 	$('li#exam_option0').css("font-weight", "bold");
 	$('li#exam_option1').css("font-weight", "");
-
-});
-
-$('button#add_students').click( function(){
-
-	 var emails = new Array();
-	 var first_names = new Array();
-
-	 var email_p = /<(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))>/gm;
-	 var f_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
-	 var l_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
-	 var elements = $();
-
-		emails = $('#student_list').val().match(email_p);
-		first_names = $('#student_list').val().match(f_name_p);
-		last_names = $('#student_list').val().match(l_name_p);
-
-		if (emails != null && first_names != null && last_names != null) {
-			for (var i = 0; i < first_names.length; i++){ 
-				first_names[i] = first_names[i].replace("<", "").replace(">", "").split(" ")[0].trim();
-			}
-
-			for (var i = 0; i < last_names.length; i++) {
-				last_names[i] = last_names[i].split(" ").splice(1, 2).join(' ').replace("<", "").trim();;
-			}
-
-		for (var i = 0; i < emails.length; i++) {
-			elements = elements.add('<div class="panel col-md-12" style="margin: 2px; margin-right: 10px; padding-right: 0px; padding-left: 6px; box-shadow: 2px 2px 5px #AAA;" id="student"><span>' + first_names[i] + " " + last_names[i] + " (" + emails[i].replace("<", "").replace(">", "")+ ')</span><i class="glyphicon glyphicon-remove pull-right" style="vertical-align: middle; font-size: 20px; margin-left:20px;"></i></div>');
-		}
-
-		$('#student_list').val("");
-		$('#student_data').append(elements);
-
-		$('div#student').hide();
-		$('div#student').fadeIn(500);
-	}
-
-});
-
-});
+}
