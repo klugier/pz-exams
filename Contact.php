@@ -1,10 +1,6 @@
 <?php
    include_once("lib/Lib.php");
    
-   if (isset($_SESSION['USER']) && $_SESSION['USER'] != "") {
-      header('Location: UserSite.php' ); 
-   }
-
    $title = "$appName - Kontakt";
    $scriptsDefer = array("js/ValidateContactForm.js");
    include("html/Begin.php");
