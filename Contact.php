@@ -57,9 +57,9 @@
   <div class="form-group">
     <div class="form-group">
       <div class="control-group">
-	<label class="col-xs-2 col-sm-2 col-md-2 control-label" for="inputMessage">Wiadomosc</label>
+	<label class="col-xs-2 col-sm-2 col-md-2 control-label" for="inputMessage">Wiadomość</label>
 	<div class="col-xs-6 col-sm-6 col-md-6 controls">
-	  <textarea class="form-control" type="text" name="message" id="message" placeholder="Wiadomosc" rows="20"></textarea>
+	  <textarea class="form-control" type="text" name="message" id="message" placeholder="Wiadomość" rows="20"></textarea>
 	</div>
 	<span class="help-block col-xs-4 col-sm-4 col-md-4" id="message-error-message" >
 	</span>
@@ -80,7 +80,7 @@
   <div class="form-group">
     <div class="control-group">
       <div class="col-xs-12 col-sm-12 col-md-12 controls">
-	<button type="submit" class="btn btn-lg btn-block btn-primary">Wyslij</button>
+	<button type="submit" class="btn btn-lg btn-block btn-primary">Wyślij</button>
       </div>
     </div>
   </div>
