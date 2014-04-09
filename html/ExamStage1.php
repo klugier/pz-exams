@@ -18,7 +18,7 @@
 		<label for="duration" class="control-label col-sm-3 col-md-6">Czas trwania egzaminu (minuty)</label>
 
 		<div class="col-sm-4 col-md-2">
-			<input type="number" name="duration" class="form-control" id="duration" placeholder="" maxlength="2" value="20" min="0" max="100">
+			<input type="number" name="duration" class="form-control" id="exam_duration" placeholder="" maxlength="2" value="20" min="0" max="100">
 		</div>
 	</div>
 

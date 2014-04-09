@@ -1,4 +1,4 @@
-	<button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" title="Dodaj termin">
+	<button class="btn btn-success btn-lg" data-toggle="modal" id="addExamDayGlyph" data-target="#myModal" title="Dodaj termin">
   		<i class="glyphicon glyphicon-plus" style="font-size:30px; font-weight:bold;"></i>
 	</button>
 	
@@ -9,7 +9,7 @@
         			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         			<h3 class="modal-title" id="myModalLabel"><b>Dodawanie terminu</b></h3>
       			</div>
-      			<form name="modalForm" class="form-signin form-horizontal" id="addExamForm" data-toggle="validator" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="" onsubmit="return checkvalue(this)">
+      			<form name="modalForm" class="form-signin form-horizontal" id="addExamForm" data-toggle="validator" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="">
       				<div class="modal-body">
       					<div class="form-group" id="duration_group">
 							<label for="duration" class="col-sm-5 control-label">Czas egzaminu</label>
@@ -49,7 +49,7 @@
           			</div>   
       					<div class="modal-footer">
         					<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-        					<button type="submit" class="btn btn-success"  id="add-exam-date" onclick="return validModal()">Dodaj termin</button>
+        					<button type="submit" class="btn btn-success"  id="add-exam-date">Dodaj termin</button>
       					</div>
       			</form>
     		</div>

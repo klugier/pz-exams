@@ -27,7 +27,7 @@ jQuery( document ).ready(function( $ ) {
 		this.eHour = eHour;
 	}
 	function Exam(name, durration){
-		this.name = "name";
+		this.name = name;
 		this.durration = durration;
 		this.day = new Array();
 		this.blockedUnits = new Array();
@@ -202,12 +202,8 @@ jQuery( document ).ready(function( $ ) {
 		} ;
 	} 
 	
-	
-	
-	
 	// test
-	name = "egzamin z WOS " ; 
-	var exam = new Exam ( name , 30 ) ; 
+	var exam = new Exam ( "" , 20 ) ; 
 	/*exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
 	
 	exam.addTerm( "21.02.03" , "14:20", "15:20", 30) ;
@@ -223,14 +219,24 @@ jQuery( document ).ready(function( $ ) {
 	// jQuery functions 
 	
 	$('#addExamForm').submit(function () {
-		exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ; 
-		//calendarControl.clearCalendar(); 
+		exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  
 		calendarControl.examDays = exam.day ;
 		calendarControl.printCalendar() ;
 		$('#myModal').modal('hide') ; 
+		// alert  ( exam.name + " --- " + exam.duration  ) ; 
 		return false ; 
 	} );
 	
+	
+	$('#exam_name').focusout ( function ( ) {  
+		//alert("exam name is " + $(this).val() );
+		exam.name =  $(this).val() ; 
+		exam.duration = $('#exam_duration').val();  
+	}); 
+	
+	$('#exam_duration').focusout ( function ( ) {  
+		exam.duration = $(this).val() ;
+	}); 
 	
 	$(document).on("click", "#removeDayButton", function() {  
 		// alert( $(this).attr("name") ) ; 
@@ -238,5 +244,9 @@ jQuery( document ).ready(function( $ ) {
 		calendarControl.examDays = exam.day ;
 		calendarControl.printCalendar() ;
 	});  
+	
+	$("#addExamDayGlyph").click( function ( ) { 
+		 $("#duration").val( $('#exam_duration').val() );
+	}); 
 	
 } ); 
