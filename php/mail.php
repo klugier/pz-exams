@@ -7,19 +7,17 @@ define('GPWD', 'optymalnehaslo1337');
 
 function mailer($to, $from, $from_name, $subject, $body, $isHTML) {
 //Jako pierwszy argument można podac jednego adresata, lub tablice
+//bool $isHTML - czy tresc e-maila ($body) zawiera znaczniki HTML,
+//ktore maja zostac sparsowane
 
 	global $error;
 	$mail = new PHPMailer();
 
-	if (gettype($to) == 'array')
-	{
-		foreach ($to as $address)
-		{
+	if (gettype($to) == 'array') {
+		foreach ($to as $address) {
 			$mail->AddAddress($address);
 		}
-	}
-	else
-	{
+	} else {
 		$mail->AddAddress($to);
 	}
 
@@ -40,10 +38,12 @@ function mailer($to, $from, $from_name, $subject, $body, $isHTML) {
 	if(!$mail->Send()) {
 		$error = 'Mail error: '.$mail->ErrorInfo; 
 		//echo 'Error: '.$mail->ErrorInfo;
+		//die('Error: '.$mail->ErrorInfo);
 		return false;
 	} else {
 		$error = 'Message sent!';
-		//echo 'Poszlo';
+		// echo 'Poszlo';
+		//die('OK');
 		return true;
 	}
 }

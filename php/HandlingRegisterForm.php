@@ -58,30 +58,14 @@ else {
 		if (UserDatabase::addUser($user)) { 
 			$_SESSION['formSuccessCode'] = TRUE ; 
 
-			// $headers = array
-   //  		(
-		 //        'MIME-Version: 1.0',
-		 //        'Content-Type: text/html; charset="UTF-8";',
-		 //        'Content-Transfer-Encoding: 7bit',
-		 //        'Date: ' . date('r', $_SERVER['REQUEST_TIME']),
-		 //        'From: ' . 'pz-exams@pz-exams.com',
-		 //        'X-Mailer: PHP v' . phpversion(),
-		 //        'X-Originating-IP: ' . $_SERVER['SERVER_ADDR'],
-	  //   	);
-
 			mailer($user->getEmail(), 'pz.exams@gmail.com', 'PZ-Exams', 'Aktywacja konta na PZ-Exams', 
 			"Witaj,<br/><br/>
 			aby aktywować swoje konto kliknij w poniższy link:<br/><br/>
-			<a href=\"http://localhost/ActivationPage.php?email=" . $user->getEmail() . "&code=" . $user->getActivationCode() . "\">Aktywuj</a><br/>
+			<a href=\"http://spk.if.uj.edu.pl/~pachel/warsztaty/ActivationPage.php?email=" . $user->getEmail() . "&code=" . $user->getActivationCode() . "\">Aktywuj</a><br/>
 			__________<br/>
 			- PZ-Exams
 			", true
 			);
-
-
-
-
-
 
 			$_SESSION['email'] = ""    ;
 			$_SESSION['gender'] = ""  ;
