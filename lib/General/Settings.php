@@ -22,6 +22,11 @@ final class Settings
 		return dirname(__FILE__) . "/../../cfg/Settings.xml";
 	}
 	
+	public static function getAdress()
+	{
+		return self::getInstance()->adress;
+	}
+	
 	public static function setDebug($debug)
 	{
 		self::getInstance()->debug = $debug;
@@ -30,6 +35,11 @@ final class Settings
 	public static function setDomains($domains)
 	{
 		self::getInstance()->domains = $domains;
+	}
+	
+	public static function setAdress()
+	{
+		self::getInstance()->adress;
 	}
 	
 	private static function getInstance()
@@ -46,6 +56,7 @@ final class Settings
 	{
 		$this->debug   = 0;
 		$this->domains = null;
+		$this->adress  = "";
 		
 		$this->__load($cfgPath);
 	}
@@ -72,10 +83,15 @@ final class Settings
 				$i++;
 			}
 		}
+		
+		if ($dom->getElementsByTagName("Adress")->length > 0) {
+			$this->adress = $xml->Adress;
+		}
 	}
 	
 	private $debug;
 	private $domains;
+	private $address;
 	
 	private static $instance = false;
 }
