@@ -80,9 +80,10 @@
         echo '</div>' ; 
     }
 ?>
-<legend>Menu edycji</legend>
+<h1>Menu edycji</h1>
+<hr />
 <form class="form-horizontal" role="form" id="passwd_form" method="post" action="php/HandlingUserEdit.php">
-    <fieldset class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-12 col-md-12">
+    <fieldset class="col-xs-12 col-sm-12 col-md-12">
         <legend>Zmiana hasła</legend>
         <div class="form-group">
             <label for="passwd-old" class="col-xs-2 col-sm-2 col-md-2 control-label"> Stare Hasło </label>
@@ -118,7 +119,7 @@
     </fieldset>
 </form>
 <form class="form-horizontal" role="form" id="firstname_form" method="post" action="php/HandlingUserEdit.php">
-    <fieldset class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-12 col-md-12">
+    <fieldset class="col-xs-12 col-sm-12 col-md-12">
         <legend>Zmiana ustawień osobistych</legend>
         <div class="form-group">
             <label for="firstname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowe Imię</label>
@@ -136,9 +137,9 @@
             <label for="gender" class="col-xs-2 col-sm-2 col-md-2 control-label">Nowa Płeć </label>
             <div class="col-xs-4 col-sm-4 col-md-4">
                 <select class="form-control" id="genderEdit" name="genderEdit">
-                    <option><?php if($_SESSION['genderEdit'] == 'male'){ echo 'Mężczyzna'; } else { echo 'Kobieta';  }?></option>
-                    <option><?php if($_SESSION['genderEdit'] == 'male'){ echo 'Kobieta'; } else { echo 'Mężczyzna';  }?></option>
-                </select>
+                        <option><?php if($_SESSION['genderEdit'] == 'male'){ echo 'Mężczyzna'; } else { echo 'Kobieta';  }?></option>
+                        <option><?php if($_SESSION['genderEdit'] == 'male'){ echo 'Kobieta'; } else { echo 'Mężczyzna';  }?></option>
+                    </select>
             </div>
         </div>
         <div class="form-group">
