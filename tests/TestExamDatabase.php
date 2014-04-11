@@ -13,9 +13,9 @@
 		for($i=0;$i<count($exam);$i++)
 			echo $exam[$i]->getID() . ", " .
 			     $exam[$i]->getUserID() . ", " .
-				 $exam[$i]->getName() . ", " .
-				 $exam[$i]->getDuration() . ", " .
-				 $exam[$i]->getActivated() . "<br/>";
+			     $exam[$i]->getName() . ", " .
+			     $exam[$i]->getDuration() . ", " .
+			     $exam[$i]->getActivated() . "<br/>";
 					 
 		
 		/*$testUser = new User;
