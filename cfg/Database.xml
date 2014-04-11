@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Database>
 	<Server>localhost</Server>
-	<User>user</User>
-	<Password>password</Password>
-	<Name>db_name</Name>
+	<User>root</User>
+	<Password></Password>
+	<Name>exams</Name>
 </Database>
