@@ -147,7 +147,7 @@
             {
                 $sql =  "UPDATE Users SET Activated = 1 WHERE Email = '$email'";
     
-                return DatabaseConnector::getConnection()->query($sql) ? true : false;
+                return Data baseConnector::getConnection()->query($sql) ? true : false;
             }
             else
             {

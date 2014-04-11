@@ -88,7 +88,7 @@ final class ExamDatabase
 	{ 
 		$values = "('"	. $user->getID() . "','"
 		                . $exam->getName() . "','" 
-		                . $exam->getDuration() . "',"
+		                . $exam->getDuration() . "','"
 						. $exam->getActivated() . "')";  
 				
 		$sql =  "INSERT INTO Exams (UserID, Name, Duration, Activated)" 

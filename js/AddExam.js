@@ -1,23 +1,27 @@
+var emails;
+var first_names;
+var last_names;
+
 $( document ).ready(function() {
 
 $('#stage2').hide();
 $('#stage3').hide();
 
-$('#tab1a').attr('class', 'disabled');
-$('#tab2a').attr('class', 'disabled active');
+// $('#tab1a').attr('class', 'disabled');
+// $('#tab2a').attr('class', 'disabled active');
 
-$('#tab1a').click(function(event){
-		if ($(this).hasClass('disabled')) {
-				return false;
-		}
-});
-$('#tab2a').click(function(event){
-		if ($(this).hasClass('disabled')) {
-				return false;
-		}
-});
+// $('#tab1a').click(function(event){
+// 		if ($(this).hasClass('disabled')) {
+// 				return false;
+// 		}
+// });
+// $('#tab2a').click(function(event){
+// 		if ($(this).hasClass('disabled')) {
+// 				return false;
+// 		}
+// });
 
-$('input#duration').keyup(function () { 
+$('input#exam_duration').keyup(function () { 
 			this.value = this.value.replace(/[^0-9\.]/g,'');
 });
 
@@ -74,8 +78,9 @@ $('li#exam_option1').click(function(){
 
 $('button#add_students').click( function(){
 
-	 var emails = new Array();
-	 var first_names = new Array();
+	 emails = new Array();
+	 first_names = new Array();
+	 last_names = new Array();
 
 	 var email_p = /<(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))>/gm;
 	 var f_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
@@ -96,7 +101,8 @@ $('button#add_students').click( function(){
 			}
 
 		for (var i = 0; i < emails.length; i++) {
-			elements = elements.add('<div class="panel col-md-12" style="margin: 2px; margin-right: 0px; padding-right: 0px; padding-left: 6px; box-shadow: 2px 2px 5px #AAA;" id="student"><span style="margin-right: 10px;">' + first_names[i] + " " + last_names[i] + " (" + emails[i].replace("<", "").replace(">", "")+ ')</span><i class="glyphicon glyphicon-remove pull-right" style="vertical-align: middle; font-size: 16px; margin-left: 18px;"></i></div>');
+			emails[i] = emails[i].replace("<", "").replace(">", "");
+			elements = elements.add('<div class="panel col-md-12" style="margin: 2px; margin-right: 0px; padding-right: 0px; padding-left: 6px; box-shadow: 2px 2px 5px #AAA;" id="student"><span style="margin-right: 10px;">' + first_names[i] + " " + last_names[i] + " (" + emails[i].replace("<", "").replace(">", "") + ')</span><i class="glyphicon glyphicon-remove pull-right" style="vertical-align: middle; font-size: 16px; margin-left: 18px;"></i></div>');
 		}
 
 		$('#student_list').val("");
@@ -107,6 +113,37 @@ $('button#add_students').click( function(){
 	}
 
 });
+
+
+$('button#confirm').click(function(){
+
+		$.ajax({
+
+		type: "POST",
+		url: "../php/CreateExamInBase.php",
+		dataType: 'JSON',
+		data: {
+			exam_name : $('input#exam_name').val().trim(),
+			exam_duration : $('input#duration').val(),
+			students_emails : emails,
+			firstnames : first_names,
+			lastnames : last_names
+		},
+		success: function (data) {
+			alert('Pomyslnie dodano egzamin');
+		},
+		error: function (error) {
+			alert('Wystapil blad przy dodawaniu egzaminu.');
+		},
+		complete: function() {
+			window.location = '../index.php';
+		}
+
+		});
+
+
+});
+
 
 });
 
@@ -127,7 +164,7 @@ function go_to_stage2()
 			$('span#exam_name-error-message').remove();
 	}
 
-	if($('input#duration').val() == "") {
+	if($('input#exam_duration').val() == "") {
 			$('div#duration_group').attr('class', 'form-group has-error');
 			errors[errors.length] = true;
 			$('span#duration-error-message').remove();
@@ -153,6 +190,7 @@ function go_to_stage2()
 
 	$('li#exam_option1').css("font-weight", "bold");
 	$('li#exam_option0').css("font-weight", "");
+
 }
 
 function back_to_stage1()
@@ -164,3 +202,4 @@ function back_to_stage1()
 	$('li#exam_option0').css("font-weight", "bold");
 	$('li#exam_option1').css("font-weight", "");
 }
+

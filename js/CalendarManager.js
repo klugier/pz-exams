@@ -1,3 +1,5 @@
+var exam;
+
 jQuery( document ).ready(function( $ ) {
 
 	// klasa wymiany danych na kartach dodaj egzamin 
@@ -232,7 +234,7 @@ jQuery( document ).ready(function( $ ) {
 	} 
 	
 	// test
-	var exam = new Exam ( "" , 20 ) ; 
+	exam = new Exam ( "" , 20 ) ; 
 	/*exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
 	
 	exam.addTerm( "21.02.03" , "14:20", "15:20", 30) ;
