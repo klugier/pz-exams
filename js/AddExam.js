@@ -7,21 +7,21 @@ $( document ).ready(function() {
 $('#stage2').hide();
 $('#stage3').hide();
 
-$('#tab1a').attr('class', 'disabled');
-$('#tab2a').attr('class', 'disabled active');
+// $('#tab1a').attr('class', 'disabled');
+// $('#tab2a').attr('class', 'disabled active');
 
-$('#tab1a').click(function(event){
-		if ($(this).hasClass('disabled')) {
-				return false;
-		}
-});
-$('#tab2a').click(function(event){
-		if ($(this).hasClass('disabled')) {
-				return false;
-		}
-});
+// $('#tab1a').click(function(event){
+// 		if ($(this).hasClass('disabled')) {
+// 				return false;
+// 		}
+// });
+// $('#tab2a').click(function(event){
+// 		if ($(this).hasClass('disabled')) {
+// 				return false;
+// 		}
+// });
 
-$('input#duration').keyup(function () { 
+$('input#exam_duration').keyup(function () { 
 			this.value = this.value.replace(/[^0-9\.]/g,'');
 });
 
@@ -164,7 +164,7 @@ function go_to_stage2()
 			$('span#exam_name-error-message').remove();
 	}
 
-	if($('input#duration').val() == "") {
+	if($('input#exam_duration').val() == "") {
 			$('div#duration_group').attr('class', 'form-group has-error');
 			errors[errors.length] = true;
 			$('span#duration-error-message').remove();
