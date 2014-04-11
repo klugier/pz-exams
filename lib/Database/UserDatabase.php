@@ -47,6 +47,8 @@
     
         static public function addUser($user)
         { 
+			date_default_timezone_set('Europe/Warsaw');
+			
             $values = "('"	. $user->getEmail()    . "', '"
                             . sha1($user->getPassword()) . "', '"
                             . ($user->getActivated()        ? "TRUE" : "FALSE") . "', '"
