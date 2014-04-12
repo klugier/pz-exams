@@ -16,6 +16,23 @@ final class ExamUnitDatabase
 		return $row[0];
 	}
 
+	
+	/*
+	 * Zwraca listę ID examUnitsów dla danego egzaminu
+	 */
+	static public function getExamUnitIDList($exam)
+	{ 
+		$sql = "Select * from ExamUnits WHERE ExamID  = '" . $exam->getID() . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		
+		$i = 0;
+		while ($row = $result->fetch_array(MYSQLI_NUM)) {
+			$examUnitID[$i] = $row[0]; 
+			$i++;
+		}
+		return $examUnitID;
+	}
+
 	/*
 	 * Dodanie egzaminu do bazy danych 
 	 */
