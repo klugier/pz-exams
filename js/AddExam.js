@@ -145,7 +145,7 @@ $('button#confirm').click(function(){
 			alert('Wystąpił blad przy dodawaniu egzaminu.');
 		},
 		complete: function() {
-			//window.location = '../index.php';
+			window.location = '../index.php';
 		}
 
 		});

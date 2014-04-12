@@ -16,13 +16,14 @@ if(isset($_POST['exam_name']) && isset($_POST['exam_duration'])) {
 
 	if (ExamDatabase::insertExam($user, $exam)) {
 		//echo 'Wpisano egzamin';
+		$new_exam_id = DatabaseConnector::getLastInsertedID();
+
+		addUnits($new_exam_id);
+
+		addStudents();
 	} else {
 		//echo 'Blad przy wpisywaniu egzaminu';
 	}
-
-	addUnits();
-
-	addStudents();
 
 	header('Content-Type: application/json');
 	echo json_encode(true);
@@ -53,29 +54,24 @@ if(isset($_POST['students_emails']) && isset($_POST['firstnames']) && isset($_PO
 	}
 }
 
-function addUnits()
+function addUnits($exam_id)
 {
-	if(isset($_POST['unlocked_units']))
-	{
+	if(isset($_POST['unlocked_units'])) {
 		$units = $_POST['unlocked_units'];
 
 		foreach ($units as $day => $day_units) {
-   			 foreach ($day_units as $unit_index => $unit) 
-   			 {
+   			 foreach ($day_units as $unit_index => $unit) {
    			 	$exam_to_unit = new Exam();
-   			 	$exam_to_unit->setID(26);
+   			 	$exam_to_unit->setID($exam_id);
 
    			 	$exam_unit = new ExamUnit();
    			 	$exam_unit->setDay($day);
    			 	$exam_unit->setTimeFrom($unit[0]);
    			 	$exam_unit->setTimeTo($unit[1]);
 
-   			 	if($unit[2] == true)
-   			 	{
+   			 	if($unit[2] == true) {
    			 		$exam_unit->setState('unlocked');
-   			 	}
-   			 	else
-   			 	{
+   			 	} else {
    			 		$exam_unit->setState('locked');
    			 	}
 
