@@ -14,6 +14,11 @@ final class DatabaseConnector
 		return self::getInstance()->connection->error;
 	}
 	
+	public static function getLastInsertedID()
+	{
+		return self::getInstance()->connection->insert_id;
+	}
+	
 	public static function isConnected()
 	{
 		return self::getInstance()->connection->ping();
