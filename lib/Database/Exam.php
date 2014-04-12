@@ -34,6 +34,10 @@ class Exam
 		return $this->activated;
 	}
 	
+	public function getEmailsPosted()
+	{
+		return $this->emailsPosted;
+	}
 	// *****************************************************
 	
 	public function setID($id)
@@ -61,6 +65,11 @@ class Exam
 		return $this->activated = $activate;
 	}
 	
+	public function setEmailsPosted($emailspost)
+	{
+		return $this->emailsPosted = $emailspost;
+	}
+	
 	// *****************************************************
 	
 	private $id;
@@ -68,6 +77,7 @@ class Exam
 	private $duration;
 	private $userid;
 	private $activated;
+	private $emailsPosted;
 	 
 }
 

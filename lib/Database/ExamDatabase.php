@@ -43,6 +43,7 @@ final class ExamDatabase
 			$exams[$i]->setName($row['Name']);
 			$exams[$i]->setDuration($row['Duration']);
 			$exams[$i]->setActivated($row['Activated']);
+			$exams[$i]->setEmailsPosted($row['EmailsPosted']);
 			$i++;
         }
         
@@ -80,6 +81,20 @@ final class ExamDatabase
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
 	
+	static public function PostEmail($user, $exam)
+	{
+		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $user->getID() . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		if ($result->num_rows == 0) { 
+			return false;
+		}
+		
+		$sql = "UPDATE Exams SET 
+		        EmailsPosted = '" . $exam->getEmailsPosted() . "' 
+		        WHERE ID = '" . $exam->getID() . "'";
+		
+		return DatabaseConnector::getConnection()->query($sql) ? true : false;
+	}
     
 	/*
 	 * Dodanie egzaminu do bazy danych 
@@ -89,7 +104,8 @@ final class ExamDatabase
 		$values = "('"	. $user->getID() . "','"
 		                . $exam->getName() . "','" 
 		                . $exam->getDuration() . "','"
-						. $exam->getActivated() . "')";  
+		                . $exam->getActivated() . "','";  
+		                . $exam->getEmailsPosted() . "')";
 				
 		$sql =  "INSERT INTO Exams (UserID, Name, Duration, Activated)" 
 		        .  "VALUES $values";

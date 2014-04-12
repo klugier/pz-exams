@@ -15,7 +15,8 @@
 			     $exam[$i]->getUserID() . ", " .
 			     $exam[$i]->getName() . ", " .
 			     $exam[$i]->getDuration() . ", " .
-			     $exam[$i]->getActivated() . "<br/>";
+				 $exam[$i]->getActivated() . ", " .
+			     $exam[$i]->getEmailsPosted() . "<br/>";
 					 
 		
 		/*$testUser = new User;
