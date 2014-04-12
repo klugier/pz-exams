@@ -36,11 +36,12 @@ CREATE TABLE `UsersSettings` (
 
 /* Exam */
 CREATE TABLE `Exams` (
-	`ID`        INT          AUTO_INCREMENT,
-	`UserID`    INT,
-	`Name`      VARCHAR(100) NOT NULL,
-	`Duration`  TIME         NOT NULL,
-	`Activated` BOOLEAN      NOT NULL,
+	`ID`           INT          AUTO_INCREMENT,
+	`UserID`       INT,
+	`Name`         VARCHAR(100) NOT NULL,
+	`Duration`     TIME         NOT NULL,
+	`Activated`    BOOLEAN      NOT NULL,
+	`EmailsPosted` BOOLEAN      NOT NULL,
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`UserID`) REFERENCES `Users` (`ID`),
 	INDEX (`UserID`)
