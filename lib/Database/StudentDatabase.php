@@ -27,23 +27,6 @@
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		} 
 		
-		static public function insertStudents($students)
-		{
-			for ($i=0;$i<count($students);$i++){
-				$values = "('"	. $students[$i]->getEmail() . "','"
-				                . strval(md5(microtime())) . "','"
-								. $students[$i]->getFirstName() . "','"
-								. $students[$i]->getSurName() . "')";
-			
-				$sql =  "INSERT INTO Students (Email, Code, FirstName, Surname) VALUES $values";
-				if(!DatabaseConnector::getConnection()->query($sql)){
-					return false;
-				}
-			}
-			
-			return true;
-		}
-		
 		static public function updateStudent($student)
 		{
 			$sql = "Select * from Students WHERE ID  = '" . $student->getID() . "'";
