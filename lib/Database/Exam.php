@@ -4,7 +4,7 @@ class Exam
 {
 	public function __construct()
 	{
-		
+		$this->emailsPosted = false;
 	}
 	
 	// *****************************************************
@@ -65,9 +65,9 @@ class Exam
 		return $this->activated = $activate;
 	}
 	
-	public function setEmailsPosted($emailspost)
+	public function setEmailsPosted($emailsPosted)
 	{
-		return $this->emailsPosted = $emailspost;
+		return $this->emailsPosted = $emailsPosted;
 	}
 	
 	// *****************************************************
@@ -77,8 +77,7 @@ class Exam
 	private $duration;
 	private $userid;
 	private $activated;
-	private $emailsPosted;
-	 
+	private $emailsPosted; 
 }
 
 ?>

@@ -104,10 +104,10 @@ final class ExamDatabase
 		$values = "('"	. $user->getID() . "','"
 		                . $exam->getName() . "','" 
 		                . $exam->getDuration() . "','"
-		                . $exam->getActivated() . "')";  
-		                //. $exam->getEmailsPosted() . "')";
+		                . $exam->getActivated() . "','"  
+		                . $exam->getEmailsPosted() . "')";
 				
-		$sql =  "INSERT INTO Exams (UserID, Name, Duration, Activated)" 
+		$sql =  "INSERT INTO Exams (UserID, Name, Duration, Activated, EmailsPosted)" 
 		        .  "VALUES $values";
 		
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
