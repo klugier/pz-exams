@@ -7,20 +7,6 @@ $( document ).ready(function() {
 $('#stage2').hide();
 $('#stage3').hide();
 
-// $('#tab1a').attr('class', 'disabled');
-// $('#tab2a').attr('class', 'disabled active');
-
-// $('#tab1a').click(function(event){
-// 		if ($(this).hasClass('disabled')) {
-// 				return false;
-// 		}
-// });
-// $('#tab2a').click(function(event){
-// 		if ($(this).hasClass('disabled')) {
-// 				return false;
-// 		}
-// });
-
 $('input#exam_duration').keyup(function () { 
 			this.value = this.value.replace(/[^0-9\.]/g,'');
 });
@@ -117,26 +103,49 @@ $('button#add_students').click( function(){
 
 $('button#confirm').click(function(){
 
+	var unlocked_units = new Object();
+
+	for(key in exam.day){
+		unlocked_units[key] = new Object();
+
+		for(var i = 0; i < exam.day[key].length; i++) {
+	    	unlocked_units[key][i] = new Array(exam.day[key][i].bHour, exam.day[key][i].eHour, true);
+		}
+	}
+
+	// var locked_units = new Object();
+
+	// for(key in exam.blockedUnits){
+	// 	alert(exam.blockedUnits[key][0].bHour);
+	// 	locked_units[key] = new Object();
+
+	// 	for(var i = 0; i < exam.blockedUnits[key].length; i++) {
+	//     	locked_units[key][i] = new Array(exam.blockedUnits[key][i].bHour, exam.blockedUnits[key][i].eHour, false);
+	// 	}
+	// }
+
 		$.ajax({
 
 		type: "POST",
 		url: "../php/CreateExamInBase.php",
-		dataType: 'JSON',
+		dataType: "JSON",
 		data: {
 			exam_name : $('input#exam_name').val().trim(),
 			exam_duration : $('input#duration').val(),
 			students_emails : emails,
 			firstnames : first_names,
-			lastnames : last_names
+			lastnames : last_names,
+			unlocked_units : unlocked_units,
+			// locked_units : locked_units
 		},
 		success: function (data) {
-			alert('Pomyslnie dodano egzamin');
+			alert('Pomyślnie dodano egzamin.');
 		},
 		error: function (error) {
-			alert('Wystapil blad przy dodawaniu egzaminu.');
+			alert('Wystąpił blad przy dodawaniu egzaminu.');
 		},
 		complete: function() {
-			window.location = '../index.php';
+			//window.location = '../index.php';
 		}
 
 		});

@@ -27,8 +27,8 @@ final class ExamUnitDatabase
 						. $examUnit->getTimeTo() . "','"
 						. $examUnit->getState() . "')";  
 				
-		$sql =  "INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State)" 
-		        .  "VALUES $values";
+		$sql =  "INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) 
+		         VALUES $values";
 		
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	} 

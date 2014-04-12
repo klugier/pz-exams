@@ -2,6 +2,8 @@
 
 include_once("../lib/Lib.php");
 
+//print_r($_POST);
+
 if(isset($_POST['exam_name']) && isset($_POST['exam_duration'])) {
 
     $exam = new Exam();
@@ -17,6 +19,8 @@ if(isset($_POST['exam_name']) && isset($_POST['exam_duration'])) {
 	} else {
 		//echo 'Blad przy wpisywaniu egzaminu';
 	}
+
+	addUnits();
 
 	addStudents();
 
@@ -45,6 +49,43 @@ if(isset($_POST['students_emails']) && isset($_POST['firstnames']) && isset($_PO
 			} else {
 				//echo '<br/>Blad przy wpisywaniu studenta';
 			}
+		}
+	}
+}
+
+function addUnits()
+{
+	if(isset($_POST['unlocked_units']))
+	{
+		$units = $_POST['unlocked_units'];
+
+		foreach ($units as $day => $day_units) {
+   			 foreach ($day_units as $unit_index => $unit) 
+   			 {
+   			 	$exam_to_unit = new Exam();
+   			 	$exam_to_unit->setID(26);
+
+   			 	$exam_unit = new ExamUnit();
+   			 	$exam_unit->setDay($day);
+   			 	$exam_unit->setTimeFrom($unit[0]);
+   			 	$exam_unit->setTimeTo($unit[1]);
+
+   			 	if($unit[2] == true)
+   			 	{
+   			 		$exam_unit->setState('unlocked');
+   			 	}
+   			 	else
+   			 	{
+   			 		$exam_unit->setState('locked');
+   			 	}
+
+   			 	if (ExamUnitDatabase::insertExamUnit($exam_to_unit, $exam_unit)) {
+					//echo '<br/>Wpisano unit';
+				} else {
+					//echo '<br/>Blad przy wpisywaniu unit';
+				}
+   			 }
+
 		}
 	}
 }
