@@ -20,7 +20,7 @@
 		 * Zwraca listę ID Examinow przypisanych do studenta
 		 */
 		static public function getExamIDList($studentID){
-			$sql = "Select * from ExamUnits WHERE StudentID  = '" . $studentID . "'";
+			$sql = "Select * from Exams WHERE StudentID  = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$examID = null;
 			
