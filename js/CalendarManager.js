@@ -103,6 +103,14 @@ jQuery( document ).ready(function( $ ) {
 			else if ( a2 > a1 ) return -1 ; 
 			else return 0 ;
 		} ; 
+		
+		this.removeExamHoursForDay = function ( date , startHour   )  {
+			for (var indx in this.day[date]) {
+				if ( this.day[date][indx].bHour == startHour ) { 
+						this.day[date].splice(indx, 1);
+				} 
+			} 
+		} ;
 	}    
 	
 	
@@ -150,15 +158,15 @@ jQuery( document ).ready(function( $ ) {
 			begin = '<div class="col-xs-3 col-sm-3 col-md-3">' +	 
 					'	<div class="panel panel-primary "> ' +
 					'		<div class="panel-heading" >' + date + ' </div> ' +  
-					'			<div class="panel-body" style="height:' + this.height +  'px; overflow-y: scroll;">' +
-					' 				<table class="table">' +  
-					' 					<thead> ' + 
-					'						<tr> ' + 
-					'							<th>usuń</th>' +  
-					'							<th>godzina</th>' +
-					'						</tr>' +
-					'						</thead> ' +
-					'						<tbody>' ; 
+					'		<div class="panel-body" style="height:' + this.height +  'px; overflow-y: scroll;">' +
+					' 			<table class="table">' +  
+					' 				<thead> ' + 
+					'					<tr> ' + 
+					'						<th>usuń</th>' +  
+					'						<th>godzina</th>' +
+					'					</tr>' +
+					'				</thead> ' +
+					'				<tbody>' ; 
 			return begin  ; 
 		} ; 
 			
@@ -177,8 +185,8 @@ jQuery( document ).ready(function( $ ) {
 		
 		this.controlAddExamUnit = function ( startTime , endTime ) { 
 			//alert ( startTime +" aa  " +  endTime ) ; 
-			examUnit =	'<tr> '
-						+ '		<td><input type="checkbox" checked ></td> '
+			examUnit =	'<tr>'
+						+ '		<td><input type="checkbox" class="removeRecordCheckbox" checked ></td> '
 						+ '		<td style="white-space:nowrap">' +  startTime   + '-' +   endTime   + '</td> ' 
 						+ '</tr> ' ; 
 			return examUnit ; 
@@ -221,14 +229,12 @@ jQuery( document ).ready(function( $ ) {
 		
 		this.addRibbonStart = function ( ) { 
 			start = ' <div class="row" style="background:url(img/calendarPanel.png);" >' ;  
-			
 			return start ; 
-			
 		} ; 
 		
+	
 		this.addRibbonEnd = function () { 
 			end = '</div>' ;  
-			
 			return end ; 
 		} ;
 	} 
@@ -278,8 +284,25 @@ jQuery( document ).ready(function( $ ) {
 		calendarControl.printCalendar() ;
 	});  
 	
+	$(document).on("change", ".removeRecordCheckbox", function() {
+		if ( $(this).prop("checked") == false  ) { 
+			var currentInput = $(this) ;  
+			$(this).closest("tr").fadeOut("slow" , function () { 
+				var date =   jQuery.trim( currentInput.closest(".panel").find(".panel-heading").html()) ;
+				var examHours = currentInput.closest("td").next().html().split("-") ;
+				var startHour = jQuery.trim(examHours[0]) ; 
+				exam.removeExamHoursForDay ( date , startHour ) ; 
+				calendarControl.examDays = exam.day ;
+				//alert ("printing calendar" ) ; 
+				calendarControl.printCalendar() ;
+				
+			}) ; 
+		} 
+	});
+	
 	$("#addExamDayGlyph").click( function ( ) { 
 		 $("#duration").val( $('#exam_duration').val() );
 	}); 
+	
 	
 } ); 
