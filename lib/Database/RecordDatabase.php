@@ -20,13 +20,13 @@
 		 * Zwraca listę ID Examinow przypisanych do studenta
 		 */
 		static public function getExamIDList($studentID){
-			$sql = "Select * from Exams WHERE StudentID  = '" . $studentID . "'";
+			$sql = "Select * from Records WHERE StudentID  = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$examID = null;
 			
 			$i = 0;
-			while ($row = $result->fetch_array(MYSQLI_NUM)) {
-				$examID[$i] = $row[0]; 
+			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+				$examID[$i] = $row['ExamID']; 
 				$i++;
 			}
 			return $examID;
@@ -36,7 +36,7 @@
 		 * Zwraca ID ExamUnitsa jezeli jest przypisany, lub NULL jeżeli nie jest przypisany
 		 */
 		static public function getExamUnitID($examID,$studentID){
-			$sql = "Select * from ExamUnits WHERE ExamID = '" . $examID . "' AND StudentID  = '" . $studentID . "'";
+			$sql = "Select * from Records WHERE ExamID = '" . $examID . "' AND StudentID  = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$examUnitID = null;
 			
