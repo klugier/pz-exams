@@ -51,13 +51,32 @@
 		static public function insertStudent($student)
 		{
 			$values = "('"	. $student->getEmail() . "','"
-			                . strval(md5(microtime())) . "','"
 			                . $student->getFirstName() . "','"
 			                . $student->getSurName() . "')";
 			
-			$sql =  "INSERT INTO Students (Email, Code, FirstName, Surname) VALUES $values";
+			$sql =  "INSERT INTO Students (Email, FirstName, Surname) VALUES $values";
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		} 
+		
+		static public function addStudentCode($student, $code)
+		{
+			$sql = "Select * from Students WHERE ID  = '" . $student->getID() . "'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			if ($result->num_rows == 0) { 
+				return false;
+			}
+			$row=$result->fetch_array(MYSQLI_ASSOC);
+			
+			if(!$row['Code']==NULL){
+				return false;
+			}
+		
+			$sql = "UPDATE Students SET 
+			        Code  = '" . $code . "'
+			        WHERE ID = '" . $student->getID() . "'";
+			
+			return DatabaseConnector::getConnection()->query($sql) ? true : false;
+		}
 		
 		static public function updateStudent($student)
 		{

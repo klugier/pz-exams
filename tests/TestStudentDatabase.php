@@ -23,18 +23,24 @@
 		echo "Something went Wrong<br/>";
 	}
 	
+	if(StudentDatabase::addStudentCode($testStudents[0], strval(md5(microtime())))){
+		echo "Code added <br/>";
+	}else{
+		echo "Code has failed <br/>";
+	}
 	
+	if(StudentDatabase::addStudentCode($testStudents[0], strval(md5(microtime())))){
+		echo "Code added <br/>";
+	}else{
+		echo "Code has failed <br/>";
+	}
+		
 	if(StudentDatabase::deleteStudent($testStudents[0])){
 		echo "There's no more evidence of ". $testStudents[0]->getID() . "<br/>";
 	}else{
 		echo "nope<br/>";
 	}
-	
-	if(StudentDatabase::insertStudents($testStudents)){
-		echo "Done and Done x3 + delete after checking it works <br/>";
-	}else{
-		echo "nope <br/>";
-	}
+
 	
 	include("TestEnd.php");
 ?>

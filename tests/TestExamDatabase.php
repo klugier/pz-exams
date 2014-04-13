@@ -3,8 +3,11 @@
 	
 	include_once('../lib/Lib.php');
 	
+	$testUser = new User;
+	$testUser->setID(1);
 	$exam = ExamDatabase::getExamList(1);
 	$examNum = ExamDatabase::countExams(1);
+	
 	if ($exam == null) {
 		echo "Następujący test zakończył się niepowodzeniem: \"ExamDatabase::getExamDatabase(1);\"" . "<br \>";
 		echo DatabaseConnector::getLastError();
@@ -19,8 +22,16 @@
 			     $exam[$i]->getEmailsPosted() . "<br/>";
 					 
 		
-		/*$testUser = new User;
-		$testUser->setID(1);
+	echo "<br/>";
+		
+	if(ExamDatabase::activateExam($testUser, $exam[1]))
+		echo $exam[1]->getID() . " Activated status is now " . ($exam[1]->getActivated()? 0 : 1) . " <br/>";
+	else
+		echo "Did not work <br/>";
+		
+		
+	
+		/*
 		$testExam = new Exam;
 		$testExam->setName('Test');
 		$testExam->setDuration('1:00:00');

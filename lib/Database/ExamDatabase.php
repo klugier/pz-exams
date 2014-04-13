@@ -73,9 +73,17 @@ final class ExamDatabase
 		if ($result->num_rows == 0) { 
 			return false;
 		}
+		$row=$result->fetch_array(MYSQLI_ASSOC);
+		$active = $row['Activated'];
+		
+		if($active){
+			$active=false;
+		}else{
+			$active=true;
+		}	
 		
 		$sql = "UPDATE Exams SET 
-		        Activated = '" . $exam->getActivated() . "' 
+		        Activated = '" . $active . "' 
 		        WHERE ID = '" . $exam->getID() . "'";
 		
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
