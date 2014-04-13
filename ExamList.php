@@ -32,6 +32,7 @@
 					<th>Nazwa</th>
 					<th><center>Aktywny</center></th>
 					<th><center>Operacje</center></th>
+					<th><center>Aktywacja</center></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,15 +50,28 @@
 			if ($exam->getActivated()) {
 				echo "<center style=\"color: #156815;\"><b>Tak</b></center>";
 			} else {
-				echo "<center><b><a href=\"#\" style=\"color: #801313;\">Nie</a></b></center>";
+				echo "<center><b style=\"color: #801313;\">Nie</b></center>";
 			}
 			echo "</td>";
 			
 			// Options
 			echo "<td><center>" .
-				"<a href=\"#\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\"></i></a>" .
-				"<a href=\"#\"><i class=\"glyphicon glyphicon-remove\"></i></a>" .
-				"</center></td>";
+				 "<a href=\"#\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\"></i></a>" .
+				 "<a href=\"#\"><i class=\"glyphicon glyphicon-trash\"></i></a>";
+			
+			// if ($
+			
+
+			echo "</center></td>";
+			
+			echo "<td><center>";
+			if (!$exam->getActivated()) {
+				echo "<button type=\"button\" class=\"btn btn-success dropdown-toggle btn-sm\"><b>Aktywuj</b></button>";
+			}
+			else {
+				echo "<button type=\"button\" class=\"btn btn-danger dropdown-toggle btn-sm\"><b>Aktywuj</b></button>";
+			}
+			echo "</center></td>";
 			
 			echo "</tr>";
 		
