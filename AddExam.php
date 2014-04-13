@@ -1,8 +1,20 @@
-<?php 
+<?php
+	ob_start();
+	
 	include_once("lib/Lib.php");
 	$title = "$appName - Dodaj egzamin - Podstawowe dane";
 	$scripts = array(  "js/CalendarManager.js" , "js/AddExam.js" );
 	include("html/Begin.php");
+	
+	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
+		echo "<div class=\"alert alert-danger\"><b>Strona widoczna jedynie dla zalogowanych użytkowników.</b> Za 3 sekundy zostaniesz przeniesiony na stronę główną.</div>";
+		header("refresh: 3; url=index.php");
+		include("html/End.php");
+		
+		ob_end_flush();
+		return;
+	}
+	
 	include("html/UserPanel.php");
 	
 	$examSideMenuAcctualStep = 0;
@@ -22,4 +34,6 @@
 	include("html/ExamStage3.php");
 	include("html/ExamSideMenuEnd.php");
 	include("html/End.php");
+	
+	ob_end_flush();
 ?> 

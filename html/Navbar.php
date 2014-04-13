@@ -12,7 +12,6 @@
 			<li><a	class="navbar-brand"	href="Contact.php">Kontakt</a></li>
 			<li><a	class="navbar-brand"	href="Authors.php">Autorzy</a></li>
 			<li><a	class="navbar-brand"	href="Help.php">Pomoc</a></li>
-			<li><a	class="navbar-brand"	href="AddExam.php">Dodaj	egzamin</a></li>
 			</ul>
 			<?php
 				if	(Settings::getDebug()	==	1)	{

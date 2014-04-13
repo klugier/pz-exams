@@ -4,7 +4,6 @@
 	include_once("lib/Lib.php");
 	$title = "$appName - Lista egzaminów";
 	include("html/Begin.php");
-	include("html/UserPanel.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
 		echo "<div class=\"alert alert-danger\"><b>Strona widoczna jedynie dla zalogowanych użytkowników.</b> Za 3 sekundy zostaniesz przeniesiony na stronę główną.</div>";
@@ -14,7 +13,9 @@
 		ob_end_flush();
 		return;
 	}
-
+	
+	include("html/UserPanel.php");
+	
 	$id = unserialize($_SESSION['USER'])->getID();
 	$exams = ExamDatabase::getExamList($id);
 	
