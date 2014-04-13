@@ -81,6 +81,13 @@ jQuery( document ).ready(function( $ ) {
 			}
 		};
 		
+		this.removeDaysWithoutExams = function ( ) { 
+			for ( var date in this.day ) {  
+				if ( this.day[date].length === 0 ) {
+					delete this.day[ date ]  ;
+				} 
+			} 
+		} ; 
 		
 		this.sortDaysArray  = function ( ) { 
 			var sortedDaysArray = new Array( ); 
@@ -108,6 +115,7 @@ jQuery( document ).ready(function( $ ) {
 			for (var indx in this.day[date]) {
 				if ( this.day[date][indx].bHour == startHour ) { 
 						this.day[date].splice(indx, 1);
+						this.removeDaysWithoutExams() ; 
 				} 
 			} 
 		} ;
@@ -217,6 +225,7 @@ jQuery( document ).ready(function( $ ) {
 					calendarControl+="<hr>" ;
 					calendarControl+=this.addRibbonStart() ; 
 				} 
+				//alert ( " day in calendar " + day   ) ;
 				calendarDayControl = new CalendarDayControl ( day , this.examDays[day]) ;
 				calendarControl+=calendarDayControl.printControl();
 				daysCounter++; 
