@@ -44,34 +44,7 @@ jQuery( document ).ready(function( $ ) {
 		
 	} 
 	
-	
-	function checkDomain($email) {
-		var isCorrectDomain = false;
-		
-		$.ajax({
-			url:   'lib/Ajax/AjaxUserDomainRequest.php',
-			async: false,
-			type:  'post',
-			data: { 'email' : $email },
-			success:
-				function(data, status) {
-					if (data.status.trim() === "dataRecived") {
-						if (data.domain.trim() === "exists") {
-							isCorrectDomain = true;
-						}
-					}
-				}
-			,
-			error:
-				function(jqXHR, textStatus, errorThrown) {
-					console.log(textStatus);
-				}
-		});
-		
-		return isCorrectDomain;
-	}
-	
-	var passValidationManager = new PasswordValidationManager();
+
 	
 	// jQuery events 
 	
@@ -110,11 +83,6 @@ jQuery( document ).ready(function( $ ) {
 		if (!emailRegexPattern.test(email)) { 
 			// alert() ;
 			emailError ( emailFieldErrorType.NOT_AN_EMAIL  ) ;
-			$formGroup.removeClass('has-success');
-			$formGroup.addClass('has-error');
-		} 
-		else if (checkDomain(email) == false) { 
-			emailError ( emailFieldErrorType.BAD_DOMAIN  ) ;
 			$formGroup.removeClass('has-success');
 			$formGroup.addClass('has-error');
 		} 
