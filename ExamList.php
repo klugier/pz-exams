@@ -57,8 +57,8 @@
 			
 			// Options
 			echo "<td><center>" .
-				 "<a href=\"#\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\"></i></a>" .
-				 "<a href=\"#\"><i class=\"glyphicon glyphicon-trash\"></i></a>";
+				 "<a href=\"#\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" title=\"Edytuj egzamin\"></i></a>" .
+				 "<a href=\"#\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
 			
 			// if ($
 			
