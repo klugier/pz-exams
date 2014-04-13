@@ -8,4 +8,6 @@
 	include_once("ExamUnitDatabase.php");
 	include_once("Student.php");
 	include_once("StudentDatabase.php");
+	include_once("Record.php");
+	include_once("RecordDatabase.php");
 ?>
