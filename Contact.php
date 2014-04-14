@@ -1,27 +1,9 @@
 <?php
    include_once("lib/Lib.php");
    
-
    $title = "$appName - Kontakt";
-   $scriptsDefer = array("js/ValidateContactForm.js");
    include("html/Begin.php");
-   ?>
-
-<?php 
-   if (isset($_SESSION['formErrorCode'])) {
-      echo '<div class="alert alert-danger">' ;
-      echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
-   if ($_SESSION['formErrorCode'] == 'invalidCaptcha') {  
-      echo '<strong>Uwaga!!! Rejestracja nie powiodła się. Wprowadzony kod jest nieprawidłowy. </strong>'; 
-      unset($_SESSION['formErrorCode']);
-   } 
-   else if ($_SESSION['formErrorCode'] == 'userAlreadyInDB') {  
-      echo '<strong>Uwaga!!! Rejestracja nie powiodła się. Na podany email już zarejestrowano konto. </strong>';
-      unset($_SESSION['formErrorCode']);
-   } 
-   echo '</div>' ; 
-   }
-   ?> 
+?>
 
 <form id="contactForm" class="form-horizontal" action="./php/HandlingContactForm.php" method="post">
 
@@ -76,11 +58,70 @@
   </div>
   <div class="form-group">
     <div class="control-group">
+      <div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
+	<input type="text" class="form-control" name="captcha_code" id="captcha_code"> 
+      </div>
+      <span class="help-block col-xs-4 col-sm-4 col-md-4" id="captcha_code-error-message">
+      </span>
+    </div> 
+  </div>
+  <div class="form-group">
+    <div class="control-group">
       <div class="col-xs-12 col-sm-12 col-md-12 controls">
 	<button type="submit" class="btn btn-lg btn-block btn-primary">Wyślij</button>
       </div>
     </div>
   </div>
 </form>
-  
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+
+<script>
+$("#contactForm").validate({
+    errorElement: 'span',
+    rules: {
+	subject: "required",
+	message: "required",
+	captcha_code: {
+	    required: true,
+	    minlength: 6
+	},
+	email: {
+	    required: true,
+	    email: true
+	}
+    },
+    messages: {
+	subject: "Prosz podac temat",
+	message: "Prosze wpisac tresc wiadomosci",
+	captcha_code: {
+	    required: "Prosze wpisac kod z obrazka",
+	    minlength: "Wpisano nieprawidlowa ilosc znakow"
+	},
+	email: {
+	    required: "Prosze podac swoj kontaktowy adres e-mail",
+	    email: "Adres powinien posiadac format name@domain.com"
+	}
+    },
+    //odpowiedzialne za umieszcenie komunikatu wewntrz odpowiedniego element
+    //o id [element]-error-message, gdzie [element] jest podany jako parametr funkcji
+    errorPlacement: function(error, element) {
+        var name = $(element).attr("name");
+	if(error.length>0){
+	    $("#" + name + "-error-message").append("<span class=\"badge pull-left\" style=\"background-color:#F13333;\">!</span>");
+	    error.appendTo($("#" + name + "-error-message"));
+	    $("#" + name + "-error-message").children("span").eq(1).css(
+		{
+		    padding: '5px',
+		    color: '#B94A48'
+		}
+	    );
+	}else{
+	    $("#" + name + "-error-message").empty();
+	}
+    }
+});
+</script>
+
 <?php include ("html/End.php"); ?>
