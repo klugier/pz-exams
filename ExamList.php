@@ -2,7 +2,9 @@
 	ob_start();
 	
 	include_once("lib/Lib.php");
+	
 	$title = "$appName - Lista egzaminów";
+	$scripts = array("js/Lib/Plugins/tooltip.js");
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
@@ -57,12 +59,9 @@
 			
 			// Options
 			echo "<td><center>" .
-				 "<a href=\"#\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" title=\"Edytuj egzamin\"></i></a>" .
+				 "<a href=\"#\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Tooltip on top\"></i></a>" .
 				 "<a href=\"#\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
 			
-			// if ($
-			
-
 			echo "</center></td>";
 			
 			echo "<td><center>";
