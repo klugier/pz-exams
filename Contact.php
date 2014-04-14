@@ -33,16 +33,14 @@
       </span>
     </div>
   </div>
-  <div class="form-group">
+  <div class="control-group">
     <div class="form-group">
-      <div class="control-group">
-	<label class="col-xs-2 col-sm-2 col-md-2 control-label" for="inputMessage">Wiadomość</label>
-	<div class="col-xs-6 col-sm-6 col-md-6 controls">
-	  <textarea class="form-control" type="text" name="message" id="message" placeholder="Wiadomość" rows="20"></textarea>
-	</div>
-	<span class="help-block col-xs-4 col-sm-4 col-md-4" id="message-error-message" >
-	</span>
+      <label class="col-xs-2 col-sm-2 col-md-2  control-label" for="inputMessage">Wiadomość</label>
+      <div class="col-xs-5 col-sm-5 col-md-5 controls">
+	<textarea class="form-control" type="text" name="message" id="message" placeholder="Wiadomość" rows="10"></textarea>	
       </div>
+      <span class="help-block col-xs-4 col-sm-4 col-md-4" id="message-error-message" >
+      </span>
     </div>
   </div>
   <div class="form-group" >

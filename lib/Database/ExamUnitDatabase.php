@@ -32,10 +32,61 @@ final class ExamUnitDatabase
 		}
 		return $examUnitID;
 	}
+	
+	static public function getExamUnit($id){
+		$sql = "SELECT * FROM ExamUnits WHERE ID = '" . $id . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$examUnit = null;
+        
+		if($row = $result->fetch_array(MYSQLI_ASSOC)){
+			$examUnit = new ExamUnit(); 
+			$examUnit->setID($row['ID']);
+			$examUnit->setExamID($row['ExamID']);
+			$examUnit->setDay($row['Day']);
+			$examUnit->setTimeFrom($row['TimeFrom']);
+			$examUnit->setTimeTo($row['TimeTo']);
+			$examUnit->setState($row['State']);
+		}
+		return $examUnit;
+	}
+	
+	static public function countLockedExamUnits($examID)
+	{
+		$sql = "SELECT COUNT(ExamID) AS UnitExamsCount FROM ExamUnits
+		        WHERE ExamID = '" . $examID . "' AND State = 'Locked'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$row = $result->fetch_array(MYSQLI_NUM);
+		
+		return $row[0];
+	}
+	
+	static public function countLockedExamUnitsByDay($examID, $day)
+	{
+		$sql = "SELECT COUNT(ExamID) AS UnitExamsCount FROM ExamUnits
+		        WHERE ExamID = '" . $examID . "' AND Day = '" . $day . "' AND State = 'Locked'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$row = $result->fetch_array(MYSQLI_NUM);
+		
+		return $row[0];
+	}
 
-	/*
-	 * Dodanie egzaminu do bazy danych 
-	 */
+	static public function getExamDays($examID){
+		$sql = "SELECT DISTINCT Day FROM ExamUnits WHERE ExamID = '" . $examID . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		
+		$i=0;
+		while($row = $result->fetch_array(MYSQLI_NUM)){
+			$days[$i]=$row[0];
+			$i++;
+		}
+		
+		return $days;
+	}
+	
+	/*********************************************************************
+	 ********************* Podstawowe funkcje sql ************************
+	 *********************************************************************/
+	 
 	static public function insertExamUnit($exam, $examUnit)
 	{ 
 		$values = "('"	. $exam->getID() . "','"

@@ -40,7 +40,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="email" class="col-xs-2 col-sm-2 col-md-2 control-label">E-mail </label>
+				<label for="email" class="col-xs-2 col-sm-2 col-md-2 control-label">E-mail* </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="email" required class="form-control" id="email" placeholder="Wprowadź e-mail" title="" name="email" value="<?php if(isset($_SESSION['email'])){ echo $_SESSION['email']; } else { echo '';  }?>">
 				</div> 
@@ -59,7 +59,7 @@
 				</span>
 			</div> --> 
 			<div class="form-group">
-				<label for="passwd" class="col-xs-2 col-sm-2 col-md-2 control-label"> Hasło </label>
+				<label for="passwd" class="col-xs-2 col-sm-2 col-md-2 control-label"> Hasło* </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="password" required class="form-control inputPassword" id="passwd" name="passwd" placeholder="Wprowadź Haslo" title="">
 				</div>
@@ -68,7 +68,7 @@
 				</span>
 			</div>
 			<div class="form-group">
-				<label for="passwd-repat" class="col-xs-2 col-sm-2 col-md-2 control-label"> Potwierdź hasło </label>
+				<label for="passwd-repat" class="col-xs-2 col-sm-2 col-md-2 control-label"> Potwierdź hasło* </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="password" required class="form-control inputPassword" id="passwd-repeat" placeholder="Powtórz Haslo" title="">
 				</div>
@@ -82,14 +82,12 @@
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="text" class="form-control" id="firstname" placeholder="Wprowadź Imię" name="name" value="<?php if(isset($_SESSION['name'])){ echo $_SESSION['name']; } else { echo '';  }?>">
 				</div>
-				<label class="control-label"> * </label> 
 			</div>
 			<div class="form-group">
 				<label for="lastname" class="col-xs-2 col-sm-2 col-md-2 control-label">Nazwisko</label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<input type="text" class="form-control" id="lastname" placeholder="Wprowadź Nazwisko" name="surname" value="<?php if(isset($_SESSION['surname'])){ echo $_SESSION['surname']; } else { echo '';  }?>">
 				</div>
-				<label class="control-label"> * </label>  
 			</div>  
 			<div class="form-group">
 				<label for="gender"  class="col-xs-2 col-sm-2 col-md-2 control-label"> Płeć </label>
@@ -100,7 +98,6 @@
 						<option>Mężczyzna</option>
 					</select>
 				</div> 
-				<label class="control-label"> * </label> 
 			</div>
 			<br /> 
 			<div class="form-group" >
@@ -126,7 +123,7 @@
 					
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
-					<h6> * - pola opcjonalne przy rejestracji </h6> 
+					<h6> * - pola obowiązkowe przy rejestracji </h6> 
 				</div> 
 			</div> 	
 			<div class="form-group">

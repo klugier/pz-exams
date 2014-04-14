@@ -27,6 +27,26 @@ final class ExamDatabase
 	}
 	
 	/*
+	 * Zwraca exam o danym ID
+	 */
+	static public function getExam($id)
+	{
+		$sql = "SELECT * FROM Exams WHERE ID = '" . $id . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$exam = null;
+        
+		if($row = $result->fetch_array(MYSQLI_ASSOC)){
+			$exam = new Exam(); 
+			$exam->setID($row['ID']);
+			$exam->setUserID($row['UserID']);
+			$exam->setName($row['Name']);
+			$exam->setDuration($row['Duration']);
+			$exam->setActivated($row['Activated']);
+			$exam->setEmailsPosted($row['EmailsPosted']);
+		}
+		return $exam;
+	}  
+	/*
 	 * Zwraca listę egzaminów w tabeli danego usera
 	 */
 	static public function getExamList($userID)
@@ -104,9 +124,10 @@ final class ExamDatabase
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
     
-	/*
-	 * Dodanie egzaminu do bazy danych 
-	 */
+	/*********************************************************************
+	 ********************* Podstawowe funkcje sql ************************
+	 *********************************************************************/
+		 
 	static public function insertExam($user, $exam)
 	{ 
 		$values = "('"	. $user->getID() . "','"
