@@ -6,16 +6,38 @@
  	final class RecordDatabase
  	{
 	
-		// Do testów
-		static public function getRecordID($record)
+		/* 
+		 * Zwraca ID Recordu jezeli jest przypisany, lub NULL jeżeli nie jest przypisany
+		 */
+		static public function getRecordID($examID, $studentID)
 		{ 
-			$sql = "Select * from Records WHERE StudentID  = '" . $record->getStudentID() . "'";
+			$sql = "Select * from Records WHERE ExamID = '" . $examID . "' AND StudentID  = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
-		
-			$row = $result->fetch_array(MYSQLI_NUM);
-			return $row[0];
+			$ID = null;
+	
+			if($row = $result->fetch_array(MYSQLI_NUM))
+				$ID = $row[0]; 
+	
+			return $ID;
 		}
 		
+		static public function getRecord($recordID)
+		{
+			$sql = "Select * from Records WHERE ID  = '" . $recordID . "'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$record = null;
+        
+			if($row = $result->fetch_array(MYSQLI_ASSOC)){
+				$record = new Record(); 
+				$record->setID($row['ID']);
+				$record->setStudentID($row['StudentID']);
+				$record->setExamID($row['ExamID']);
+				$record->setExamUnitID($row['ExamUnitID']);
+			}
+			
+			return $record;
+		}
+
 		/*
 		 * Zwraca listę ID Examinow przypisanych do studenta
 		 */
