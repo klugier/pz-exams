@@ -71,7 +71,7 @@ jQuery(document).ready(function($) {
 		if (successful) {
 			$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
 			$("#" + id).html("<b>Dezaktywuj</b>");
-			$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
+			$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
 		}
 		
 		return successful;
@@ -84,7 +84,7 @@ jQuery(document).ready(function($) {
 		if (successful) {
 			$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
 			$("#" + id).html("<b>Aktywuj</b>");
-			$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
+			$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
 		}
 		
 		return successful;
