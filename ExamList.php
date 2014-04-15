@@ -49,7 +49,7 @@
 		$i = 1;
 		foreach ($exams as $exam) {
 			echo "<tr id=\"row-id-" . $exam->getID() . "\">";
-			echo "<td style=\"text-align: center;\">" . $i . ".</td>\n";
+			echo "<td style=\"text-align: center;\">" . $exam->getID() . ".</td>\n";
 			echo "<td>" . $exam->getName() . "</td>\n";
 			
 			echo "<td style=\"text-align: center\">0/0</td>";

@@ -11,19 +11,29 @@
 	}
 	
 	$id = -1;
+	$user = null;
 	
 	if (!isset($_SESSION["USER"])) {
 		$errorMsg = "Błąd krytyczny: użytkownik jest niezalogowany.";
 		handlingError($errorMsg);
 		return;
+	} else {
+		$user = unserialize($_SESSION["USER"]);
 	}
 	
 	if (!isset($_POST["ID"])) {
 		$errorMsg = "Nie przekazano parametrów do zapytania Ajax.";
 		handlingError($errorMsg);
 		return;
-	} else
+	} else {
 		$id = $_POST["ID"];
+	}
+	
+	if (!ExamDatabase::deleteExam($user->getID(), $id)) {
+		$errorMsg = "Nie udało się usunąć egzaminu.";
+		handlingError($errorMsg);
+		return;
+	}
 	
 	handlingSuccess();
 ?>
