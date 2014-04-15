@@ -1,9 +1,8 @@
-
-
 <?php
 	include_once("lib/Lib.php");   
 	$title = "$appName - Kontakt";
 	$scriptsDefer = array("js/ValidateContactForm.js");
+	$scripts = array("js/Lib/jquery.validate.min.j");
 	include("html/Begin.php");
 	?>
 <form id="contactForm" class="form-horizontal" action="./php/HandlingContactForm.php" method="post">
@@ -71,7 +70,7 @@
 	</div>
 </form>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+
 <?php include ("html/End.php"); ?>
 
 
