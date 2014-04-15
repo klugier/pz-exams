@@ -71,7 +71,7 @@
 			echo "</td>";
 			
 			echo "<td style=\"text-align: center;\">";
-			if ($exam->getActivated()) {
+			if (!$exam->getActivated()) {
 				echo "<button type=\"button\" id=\"row-activate-button-id-" . $i . "\" class=\"btn btn-success dropdown-toggle btn-sm\" style=\"width: 90px\"><b>Aktywuj</b></button>";
 			}
 			else {
