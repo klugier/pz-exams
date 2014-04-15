@@ -56,7 +56,7 @@ CREATE TABLE `ExamUnits` (
 	`TimeTo`   TIME                        NOT NULL,
 	`State`    ENUM ('unlocked', 'locked') NOT NULL,
 	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`),
+	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`) ON DELETE CASCADE,
 	INDEX (`ExamID`)
 ) ENGINE=InnoDB;
 
