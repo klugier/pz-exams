@@ -4,7 +4,7 @@
 	include_once("lib/Lib.php");
 	
 	$title = "$appName - Lista egzaminów";
-	$scripts = array("js/ExamList.js");
+	$scripts = array("js/Lib/bootbox.min.js", "js/ExamList.js");
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
@@ -50,7 +50,7 @@
 		foreach ($exams as $exam) {
 			echo "<tr id=\"row-id-" . $exam->getID() . "\">";
 			echo "<td style=\"text-align: center;\">" . $exam->getID() . ".</td>\n";
-			echo "<td>" . $exam->getName() . "</td>\n";
+			echo "<td id=\"row-name-id-" . $exam->getID() . "\">" . $exam->getName() . "</td>\n";
 			
 			echo "<td style=\"text-align: center\">0/0</td>";
 			
@@ -66,7 +66,7 @@
 			// Options
 			echo "<td style=\"text-align: center;\">" .
 				 "<a href=\"\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj egzamin\"></i></a>" .
-				 "<a id=\"row-delete-id-" . $i . "\" style=\"cursor: pointer;\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
+				 "<a id=\"row-delete-id-" . $exam->getID() . "\" style=\"cursor: pointer;\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
 			
 			echo "</td>";
 			
