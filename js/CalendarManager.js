@@ -280,6 +280,9 @@ jQuery( document ).ready(function( $ ) {
 		if (Date.parse(examDate) < today){
 			validate = 3;
 		}
+		if ($("#duration").val() < 5) {
+			validate = 4;
+		}
 
 		if( validate == 1){
 			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
@@ -290,7 +293,10 @@ jQuery( document ).ready(function( $ ) {
 		} else if ( validate == 3) {
 			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
 											'<span style="padding:5px">Podana data już minęła. Podaj inną date.</span>') ;			
-		}  else {
+		} else if ( validate == 4) {
+			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Czas egzaminu powinien wynosić co najmniej 5 minut.</span>') ;			
+		} else {
 			exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  
 			calendarControl.examDays = exam.day ;
 			calendarControl.printCalendar() ;			
