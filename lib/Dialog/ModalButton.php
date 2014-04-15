@@ -4,7 +4,7 @@
 	
 	<div class="modal fade modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   		<div class="modal-dialog modal-sm">
-    		<div class="modal-content" style="background-color:#BABEC2;">
+    		<div class="modal-content" style="background-color:#D5D4D9;;">
       			<div class="modal-header">
         			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         			<h3 class="modal-title" id="myModalLabel"><b>Dodawanie terminu</b></h3>
@@ -14,13 +14,13 @@
       					<div class="form-group" id="duration_group">
 							<label for="duration" class="col-sm-5 control-label">Czas egzaminu</label>
 							<div class="col-sm-3">
-								<input name="duration" type="number" class="form-control" id="duration" placeholder="" maxlength="2" value="20">
+								<input name="duration" type="number" class="form-control" id="duration" placeholder="" maxlength="2" value="">
 							</div>
 						</div>
       					<div class="form-group">
                 			<label for="dtp_input2" class="col-sm-5 control-label">Dzień</label>
                 			<div class="input-group date form_date col-md-6" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    			<input name="date" class="form-control"  id="exam-date" size="16" type="text" value="2014-02-02" readonly>
+                    			<input name="date" class="form-control"  id="exam-date" size="16" type="text" value="2014-06-06" readonly>
                     			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar glyphicon-nonescaped"></span></span>
                 			</div>
