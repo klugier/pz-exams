@@ -45,7 +45,7 @@
                 			</div>
 							<input type="hidden" id="dtp_input3" value="" /><br/>
     	        		</div>
-            	   		<span class="help-block" id="error-form"></span>          					
+            	   		<span class="help-block" id="error" style="height:10px;"></span>          					
           			</div>   
       					<div class="modal-footer">
         					<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
