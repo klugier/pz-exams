@@ -4,10 +4,31 @@ jQuery(document).ready(function($) {
 		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);
 		var rowID  = "#row-id-" + examID;
 		
-		// TODO: Powinno być zapytanie ajax.
-		
-		$(rowID).hide("slow");
-		// $(rowID).remove();
+		$.ajax({
+			type: "POST",
+			url:  "lib/Ajax/AjaxExamDeleteRequest.php",
+			data: {
+				ID : examID
+			},
+			success: function(data, status) {
+				status = data.status.trim();
+				
+				if (status === "success") {
+					$(rowID).hide("slow");
+					// $(rowID).remove();
+				}
+				else if (status === "failed") {
+					msg = data.errorMsg.trim();
+					
+					if (msg != null) {
+						alert(msg);
+					}
+				}
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert("Nie udało się uruchomić zapytania Ajax.");
+			}
+		});
 	});
 	
 	$("button[id^=row-activate-button-id-]").click(function() {

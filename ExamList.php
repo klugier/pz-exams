@@ -31,11 +31,12 @@
 		echo "<hr />";
 		
 		echo '
-		<table class="table table-bordered">
+		<table class="table">
 			<thead>
 				<tr>
 					<th style="text-align: center">ID</th>
 					<th>Nazwa</th>
+					<th style="text-align: center">Zapełnienie</th>
 					<th style="text-align: center">Aktywny</th>
 					<th style="text-align: center">Operacje</th>
 					<th style="text-align: center">Aktywacja</th>
@@ -50,6 +51,8 @@
 			echo "<tr id=\"row-id-" . $exam->getID() . "\">";
 			echo "<td style=\"text-align: center;\">" . $i . ".</td>\n";
 			echo "<td>" . $exam->getName() . "</td>\n";
+			
+			echo "<td style=\"text-align: center\">0/0</td>";
 			
 			// Activated
 			echo "<td id=\"row-activated-id-" . $i . "\" style=\"text-align: center;\">";
