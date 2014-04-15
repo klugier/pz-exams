@@ -42,12 +42,12 @@ jQuery(document).ready(function($) {
 		var id = $(this).attr("id");
 		
 		if (currentStatus == -1 || currentStatus == 0) {
-			activate(id);
-			currentStatus = 1;
+			if (activate(id))
+				currentStatus = 1;
 		}
 		else {
-			deactivate(id);
-			currentStatus = 0;
+			if (deactivate(id))
+				currentStatus = 0;
 		}
 	});
 	
@@ -55,30 +55,80 @@ jQuery(document).ready(function($) {
 		var id = $(this).attr("id");
 		
 		if (currentStatus == -1 || currentStatus == 1) {
-			deactivate(id);
-			currentStatus = 0;
+			if (deactivate(id))
+				currentStatus = 0;
 		}
 		else {
-			activate(id);
-			currentStatus = 1;
+			if (activate(id))
+				currentStatus = 1;
 		}
 	});
 	
 	function activate(id) {
 		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);
+		var successful = sendActivationRequest(examID, "activate");
 		
-		$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
-		$("#" + id).html("<b>Dezaktywuj</b>");
-		$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
+		if (successful) {
+			$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
+			$("#" + id).html("<b>Dezaktywuj</b>");
+			$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
+		}
+		
+		return successful;
 	}
 	
 	function deactivate(id) {
 		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);
+		var successful = sendActivationRequest(examID, "deactivate");
 		
-		$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
-		$("#" + id).html("<b>Aktywuj</b>");
-		$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
+		if (successful) {
+			$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
+			$("#" + id).html("<b>Aktywuj</b>");
+			$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
+		}
+		
+		return successful;
+	}
+	
+	function sendActivationRequest(examID, mode) {
+		setSendActivationSuccess(false);
+		
+		$.ajax({
+			type:  "POST",
+			url:   "lib/Ajax/AjaxExamActivationRequest.php",
+			async: false,
+			data: {
+				id : examID,
+				mode : mode,
+			},
+			success: function(data, status) {
+				status = data.status.trim();
+				
+				if (status != null) {
+					if (status === "success") {
+						setSendActivationSuccess(true);
+					}
+					else if (status === "failed") {
+						msg = data.errorMsg.trim();
+						
+						if (msg != null) {
+							alert(msg);
+						}
+					}
+				}
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert("Nie udało się uruchomić zapytania Ajax.");
+			}
+		});
+		
+		return ajaxSendActivationSuccess;
+	}
+	
+	function setSendActivationSuccess(success) {
+		ajaxSendActivationSuccess = success;
 	}
 	
 	var currentStatus = -1;
+	var ajaxSendActivationSuccess = false;
 });
