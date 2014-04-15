@@ -1,32 +1,39 @@
 jQuery(document).ready(function($) {
-    $("a[id^=row-delete-id-]").click(function() {
-		var id    = $(this).attr("id");
-		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);
-		var rowID  = "#row-id-" + examID;
+	bootbox.setDefaults({ locale: "pl" });
+	
+	$("a[id^=row-delete-id-]").click(function() {
+		var id       = $(this).attr("id");
+		var examID   = id.slice(id.lastIndexOf("-") + 1, id.length);
+		var examName = $("#row-name-id-" + examID).html();
+		var rowID    = "#row-id-" + examID;
 		
-		$.ajax({
-			type: "POST",
-			url:  "lib/Ajax/AjaxExamDeleteRequest.php",
-			data: {
-				ID : examID
-			},
-			success: function(data, status) {
-				status = data.status.trim();
-				
-				if (status === "success") {
-					$(rowID).hide("slow");
-					// $(rowID).remove();
-				}
-				else if (status === "failed") {
-					msg = data.errorMsg.trim();
-					
-					if (msg != null) {
-						alert(msg);
+		bootbox.confirm("Czy na pewno chcesz usunąć następujący egzamin <b>\"" + examName + "\"</b>?", function(result) {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url:  "lib/Ajax/AjaxExamDeleteRequest.php",
+					data: {
+						ID : examID
+					},
+					success: function(data, status) {
+						status = data.status.trim();
+						
+						if (status === "success") {
+							$(rowID).hide("slow");
+							// $(rowID).remove();
+						}
+						else if (status === "failed") {
+							msg = data.errorMsg.trim();
+							
+							if (msg != null) {
+								alert(msg);
+							}
+						}
+					},
+					error: function(xhr, textStatus, errorThrown) {
+						alert("Nie udało się uruchomić zapytania Ajax.");
 					}
-				}
-			},
-			error: function(xhr, textStatus, errorThrown) {
-				alert("Nie udało się uruchomić zapytania Ajax.");
+				});
 			}
 		});
 	});

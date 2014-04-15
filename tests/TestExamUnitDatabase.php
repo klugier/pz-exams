@@ -10,7 +10,15 @@
 	$testExamUnit->setTimeTo('14:00:00');
 	$testExamUnit->setState('unlocked');
 	
-	if(ExamUnitDatabase::insertExamUnit($testExam,$testExamUnit)){
+	
+	$Days = ExamUnitDatabase::getExamDays(15);
+	
+	foreach($Days as $day){
+		echo $day . "<br/>";
+	}
+	
+	
+	/*if(ExamUnitDatabase::insertExamUnit($testExam,$testExamUnit)){
 		echo "Done and Done <br/>";
 	}else{
 		echo "nope <br/>";
@@ -33,7 +41,7 @@
 		echo "There's no more evidence of ". $testExamUnit->getID() . "<br/>";
 	}else{
 		echo "nope<br/>";
-	}
+	}*/
 	
 	include("TestEnd.php");		
 ?>
