@@ -73,6 +73,7 @@ $('button#add_students').click( function(){
 	 var l_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
 	 var elements = $();
 
+	 	alert("dupa");
 		emails = $('#student_list').val().match(email_p);
 		first_names = $('#student_list').val().match(f_name_p);
 		last_names = $('#student_list').val().match(l_name_p);
@@ -139,13 +140,13 @@ $('button#confirm').click(function(){
 			// locked_units : locked_units
 		},
 		success: function (data) {
-			alert('Pomyślnie dodano egzamin.');
+			alert('Pomyślnie dodano egzamin. Możesz już dokonać aktywacji na Twojej liście egzaminów.');
 		},
 		error: function (error) {
 			alert('Wystąpił blad przy dodawaniu egzaminu.');
 		},
 		complete: function() {
-			window.location = 'index.php';
+			window.location = 'ExamList.php';
 		}
 
 		});
