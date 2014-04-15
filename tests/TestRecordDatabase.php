@@ -14,7 +14,7 @@
 		echo "nope <br/>";
 	}
 	
-	$testRecords[0]->setID(RecordDatabase::getRecordID($testRecords[0]));	
+	$testRecords[0]->setID(RecordDatabase::getRecordID(16, 21));	
 	$testRecords[0]->setExamID(15);
 	
 	if(RecordDatabase::updateRecord($testRecords[0])){

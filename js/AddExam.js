@@ -127,7 +127,7 @@ $('button#confirm').click(function(){
 		$.ajax({
 
 		type: "POST",
-		url: "../php/CreateExamInBase.php",
+		url: "php/CreateExamInBase.php",
 		dataType: "JSON",
 		data: {
 			exam_name : $('input#exam_name').val().trim(),
@@ -145,7 +145,7 @@ $('button#confirm').click(function(){
 			alert('Wystąpił blad przy dodawaniu egzaminu.');
 		},
 		complete: function() {
-			window.location = '../index.php';
+			window.location = 'index.php';
 		}
 
 		});
