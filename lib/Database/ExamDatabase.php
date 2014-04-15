@@ -86,9 +86,9 @@ final class ExamDatabase
 	/*
 	 * Funkcja do aktywacji egzaminu 
 	 */
-	static public function activateExam($user, $exam)
+	static public function activateExam($userID, $exam)
 	{
-		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $user->getID() . "'";
+		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 
 			return false;
@@ -109,9 +109,9 @@ final class ExamDatabase
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
 	
-	static public function PostEmail($user, $exam)
+	static public function PostEmail($userID, $exam)
 	{
-		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $user->getID() . "'";
+		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 
 			return false;
@@ -128,9 +128,9 @@ final class ExamDatabase
 	 ********************* Podstawowe funkcje sql ************************
 	 *********************************************************************/
 		 
-	static public function insertExam($user, $exam)
+	static public function insertExam($userID, $exam)
 	{ 
-		$values = "('"	. $user->getID() . "','"
+		$values = "('"	. $userID . "','"
 		                . $exam->getName() . "','" 
 		                . $exam->getDuration() . "','"
 		                . $exam->getActivated() . "','"  
@@ -146,9 +146,9 @@ final class ExamDatabase
 	 * Edycja egzaminu (nazwa, czas trwania) w bazie danych, wraz ze sprawdzeniem czy dany egzaminator
 	 * zamieścił egzamin i ma do tego uprawnienia
 	 */ 
-	static public function updateExam($user, $exam)
+	static public function updateExam($userID, $exam)
 	{
-		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $user->getID() . "'";
+		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 
 			return false;
@@ -159,23 +159,23 @@ final class ExamDatabase
 		        Duration = '" . $exam->getDuration() . "' 
 		        WHERE ID = '" . $exam->getID() . "'";
 					
-		DatabaseConnector::getConnection()->query($sql) ? true : false;
+		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	} 
     
 	/*
 	 * Usunięcie egzaminu z bazy danych, wraz ze sprawdzeniem czy dany egzaminator
 	 * zamieścił egzamin i ma do tego uprawnienia
 	 */ 
-	static public function deleteExam($user, $exam)
+	static public function deleteExam($userID, $examID)
 	{
-		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $user->getID() . "'";
+		$sql = "Select * from Exams WHERE ID  = '" . $examID . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 
 			return false;
 		}
 		
-		$sql = "Delete from Exams WHERE ID  = '" . $exam->getID() . "'";
-		DatabaseConnector::getConnection()->query($sql) ? true : false;
+		$sql = "Delete from Exams WHERE ID  = '" . $examID . "'";
+		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
     
 	// Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)

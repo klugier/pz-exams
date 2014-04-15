@@ -7,14 +7,13 @@ include_once("../lib/Lib.php");
 if(isset($_POST['exam_name']) && isset($_POST['exam_duration'])) {
 
     $exam = new Exam();
-    $user = new User();    	
-    $user->setID(unserialize($_SESSION['USER'])->getID());
+    $userID = unserialize($_SESSION['USER'])->getID();
 
 	$exam->setName($_POST['exam_name']);
 	$exam->setDuration($_POST['exam_duration']);
 	$exam->setActivated(0);
 
-	if (ExamDatabase::insertExam($user, $exam)) {
+	if (ExamDatabase::insertExam($userID, $exam)) {
 		//echo 'Wpisano egzamin';
 		$new_exam_id = DatabaseConnector::getLastInsertedID();
 
