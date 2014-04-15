@@ -4,7 +4,7 @@
 	include_once("lib/Lib.php");
 	
 	$title = "$appName - Lista egzaminów";
-	$scripts = array("js/Lib/Plugins/tooltip.js");
+	$scripts = array("js/ExamList.js");
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
@@ -27,15 +27,18 @@
 		echo "</div>";
 		
 	} else {
+		echo "<h2>Lista aktualnych egzaminów</h2>";
+		echo "<hr />";
+		
 		echo '
-		<table class="table">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th><center>Lp.</center></th>
+					<th style="text-align: center">ID</th>
 					<th>Nazwa</th>
-					<th><center>Aktywny</center></th>
-					<th><center>Operacje</center></th>
-					<th><center>Aktywacja</center></th>
+					<th style="text-align: center">Aktywny</th>
+					<th style="text-align: center">Operacje</th>
+					<th style="text-align: center">Aktywacja</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,41 +47,40 @@
 		echo "<tr>\n";
 		$i = 1;
 		foreach ($exams as $exam) {
-			echo "<tr>";
-			echo "<td><center>" . $i . ".</center></td>\n";
+			echo "<tr id=\"row-id-" . $exam->getID() . "\">";
+			echo "<td style=\"text-align: center;\">" . $i . ".</td>\n";
 			echo "<td>" . $exam->getName() . "</td>\n";
 			
 			// Activated
-			echo "<td>";
+			echo "<td id=\"row-activated-id-" . $i . "\" style=\"text-align: center;\">";
 			if ($exam->getActivated()) {
-				echo "<center style=\"color: #156815;\"><b>Tak</b></center>";
+				echo "<b style=\"color: #156815;\">Tak</b>";
 			} else {
-				echo "<center><b style=\"color: #801313;\">Nie</b></center>";
+				echo "<b style=\"color: #801313;\">Nie</b>";
 			}
 			echo "</td>";
 			
 			// Options
-			echo "<td><center>" .
-				 "<a href=\"#\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Tooltip on top\"></i></a>" .
-				 "<a href=\"#\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
+			echo "<td style=\"text-align: center;\">" .
+				 "<a href=\"\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj egzamin\"></i></a>" .
+				 "<a id=\"row-delete-id-" . $i . "\" style=\"cursor: pointer;\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
 			
-			echo "</center></td>";
+			echo "</td>";
 			
-			echo "<td><center>";
-			if (!$exam->getActivated()) {
-				echo "<button type=\"button\" class=\"btn btn-success dropdown-toggle btn-sm\"><b>Aktywuj</b></button>";
+			echo "<td style=\"text-align: center;\">";
+			if ($exam->getActivated()) {
+				echo "<button type=\"button\" id=\"row-activate-button-id-" . $i . "\" class=\"btn btn-success dropdown-toggle btn-sm\" style=\"width: 90px\"><b>Aktywuj</b></button>";
 			}
 			else {
-				echo "<button type=\"button\" class=\"btn btn-danger dropdown-toggle btn-sm\"><b>Aktywuj</b></button>";
+				echo "<button type=\"button\" id=\"row-deactivate-button-id-" . $i . "\" class=\"btn btn-danger dropdown-toggle btn-sm\" style=\"width: 90px\"><b>Dezaktywuj</b></button>";
 			}
-			echo "</center></td>";
+			echo "</td>";
 			
 			echo "</tr>";
 		
 			$i++;
 		}
-		echo "</tr>\n";
-	
+		
 		echo '
 			<tbody>
 		</table>
