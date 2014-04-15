@@ -267,13 +267,41 @@ jQuery( document ).ready(function( $ ) {
 	// jQuery functions 
 	
 	$('#addExamForm').submit(function () {
-		exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  
-		calendarControl.examDays = exam.day ;
-		calendarControl.printCalendar() ;
-		$('#myModal').modal('hide') ; 
+		var validate = 0;
+		var examDate = $('#exam-date').val();
+		var today = new Date();		
+
+		if(parseTime($('#start-hour').val()) >= parseTime($('#end-hour').val())){			
+			validate = 1;
+		}
+		if ( $("#duration").val() == '' || $("#exam-date").val() == '' || $("#start-hour").val() == '' || $("#end-hour").val() == ''){
+			validate = 2;
+		}
+		if (Date.parse(examDate) < today){
+			validate = 3;
+		}
+
+		if( validate == 1){
+			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Godzina rozpoczęcia powinna być wcześniej niż godzina zakończenia.</span>') ; 			
+		} else if ( validate == 2) {
+			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Należy wypełnić wszystkie pola.</span>') ;			
+		} else if ( validate == 3) {
+			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Podana data już minęła. Podaj inną date.</span>') ;			
+		}  else {
+			exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  
+			calendarControl.examDays = exam.day ;
+			calendarControl.printCalendar() ;			
+			$("#error").html('');
+			$('#myModal').modal('hide') ;						 
+			$('#addExamForm')[0].reset();
+		}
+		
 		// alert  ( exam.name + " --- " + exam.duration  ) ; 
 		return false ; 
-	} );
+	} );	
 	
 	
 	$('#exam_name').focusout ( function ( ) {  
