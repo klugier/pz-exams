@@ -67,6 +67,16 @@
 
 			return $examUnitID;
 		}
+		
+		static public function countAssignedExamUnits($examID)
+		{
+			$sql = "SELECT COUNT(ExamID) AS UnitExamsCount FROM Records
+			        WHERE ExamID = '" . $examID . "' AND ExamUnitID != 'NULL'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$row = $result->fetch_array(MYSQLI_NUM);
+			
+			return $row[0];
+		}
 	
 		/*********************************************************************
 		 ********************* Podstawowe funkcje sql ************************

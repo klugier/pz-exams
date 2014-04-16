@@ -50,6 +50,16 @@ final class ExamUnitDatabase
 		return $examUnit;
 	}
 	
+	static public function countExamUnits($examID)
+	{
+		$sql = "SELECT COUNT(ExamID) AS UnitExamsCount FROM ExamUnits
+		        WHERE ExamID = '" . $examID . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$row = $result->fetch_array(MYSQLI_NUM);
+		
+		return $row[0];
+	}
+	
 	static public function countLockedExamUnits($examID)
 	{
 		$sql = "SELECT COUNT(ExamID) AS UnitExamsCount FROM ExamUnits
