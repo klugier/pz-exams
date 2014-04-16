@@ -10,8 +10,7 @@
 		echo json_encode(array("status" => "success", "errorMsg" => ""));
 	}
 	
-	$id = -1;
-	$mode = "";
+
 	$user = null;
 	
 	if (!isset($_SESSION["USER"])) {
@@ -22,21 +21,12 @@
 		$user = unserialize($_SESSION["USER"]);
 	}
 	
-	if (!isset($_POST["id"]) || !isset($_POST["mode"])) {
-		$errorMsg = "Nie przekazano parametrów do wywołania ajax.";
-		handlingError($errorMsg);
-		return;
+	if (isset($_POST["examID"])) {
+		$examID = $_POST["examID"];		
+		$exam = ExamDatabase::getExam($examID);	
+		ExamDatabase::activateExam($exam);	
 	} else {
-		$id = $_POST["id"];
-		$mode = $_POST["mode"];
-	}
-	
-	if ($mode == "activate") {
-		
-	} elseif ($mode == "deactivate") {
-		
-	} else {
-		$errorMsg = "Parametr 'mode' ($mode) przyjmuje złą wartość.";
+		$errorMsg = $_POST["examID"]."Nie przekazano parametrów do wywołania ajax.";
 		handlingError($errorMsg);
 		return;
 	}
