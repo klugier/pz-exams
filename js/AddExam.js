@@ -73,7 +73,7 @@ $('button#add_students').click( function(){
 	 var l_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
 	 var elements = $();
 
-	 	alert("dupa");
+	 	
 		emails = $('#student_list').val().match(email_p);
 		first_names = $('#student_list').val().match(f_name_p);
 		last_names = $('#student_list').val().match(l_name_p);
