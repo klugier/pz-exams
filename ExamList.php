@@ -50,14 +50,14 @@
 		foreach ($exams as $exam) {
 			// ID
 			echo "<tr id=\"row-id-" . $exam->getID() . "\">";
-			echo "<td style=\"text-align: center;\">" . $exam->getID() . ".</td>\n";
+			echo "<td style=\"text-align: center;\">" . $i . ".</td>\n";
 			echo "<td id=\"row-name-id-" . $exam->getID() . "\">" . $exam->getName() . "</td>\n";
 			
 			// Populating
 			echo "<td style=\"text-align: center\">" . ExamUnitDatabase::countLockedExamUnits($exam->getID())  . "/" . ExamUnitDatabase::countExamUnits($exam->getID()) . "</td>";
 			
 			// Activated
-			echo "<td id=\"row-activated-id-" . $i . "\" style=\"text-align: center;\">";
+			echo "<td id=\"row-activated-id-" . $exam->getID() . "\" style=\"text-align: center;\">";
 			if ($exam->getActivated()) {
 				echo "<b style=\"color: #156815;\">Tak</b>";
 			} else {
@@ -74,10 +74,10 @@
 			
 			echo "<td style=\"text-align: center;\">";
 			if (!$exam->getActivated()) {
-				echo "<button type=\"button\" id=\"row-activate-button-id-" . $i . "\" class=\"btn btn-success dropdown-toggle btn-sm\" style=\"width: 90px\"><b>Aktywuj</b></button>";
+				echo "<button type=\"button\" id=\"row-activate-button-id-" . $exam->getID() . "\" class=\"btn btn-success dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"0\"><b>Aktywuj</b></button>";
 			}
 			else {
-				echo "<button type=\"button\" id=\"row-deactivate-button-id-" . $i . "\" class=\"btn btn-danger dropdown-toggle btn-sm\" style=\"width: 90px\"><b>Dezaktywuj</b></button>";
+				echo "<button type=\"button\" id=\"row-deactivate-button-id-" . $exam->getID() . "\" class=\"btn btn-danger dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"1\"><b>Dezaktywuj</b></button>";
 			}
 			echo "</td>";
 			
