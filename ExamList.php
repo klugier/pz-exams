@@ -48,11 +48,13 @@
 		echo "<tr>\n";
 		$i = 1;
 		foreach ($exams as $exam) {
+			// ID
 			echo "<tr id=\"row-id-" . $exam->getID() . "\">";
 			echo "<td style=\"text-align: center;\">" . $exam->getID() . ".</td>\n";
 			echo "<td id=\"row-name-id-" . $exam->getID() . "\">" . $exam->getName() . "</td>\n";
 			
-			echo "<td style=\"text-align: center\">0/0</td>";
+			// Populating
+			echo "<td style=\"text-align: center\">" . ExamUnitDatabase::countLockedExamUnits($exam->getID())  . "/" . ExamUnitDatabase::countExamUnits($exam->getID()) . "</td>";
 			
 			// Activated
 			echo "<td id=\"row-activated-id-" . $i . "\" style=\"text-align: center;\">";
