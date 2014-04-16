@@ -86,26 +86,20 @@ final class ExamDatabase
 	/*
 	 * Funkcja do aktywacji egzaminu 
 	 */
-	static public function activateExam($userID, $exam)
-	{
-		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $userID . "'";
-		$result = DatabaseConnector::getConnection()->query($sql);
-		if ($result->num_rows == 0) { 
-			return false;
-		}
-		$row=$result->fetch_array(MYSQLI_ASSOC);
-		$active = $row['Activated'];
-		
-		if($active){
-			$active=false;
-		}else{
-			$active=true;
+	static public function activateExam($exam)
+	{		
+		$status = '';
+		if($exam -> getActivated() == 1) {
+			$status = 0;
+		} else {
+			$status = 1;			
 		}	
+		$examID = $exam->getID();
 		
-		$sql = "UPDATE Exams SET 
-		        Activated = '" . $active . "' 
-		        WHERE ID = '" . $exam->getID() . "'";
-		
+		$sql = "UPDATE Exams 
+		SET Activated = '" . $status . "' 
+		WHERE ID = '" . $examID . "'";
+						
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
 	
