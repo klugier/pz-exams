@@ -39,96 +39,89 @@ jQuery(document).ready(function($) {
 	});
 	
 	$("button[id^=row-activate-button-id-]").click(function() {
+		var status = $(this).attr("value");
 		var id = $(this).attr("id");
+		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);		
 		
-		if (currentStatus == -1 || currentStatus == 0) {
-			if (activate(id))
-				currentStatus = 1;
-		}
-		else {
-			if (deactivate(id))
-				currentStatus = 0;
-		}
-	});
-	
-	$("button[id^=row-deactivate-button-id-]").click(function() {
-		var id = $(this).attr("id");
-		
-		if (currentStatus == -1 || currentStatus == 1) {
-			if (deactivate(id))
-				currentStatus = 0;
-		}
-		else {
-			if (activate(id))
-				currentStatus = 1;
-		}
-	});
-	
-	function activate(id) {
-		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);
-		var successful = sendActivationRequest(examID, "activate");
-		
-		if (successful) {
-			$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
-			$("#" + id).html("<b>Dezaktywuj</b>");
-			$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
-		}
-		
-		return successful;
-	}
-	
-	function deactivate(id) {
-		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);
-		var successful = sendActivationRequest(examID, "deactivate");
-		
-		if (successful) {
-			$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
-			$("#" + id).html("<b>Aktywuj</b>");
-			$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
-		}
-		
-		return successful;
-	}
-	
-	function sendActivationRequest(examID, mode) {
-		setSendActivationSuccess(false);
-		
+
 		$.ajax({
-			type:  "POST",
-			url:   "lib/Ajax/AjaxExamActivationRequest.php",
-			async: false,
+			type: "POST",
+			url: "lib/Ajax/AjaxExamActivationRequest.php",
+			dataType: "JSON",
 			data: {
-				id : examID,
-				mode : mode,
+				examID : examID,
 			},
-			success: function(data, status) {
-				status = data.status.trim();
-				
-				if (status != null) {
-					if (status === "success") {
-						setSendActivationSuccess(true);
-					}
-					else if (status === "failed") {
-						msg = data.errorMsg.trim();
-						
-						if (msg != null) {
-							alert(msg);
-						}
-					}
+			success: function (data) {
+				if(status == 0){
+					alert('Pomyślnie zmieniono status na aktywny.');
+				} else {
+					alert('Deaktywowano egzamin.');
 				}
+
 			},
-			error: function(xhr, textStatus, errorThrown) {
-				alert("Nie udało się uruchomić zapytania Ajax.");
+			error: function (error) {
+				alert('Wystąpił blad przy aktywacji egzaminu.');
+			},
+			complete: function() {
+				//window.location = 'ExamList.php';
 			}
 		});
 		
-		return ajaxSendActivationSuccess;
-	}
+		
+		if(status == 1) {
+			$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
+			$("#" + id).html("<b>Aktywuj</b>");
+			$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
+			$("#" + id).attr("value", 0);
+		} else {
+			$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
+			$("#" + id).html("<b>Dezaktywuj</b>");
+			$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
+			$("#" + id).attr("value", 1);
+		}
+		
+	});
 	
-	function setSendActivationSuccess(success) {
-		ajaxSendActivationSuccess = success;
-	}
+	$("button[id^=row-deactivate-button-id-]").click(function() {
+		var status = $(this).attr("value");
+		var id = $(this).attr("id");
+		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);		
+		
+		$.ajax({
+
+		type: "POST",
+		url: "lib/Ajax/AjaxExamActivationRequest.php",
+		dataType: "JSON",
+		data: {
+			examID : examID,
+		},
+		success: function (data) {
+			if(status == 0){
+				alert('Pomyślnie zmieniono status na aktywny.');
+			} else {
+				alert('Deaktywowano egzamin.');
+			}
+		},
+		error: function (error) {
+			alert('Wystąpił blad przy aktywacji egzaminu.');
+		},
+		complete: function() {
+			//window.location = 'ExamList.php';
+		}
+
+		});
+		if(status == 1) {
+			$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
+			$("#" + id).html("<b>Aktywuj</b>");
+			$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
+			$("#" + id).attr("value", 0);
+		} else {
+			$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
+			$("#" + id).html("<b>Dezaktywuj</b>");
+			$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
+			$("#" + id).attr("value", 1);
+		}
+	});
 	
-	var currentStatus = -1;
-	var ajaxSendActivationSuccess = false;
+	
 });
