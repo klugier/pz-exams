@@ -79,7 +79,7 @@
 		echo	'</div>'	;	
 	}
 ?>
-<h1>Menu	edycji</h1>
+<h1>Edytuj profil</h1>
 <hr />
 <form class="form-horizontal" role="form" id="passwd_form" method="post" action="php/HandlingUserEdit.php">
 	<fieldset class="col-xs-12	col-sm-12	col-md-12">
@@ -107,11 +107,9 @@
 			</span>
 		</div>
 		<div class="form-group">
-			<div class="row">
-				<span class="col-xs-offset-2	col-sm-offset-2	col-md-offset-2	col-xs-2	col-sm-2	col-md-2">
-					<button type="submit" class="btn	btn-primary" name="submitButtonPassword" value="submit">Zmień	Hasło</button>
-				</span>
-			</div>
+			<span class="col-xs-offset-2	col-sm-offset-2	col-md-offset-2	col-xs-2	col-sm-2	col-md-2">
+				<button type="submit" class="btn	btn-primary" name="submitButtonPassword" value="submit">Zmień	Hasło</button>
+			</span>
 		</div>
 	</fieldset>
 </form>
@@ -140,11 +138,9 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="row">
-				<span class="col-xs-offset-2	col-sm-offset-2	col-md-offset-2	col-xs-3	col-sm-3	col-md-3">
-					<button type="submit" class="btn	btn-primary" name="submitButton" value="submit">Zmień	ustawienia	osobiste</button>
-				</span>
-			</div>
+			<span class="col-xs-offset-2	col-sm-offset-2	col-md-offset-2	col-xs-3	col-sm-3	col-md-3">
+				<button type="submit" class="btn	btn-primary" name="submitButton" value="submit">Zmień	ustawienia	osobiste</button>
+			</span>
 		</div>
 	</fieldset>
 </form>
