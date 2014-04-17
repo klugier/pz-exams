@@ -19,7 +19,7 @@ if(isset($_POST['exam_name']) && isset($_POST['exam_duration'])) {
 
 		addUnits($new_exam_id);
 
-		addStudents();
+		addStudents($new_exam_id);
 	} else {
 		//echo 'Blad przy wpisywaniu egzaminu';
 	}
@@ -29,7 +29,7 @@ if(isset($_POST['exam_name']) && isset($_POST['exam_duration'])) {
 
 	}
 
-function addStudents()
+function addStudents($exam_id)
 {
 
 if(isset($_POST['students_emails']) && isset($_POST['firstnames']) && isset($_POST['lastnames'])) {
@@ -49,6 +49,17 @@ if(isset($_POST['students_emails']) && isset($_POST['firstnames']) && isset($_PO
 			} else {
 				//echo '<br/>Blad przy wpisywaniu studenta';
 			}
+
+			$record = new Record();
+			$record->setStudentID(DatabaseConnector::getLastInsertedID());
+			$record->setExamID($exam_id);
+
+			if(RecordDatabase::insertRecord($record)) {
+				//echo '<br/>Wpisano rekord';
+			} else {
+				//echo '<br/>Blad przy wpisywaniu rekordu';
+			}
+
 		}
 	}
 }
