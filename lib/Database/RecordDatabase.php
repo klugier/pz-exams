@@ -76,16 +76,16 @@
 		static public function getExamUnitIDStudentIDList($examID){
 			$sql = "Select * from Records WHERE ExamID = '" . $examID . "' AND StudentID  != 'NULL'";
 			$result = DatabaseConnector::getConnection()->query($sql);
-			$examUnit = null;
+			$records = null;
 			
 			$i = 0;
 			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-				$examUnit[$i]['ExamUnitID'] = $row['ExamUnitID']; 
-				$examUnit[$i]['StudentID'] = $row['StudentID'];
+				$records[$i]['ExamUnitID'] = $row['ExamUnitID']; 
+				$records[$i]['StudentID'] = $row['StudentID'];
 				$i++;	
 			}
 
-			return $examUnit;
+			return $records;
 		}
 		
 		/* 
