@@ -3,22 +3,29 @@
 	include_once('../lib/Lib.php');
 	
 	$testExam = new Exam;
-	$testExam->setID(15);
+	$testExam->setID(16);
 	$testExamUnit = new ExamUnit;
-	$testExamUnit->setDay('2014-04-09');
+	$testExamUnit->setDay('2014-04-02');
 	$testExamUnit->setTimeFrom('09:00:00');
 	$testExamUnit->setTimeTo('14:00:00');
 	$testExamUnit->setState('unlocked');
 	
 	
 	$Days = ExamUnitDatabase::getExamDays(15);
-	
+	echo "<br/>";
 	foreach($Days as $day){
 		echo $day . "<br/>";
 	}
 	
+	$Exams = ExamUnitDatabase::getExamsOrderByDate();
+	echo "<br/>";
+	echo "<br/>";
+	foreach($Exams as $exam){
+		echo $exam . "<br/>";
+	}
 	
-	/*if(ExamUnitDatabase::insertExamUnit($testExam,$testExamUnit)){
+	/*
+	if(ExamUnitDatabase::insertExamUnit($testExam,$testExamUnit)){
 		echo "Done and Done <br/>";
 	}else{
 		echo "nope <br/>";

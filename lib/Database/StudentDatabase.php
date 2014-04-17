@@ -58,9 +58,9 @@
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		} 
 		
-		static public function addStudentCode($student, $code)
+		static public function addStudentCode($studentID, $code)
 		{
-			$sql = "Select * from Students WHERE ID  = '" . $student->getID() . "'";
+			$sql = "Select * from Students WHERE ID  = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			if ($result->num_rows == 0) { 
 				return false;

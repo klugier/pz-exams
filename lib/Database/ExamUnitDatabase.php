@@ -15,7 +15,6 @@ final class ExamUnitDatabase
 		$row = $result->fetch_array(MYSQLI_NUM);
 		return $row[0];
 	}
-
 	
 	/*
 	 * Zwraca listę ID examUnitsów dla danego egzaminu
@@ -83,9 +82,9 @@ final class ExamUnitDatabase
 	static public function getExamDays($examID){
 		$sql = "SELECT DISTINCT Day FROM ExamUnits WHERE ExamID = '" . $examID . "' ORDER BY day ASC";
 		$result = DatabaseConnector::getConnection()->query($sql);
+		$days=null;
 		
 		$i=0;
-		$days = null;
 		while($row = $result->fetch_array(MYSQLI_NUM)){
 			$days[$i]=$row[0];
 			$i++;
@@ -94,6 +93,19 @@ final class ExamUnitDatabase
 		return $days;
 	}
 	
+	static public function getExamsOrderByDate(){
+		$sql = "SELECT DISTINCT ExamID FROM ExamUnits ORDER BY day ASC";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$exams = null;
+		
+		$i=0;
+		while($row = $result->fetch_array(MYSQLI_NUM)){
+			$exams[$i]=$row[0];
+			$i++;
+		}
+		
+		return $exams;
+	}
 	/*********************************************************************
 	 ********************* Podstawowe funkcje sql ************************
 	 *********************************************************************/
@@ -133,13 +145,22 @@ final class ExamUnitDatabase
 	 * Usunięcie egzaminu z bazy danych, wraz ze sprawdzeniem czy dany egzaminator
 	 * zamieścił egzamin i ma do tego uprawnienia
 	 */ 
-	static public function deleteExamUnit($examUnit)
+	static public function deleteExamUnit($examUnitID)
 	{
-		$sql = "Delete from ExamUnits WHERE ID  = '" . $examUnit->getID() . "'";
+		$sql = "Delete from ExamUnits WHERE ID  = '" . $examUnitID . "'";
 		
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
     
+	static public function deleteExamUnit2($examID,$day,$timeFrom)
+	{
+		$sql = "Delete from ExamUnits WHERE ExamID  = '" . $examUnitID . "' AND 
+		                                    Day = '" . $day . "' AND 
+		                                    TimeFrom = '" . $timeFrom . "'";
+		
+		return DatabaseConnector::getConnection()->query($sql) ? true : false;
+	}
+	
 	// Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)
 	private function __construct() { }
 }

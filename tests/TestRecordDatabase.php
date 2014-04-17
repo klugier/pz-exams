@@ -10,7 +10,9 @@
 	
 	
 	
-	echo RecordDatabase::countAssignedExamUnits(15) . "<br/>";
+	$ExamUnits = RecordDatabase::getExamUnitIDStudentIDList(15); 
+	foreach($ExamUnits as $examUnit)
+		echo $examUnit['ExamUnitID'] . " | " . $examUnit['StudentID'] . "<br/>";
 	
 	
 	

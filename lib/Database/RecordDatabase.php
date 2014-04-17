@@ -54,6 +54,40 @@
 			return $examID;
 		}
 		
+		/*
+		 * Zwraca listę ID Studentów przypisanych do egzaminów
+		 */
+		static public function getStudentIDList($examID){
+			$sql = "Select * from Records WHERE ExamID  = '" . $examID . "'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$studentID = null;
+			
+			$i = 0;
+			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+				$studentID[$i] = $row['StudentID']; 
+				$i++;
+			}
+			return $studentID;
+		}
+		
+		/* 
+		 * Zwraca ID ExamUnitsów i Studentów jezeli jest przypisany, lub NULL jeżeli nie jest przypisany
+		 */
+		static public function getExamUnitIDStudentIDList($examID){
+			$sql = "Select * from Records WHERE ExamID = '" . $examID . "' AND StudentID  != 'NULL'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$examUnit = null;
+			
+			$i = 0;
+			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+				$examUnit[$i]['ExamUnitID'] = $row['ExamUnitID']; 
+				$examUnit[$i]['StudentID'] = $row['StudentID'];
+				$i++;	
+			}
+
+			return $examUnit;
+		}
+		
 		/* 
 		 * Zwraca ID ExamUnitsa jezeli jest przypisany, lub NULL jeżeli nie jest przypisany
 		 */
