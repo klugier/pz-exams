@@ -47,7 +47,9 @@ jQuery( document ).ready(function( $ ) {
 			}
 			
 			// sort days 
-			this.sortDaysArray ( )  ;  
+			this.sortDaysArray ( )  ;
+			// sort within days 
+			this.sortAllExamUnits();
 		};
 
 		this.delTerm = function(date) {
@@ -62,17 +64,28 @@ jQuery( document ).ready(function( $ ) {
 			this.blockedUnits[date].push(fromHour);
 		};
 
+			// sort numbers in asc order 
+		this.sortNumbers = function ( arg1 , arg2  ) {  
+			return arg1 - arg2 ;  
+		} ; 
+		
+		this.sortAllExamUnits = function (){ 
+			for ( var date in this.day ) {
+				this.sortExamUnit ( date  ) ;
+			} 
+		} ; 
+		
 		this.sortExamUnit = function(date){
 			var tmpB = new Array();
 			var tmpE = new Array();
 
 			for (var k in this.day[date]){
-				
 				tmpB.push(converToMinutes(this.day[date][k].bHour));
 				tmpE.push(converToMinutes(this.day[date][k].eHour));            
 			}
-			tmpB.sort();
-			tmpE.sort();
+			
+			tmpB.sort(this.sortNumbers);
+			tmpE.sort(this.sortNumbers); 
 			delete this.day[date];
 			this.day[date] = new Array();       
 			for( var i in tmpB ){
