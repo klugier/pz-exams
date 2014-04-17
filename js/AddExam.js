@@ -69,8 +69,8 @@ $('button#add_students').click( function(){
 	 last_names = new Array();
 
 	 var email_p = /<(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))>/gm;
-	 var f_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
-	 var l_name_p = /[a-zA-Z\-\'\s]+[\s]*</gm;
+	 var f_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+</gm;
+	 var l_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+</gm;
 	 var elements = $();
 
 	 	
