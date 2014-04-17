@@ -138,7 +138,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<span class="col-xs-offset-2	col-sm-offset-2	col-md-offset-2	col-xs-3	col-sm-3	col-md-3">
+			<span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3	col-md-3">
 				<button type="submit" class="btn	btn-primary" name="submitButton" value="submit">Zmień	ustawienia	osobiste</button>
 			</span>
 		</div>

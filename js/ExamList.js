@@ -19,8 +19,18 @@ jQuery(document).ready(function($) {
 						status = data.status.trim();
 						
 						if (status === "success") {
-							$(rowID).hide("slow");
-							// $(rowID).remove();
+							$(rowID).remove();
+							
+							var lastLp = 0;
+							$("td[id^=row-lp-]").each(function() {
+								var id = $(this).attr("id");
+								var lp = id.slice(id.lastIndexOf("-") + 1, id.length);
+								
+								if (lastLp + 1 != lp) {
+									$("#" + id).html((lastLp + 1) + ".");
+								}
+								lastLp = lastLp + 1;
+							});
 						}
 						else if (status === "failed") {
 							msg = data.errorMsg.trim();
@@ -88,28 +98,27 @@ jQuery(document).ready(function($) {
 		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);		
 		
 		$.ajax({
-
-		type: "POST",
-		url: "lib/Ajax/AjaxExamActivationRequest.php",
-		dataType: "JSON",
-		data: {
-			examID : examID,
-		},
-		success: function (data) {
-			if(status == 0){
-				alert('Pomyślnie zmieniono status na aktywny.');
-			} else {
-				alert('Deaktywowano egzamin.');
+			type: "POST",
+			url: "lib/Ajax/AjaxExamActivationRequest.php",
+			dataType: "JSON",
+			data: {
+				examID : examID,
+			},
+			success: function (data) {
+				if(status == 0){
+					alert('Pomyślnie zmieniono status na aktywny.');
+				} else {
+					alert('Deaktywowano egzamin.');
+				}
+			},
+			error: function (error) {
+				alert('Wystąpił blad przy aktywacji egzaminu.');
+			},
+			complete: function() {
+				//window.location = 'ExamList.php';
 			}
-		},
-		error: function (error) {
-			alert('Wystąpił blad przy aktywacji egzaminu.');
-		},
-		complete: function() {
-			//window.location = 'ExamList.php';
-		}
-
 		});
+		
 		if(status == 1) {
 			$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
 			$("#" + id).html("<b>Aktywuj</b>");
@@ -122,6 +131,5 @@ jQuery(document).ready(function($) {
 			$("#" + id).attr("value", 1);
 		}
 	});
-	
 	
 });

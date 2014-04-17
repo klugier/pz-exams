@@ -3,9 +3,7 @@
 	$title = "$appName - Strona Egzaminatora";
 	include("html/Begin.php");
 	include("html/UserPanel.php");
-?>
-
-<?php
+	
 	$sql1 = "Select COUNT(ID) From Exams where UserID = '" . unserialize($_SESSION['USER'])->getID() . "'";
 	$sql2 = "Select COUNT(ID) From Exams where UserID = '" . unserialize($_SESSION['USER'])->getID() . "' && Activated = 1";
 	$sql3 = "Select COUNT(ID) From Exams where UserID = '" . unserialize($_SESSION['USER'])->getID() . "' && Activated = 0";

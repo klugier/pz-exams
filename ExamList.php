@@ -50,7 +50,7 @@
 		foreach ($exams as $exam) {
 			// ID
 			echo "<tr id=\"row-id-" . $exam->getID() . "\">";
-			echo "<td style=\"text-align: center;\">" . $i . ".</td>\n";
+			echo "<td id=\"row-lp-" . $i . "\" style=\"text-align: center;\">" . $i . ".</td>\n";
 			echo "<td id=\"row-name-id-" . $exam->getID() . "\">" . $exam->getName() . "</td>\n";
 			
 			// Populating
