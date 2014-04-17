@@ -5,8 +5,9 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="modal-title text-center" id="myModalLabelSO"><b>Czy jesteś pewien że chesz się wypisać?</b></h3>
 			</div>
-			<form name="modalForm" class="form-signin form-horizontal" id="examSignOutForm" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="./../../php/StudentSignInOut.php">
+			<form name="modalForm" class="form-signin form-horizontal" id="examSignOutForm" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="php/StudentSignInOut.php">
 				<div class="modal-body text-center">
+					<div id="signOutBody"></div>
 					<button type="submit" class="btn btn-success btn-lg" name="signOut" value="submit">Tak</button>
 					<input name="innerStudentID" id="innerStudentID" type="hidden">
 					<input name="innerStudentCode" id="innerStudentCode" type="hidden">

@@ -13,7 +13,32 @@
 	echo "\">";
 	$student = StudentDatabase::getStudentByCode($_GET['code']);
 	$id = $student->getID();
+
+	if ($id == null) {
+		echo "<div class=\"alert alert-danger text-center\"><b>Kod niepoprawny.</b> Za 5 sekund zostaniesz przeniesiony na stronę główną.</div>";
+		header("refresh: 5; url=index.php");
+		include("html/End.php");
+		
+		ob_end_flush();
+		return;
+	}
+
 	$examsID = RecordDatabase::getExamIDList($student->getID());
+	$active = 1;
+	foreach ($examsID as $examID) {
+		$exam = ExamDatabase::getExam($examID);
+		$examDays = ExamUnitDatabase::getExamDays($examID);
+		if ($exam->getActivated()&&(date_create($examDays[0]) > new DateTime("now"))) {
+			$active = 0;
+		}
+	}
+	if($active == 1){
+		echo "<div class=\"alert alert-info text-center\"><b>Brak aktywnych egzaminów.</b><br> Aktualnie nie masz egzaminów na które możesz się zapisać. Wróć później.</div>";
+		include("html/End.php");
+		
+		ob_end_flush();
+		return;
+	}
 	//echo '<pre>'; print_r($examsID); echo '</pre>';
 	echo "<input id=\"studentID\" type=\"hidden\" value=\"";
 	echo $id;
@@ -22,7 +47,7 @@
 	
 	
 		echo '
-		<table class="table">
+		<table class="table table-hover table-condensed text-left">
 			<thead>
 				<tr>
 					<th><center>Lp.</center></th>
@@ -40,26 +65,38 @@
 		$i = 1;
 		foreach ($examsID as $examID) {
 			$exam = ExamDatabase::getExam($examID);
-			if ($exam->getActivated()) {
-			$examUnitList = ExamUnitDatabase::getExamUnitIDList($exam);
 			$examDays = ExamUnitDatabase::getExamDays($examID);
-			echo "<tr>";
-			echo "<td><center>" . $i . ".</center></td>\n";
+			if (($exam->getActivated())&&(date_create($examDays[0]) > new DateTime("now"))) {
+			$examUnitList = ExamUnitDatabase::getExamUnitIDList($exam);
+			$examUnitID=RecordDatabase::getExamUnitID($examID,$id);
+			if ((($examUnitID) != null)&&(($examUnitID) != 0)) {	
+				echo "<tr class=\"info\">";
+			}else{
+				echo "<tr class=\"danger\">";
+			}
+			echo "<td class=\"center vcenter\">" . $i . ".</td>\n";
 			// Dni aktywności egzamninu.
-			echo "<td>";
-				$j = 0;
-				$uniqeDays = array_unique($examDays);
-				//echo '<pre>'; print_r($uniqeDays); echo '</pre>';
-				foreach ($uniqeDays as $day){
-					if($j == 0){
-						echo $day;
-					}elseif($j == count($uniqeDays)-1){
-						echo date("/d",strtotime($day));
+				if ((($examUnitID) != null)&&(($examUnitID) != 0)) {
+					echo "<td><b>";//style=\"text-decoration:underline\"
+					$eu = ExamUnitDatabase::getExamUnit($examUnitID);
+					echo $eu->getDay();
+					echo " o ".$eu->getTimeFrom();
+				}else{
+					echo "<td>";
+					$j = 0;
+					$uniqeDays = array_unique($examDays);
+					//echo '<pre>'; print_r($uniqeDays); echo '</pre>';
+					foreach ($uniqeDays as $day){
+						if($j == 0){
+							echo $day;
+						}elseif($j == count($uniqeDays)-1){
+							echo date("/d",strtotime($day));
+						}
+						$j++;
 					}
-					$j++;
 				}
-			echo "</td>\n";
-			echo "<td>" . $exam->getName() . "</td>\n";
+			echo "</td>";
+			echo "<td>" . $exam->getName() . "</td>";
 			//Liczba osób zapisanych
 			echo "<td><center>";
 				echo ExamUnitDatabase::countLockedExamUnits($examID);
@@ -67,21 +104,21 @@
 				echo count($examUnitList);
 			echo "</center></td>\n";
 			// Zapisany
-			echo "<td>";
-			$examUnitID=RecordDatabase::getExamUnitID($examID,$id);
 			if ((($examUnitID) != null)&&(($examUnitID) != 0)) {
-				echo "<center><button type=\"button\" class=\"btn btn-success active\">Tak</button></center>";
+				echo "<td>";
+				echo "<center><button type=\"button\" class=\"btn btn-info active\"><b>Tak</b></button></center>";
 				echo "</td>";
 				// Wypisz się (Button z id egzaminu)
 				echo "<td><center>";
-				echo "<a class=\"btn btn-info\" href=\"#\" role=\"button\" data-toggle=\"modal\" id=\"signOutGlyph\" data-target=\"#signOutModal\" title=\"Wypisz się\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-remove\"></i></a>";
+				echo "<a class=\"btn btn-danger\" href=\"#\" role=\"button\" data-toggle=\"modal\" id=\"signOutGlyph\" data-target=\"#signOutModal\" title=\"Wypisz się\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-remove\"></i></a>";
 				echo "</center></td>";
 			} else {
-				echo "<center><button type=\"button\" class=\"btn btn-danger active\">Nie</button></center>";
+				echo "<td>";
+				echo "<center><button type=\"button\" class=\"btn btn-info active\"><b>Nie</b></button></center>";
 				echo "</td>";
-				echo "<td><center>";
+				echo "<td class=\"danger\"><center>";
 				// Zapisz się (Button z id egzaminu)
-				echo "<a class=\"btn btn-info\" href=\"#\" role=\"button\" data-toggle=\"modal\" name=\"signInGlyph\" id=\"signInGlyph\" data-target=\"#signInModal\" title=\"Zapisz się\" value=\"".$exam->getID()."\" examname=\"". $exam->getName() ."\"><i class=\"glyphicon glyphicon-plus\"></i></a>";
+				echo "<a class=\"btn btn-success\" href=\"#\" role=\"button\" data-toggle=\"modal\" name=\"signInGlyph\" id=\"signInGlyph\" data-target=\"#signInModal\" title=\"Zapisz się\" value=\"".$exam->getID()."\" examname=\"". $exam->getName() ."\"><i class=\"glyphicon glyphicon-plus\"></i></a>";
 				echo "</center></td>";
 			}
 			echo "</tr>";

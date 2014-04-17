@@ -5,11 +5,31 @@
 	if(isset($_POST['action']) && !empty($_POST['action'])) {
 	$action = $_POST['action'];
 		switch($action) {
+			case 'stepOut' : stepOut($_POST['exam'],$_POST['student']);break;
 			case 'step1' : step1($_POST['exam']);break;
 			case 'step2' : step2($_POST['exam'],$_POST['examDate']);break;
 			case 'stepF1' : stepF1();break;
 			case 'stepF2' : stepF2();break;
 		}
+	}
+
+	function stepOut($examID,$studentID)
+	{
+		$exam = ExamDatabase::getExam($examID);
+		$response = '<div class="no-rec">not found</div>';
+		$header = "<span><b>Aktualnie jesteś zapisany na egzamin:</b></span><br>";
+		$body = "<span>".$exam->getName()."</span><br>";
+
+		$id = RecordDatabase::getRecordID($examID,$studentID);
+		$record = RecordDatabase::getRecord($id);
+		$examunit = ExamUnitDatabase::getExamUnit($record->getExamUnitID());
+		$footer = "<span><b>Na godzinę:</b></span><br>";
+		$footer = $footer."<span>".$examunit->getTimeFrom()."</span><hr>";
+
+		$response = $header.$body.$footer;
+		$html = $response;
+	
+		echo $html;
 	}
 	
 	function step1($exam)

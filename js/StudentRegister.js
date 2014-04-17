@@ -4,6 +4,20 @@ jQuery(document).ready(function ($) {
 		$("#innerStudentID").val($('#studentID').val());
 		$("#innerStudentCode").val($('#studentCode').val());
 		$("#innerExamID").val($(this).attr("value"));
+
+		var innerStudentID = $('#studentID').val();
+		var innerExamID = $(this).attr("value");
+
+		$.ajax({
+			type: "POST",
+			url: 'php/StudentSignInOut.php',
+			data: { action: 'stepOut', exam: innerExamID, student: innerStudentID },
+			dataType: "html",
+			cache: false,
+			success: function (html) {
+				$('#signOutBody').html(html)
+			}
+		});
 	});
 
 	$("a#signInGlyph").click(function () {
