@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: './../php/StudentSignInOut.php',
+			url: 'php/StudentSignInOut.php',
 			data: { action: 'step1', exam: innerIExamID },
 			dataType: "html",
 			cache: false,
@@ -30,7 +30,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: './../php/StudentSignInOut.php',
+			url: 'php/StudentSignInOut.php',
 			data: { action: 'stepF1' },
 			dataType: "html",
 			cache: false,
@@ -48,7 +48,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: './../php/StudentSignInOut.php',
+			url: 'php/StudentSignInOut.php',
 			data: { action: 'step2', exam: innerIExamID, examDate: examDate },
 			dataType: "html",
 			cache: false,
@@ -59,8 +59,36 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: './../php/StudentSignInOut.php',
+			url: 'php/StudentSignInOut.php',
 			data: { action: 'stepF2' },
+			dataType: "html",
+			cache: false,
+			success: function (html) {
+				$('#signInFooter').html(html)
+			}
+		});
+
+	});
+
+	$("div").on("click", "a#back", function () {
+
+		var innerIExamID = $("#innerIExamID").val();
+
+		$.ajax({
+			type: "POST",
+			url: 'php/StudentSignInOut.php',
+			data: { action: 'step1', exam: innerIExamID},
+			dataType: "html",
+			cache: false,
+			success: function (html) {
+				$('#signInBody').html(html)
+			}
+		});
+
+		$.ajax({
+			type: "POST",
+			url: 'php/StudentSignInOut.php',
+			data: { action: 'stepF1' },
 			dataType: "html",
 			cache: false,
 			success: function (html) {

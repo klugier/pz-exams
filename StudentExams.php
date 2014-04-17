@@ -18,9 +18,6 @@
 	echo "<input id=\"studentID\" type=\"hidden\" value=\"";
 	echo $id;
 	echo "\">";
-	echo "<input id=\"session\" type=\"hidden\" value=\"";
-	echo $_SESSION['innerIExamID'];
-	echo "\">";
 	echo "<span id=\"valueField\"></span>";
 	
 	

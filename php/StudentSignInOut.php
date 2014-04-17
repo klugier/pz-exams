@@ -89,7 +89,7 @@
 	
 	function stepF2()
 	{
-		echo "<button type=\"submit\" class=\"btn btn-success\" name=\"signIn\" value=\"submit\">Zapisz</button>"."<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Zamknij</button>";
+		echo "<a class=\"btn btn-primary\" href=\"#\" role=\"button\" id=\"back\" name=\"back\">Back</a>"."<button type=\"submit\" class=\"btn btn-success\" name=\"signIn\" value=\"submit\">Zapisz</button>"."<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Zamknij</button>";
 	}
 	
 	
@@ -119,7 +119,7 @@
 			echo " updateRecord Fail";
 		}
 	
-		header('Location: ../../StudentExams.php?code='.$_POST['innerIStudentCode']); 
+		header('Location: ../StudentExams.php?code='.$_POST['innerIStudentCode']); 
 	}
 	
 	
@@ -150,6 +150,6 @@
 			echo " updateRecord Fail";
 		}
 	
-		header('Location: ../../StudentExams.php?code='.$_POST['innerStudentCode']); 
+		header('Location: ../StudentExams.php?code='.$_POST['innerStudentCode']); 
 	}
 ?>
