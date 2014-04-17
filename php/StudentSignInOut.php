@@ -119,7 +119,7 @@
 			echo " updateRecord Fail";
 		}
 	
-		header('Location: ../../StudentExams.php?id='.$_POST['innerIStudentCode']); 
+		header('Location: ../../StudentExams.php?code='.$_POST['innerIStudentCode']); 
 	}
 	
 	
@@ -150,6 +150,6 @@
 			echo " updateRecord Fail";
 		}
 	
-		header('Location: ../../StudentExams.php?id='.$_POST['innerStudentCode']); 
+		header('Location: ../../StudentExams.php?code='.$_POST['innerStudentCode']); 
 	}
 ?>

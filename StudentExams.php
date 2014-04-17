@@ -9,9 +9,9 @@
 	}
 	
 	echo "<input id=\"studentCode\" type=\"hidden\" value=\"";
-	echo $_GET['id'];
+	echo $_GET['code'];
 	echo "\">";
-	$student = StudentDatabase::getStudentByCode($_GET['id']);
+	$student = StudentDatabase::getStudentByCode($_GET['code']);
 	$id = $student->getID();
 	$examsID = RecordDatabase::getExamIDList($student->getID());
 	//echo '<pre>'; print_r($examsID); echo '</pre>';
