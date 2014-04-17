@@ -67,7 +67,7 @@
 			
 			// Options
 			echo "<td style=\"text-align: center;\">" .
-				 "<a href=\"\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj egzamin\"></i></a>" .
+				 "<a href=\"ExamEdit.php?examID=" . $exam->getID() . "\" id=\"row-edit-id-" . $exam->getID() . "\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj egzamin\"></i></a>" .
 				 "<a id=\"row-delete-id-" . $exam->getID() . "\" style=\"cursor: pointer;\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
 			
 			echo "</td>";
