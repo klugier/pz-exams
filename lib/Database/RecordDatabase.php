@@ -16,7 +16,7 @@
 			$ID = null;
 	
 			if($row = $result->fetch_array(MYSQLI_NUM))
-				$ID = $row[0]; 
+				$ID = $row['ID']; 
 	
 			return $ID;
 		}
