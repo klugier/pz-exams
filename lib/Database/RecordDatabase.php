@@ -16,9 +16,26 @@
 			$ID = null;
 	
 			if($row = $result->fetch_array(MYSQLI_NUM))
-				$ID = $row['ID']; 
+				$ID = $row[0]; 
 	
 			return $ID;
+		}
+
+		static public function getRecordFromUnit($examUnitID)
+		{
+			$sql = "Select * from Records WHERE ExamUnitID  = '" . $examUnitID . "'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$record = null;
+        
+			if($row = $result->fetch_array(MYSQLI_ASSOC)){
+				$record = new Record(); 
+				$record->setID($row['ID']);
+				$record->setStudentID($row['StudentID']);
+				$record->setExamID($row['ExamID']);
+				$record->setExamUnitID($row['ExamUnitID']);
+			}
+			
+			return $record;
 		}
 		
 		static public function getRecord($recordID)

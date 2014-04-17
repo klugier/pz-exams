@@ -32,6 +32,19 @@ final class ExamUnitDatabase
 		}
 		return $examUnitID;
 	}
+
+	static public function getExamUnitIDListDay($examID,$day)
+	{ 
+		$sql = "Select * from ExamUnits WHERE ExamID = '" . $examID . "' AND Day = '" . $day . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		
+		$i = 0;
+		while ($row = $result->fetch_array(MYSQLI_NUM)) {
+			$examUnitID[$i] = $row[0]; 
+			$i++;
+		}
+		return $examUnitID;
+	}
 	
 	static public function getExamUnit($id){
 		$sql = "SELECT * FROM ExamUnits WHERE ID = '" . $id . "'";

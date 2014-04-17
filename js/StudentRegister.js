@@ -28,18 +28,28 @@ jQuery(document).ready(function ($) {
 			}
 		});
 
+		$.ajax({
+			type: "POST",
+			url: './../php/StudentSignInOut.php',
+			data: { action: 'stepF1' },
+			dataType: "html",
+			cache: false,
+			success: function (html) {
+				$('#signInFooter').html(html)
+			}
+		});
+
 	});
 
-
-	$("a#date").click(function (e) {
-		e.preventDefault();
+	$("div").on("click", "a#date", function () {
 
 		var examDate = $(this).attr("examDate");
+		var innerIExamID = $("#innerIExamID").val();
 
 		$.ajax({
 			type: "POST",
 			url: './../php/StudentSignInOut.php',
-			data: { action: 'step2', examDate: examDate },
+			data: { action: 'step2', exam: innerIExamID, examDate: examDate },
 			dataType: "html",
 			cache: false,
 			success: function (html) {
@@ -47,5 +57,17 @@ jQuery(document).ready(function ($) {
 			}
 		});
 
+		$.ajax({
+			type: "POST",
+			url: './../php/StudentSignInOut.php',
+			data: { action: 'stepF2' },
+			dataType: "html",
+			cache: false,
+			success: function (html) {
+				$('#signInFooter').html(html)
+			}
+		});
+
 	});
-}); 
+
+});

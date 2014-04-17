@@ -1,52 +1,127 @@
 <?php
 	
 	include_once("../lib/Lib.php");
-
+	
 	if(isset($_POST['action']) && !empty($_POST['action'])) {
 	$action = $_POST['action'];
 		switch($action) {
 			case 'step1' : step1($_POST['exam']);break;
-			case 'step2' : step2($_POST['examDate']);break;
+			case 'step2' : step2($_POST['exam'],$_POST['examDate']);break;
+			case 'stepF1' : stepF1();break;
+			case 'stepF2' : stepF2();break;
 		}
 	}
-
+	
 	function step1($exam)
 	{
 		$examDays = ExamUnitDatabase::getExamDays($exam);
 		$uniqeDays = array_unique($examDays);
-		$uniqeDays[0]="2014-26-11";
 		$response = '<div class="no-rec">not found</div>';
-		$header = "<table class=\"col-md-12 \"><tbody class=\"table-hover\">";
+		$header = "<table class=\"table table-hover\"><tbody>";
 		$rows = "";
 		foreach ($uniqeDays as $day){
-		//echo $day." | ";
 			$rows = $rows."<tr><td>";
-			//$rows = $rows."<button type=\"submit\" class=\"btn btn-block btn-primary btn-lg\" id=\"date\" name=\"date\" examDate=".$day."\">".$day."</button>";// data-toggle=\"modal\" 
-			$rows = $rows."<a class=\"btn btn-block btn-primary btn-lg\" href=\"#\" role=\"button\" name=\"date\" id=\"date\" data-target=\"#signIn2Modal\" title=\"$day\" examDate=".$day."\">".$day."</a>";
+			$rows = $rows."<a class=\"btn btn-block btn-primary btn-lg\" href=\"#\" role=\"button\" name=\"date\" id=\"date\" data-target=\"#signIn2Modal\" title=\"$day\" examDate=\"".$day."\">".$day."</a>";
 			$rows = $rows."</td></tr>";
 		}
 		$footer = "<tbody></table>";
 		$response = $header.$rows.$footer;
 		$html = $response;
-
-        echo $html;
-	}
-
-	function step2($examDate)
-	{
-		echo "Chosen Exam is on: ".$examDate;
+	
+		echo $html;
 	}
 	
-	/*
-	if (isset($_POST['date']) == true) {
-		echo "StudentID".$_POST['innerIStudentID'];//setInnerExamID($examID, $id);
-		echo " ExamID".$_POST['innerIExamID'];
-		echo " StudentCode".$_POST['innerIStudentCode'];
-		echo " SessionExamID".$_SESSION['innerIExamID'];
-
-		//header('Location: ../../StudentExams.php?id='.$_POST['innerIStudentCode']); 
+	function step2($exam,$examDate)
+	{
+		//echo "Chosen Exam is on: ".$examDate;
+		$examUnitIDs = ExamUnitDatabase::getExamUnitIDListDay($exam,$examDate);
+		//echo '<pre>'; print_r($examIDs); echo '</pre>';
+		//echo $examIDs." ".$examDate;
+		
+		$response = '<div class="no-rec">not found</div>';
+		$header = "<table class=\"table table-condensed table-bordered table-hover\">";
+		$rows = "<thead>
+					<tr>
+						<th>Godziny</th>
+						<th>Student</th>
+						<th></th>
+					</tr>
+				</thead><tbody>";
+		$i = 1;
+		foreach ($examUnitIDs as $id){
+			$examunit = ExamUnitDatabase::getExamUnit($id);
+			$record = RecordDatabase::getRecordFromUnit($examunit->getID());
+			if((($record) != null)&&(($record) != 0)){
+				$student = StudentDatabase::getStudentByID($record->getStudentID());
+			}else{
+				$student = new Student();
+				$student->setFirstName("---");
+				$student->setSurName("");
+			}
+			$rows = $rows."<tr>";
+			$rows = $rows."<td>";
+			$rows = $rows.$examunit->getTimeFrom()." : ".$examunit->getTimeTo();
+			$rows = $rows."</td>";
+			$rows = $rows."<td>";
+			$rows = $rows.$student->getFirstName()." ".$student->getSurName();
+			$rows = $rows."</td>";
+			$rows = $rows."<td style=\"vertical-align:middle\">";
+			if($examunit->getState() == 'locked'){
+				$rows = $rows."<div class=\"radio\"><label><input type=\"radio\" disabled=disabled name=\"diabled$i\" id=\"optionsRadios$i\" value=\"$id\" checked>Sign in</label></div>";
+			}else{
+				$rows = $rows."<div class=\"radio\"><label><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios$i\" value=\"$id\" checked>Sign in</label></div>";
+			}
+			$rows = $rows."</td>";
+			$rows = $rows."</tr>";
+			$i++;
+		}
+		$footer = "<tbody></table>";
+		$response = $header.$rows.$footer;
+		$html = $response;
+	
+		echo $html;
 	}
-	*/
+	
+	function stepF1()
+	{
+		echo "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Zamknij</button>";
+	}
+	
+	function stepF2()
+	{
+		echo "<button type=\"submit\" class=\"btn btn-success\" name=\"signIn\" value=\"submit\">Zapisz</button>"."<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Zamknij</button>";
+	}
+	
+	
+	if (isset($_POST['signIn']) == true) {
+		//echo "StudentID ".$_POST['innerIStudentID'];//setInnerExamID($examID, $id);
+		//echo " | ExamID ".$_POST['innerIExamID'];
+		//echo " | StudentCode ".$_POST['innerIStudentCode'];
+		//echo " | Exam Unit ".$_POST['optionsRadios'];
+
+		$examunit = ExamUnitDatabase::getExamUnit($_POST['optionsRadios']);
+		//echo "| Unit got";
+		$id = RecordDatabase::getRecordID($_POST['innerIExamID'],$_POST['innerIStudentID']);
+		//echo "| Id got =". $id;
+		$record = RecordDatabase::getRecord($id);
+		//echo "| Record got ". $record->getID();
+		$record->setExamUnitID($_POST['optionsRadios']);
+		$examunit->setState('locked');
+
+		if(RecordDatabase::updateRecord($record)){
+		//	echo " updateRecord Succes";
+			if(ExamUnitDatabase::updateExamUnit($examunit)){
+		//		echo " updateExamUnit Succes";
+			}else{
+		//		echo " updateExamUnit Fail";
+			}
+		}else{
+			echo " updateRecord Fail";
+		}
+	
+		header('Location: ../../StudentExams.php?id='.$_POST['innerIStudentCode']); 
+	}
+	
 	
 	if (isset($_POST['signOut']) == true) {
 		// TEST CODE
@@ -74,7 +149,7 @@
 		}else{
 			echo " updateRecord Fail";
 		}
-
+	
 		header('Location: ../../StudentExams.php?id='.$_POST['innerStudentCode']); 
 	}
 ?>
