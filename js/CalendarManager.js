@@ -271,7 +271,7 @@ jQuery( document ).ready(function( $ ) {
 		var examDate = $('#exam-date').val();
 		var today = new Date();		
 
-		if(parseTime($('#start-hour').val()) >= parseTime($('#end-hour').val())){			
+		if(converToMinutes($('#start-hour').val()) >= converToMinutes($('#end-hour').val())){			
 			validate = 1;
 		}
 		if ( $("#duration").val() == '' || $("#exam-date").val() == '' || $("#start-hour").val() == '' || $("#end-hour").val() == ''){
