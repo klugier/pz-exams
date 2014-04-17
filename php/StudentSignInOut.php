@@ -87,9 +87,9 @@
 			$rows = $rows."</td>";
 			$rows = $rows."<td style=\"vertical-align:middle\">";
 			if($examunit->getState() == 'locked'){
-				$rows = $rows."<div class=\"radio\"><label><input type=\"radio\" disabled=disabled name=\"diabled$i\" id=\"optionsRadios$i\" value=\"$id\" checked>Sign in</label></div>";
+				$rows = $rows."<div class=\"radio\"><label><input type=\"radio\" disabled=disabled name=\"diabled$i\" id=\"optionsRadios$i\" value=\"$id\" checked>Zajęty</label></div>";
 			}else{
-				$rows = $rows."<div class=\"radio\"><label><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios$i\" value=\"$id\" checked>Sign in</label></div>";
+				$rows = $rows."<div class=\"radio\"><label><input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios\" value=\"$id\">Zapisz się</label></div>";
 			}
 			$rows = $rows."</td>";
 			$rows = $rows."</tr>";

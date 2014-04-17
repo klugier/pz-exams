@@ -1,3 +1,17 @@
+function validateRadio(obj) {
+	var checked = null;
+	var inputs = document.getElementsByName('optionsRadios');
+	for (var i = 0; i < inputs.length; i++) {
+		if (inputs[i].checked) {
+			checked = inputs[i];
+			break;
+		}
+	}
+	if (checked == null) {
+		return false;
+	}
+}
+
 jQuery(document).ready(function ($) {
 
 	$("a#signOutGlyph").click(function () {
@@ -91,7 +105,7 @@ jQuery(document).ready(function ($) {
 		$.ajax({
 			type: "POST",
 			url: 'php/StudentSignInOut.php',
-			data: { action: 'step1', exam: innerIExamID},
+			data: { action: 'step1', exam: innerIExamID },
 			dataType: "html",
 			cache: false,
 			success: function (html) {

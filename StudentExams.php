@@ -54,12 +54,11 @@
 					<th>Data Egzaminu</th>
 					<th>Nazwa Egzaminu</th>
 					<th><center>Status</center></th>
-					<th><center>Zapisany</center></th>
 					<th><center>Zapisz/Wypisz się</center></th>
 				</tr>
 			</thead>
 			<tbody>
-		';
+		';//<th><center>Zapisany</center></th>
 	
 		echo "<tr>\n";
 		$i = 1;
@@ -98,27 +97,36 @@
 			echo "</td>";
 			echo "<td>" . $exam->getName() . "</td>";
 			//Liczba osób zapisanych
-			echo "<td><center>";
-				echo ExamUnitDatabase::countLockedExamUnits($examID);
-				echo "/";
-				echo count($examUnitList);
-			echo "</center></td>\n";
+			$locked = ExamUnitDatabase::countLockedExamUnits($examID);
+			$total = count($examUnitList);
+			$percent = ((100*$locked)/count($examUnitList));
+				//echo ;
+				//echo "/";
+				//echo count($examUnitList);
 			// Zapisany
 			if ((($examUnitID) != null)&&(($examUnitID) != 0)) {
-				echo "<td>";
-				echo "<center><button type=\"button\" class=\"btn btn-info active\"><b>Tak</b></button></center>";
-				echo "</td>";
+				//echo "<td>";
+				//echo "<center><div class=\"btn btn-info active btn-xs\"><b>Tak</b></div></center>";
+				//echo "</td>";
+				echo "<td class=\"col-md-3\"><center><div class=\"progress\">";
+				echo "<div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"$percent\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: $percent%\">";
+				echo "<span><b>$locked/$total - Zapisany</b></span>";
+				echo "</div></div></center></td>";
 				// Wypisz się (Button z id egzaminu)
 				echo "<td><center>";
-				echo "<a class=\"btn btn-danger\" href=\"#\" role=\"button\" data-toggle=\"modal\" id=\"signOutGlyph\" data-target=\"#signOutModal\" title=\"Wypisz się\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-remove\"></i></a>";
+				echo "<a class=\"btn btn-danger \" href=\"#\" role=\"button\" data-toggle=\"modal\" id=\"signOutGlyph\" data-target=\"#signOutModal\" title=\"Wypisz się\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-remove\"></i></a>";
 				echo "</center></td>";
 			} else {
-				echo "<td>";
-				echo "<center><button type=\"button\" class=\"btn btn-info active\"><b>Nie</b></button></center>";
-				echo "</td>";
-				echo "<td class=\"danger\"><center>";
+				//echo "<td>";
+				//echo "<center><div class=\"btn btn-info active btn-xs\"><b>Nie</b></div></center>";
+				//echo "</td>";
+				echo "<td class=\"col-md-3\"><center><div class=\"progress\">";
+				echo "<div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"$percent\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: $percent%\">";
+				echo "<span><b>$locked/$total - Niezapisany</b></span>";
+				echo "</div></div></center></td>";
 				// Zapisz się (Button z id egzaminu)
-				echo "<a class=\"btn btn-success\" href=\"#\" role=\"button\" data-toggle=\"modal\" name=\"signInGlyph\" id=\"signInGlyph\" data-target=\"#signInModal\" title=\"Zapisz się\" value=\"".$exam->getID()."\" examname=\"". $exam->getName() ."\"><i class=\"glyphicon glyphicon-plus\"></i></a>";
+				echo "<td><center>";
+				echo "<a class=\"btn btn-success \" href=\"#\" role=\"button\" data-toggle=\"modal\" name=\"signInGlyph\" id=\"signInGlyph\" data-target=\"#signInModal\" title=\"Zapisz się\" value=\"".$exam->getID()."\" examname=\"". $exam->getName() ."\"><i class=\"glyphicon glyphicon-plus\"></i></a>";
 				echo "</center></td>";
 			}
 			echo "</tr>";

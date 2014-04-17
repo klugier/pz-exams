@@ -157,3 +157,10 @@ hr#author {
 .table-hover > tbody > tr.danger:hover > th {
   background-color: #ebcccc;
 }
+
+.progress span{
+    display: block;
+    position: absolute;
+    width: 90%;
+	color:black;
+}
