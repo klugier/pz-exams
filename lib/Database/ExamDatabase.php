@@ -86,34 +86,41 @@ final class ExamDatabase
 	/*
 	 * Funkcja do aktywacji egzaminu 
 	 */
-	static public function activateExam($exam)
-	{		
-		$status = '';
-		if($exam -> getActivated() == 1) {
+	static public function activateExam($userID, $examID)
+	{	
+		$sql = "Select * from Exams WHERE ID  = '" . $examID . "' AND UserID = '" . $userID . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		if ($result->num_rows == 0) { 
+			return false;
+		}
+		
+		$row = $result->fetch_array(MYSQLI_ASSOC);
+		$status = $row['Activated'];
+		
+		if($status){
 			$status = 0;
 		} else {
 			$status = 1;			
 		}	
-		$examID = $exam->getID();
 		
 		$sql = "UPDATE Exams 
-		SET Activated = '" . $status . "' 
-		WHERE ID = '" . $examID . "'";
+		        SET Activated = '" . $status . "' 
+		        WHERE ID = '" . $examID . "'";
 						
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
 	
-	static public function PostEmail($userID, $exam)
+	static public function PostEmail($userID, $examID)
 	{
-		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $userID . "'";
+		$sql = "Select * from Exams WHERE ID  = '" . $examID . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 
 			return false;
 		}
 		
 		$sql = "UPDATE Exams SET 
-		        EmailsPosted = '" . $exam->getEmailsPosted() . "' 
-		        WHERE ID = '" . $exam->getID() . "'";
+		        EmailsPosted = '" . 1 . "' 
+		        WHERE ID = '" . $examID . "'";
 		
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}

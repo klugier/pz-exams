@@ -24,12 +24,17 @@
 		
 	echo "<br/>";
 		
-	if(ExamDatabase::activateExam($testUser, $exam[1]))
+	if(ExamDatabase::activateExam($testUser->getID(), $exam[1]->getID()))
 		echo $exam[1]->getID() . " Activated status is now " . ($exam[1]->getActivated()? 0 : 1) . " <br/>";
 	else
 		echo "Did not work <br/>";
 		
-		
+	echo "<br/>";
+	
+	if(ExamDatabase::PostEmail($testUser->getID(), $exam[1]->getID()))
+		echo "Posted <br/>";
+	else
+		echo "Did not work <br/>";	
 	
 		/*
 		$testExam = new Exam;
