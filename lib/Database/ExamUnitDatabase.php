@@ -85,6 +85,7 @@ final class ExamUnitDatabase
 		$result = DatabaseConnector::getConnection()->query($sql);
 		
 		$i=0;
+		$days = null;
 		while($row = $result->fetch_array(MYSQLI_NUM)){
 			$days[$i]=$row[0];
 			$i++;

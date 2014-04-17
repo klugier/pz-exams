@@ -27,7 +27,10 @@
 		echo "</div>";
 		
 	} else {
+		date_default_timezone_set('Europe/Warsaw');
+		
 		echo "<h2>Lista aktualnych egzaminów</h2>";
+		echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych jak i przyszłych egzaminów.</p>";
 		echo "<hr />";
 		
 		echo '
@@ -36,6 +39,8 @@
 				<tr>
 					<th style="text-align: center">ID</th>
 					<th>Nazwa</th>
+					<th style="text-align: center">Data rozpoczęcia<i class="glyphicon glyphicon-chevron-down" style="margin-left: 5px"></i></th>
+					<th style="text-align: center">Data zakończenia</th>
 					<th style="text-align: center">Zapełnienie</th>
 					<th style="text-align: center">Aktywny</th>
 					<th style="text-align: center">Operacje</th>
@@ -45,13 +50,32 @@
 			<tbody>
 		';
 		
-		echo "<tr>\n";
 		$i = 1;
+		$currentDate = date("Y-m-d");
 		foreach ($exams as $exam) {
-			// ID
+			$examDays = ExamUnitDatabase::getExamDays($exam->getID());
+			
 			echo "<tr id=\"row-id-" . $exam->getID() . "\">";
+			
+			// ID
 			echo "<td id=\"row-lp-" . $i . "\" style=\"text-align: center;\">" . $i . ".</td>\n";
 			echo "<td id=\"row-name-id-" . $exam->getID() . "\">" . $exam->getName() . "</td>\n";
+			
+			if ($examDays == null) {
+				echo "<td style=\"text-align: center\">Brak</td>";
+				echo "<td style=\"text-align: center\">Brak</td>";
+			}
+			else {
+				$examDaysSize = sizeof($examDays);
+				
+				echo "<td style=\"text-align: center\">" . $examDays[0] . "</td>";
+				if ($examDaysSize == 0) {
+					echo "<td style=\"text-align: center\">Brak</td>";
+				}
+				else {
+					echo "<td style=\"text-align: center\">" . $examDays[$examDaysSize - 1] . "</td>";
+				}
+			}
 			
 			// Populating
 			echo "<td style=\"text-align: center\">" . ExamUnitDatabase::countLockedExamUnits($exam->getID())  . "/" . ExamUnitDatabase::countExamUnits($exam->getID()) . "</td>";
