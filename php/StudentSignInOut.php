@@ -1,6 +1,8 @@
 <?php
 	
 	include_once("../lib/Lib.php");
+	$arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
+	setlocale( LC_ALL, $arrLocales );
 	
 	if(isset($_POST['action']) && !empty($_POST['action'])) {
 	$action = $_POST['action'];
@@ -18,11 +20,13 @@
 		$exam = ExamDatabase::getExam($examID);
 		$response = '<div class="no-rec">not found</div>';
 		$header = "<span><b>Aktualnie jesteś zapisany na egzamin:</b></span><br>";
-		$body = "<span>".$exam->getName()."</span><br>";
+		$header = $header."<span>".$exam->getName()."</span><br>";
 
 		$id = RecordDatabase::getRecordID($examID,$studentID);
 		$record = RecordDatabase::getRecord($id);
 		$examunit = ExamUnitDatabase::getExamUnit($record->getExamUnitID());
+		$body = "<span><b>Dnia:</b></span><br>";
+		$body = $body."<span>".$examunit->getDay()." (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($examunit->getDay())))).")</span><br>";
 		$footer = "<span><b>Na godzinę:</b></span><br>";
 		$footer = $footer."<span>".$examunit->getTimeFrom()."</span><hr>";
 
@@ -41,7 +45,7 @@
 		$rows = "";
 		foreach ($uniqeDays as $day){
 			$rows = $rows."<tr><td>";
-			$rows = $rows."<a class=\"btn btn-block btn-primary btn-lg\" href=\"#\" role=\"button\" name=\"date\" id=\"date\" data-target=\"#signIn2Modal\" title=\"$day\" examDate=\"".$day."\">".$day."</a>";
+			$rows = $rows."<a class=\"btn btn-block btn-primary btn-lg\" href=\"#\" role=\"button\" name=\"date\" id=\"date\" data-target=\"#signIn2Modal\" title=\"$day\" examDate=\"".$day."\">".$day." (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($day)))).")</a>";
 			$rows = $rows."</td></tr>";
 		}
 		$footer = "<tbody></table>";

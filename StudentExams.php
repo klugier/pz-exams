@@ -4,9 +4,9 @@
 	$title = "$appName - Strona studenta - Lista egzaminów";
 	$scripts = array(  "js/StudentRegister.js" );
 	include("html/Begin.php");
-	if(session_id() == '') {
-		session_start();
-	}
+	
+	$arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
+	setlocale( LC_ALL, $arrLocales );
 	
 	echo "<input id=\"studentCode\" type=\"hidden\" value=\"";
 	echo $_GET['code'];
@@ -79,6 +79,7 @@
 					echo "<td><b>";
 					$eu = ExamUnitDatabase::getExamUnit($examUnitID);
 					echo $eu->getDay();
+					echo " (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($eu->getDay())))).") ";
 					echo " o ".$eu->getTimeFrom();
 				}else{
 					echo "<td>";
