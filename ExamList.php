@@ -28,6 +28,16 @@
 		
 	} else {
 		date_default_timezone_set('Europe/Warsaw');
+		$currentDate = date("Y-m-d");
+		
+		// Przygotujmy posortowaną listę egzaminów względem daty rozpoczęcia
+		$list = null;
+		$i = 0;
+		foreach ($exams as $exam) {
+			$list[$i] = new ExamListElement($exam, ExamUnitDatabase::getExamDays($exam->getID()));
+			$i++;
+		}
+		ExamListElement::sortByStartDate($list);
 		
 		echo "<h2>Lista aktualnych egzaminów</h2>";
 		echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych jak i przyszłych egzaminów.</p>";
@@ -51,23 +61,40 @@
 		';
 		
 		$i = 1;
-		$currentDate = date("Y-m-d");
-		foreach ($exams as $exam) {
-			$examDays = ExamUnitDatabase::getExamDays($exam->getID());
+		foreach ($list as $element) {
+			$id = $element->getExam()->getID();
+			$name = $element->getExam()->getName();
+			$examDays = $element->getExamDates();
+			$examDaysSize = sizeof($examDays);
 			
-			echo "<tr id=\"row-id-" . $exam->getID() . "\">";
+			$echoRowDefault = "<tr id=\"row-id-" . $id . "\">";
+			$echoRowActive  = "<tr id=\"row-id-" . $id . "\" class=\"success\">";
+			
+			if ($examDaysSize == 0) {
+				echo $echoRowDefault;
+			} elseif ($examDaysSize == 1) {
+				if ($examDays[0] == $currentDate) {
+					echo $echoRowActive;
+				} else {
+					echo $echoRowDefault;
+				}
+			} else {
+				if ($examDays[0] < $currentDate && $examDays[$examDaysSize - 1] > $currentDate) {
+					echo $echoRowActive;
+				} else {
+					echo $echoRowDefault;
+				}
+			}
 			
 			// ID
 			echo "<td id=\"row-lp-" . $i . "\" style=\"text-align: center;\">" . $i . ".</td>\n";
-			echo "<td id=\"row-name-id-" . $exam->getID() . "\">" . $exam->getName() . "</td>\n";
+			echo "<td id=\"row-name-id-" . $id . "\">" . $name . "</td>\n";
 			
 			if ($examDays == null) {
 				echo "<td style=\"text-align: center\">Brak</td>";
 				echo "<td style=\"text-align: center\">Brak</td>";
 			}
 			else {
-				$examDaysSize = sizeof($examDays);
-				
 				echo "<td style=\"text-align: center\">" . $examDays[0] . "</td>";
 				if ($examDaysSize == 0) {
 					echo "<td style=\"text-align: center\">Brak</td>";
@@ -78,10 +105,10 @@
 			}
 			
 			// Populating
-			echo "<td style=\"text-align: center\">" . ExamUnitDatabase::countLockedExamUnits($exam->getID())  . "/" . ExamUnitDatabase::countExamUnits($exam->getID()) . "</td>";
+			echo "<td style=\"text-align: center\">" . ExamUnitDatabase::countLockedExamUnits($id)  . "/" . ExamUnitDatabase::countExamUnits($id) . "</td>";
 			
 			// Activated
-			echo "<td id=\"row-activated-id-" . $exam->getID() . "\" style=\"text-align: center;\">";
+			echo "<td id=\"row-activated-id-" . $id . "\" style=\"text-align: center;\">";
 			if ($exam->getActivated()) {
 				echo "<b style=\"color: #156815;\">Tak</b>";
 			} else {
@@ -91,17 +118,17 @@
 			
 			// Options
 			echo "<td style=\"text-align: center;\">" .
-				 "<a href=\"ExamEdit.php?examID=" . $exam->getID() . "\" id=\"row-edit-id-" . $exam->getID() . "\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj egzamin\"></i></a>" .
-				 "<a id=\"row-delete-id-" . $exam->getID() . "\" style=\"cursor: pointer;\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
+				 "<a href=\"ExamEdit.php?examID=" . $id . "\" id=\"row-edit-id-" . $id . "\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj egzamin\"></i></a>" .
+				 "<a id=\"row-delete-id-" . $id . "\" style=\"cursor: pointer;\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
 			
 			echo "</td>";
 			
 			echo "<td style=\"text-align: center;\">";
 			if (!$exam->getActivated()) {
-				echo "<button type=\"button\" id=\"row-activate-button-id-" . $exam->getID() . "\" class=\"btn btn-success dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"0\"><b>Aktywuj</b></button>";
+				echo "<button type=\"button\" id=\"row-activate-button-id-" . $id . "\" class=\"btn btn-success dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"0\"><b>Aktywuj</b></button>";
 			}
 			else {
-				echo "<button type=\"button\" id=\"row-deactivate-button-id-" . $exam->getID() . "\" class=\"btn btn-danger dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"1\"><b>Dezaktywuj</b></button>";
+				echo "<button type=\"button\" id=\"row-deactivate-button-id-" . $id . "\" class=\"btn btn-danger dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"1\"><b>Dezaktywuj</b></button>";
 			}
 			echo "</td>";
 			

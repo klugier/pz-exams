@@ -80,4 +80,52 @@ class Exam
 	private $emailsPosted; 
 }
 
+class ExamListElement
+{
+	public function __construct($exam, $examDates) {
+		$this->exam = $exam;
+		$this->examDates = $examDates;
+	}
+		
+	public function getExam() {
+		return $this->exam;
+	}
+		
+	public function getExamDates() {
+		return $this->examDates;
+	}
+		
+	public function setExam($exam) {
+		$this->exam = $exam;
+	}
+		
+	public function setStartDate($examDates) {
+		$this->examDates = $examDates;
+	}
+	
+	public static function sortByStartDate(&$examList) {
+		usort($examList, function($a, $b) {
+			$startDateA = $a->getExamDates()[0];
+			$startDateB = $b->getExamDates()[0];
+			$nameA      = $a->getExam()->getName();
+			$nameB      = $b->getExam()->getName();
+			
+			// TODO: Drugim kluczem tej metody powinna być nazwa egzaminu.
+			
+			if ($startDateA == null && $startDateB == null) {
+				return $nameA < $nameB ? -1 : 1;
+			} else if ($startDateA == null && $startDateB != null) {
+				return 1;
+			} else if ($startDateA != null && $startDateB == null) {
+				return -1;
+			} else {
+				return $startDateA < $startDateB ? -1 : 1;
+			}
+		});
+	}
+	
+	private $exam;
+	private $examDates;
+}
+
 ?>
