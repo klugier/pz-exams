@@ -163,4 +163,17 @@ hr#author {
     position: absolute;
     width: 90%;
 	color:black;
+	font-size:120%;
+}
+
+.fake-center{
+	position: relative;
+	min-height: 1px;
+	top:10px;
+}
+
+.fake-center-button{
+	position: relative;
+	min-height: 1px;
+	top:3px;
 }
