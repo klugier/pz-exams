@@ -79,8 +79,9 @@
 					echo "<td style=\"vertical-align:middle;\"><b>";
 					$eu = ExamUnitDatabase::getExamUnit($examUnitID);
 					echo $eu->getDay();
-					echo " (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($eu->getDay())))).") ";
-					echo " o ".$eu->getTimeFrom();
+					$time = $eu->getDay()." ".$eu->getTimeFrom();
+					echo " (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($time)))).") ";
+					echo " o ".strftime("%H:%M",strtotime($time));
 				}else{
 					echo "<td style=\"vertical-align:middle;\">";
 					$j = 0;
