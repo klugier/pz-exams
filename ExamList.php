@@ -53,14 +53,13 @@
 		$examDaysSize = sizeof($examDays);
 		
 		if ($examDays != null) {
-			if ($currentDate >= $examDays[0]) {
-				if ($examDaysSize == 1 || $currentDate > $examDays[$examDaysSize - 1]) {
-					continue;
-				} else {
-					$isEmpty = false;
-					break;
-				}
+			if ($currentDate < $examDays[0] || $currentDate < $examDays[$examDaysSize - 1]) {
+				$isEmpty = false;
+				break;
 			}
+		} else {
+			$isEmpty = false;
+			break;
 		}
 	}
 	if ($isEmpty) {
@@ -95,9 +94,10 @@
 		
 	$i = 1;
 	foreach ($list as $element) {
-		$id = $element->getExam()->getID();
-		$name = $element->getExam()->getName();
-		$examDays = $element->getExamDates();
+		$id           = $element->getExam()->getID();
+		$name         = $element->getExam()->getName();
+		$activated    = $element->getExam()->getActivated();
+		$examDays     = $element->getExamDates();
 		$examDaysSize = sizeof($examDays);
 			
 		// Is actual exam check
@@ -152,7 +152,7 @@
 		
 		// Activated
 		echo "<td id=\"row-activated-id-" . $id . "\" style=\"text-align: center;\">";
-		if ($exam->getActivated()) {
+		if ($activated) {
 			echo "<b style=\"color: #156815;\">Tak</b>";
 		} else {
 			echo "<b style=\"color: #801313;\">Nie</b>";
@@ -168,7 +168,7 @@
 		
 		// Activation
 		echo "<td style=\"text-align: center;\">";
-		if (!$exam->getActivated()) {
+		if (!$activated) {
 			echo "<button type=\"button\" id=\"row-activate-button-id-" . $id . "\" class=\"btn btn-success dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"0\"><b>Aktywuj</b></button>";
 		}
 		else {
