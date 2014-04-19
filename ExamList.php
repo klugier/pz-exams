@@ -1,7 +1,11 @@
 <?php
 	ob_start();
-	
 	include_once("lib/Lib.php");
+	
+	function finish() {
+		include("html/End.php");
+		ob_end_flush();
+	}
 	
 	$title = "$appName - Lista egzaminów";
 	$scripts = array("js/Lib/bootbox.min.js", "js/ExamList.js");
@@ -25,7 +29,6 @@
 		echo "<div class=\"alert alert-info\">";
 		echo "<b>Nie dodałeś jeszcze żadnych egzaminów!</b> Zobacz jakie to proste i <u><b><a href=\"AddExam.php\">utwórz</a></b></u> swój pierwszy egzamin.";
 		echo "</div>";
-		
 	} else {
 		date_default_timezone_set('Europe/Warsaw');
 		$currentDate = date("Y-m-d");
@@ -38,6 +41,32 @@
 			$i++;
 		}
 		ExamListElement::sortByStartDate($list);
+		
+		// Sprawdzamy czy przypadkiem listę, którą będziemy wyświetlać nie będzie pusta
+		$isEmpty = true;
+		foreach ($list as $element) {
+			$examDays = $element->getExamDates();
+			$examDaysSize = sizeof($examDays);
+			
+			if ($examDays != null) {
+				if ($currentDate > $examDays[0]) {
+					if ($examDaysSize == 1 || $currentDate > $examDays[$examDaysSize - 1]) {
+						continue;
+					} else {
+						$isEmpty = false;
+						break;
+					}
+				}
+			}
+		}
+		if ($isEmpty) {
+			echo "<div class=\"alert alert-info\">";
+			echo "<b>W chwili obecnej nie posiadasz żadnych aktualnych egzaminów!</b> Możesz przejrzeć <b><u><a href=\"ExamListArchives.php\">listę archiwalnych egzaminów</a></u></b> lub <b><u><a href=\"AddExam.php\">dodać nowy egzamin</a></b></u>.";
+			echo "</div>";
+			
+			finish();
+			return;
+		}
 		
 		echo "<h2>Lista aktualnych egzaminów</h2>";
 		echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych jak i przyszłych egzaminów.</p>";
@@ -153,6 +182,5 @@
 		';
 	}
 
-	include("html/End.php");
-	ob_end_flush();
+	finish();
 ?>
