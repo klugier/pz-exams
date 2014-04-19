@@ -2,7 +2,7 @@
 	ob_start();
 	
 	include_once("lib/Lib.php");
-	$title = "$appName - Dodaj egzamin - Podstawowe dane";
+	$title = "$appName - Dodaj egzamin";
 	$scripts = array(  "js/CalendarManager.js" , "js/AddExam.js" );
 	include("html/Begin.php");
 	
