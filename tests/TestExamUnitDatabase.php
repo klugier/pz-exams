@@ -17,13 +17,6 @@
 		echo $day . "<br/>";
 	}
 	
-	$Exams = ExamUnitDatabase::getExamsOrderByDate();
-	echo "<br/>";
-	echo "<br/>";
-	foreach($Exams as $exam){
-		echo $exam . "<br/>";
-	}
-	
 	/*
 	if(ExamUnitDatabase::insertExamUnit($testExam,$testExamUnit)){
 		echo "Done and Done <br/>";
