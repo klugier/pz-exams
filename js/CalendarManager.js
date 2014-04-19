@@ -207,7 +207,7 @@ jQuery( document ).ready(function( $ ) {
 		this.controlAddExamUnit = function ( startTime , endTime ) { 
 			//alert ( startTime +" aa  " +  endTime ) ; 
 			examUnit =	'<tr>'
-						+ '		<td><input type="checkbox" class="removeRecordCheckbox" checked ></td> '
+						+ '		<td><i id="removeRecordIcon" class="glyphicon glyphicon-trash"></i></td> '
 						+ '		<td style="white-space:nowrap">' +  startTime   + '-' +   endTime   + '</td> ' 
 						+ '</tr> ' ; 
 			return examUnit ; 
@@ -340,8 +340,7 @@ jQuery( document ).ready(function( $ ) {
 		calendarControl.printCalendar() ;
 	});  
 	
-	$(document).on("change", ".removeRecordCheckbox", function() {
-		if ( $(this).prop("checked") == false  ) { 
+	$(document).on("click", "#removeRecordIcon", function() {
 			var currentInput = $(this) ;  
 			$(this).closest("tr").fadeOut("slow" , function () { 
 				var date =   jQuery.trim( currentInput.closest(".panel").find(".panel-heading").html()) ;
@@ -351,9 +350,7 @@ jQuery( document ).ready(function( $ ) {
 				calendarControl.examDays = exam.day ;
 				//alert ("printing calendar" ) ; 
 				calendarControl.printCalendar() ;
-				
 			}) ; 
-		} 
 	});
 	
 	$("#addExamDayGlyph").click( function ( ) { 
