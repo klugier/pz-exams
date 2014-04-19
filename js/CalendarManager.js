@@ -275,7 +275,7 @@ jQuery( document ).ready(function( $ ) {
 	
 	// exam.sortDaysArray("2014-12-01" , "2014-02-02") ;
 	
-	var calendarControl = new CalendarControl() ;
+    calendarControl = new CalendarControl() ;
 	
 	// jQuery functions 
 	
@@ -356,6 +356,30 @@ jQuery( document ).ready(function( $ ) {
 	$("#addExamDayGlyph").click( function ( ) { 
 		 $("#duration").val( $('#exam_duration').val() );
 	}); 
+	
+	function getExamID ( ) {
+	    query = window.location.search.substring(1); 
+		queryPart = query.split('&');
+	    examID = null ; 
+		for ( var idx in queryPart ) {  
+			if ( queryPart[idx].match(/examID/) != null  )  { 
+				examID = queryPart[idx].match(/\d+/ ) ; 
+				break ; 
+			}
+		}     
+		return examID ;  	
+	}
+
+	
+
+	//getExamID ();
+
+	// ajax functions  
+
+	function sendAjaxExamCalendarRequest ( $examID ) { 
+		
+	}	
+	
 	
 	
 } ); 
