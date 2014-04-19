@@ -161,8 +161,9 @@
 		
 		// Options
 		echo "<td style=\"text-align: center;\">" .
-			 "<a href=\"ExamEdit.php?examID=" . $id . "\" id=\"row-edit-id-" . $id . "\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj egzamin\"></i></a>" .
-			 "<a id=\"row-delete-id-" . $id . "\" style=\"cursor: pointer;\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
+			 "<a href=\"ExamEdit.php?examID=" . $id . "\" id=\"row-edit-id-" . $id . "\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj egzamin\"></i></a>" . 
+			 "<a id=\"row-user-list-id-" . $id . "\" style=\"cursor: pointer;\"><i class=\"glyphicon glyphicon-th-list\" style=\"margin-right: 10px;\" title=\"Lista studentów\"></i></a>" .
+			 "<a id=\"row-delete-id-" . $id . "\" style=\"cursor: pointer;\" ><i class=\"glyphicon glyphicon-trash\" title=\"Usuń egzamin\"></i></a>";
 		
 		echo "</td>";
 		
