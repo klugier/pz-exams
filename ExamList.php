@@ -172,7 +172,7 @@
 			echo "<button type=\"button\" id=\"row-activate-button-id-" . $id . "\" class=\"btn btn-success dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"0\"><b>Aktywuj</b></button>";
 		}
 		else {
-			echo "<button type=\"button\" id=\"row-deactivate-button-id-" . $id . "\" class=\"btn btn-danger dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"1\"><b>Dezaktywuj</b></button>";
+			echo "<button type=\"button\" id=\"row-activate-button-id-" . $id . "\" class=\"btn btn-danger dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"1\"><b>Dezaktywuj</b></button>";
 		}
 		echo "</td>";
 		

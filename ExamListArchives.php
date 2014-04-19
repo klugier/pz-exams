@@ -87,9 +87,9 @@
 	
 	$i = 1;
 	foreach ($list as $element) {
-		$id = $element->getExam()->getID();
-		$name = $element->getExam()->getName();
-		$examDays = $element->getExamDates();
+		$id           = $element->getExam()->getID();
+		$name         = $element->getExam()->getName();
+		$examDays     = $element->getExamDates();
 		$examDaysSize = sizeof($examDays);
 		
 		// Is archive exam echeck
