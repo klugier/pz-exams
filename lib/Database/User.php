@@ -57,6 +57,27 @@ class BasicUser
 	{
 		$this->activation_code = $activation_code;
 	}
+
+	public function getFirstName()
+	{
+		return $this->firstName;
+	}	
+	
+	public function setFirstName($firstName)
+	{
+		$this->firstName = $firstName;
+	}
+	
+	public function getSurname()
+	{
+		return $this->surname;
+	}
+	
+	
+	public function setSurname($surname)
+	{
+		 $this->surname = $surname ;
+	}
 	
 	protected $id;
 	protected $email;
@@ -82,28 +103,6 @@ class User extends BasicUser
 		echo "Surname: "  . $this->surname   . "<br /> " ;
 		echo "Gender: "   . $this->gender    . "<br /> " ;
 	} 
-	
-	public function getFirstName()
-	{
-		return $this->firstName;
-	}
-	
-	
-	public function setFirstName($firstName)
-	{
-		$this->firstName = $firstName;
-	}
-	
-	public function getSurname()
-	{
-		return $this->surname;
-	}
-	
-	
-	public function setSurname($surname)
-	{
-		 $this->surname = $surname ;
-	}
 	
 	public function getGender()
 	{

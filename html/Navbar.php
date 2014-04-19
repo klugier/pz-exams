@@ -26,8 +26,13 @@
 						<form	action="UserSite.php">
 								<button	type="submit"	class="btn	btn-info"><b>
 								<?php
+								if (unserialize($_SESSION['USER'])->getFirstName() != NULL && unserialize($_SESSION['USER'])->getSurname() != NULL){
+									echo unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
+								} else {
+									echo	'	'.unserialize($_SESSION['USER'])->getEmail();		
+								}
 							//	TODO:	Jeżeli	użytkownik	posiada	imie	i/lub	nazwisko	należ	je	tutaj	wyświetlić	zamiast	adresu	email
-							echo	'	'.unserialize($_SESSION['USER'])->getEmail();
+							
 								?></b></button>
 			</form>
 		</li>

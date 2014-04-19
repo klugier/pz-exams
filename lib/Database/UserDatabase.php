@@ -30,7 +30,10 @@
             {
                 $result = DatabaseConnector::getConnection()->query($sql);
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                $basicUser->setID($row['ID']);
+                $basicUser->setID($row['ID']);                
+                $basicUser->setFirstName($row['FirstName']);
+                $basicUser->setSurname($row['Surname']);                
+
                 return true;
             }
             return false;		
