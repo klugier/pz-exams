@@ -105,12 +105,12 @@ class ExamListElement
 	
 	public static function sortByStartDate(&$examList) {
 		usort($examList, function($a, $b) {
-			$startDateA = $a->getExamDates()[0];
-			$startDateB = $b->getExamDates()[0];
-			$nameA      = $a->getExam()->getName();
-			$nameB      = $b->getExam()->getName();
-			
-			// TODO: Drugim kluczem tej metody powinna być nazwa egzaminu.
+			$startDateA_ = $a->getExamDates();
+			$startDateB_ = $b->getExamDates();
+			$startDateA  = $startDateA_[0];
+			$startDateB  = $startDateB_[0];
+			$nameA       = $a->getExam()->getName();
+			$nameB       = $b->getExam()->getName();
 			
 			if ($startDateA == null && $startDateB == null) {
 				return $nameA < $nameB ? -1 : 1;
