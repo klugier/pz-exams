@@ -105,20 +105,7 @@ final class ExamUnitDatabase
 		
 		return $days;
 	}
-	
-	static public function getExamsOrderByDate(){
-		$sql = "SELECT DISTINCT ExamID FROM ExamUnits ORDER BY day ASC";
-		$result = DatabaseConnector::getConnection()->query($sql);
-		$exams = null;
-		
-		$i=0;
-		while($row = $result->fetch_array(MYSQLI_NUM)){
-			$exams[$i]=$row[0];
-			$i++;
-		}
-		
-		return $exams;
-	}
+
 	/*********************************************************************
 	 ********************* Podstawowe funkcje sql ************************
 	 *********************************************************************/
