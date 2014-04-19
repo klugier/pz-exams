@@ -53,7 +53,6 @@ jQuery(document).ready(function($) {
 		var id = $(this).attr("id");
 		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);		
 		
-
 		$.ajax({
 			type: "POST",
 			url: "lib/Ajax/AjaxExamActivationRequest.php",
@@ -62,74 +61,35 @@ jQuery(document).ready(function($) {
 				examID : examID,
 			},
 			success: function (data) {
-				if(status == 0){
-					alert('Pomyślnie zmieniono status na aktywny.');
+				if(data['status'] == 'failed'){
+					alert(data['errorMsg']);
 				} else {
-					alert('Deaktywowano egzamin.');
+					if(status == 0){
+						/*if(data['emailsPost'] == '1'){
+							alert("Maile z informacją o egzaminie zostały wysłane do studentów.")
+						}*/
+						alert('Pomyślnie zmieniono status na aktywny.');
+						$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
+						$("#" + id).html("<b>Dezaktywuj</b>");
+						$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
+						$("#" + id).attr("value", 1);	
+					} else {
+						alert('Deaktywowano egzamin.');
+						$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
+						$("#" + id).html("<b>Aktywuj</b>");
+						$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
+						$("#" + id).attr("value", 0);	
+					}
 				}
+			},
+			error: function (error) {				
+				alert('Wystąpił blad przy zmianie statusu egzaminu.');
+			},
+			complete: function() {
+				//window.location = 'ExamList.php';
+			}
+		});		
 
-			},
-			error: function (error) {
-				alert('Wystąpił blad przy aktywacji egzaminu.');
-			},
-			complete: function() {
-				//window.location = 'ExamList.php';
-			}
-		});
-		
-		
-		if(status == 1) {
-			$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
-			$("#" + id).html("<b>Aktywuj</b>");
-			$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
-			$("#" + id).attr("value", 0);
-		} else {
-			$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
-			$("#" + id).html("<b>Dezaktywuj</b>");
-			$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
-			$("#" + id).attr("value", 1);
-		}
-		
-	});
-	
-	$("button[id^=row-deactivate-button-id-]").click(function() {
-		var status = $(this).attr("value");
-		var id = $(this).attr("id");
-		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);		
-		
-		$.ajax({
-			type: "POST",
-			url: "lib/Ajax/AjaxExamActivationRequest.php",
-			dataType: "JSON",
-			data: {
-				examID : examID,
-			},
-			success: function (data) {
-				if(status == 0){
-					alert('Pomyślnie zmieniono status na aktywny.');
-				} else {
-					alert('Deaktywowano egzamin.');
-				}
-			},
-			error: function (error) {
-				alert('Wystąpił blad przy aktywacji egzaminu.');
-			},
-			complete: function() {
-				//window.location = 'ExamList.php';
-			}
-		});
-		
-		if(status == 1) {
-			$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
-			$("#" + id).html("<b>Aktywuj</b>");
-			$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
-			$("#" + id).attr("value", 0);
-		} else {
-			$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
-			$("#" + id).html("<b>Dezaktywuj</b>");
-			$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
-			$("#" + id).attr("value", 1);
-		}
 	});
 	
 });
