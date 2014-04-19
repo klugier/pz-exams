@@ -8,7 +8,6 @@
 	}
 	
 	$title = "$appName - Lista archiwalnych egzaminów";
-	$scripts = array("js/Lib/bootbox.min.js", "js/ExamList.js");
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
