@@ -12,17 +12,17 @@ final class CalendarDatabase
 	{
 		$sql = "SELECT * FROM Exams  JOIN ExamUnits ON ExamUnits.ExamID = Exams.ID WHERE Exams.ID = '" . $id . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
-		$exam = new Exam () ;
-		$examUnit = null ;         
-		$row = $result->fetch_assoc ();
-		$exam->setName ( $row['Name'] ) ;
-	    $exam->setDuration ( $row['Duration'] );  
-		$calendar = new BasicCalendar ( $exam )  ;
+		$exam = new Exam();
+		$examUnit = null;         
+		$row = $result->fetch_assoc();
+		$exam->setName($row['Name']);
+	    $exam->setDuration($row['Duration']);  
+		$calendar = new BasicCalendar($exam);
 		// przesun wskaźnik na początek 
-		$row = $result->data_seek(0);			
+		$row = $result->data_seek(0);
 		
 		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-			$examUnit = new ExamUnit () ; 
+			$examUnit = new ExamUnit (); 
 			$examUnit->setDay($row['Day']);
 			$examUnit->setTimeFrom($row['TimeFrom']);
 			$examUnit->setTimeTo($row['TimeTo']);

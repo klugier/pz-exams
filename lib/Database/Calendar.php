@@ -9,24 +9,24 @@
 			$this->examUnitsList = array () ; 
 		}
 
-		public function addExamUnit( $examUnit ) { 
-			array_push ( $this->examUnitsList , $examUnit ) ;   
+		public function addExamUnit($examUnit) { 
+			array_push($this->examUnitsList, $examUnit);   
 		}		
 	
 		public function getExam() {
 			return $this->exam;
 		}
 		
-		public function printCalendar ( ) { 
-			echo "Exam name : " . $this->exam->getName() . " <br /> " ;
+		public function printCalendar() { 
+			echo "Exam name : " . $this->exam->getName() . " <br /> ";
 			echo "Exam duration : " . $this->exam->getDuration() . " <br /> ";
-			foreach (  $this->examUnitsList as $examUnit ) {  
+			foreach ($this->examUnitsList as $examUnit) {  
 				echo "Day ". $examUnit->getDay() . " od " . $examUnit->getTimeFrom() . " - do " . $examUnit->getTimeTo() . " <br /> "; 
 			} 
 		} 
 	
-		private $exam ;
-		private $examUnitsList ;  
+		private $exam;
+		private $examUnitsList;  
 	} 
 
 ?>
