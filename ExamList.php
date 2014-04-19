@@ -67,9 +67,18 @@
 			$examDays = $element->getExamDates();
 			$examDaysSize = sizeof($examDays);
 			
+			// Is actual exam check
+			if ($examDays != null) {
+				if ($currentDate > $examDays[0]) {
+					if ($examDaysSize == 1 || $currentDate > $examDays[$examDaysSize - 1]) {
+						continue;
+					}
+				}
+			}
+			
+			// Row begin
 			$echoRowDefault = "<tr id=\"row-id-" . $id . "\">";
 			$echoRowActive  = "<tr id=\"row-id-" . $id . "\" class=\"success\">";
-			
 			if ($examDaysSize == 0) {
 				echo $echoRowDefault;
 			} elseif ($examDaysSize == 1) {
@@ -86,7 +95,7 @@
 				}
 			}
 			
-			// ID
+			// Lp.
 			echo "<td id=\"row-lp-" . $i . "\" style=\"text-align: center;\">" . $i . ".</td>\n";
 			echo "<td id=\"row-name-id-" . $id . "\">" . $name . "</td>\n";
 			
@@ -123,6 +132,7 @@
 			
 			echo "</td>";
 			
+			// Activation
 			echo "<td style=\"text-align: center;\">";
 			if (!$exam->getActivated()) {
 				echo "<button type=\"button\" id=\"row-activate-button-id-" . $id . "\" class=\"btn btn-success dropdown-toggle btn-sm\" style=\"width: 90px\" value=\"0\"><b>Aktywuj</b></button>";
