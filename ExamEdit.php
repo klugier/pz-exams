@@ -30,7 +30,8 @@
 <script type="text/javascript">
 	// loads calendar from database --> first CalendarManager script is  run
 	$(document).ready(function () {
-		editExamCalendarManager.sendAjaxExamCalendarRequest(12);
+		editExamCalendarManager.sendAjaxExamCalendarRequest();
+		editExamCalendarManager.printCalendar();
 	});
 </script>
 

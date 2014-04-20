@@ -40,8 +40,8 @@ jQuery( document ).ready(function( $ ) {
 				}
 				var conv1 = parseTime(bHour + durat * i);      
 				var conv2 = parseTime(bHour + durat * (i + 1));
-				var ExmUnit = new ExamUnit(conv1, conv2);
-				this.day[date].push(ExmUnit);
+				var examUnit = new ExamUnit(conv1, conv2);
+				this.day[date].push(examUnit);
 			}
 			
 			// sort days 
@@ -50,6 +50,14 @@ jQuery( document ).ready(function( $ ) {
 			this.sortAllExamUnits();
 		};
 
+		this.addSingleExamUnit = function ( date, begHour, endHour ) { 
+			if(this.day[date] === undefined) {
+					this.day[date] = new Array();
+			}
+			$examUnit = new ExamUnit(begHour, endHour);
+			this.day[date].push($examUnit); 
+		} ;
+		
 		this.delTerm = function(date) {
 			delete this.day[date];
 		};
@@ -260,8 +268,7 @@ jQuery( document ).ready(function( $ ) {
 
 	function EditExamCalendarManager() { 
 		
-		this.calendarControl = new CalendarControl() ; 
-		
+		this.calendarControl = new CalendarControl() ;  
 		this.getExamID = function() {
 			query = window.location.search.substring(1); 
 			queryPart = query.split('&');
@@ -269,26 +276,29 @@ jQuery( document ).ready(function( $ ) {
 			for ( var idx in queryPart ) {  
 				if ( queryPart[idx].match(/examID/) != null  )  { 
 					examID = queryPart[idx].match(/\d+/ ) ; 
-					break ; 
+					return examID[0] ;   
 				}
 			}     
 			return examID ;  	
 		} ;
 		
-		this.sendAjaxExamCalendarRequest = function ( $examID ) {
-			// $examID	= this.getExamID () ; 
+		this.sendAjaxExamCalendarRequest = function ( ) {
+			examID	= this.getExamID () ;
+			$currentClass = this ; 
 			$.ajax({
 				url: 'lib/Ajax/AjaxExamCalendarRequest.php',
 				async: false , 
 				type: 'post',
-				data: { 'examID' : $examID },
+				data: { 'examID' : examID },
 				success: function(data, status) { 
-					alert ( data + " s: " + status  ) ;  
 					if(data.status.trim() === "dataRecived") {
-						if (data.examID.trim() === "existsInDB") {  
+						if (data.examID.trim() === "existsInDB") {
 							console.log ( data ) ; 
+							$currentClass.calendarControl = new CalendarControl () ;  
+							$currentClass.insertExamUnitsToCalendar(data); 
 							return ; 
 						} 
+						console.log ( data ) ;
 					} 
 					console.log("Zapytanie ajax nie powiodło się ( Nie udało się sprawdzić czy exam ID występuje w bazie )");  	 
 				},
@@ -297,6 +307,25 @@ jQuery( document ).ready(function( $ ) {
 				}
 			}); 
 		} ;	
+		
+		this.insertExamUnitsToCalendar = function($jsonExamData) { 
+			$exam = new Exam($jsonExamData.name, $jsonExamData.durration ); 
+			for ( var $idx in $jsonExamData.examUnits ) {    
+				$timeFrom = this.shortenTimeValue($jsonExamData.examUnits[$idx].timeFrom) ; 
+				$timeTo = this.shortenTimeValue($jsonExamData.examUnits[$idx].timeTo) ;
+				$exam.addSingleExamUnit($jsonExamData.examUnits[$idx].day , $timeFrom , $timeTo);
+			} 
+			this.calendarControl.examDays = $exam.day ;
+		} ; 
+		
+		this.printCalendar = function printCalendar() { 
+			this.calendarControl.printCalendar(); 
+		} ;
+		
+		this.shortenTimeValue = function ( $time ) { 
+			$timeArray = $time.split(':');
+			return $timeArray[0]+":"+$timeArray[1];
+		} ; 
 	} 
 // CLASSES & FUNCTIONS SECTION END *************************************************************************************************
 	
