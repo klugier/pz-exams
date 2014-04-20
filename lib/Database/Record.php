@@ -58,7 +58,6 @@ class Record
 	private $studentID;
 	private $examID;
 	private $examUnitID;
-	 
 }
 
 ?>

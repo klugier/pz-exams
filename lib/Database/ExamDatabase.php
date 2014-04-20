@@ -131,7 +131,7 @@ final class ExamDatabase
 		 
 	static public function insertExam($userID, $exam)
 	{ 
-		$values = "('"	. $userID . "','"
+		$values = "('"  . $userID . "','"
 		                . $exam->getName() . "','" 
 		                . $exam->getDuration() . "','"
 		                . $exam->getActivated() . "','"  

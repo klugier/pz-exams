@@ -1,5 +1,4 @@
 <?php
-	
 	include_once("Record.php");
 	include_once("DatabaseConnector.php");
 	

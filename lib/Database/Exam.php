@@ -38,6 +38,7 @@ class Exam
 	{
 		return $this->emailsPosted;
 	}
+	
 	// *****************************************************
 	
 	public function setID($id)
@@ -82,28 +83,34 @@ class Exam
 
 class ExamListElement
 {
-	public function __construct($exam, $examDates) {
+	public function __construct($exam, $examDates)
+	{
 		$this->exam = $exam;
 		$this->examDates = $examDates;
 	}
 		
-	public function getExam() {
+	public function getExam()
+	{
 		return $this->exam;
 	}
 		
-	public function getExamDates() {
+	public function getExamDates()
+	{
 		return $this->examDates;
 	}
 		
-	public function setExam($exam) {
+	public function setExam($exam)
+	{
 		$this->exam = $exam;
 	}
 		
-	public function setStartDate($examDates) {
+	public function setStartDate($examDates)
+	{
 		$this->examDates = $examDates;
 	}
 	
-	public static function sortByStartDate(&$examList) {
+	public static function sortByStartDate(&$examList)
+	{
 		usort($examList, function($a, $b) {
 			$startDateA_ = $a->getExamDates();
 			$startDateB_ = $b->getExamDates();
