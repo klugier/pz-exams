@@ -4,7 +4,7 @@
 
 	<p id="exam_info" style="margin-top: 20px;"></p>
 
-	<label for="duration" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: imię nazwisko &lt;adres e-mail&gt;</label>
+	<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: imię nazwisko &lt;adres e-mail&gt;</label>
 		
 	<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px;">
 	
