@@ -11,12 +11,16 @@
 	
 	
 	$ExamUnits = RecordDatabase::getExamUnitIDStudentIDList(15); 
-	foreach($ExamUnits as $examUnit)
-		echo $examUnit['ExamUnitID'] . " | " . $examUnit['StudentID'] . "<br/>";
+	if($ExamUnits == null){
+		echo "nie ma takich danych w bazie";
+	}else {
+		foreach($ExamUnits as $examUnit)
+			echo $examUnit['ExamUnitID'] . " | " . $examUnit['StudentID'] . "<br/>";
+	}
 	
 	
-	
-	
+	$count = RecordDatabase::countUserStudentsSingedToExams(1);
+	echo "<br/>" . $count . "<br/>";
 	
 	
 	

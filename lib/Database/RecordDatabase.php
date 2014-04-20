@@ -128,7 +128,43 @@
 			
 			return $row[0];
 		}
-	
+		
+		
+		/*
+		 * Zwraca liczbe Studentów Egzaminatora
+		 */
+		static public function countUserStudents($userID){
+			$sql = "SELECT count(exams.ID) FROM records INNER JOIN exams ON records.ExamID = exams.ID 
+			        WHERE exams.userID = '" . $userID . "'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$examCount=0;
+			
+			if($result!=null){
+				$row = $result->fetch_array(MYSQLI_NUM);
+				$examCount=$row[0];
+			}
+			
+			
+			return $examCount;
+		}
+		
+		/*
+		 * Zwraca liczbe Studentów Egzaminatora zapisanych na egzaminy
+		 */
+		static public function countUserStudentsSingedToExams($userID){
+			$sql = "SELECT count(exams.ID) FROM records INNER JOIN exams ON records.ExamID = exams.ID 
+			        WHERE exams.userID = '" . $userID . "' AND records.ExamUnitID != 'NULL'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$examCount=0;
+			
+			if($result!=null){
+				$row = $result->fetch_array(MYSQLI_NUM);
+				$examCount=$row[0];
+			}
+			
+			
+			return $examCount;
+		}
 		/*********************************************************************
 		 ********************* Podstawowe funkcje sql ************************
 		 *********************************************************************/
