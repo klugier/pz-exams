@@ -35,7 +35,7 @@ final class CalendarDatabase
 } 
 
 // only test purpose 
-echo "<h1> Calendar Database Test is done . </h1> "; 
-CalendarDatabase::getCalendarForExamId(12)->printCalendar(); 
+//echo "<h1> Calendar Database Test is done . </h1> "; 
+//CalendarDatabase::getCalendarForExamId(12)->printCalendar(); 
 
 ?>

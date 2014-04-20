@@ -21,12 +21,20 @@
 			echo "Exam name : " . $this->exam->getName() . "<br />";
 			echo "Exam duration : " . $this->exam->getDuration() . "<br />";
 			foreach ($this->examUnitsList as $examUnit) {  
-				echo "Day ". $examUnit->getDay() . " od " . $examUnit->getTimeFrom() . " - do " . $examUnit->getTimeTo() . "<br />"; 
+				echo "Day " . $examUnit->getDay() . " od " . $examUnit->getTimeFrom() . " - do " . $examUnit->getTimeTo() . "<br />"; 
 			} 
 		} 
 	
+		public function prepareJSONEncodeFormat() { 
+			$jsonEncodeDataFormat = array( "name"=> $this->exam->getName() , "examUnits"=>array( ));
+			foreach ($this->examUnitsList as $examUnit) {
+				array_push($jsonEncodeDataFormat['examUnits'] ,  array("day"=>$examUnit->getDay() , "timeFrom"=>$examUnit->getTimeFrom() , "timeTo"=>$examUnit->getTimeTo())) ;
+			}
+			return $jsonEncodeDataFormat ; 
+		} 
+		
 		private $exam;
-		private $examUnitsList;  
+		private $examUnitsList;
 	} 
 
 ?>
