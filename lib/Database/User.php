@@ -84,6 +84,8 @@ class BasicUser
 	protected $password;
 	protected $activated;
 	protected $activation_code;
+	protected $firstName; 
+	protected $surname;
 }
 
 class User extends BasicUser
@@ -114,9 +116,7 @@ class User extends BasicUser
 	{
 		 $this->gender = $gender;
 	}
-	
-	private $firstName; 
-	private $surname;
+
 	private $gender; 
 }
 
