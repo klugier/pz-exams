@@ -28,7 +28,8 @@
 		$body = "<span><b>Dnia:</b></span><br>";
 		$body = $body."<span>".$examunit->getDay()." (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($examunit->getDay())))).")</span><br>";
 		$footer = "<span><b>Na godzinę:</b></span><br>";
-		$footer = $footer."<span>".$examunit->getTimeFrom()."</span><hr>";
+		$timeFrom = $examunit->getDay()." ".$examunit->getTimeFrom();
+		$footer = $footer."<span>".strftime("%H:%M",strtotime($timeFrom))."</span><hr>";
 
 		$response = $header.$body.$footer;
 		$html = $response;
@@ -75,7 +76,7 @@
 		foreach ($examUnitIDs as $id){
 			$examunit = ExamUnitDatabase::getExamUnit($id);
 			$record = RecordDatabase::getRecordFromUnit($examunit->getID());
-			if((($record) != null)&&(($record) != 0)){
+			if(($record) != null){
 				$student = StudentDatabase::getStudentByID($record->getStudentID());
 			}else{
 				$student = new Student();
@@ -84,7 +85,9 @@
 			}
 			$rows = $rows."<tr>";
 			$rows = $rows."<td>";
-			$rows = $rows.$examunit->getTimeFrom()." : ".$examunit->getTimeTo();
+			$timeFrom = $examunit->getDay()." ".$examunit->getTimeFrom();
+			$timeTo = $examunit->getDay()." ".$examunit->getTimeTo();
+			$rows = $rows.strftime("%H:%M",strtotime($timeFrom))." - ".strftime("%H:%M",strtotime($timeTo));
 			$rows = $rows."</td>";
 			$rows = $rows."<td>";
 			$rows = $rows.$student->getFirstName()." ".$student->getSurName();

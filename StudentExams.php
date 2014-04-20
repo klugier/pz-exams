@@ -1,12 +1,11 @@
 <?php
-	
 	include_once("lib/Lib.php");
-	$title = "$appName - Strona studenta - Lista egzaminów";
-	$scripts = array(  "js/StudentRegister.js" );
+	$title = "$appName - Strona studenta - List egzaminów";
+	$scripts = array("js/StudentRegister.js");
 	include("html/Begin.php");
 	
 	$arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
-	setlocale( LC_ALL, $arrLocales );
+	setlocale(LC_ALL, $arrLocales);
 	
 	echo "<input id=\"studentCode\" type=\"hidden\" value=\"";
 	echo $_GET['code'];
@@ -28,7 +27,7 @@
 	foreach ($examsID as $examID) {
 		$exam = ExamDatabase::getExam($examID);
 		$examDays = ExamUnitDatabase::getExamDays($examID);
-		if ($exam->getActivated()&&(date_create($examDays[0]) > new DateTime("now"))) {
+		if ($exam->getActivated()&&(date_create($examDays[count($examDays)-1]) > new DateTime("now"))) {
 			$active = 0;
 		}
 	}
@@ -59,19 +58,19 @@
 			</thead>
 			<tbody>
 		';
-	
-		echo "<tr>\n";
+		
 		$i = 1;
 		foreach ($examsID as $examID) {
 			$exam = ExamDatabase::getExam($examID);
 			$examDays = ExamUnitDatabase::getExamDays($examID);
-			if (($exam->getActivated())&&(date_create($examDays[0]) > new DateTime("now"))) {
+			// TODO: Blok IF nie posiada wcięcia!!!
+			if (($exam->getActivated())&&(date_create($examDays[count($examDays)-1]) > new DateTime("now"))) {
 			$examUnitList = ExamUnitDatabase::getExamUnitIDList($exam);
 			$examUnitID=RecordDatabase::getExamUnitID($examID,$id);
 			if ((($examUnitID) != null)&&(($examUnitID) != 0)) {	
-				echo "<tr style=\"font-size:120%\" class=\"info\">";
+				echo "<tr class=\"info\">";
 			}else{
-				echo "<tr style=\"font-size:120%\" class=\"danger\">";
+				echo "<tr class=\"danger\">";
 			}
 			echo "<td class=\"text-center\" style=\"vertical-align:middle;\">" . $i . ".</td>\n";
 			// Dni aktywności egzamninu.
@@ -82,6 +81,7 @@
 					$time = $eu->getDay()." ".$eu->getTimeFrom();
 					echo " (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($time)))).") ";
 					echo " o ".strftime("%H:%M",strtotime($time));
+					echo "</b>";
 				}else{
 					echo "<td style=\"vertical-align:middle;\">";
 					$j = 0;
@@ -133,16 +133,15 @@
 					echo "</td>";
 				}
 			}
-			echo "</tr>";
 			$i++;
 			}
 		}
-		echo "</tr>\n";
 	
-		echo '
-			<tbody>
-		</table>
-		';
+	echo '
+		<tbody>
+	</table>
+	';
+	
 	include("lib/Dialog/ExamSignOutButton.php");
 	include("lib/Dialog/ExamSignInButton.php");
 	include("html/End.php");
