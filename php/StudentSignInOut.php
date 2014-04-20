@@ -102,7 +102,7 @@
 			$rows = $rows."</tr>";
 			$i++;
 		}
-		$footer = "<tbody></table>";
+		$footer = "<tbody></table><span class=\"help-block\" id=\"error-message\"></span>";
 		$response = $header.$rows.$footer;
 		$html = $response;
 	

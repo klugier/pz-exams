@@ -1,6 +1,7 @@
 function validateRadio(obj) {
 	var checked = null;
 	var inputs = document.getElementsByName('optionsRadios');
+	var error = document.getElementById("error-message");
 	for (var i = 0; i < inputs.length; i++) {
 		if (inputs[i].checked) {
 			checked = inputs[i];
@@ -8,7 +9,11 @@ function validateRadio(obj) {
 		}
 	}
 	if (checked == null) {
+		error.innerHTML = '<span style="background-color:#F13333;" class="badge pull-left ">!</span><span style="padding:5px"> Musisz zaznaczyć termin na który chcesz się zapisać.</span>'; 
 		return false;
+	}else{
+		error.innerHTML = "";
+		return;
 	}
 }
 

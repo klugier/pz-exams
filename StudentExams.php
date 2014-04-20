@@ -44,6 +44,9 @@
 	echo "\">";
 	echo "<span id=\"valueField\"></span>";
 	
+	echo "<h2>Lista aktualnych egzaminów</h2>";
+	echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych egzaminów.</p>";
+	echo "<hr />";
 	
 		echo '
 		<table class="table table-hover table-condensed text-left">

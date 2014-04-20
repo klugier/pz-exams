@@ -15,7 +15,6 @@ INSERT INTO Exams (UserID, Name, Duration, Activated, EmailsPosted) VALUES ('1',
 INSERT INTO Exams (UserID, Name, Duration, Activated, EmailsPosted) VALUES ('2', 'Przedmiot nie do zdania - Egzamin I termin', '1:00:00', False, False);
 INSERT INTO Exams (UserID, Name, Duration, Activated, EmailsPosted) VALUES ('1', 'Stary egzamin - Egzamin I termin', '0:30:00', True, False);
 
-INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('1', '2014-02-16', '08:00:00', '08:30:00', 'unlocked');
 INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('1', '2014-06-16', '08:00:00', '08:30:00', 'unlocked');
 INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('1', '2014-06-16', '08:30:00', '09:00:00', 'unlocked');
 INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('1', '2014-06-16', '09:00:00', '09:30:00', 'unlocked');
