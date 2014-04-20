@@ -17,6 +17,9 @@
 		echo $day . "<br/>";
 	}
 	
+	$count = ExamUnitDatabase::countOpenExams(1,0);
+	echo "<br/>" . $count . "<br/>";
+	
 	/*
 	if(ExamUnitDatabase::insertExamUnit($testExam,$testExamUnit)){
 		echo "Done and Done <br/>";

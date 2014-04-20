@@ -105,6 +105,27 @@ final class ExamUnitDatabase
 		
 		return $days;
 	}
+	
+	/*
+	 * Zwraca liczbe niezakończonych egzaminów
+	 */
+	static public function countOpenExams($userID, $activated){
+		date_default_timezone_set('Europe/Warsaw');
+		$sql = "SELECT count(DISTINCT Exams.ID) FROM ExamUnits INNER JOIN Exams ON ExamUnits.ExamID = Exams.ID 
+		        WHERE Exams.UserID = '" . $userID . "' AND Exams.Activated = '" . $activated . "' 
+		        AND ExamUnits.Day > '" . date("Y/m/d") . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$examCount=0;
+		
+		
+		if($result!=null){
+			$row = $result->fetch_array(MYSQLI_NUM);
+			$examCount=$row[0];
+		}
+		
+		
+		return $examCount;
+	}
 
 	/*********************************************************************
 	 ********************* Podstawowe funkcje sql ************************
