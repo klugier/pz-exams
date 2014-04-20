@@ -79,7 +79,6 @@ class ExamUnit
 	private $timefrom;
 	private $timeto;
 	private $state;
-
 }
 
 ?>

@@ -22,7 +22,7 @@ final class CalendarDatabase
 		$row = $result->data_seek(0);
 		
 		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-			$examUnit = new ExamUnit (); 
+			$examUnit = new ExamUnit(); 
 			$examUnit->setDay($row['Day']);
 			$examUnit->setTimeFrom($row['TimeFrom']);
 			$examUnit->setTimeTo($row['TimeTo']);
@@ -35,7 +35,7 @@ final class CalendarDatabase
 } 
 
 // only test purpose 
-echo "<h1> Calendar Database Test is done . </h1> " ; 
+echo "<h1> Calendar Database Test is done . </h1> "; 
 CalendarDatabase::getCalendarForExamId(12)->printCalendar(); 
 
 ?>

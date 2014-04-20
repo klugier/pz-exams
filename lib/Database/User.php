@@ -115,33 +115,9 @@ class User extends BasicUser
 		 $this->gender = $gender;
 	}
 	
-	/*public function getVisibility ()
-	{
-		return $this->$visibility ;
-	}
-	
-	
-	public function setVisibility (  $visibility  )  
-	{
-		 $this->visibility  = $visibility  ;
-	}
-	//
-	
-	public function getRights ()
-	{
-		return $this->$rights ;
-	}
-	
-	
-	public function setRights (  $rights  )  
-	{
-		 $this->rights  = $rights ;
-	}
-	
-	private $visibility; */
 	private $firstName; 
-	private $surname ;
-	private $gender ; 
+	private $surname;
+	private $gender; 
 }
 
 ?>

@@ -95,7 +95,7 @@ final class ExamUnitDatabase
 	static public function getExamDays($examID){
 		$sql = "SELECT DISTINCT Day FROM ExamUnits WHERE ExamID = '" . $examID . "' ORDER BY day ASC";
 		$result = DatabaseConnector::getConnection()->query($sql);
-		$days=null;
+		$days = null;
 		
 		$i=0;
 		while($row = $result->fetch_array(MYSQLI_NUM)){
