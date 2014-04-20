@@ -88,8 +88,37 @@ jQuery(document).ready(function($) {
 			complete: function() {
 				//window.location = 'ExamList.php';
 			}
+		});
+	});
+	
+	$("a[id^=row-edit-id-]").click(function(){
+		var id = $(this).attr("id");	
+		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);		
+		
+		$.ajax({
+			type: "POST",
+			url: "lib/Ajax/AjaxExamCheckActivated.php",
+			dataType: "JSON",
+			data: {
+				examID : examID,
+			},
+			success: function (data) {		
+				if(data['activated'] == '1'){
+					alert("Aby edytować ten egzamin musisz najpierw go deaktywować!");
+				} else {
+					window.location = 'ExamEdit.php?examID=' + examID;
+				}
+				
+			},
+			error: function (error) {				
+				alert('Wystąpił błąd.');
+			},
+			complete: function() {
+				//window.location = '';
+			}
 		});		
 
+		return false;		
 	});
 	
 });
