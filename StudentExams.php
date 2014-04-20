@@ -115,7 +115,16 @@
 				$total = count($examUnitList);
 				$percent = ((100*$locked)/count($examUnitList));
 				// Zapisany
-				if ((($examUnitID) != null)&&(($examUnitID) != 0)) {
+				if (!($exam->getActivated())){
+					echo "<td  class=\"col-md-3\"><div class=\"progress fake-center\">";
+					echo "<div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"$percent\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 0%\">";
+					echo "<span><b style=\"vertical-align:middle;\">Egzamin Nieaktywny</b></span>";
+					echo "</div></div></td>";
+					// Zapisz się (Button z id egzaminu)
+					echo "<td class=\"text-center\">";
+					echo "<a class=\"btn btn-info fake-center-button\" href=\"#\" role=\"button\" disabled=\"disabled\" data-toggle=\"modal\" name=\"signInGlyph\" id=\"signInGlyph\" data-target=\"#signInModal\" title=\"Zapisz się\" value=\"".$exam->getID()."\" examname=\"". $exam->getName() ."\"><i class=\"glyphicon glyphicon-asterisk\"></i></a>";
+					echo "</td>";
+				}elseif((($examUnitID) != null)&&(($examUnitID) != 0)){
 					echo "<td  class=\"col-md-3\"><div class=\"progress fake-center\">";
 					echo "<div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"$percent\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: $percent%\">";
 					echo "<span style=\"height:20px;\"><b style=\"vertical-align:middle;\">$locked/$total - Zapisany</b></span>";
@@ -123,15 +132,6 @@
 					// Wypisz się (Button z id egzaminu)
 					echo "<td class=\"text-center\">";
 					echo "<a class=\"btn btn-danger fake-center-button\" href=\"#\" role=\"button\" data-toggle=\"modal\" id=\"signOutGlyph\" data-target=\"#signOutModal\" title=\"Wypisz się\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-remove\"></i></a>";
-					echo "</td>";
-				}elseif(!($exam->getActivated())){
-					echo "<td  class=\"col-md-3\"><div class=\"progress fake-center\">";
-					echo "<div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"$percent\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: $percent%\">";
-					echo "<span><b style=\"vertical-align:middle;\">Egzamin Nieaktywny</b></span>";
-					echo "</div></div></td>";
-					// Zapisz się (Button z id egzaminu)
-					echo "<td class=\"text-center\">";
-					echo "<a class=\"btn btn-success fake-center-button\" href=\"#\" role=\"button\" disabled=\"disabled\" data-toggle=\"modal\" name=\"signInGlyph\" id=\"signInGlyph\" data-target=\"#signInModal\" title=\"Zapisz się\" value=\"".$exam->getID()."\" examname=\"". $exam->getName() ."\"><i class=\"glyphicon glyphicon-plus\"></i></a>";
 					echo "</td>";
 				}elseif($total != $locked){
 					echo "<td  class=\"col-md-3\"><div class=\"progress fake-center\">";
