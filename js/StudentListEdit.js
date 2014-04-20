@@ -1,9 +1,5 @@
 $(document).ready(function() {
 
-	$('body').tooltip({
-		selector: '#edit, #remove'
-	});
-
 	$('button#add_students').click( function(){
 
 	emails = new Array();
@@ -52,7 +48,7 @@ $(document).ready(function() {
 					$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number">' + nr +'</td><td id="firstname">' + 
 						data[1] + '</td><td id="lastname">' + 
 						data[2] + '</td><td id="email">' + 
-						data[3] + '</td><td style="text-align:center; vertical-align:middle;"><span id="edit" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Edit" class="glyphicon glyphicon-pencil"></span><span id="remove" data-toggle="tooltip" data-placement="bottom" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></td></tr>');
+						data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><span id="edit" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Edit" class="glyphicon glyphicon-pencil"></span></a><a><span id="remove" data-toggle="tooltip" data-placement="bottom" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></a></td></tr>');
 
 					$('tr#'+data[0]).hide();
 					$('tr#'+data[0]).fadeIn(500);
@@ -121,7 +117,7 @@ $(document).ready(function() {
 				$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number">' + nr +'</td><td id="firstname">' + 
 					data[1] + '</td><td id="lastname">' + 
 					data[2] + '</td><td id="email">' + 
-					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><span id="edit" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Edit" class="glyphicon glyphicon-pencil"></span><span id="remove" data-toggle="tooltip" data-placement="bottom" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></td></tr>');
+					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><span id="edit" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Edit" class="glyphicon glyphicon-pencil"></span></a><a><span id="remove" data-toggle="tooltip" data-placement="bottom" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></a></td></tr>');
 				
 				$('#' + data[0]).hide();
 				$('#' + data[0]).fadeIn(500);
@@ -148,21 +144,21 @@ $(document).ready(function() {
 
 		if ($(this).attr('class') == 'glyphicon glyphicon-pencil')
 			{
-				var st_id = $(this).parent().parent().first().attr('id');
+				var st_id = $(this).closest('tr').attr('id');
 
 				$(this).closest('tr').children('#firstname').html('<div class="form-group" id="ef' + st_id + '" style="margin-bottom: 0px;"><input id="editf" type="text" class="form-control input-sm" style="width: 72%;" value="' + $(this).closest('tr').children('#firstname').text() +'"/></div>');
 				$(this).closest('tr').children('#lastname').html('<div class="form-group" id="el' + st_id + '" style="margin-bottom: 0px;"><input id="editl" type="text" class="form-control input-sm" style="width: 72%;" value="' + $(this).closest('tr').children('#lastname').text() + '"/></div');
 				$(this).closest('tr').children('#email').html('<div class="form-group" id="em' + st_id + '" style="margin-bottom: 0px;"><input id="editm" type="text" class="form-control input-sm" style="width: 72%;" value="' + $(this).closest('tr').children('#email').text() + '"/></div>');
 
-				$(this).attr('data-original-title', 'Confirm').tooltip('fixTitle');
+				$(this).attr('title', 'Confirm');
 
 				$(this).attr('class', 'glyphicon glyphicon-ok');
 			}
 			else
 			{
-				var st_id = $(this).parent().parent().first().attr('id');
+				var st_id = $(this).closest('tr').attr('id');
 
-				$(this).attr('data-original-title', 'Edit').tooltip('fixTitle');
+				$(this).attr('title', 'Edit');
 
 				if ($('div#ef' + st_id + ' input#editf').val().trim() == '') {
 					$('div#ef' + st_id).attr('class', 'form-group has-error');
@@ -221,7 +217,7 @@ $(document).ready(function() {
 
 		$('body').on( "click", 'span#remove', function(){
 
-		var st_id = $(this).parent().parent().first().attr('id');
+		var st_id = $(this).parent().parent().parent().first().attr('id');
 		
 		$.ajax({
 
