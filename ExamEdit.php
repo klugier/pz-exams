@@ -30,13 +30,7 @@
 <script type="text/javascript">
 	// loads calendar from database --> first CalendarManager script is  run
 	$(document).ready(function () {
-		exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
-		exam.addTerm( "21.02.03" , "14:20", "15:20", 30) ;
-		exam.addTerm( "21.02.03" , "19:20", "21:20", 30) ;
-		exam.addTerm( "11.02.03" , "14:20", "15:20", 30) ;
-		exam.addTerm( "11.02.03" , "19:20", "21:20", 30) ;
-		calendarControl.examDays = exam.day ;
-		calendarControl.printCalendar() ;	
+		editExamCalendarManager.sendAjaxExamCalendarRequest(12);
 	});
 </script>
 

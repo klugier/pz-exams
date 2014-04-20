@@ -26,7 +26,7 @@
 		} 
 	
 		public function prepareJSONEncodeFormat() { 
-			$jsonEncodeDataFormat = array( "name"=> $this->exam->getName() , "examUnits"=>array( ));
+			$jsonEncodeDataFormat = array('status' => 'dataRecived' , 'examID' => 'existsInDB' , "name"=> $this->exam->getName() , "examUnits"=>array( ));
 			foreach ($this->examUnitsList as $examUnit) {
 				array_push($jsonEncodeDataFormat['examUnits'] ,  array("day"=>$examUnit->getDay() , "timeFrom"=>$examUnit->getTimeFrom() , "timeTo"=>$examUnit->getTimeTo())) ;
 			}

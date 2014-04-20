@@ -1,9 +1,7 @@
-var exam;
-
 jQuery( document ).ready(function( $ ) {
 
+// CLASSES & FUNCTIONS SECTION BEGIN ***************************************************************************************************
 	// klasa wymiany danych na kartach dodaj egzamin 
-	
 	function converToMinutes(s) {
 		var c = s.split(':');
 		return parseInt(c[0]) * 60 + parseInt(c[1]);
@@ -220,7 +218,6 @@ jQuery( document ).ready(function( $ ) {
 
 	CalendarDayControl.prototype.height = 400; 
 
-
 	function CalendarControl (  )  { 
 		this.examDays = new Array() ; 
 		this.printCalendar = function ( ) 	{ 
@@ -260,25 +257,50 @@ jQuery( document ).ready(function( $ ) {
 			return end ; 
 		} ;
 	} 
+
+	function EditExamCalendarManager() { 
+		
+		this.calendarControl = new CalendarControl() ; 
+		
+		this.getExamID = function() {
+			query = window.location.search.substring(1); 
+			queryPart = query.split('&');
+			examID = null ; 
+			for ( var idx in queryPart ) {  
+				if ( queryPart[idx].match(/examID/) != null  )  { 
+					examID = queryPart[idx].match(/\d+/ ) ; 
+					break ; 
+				}
+			}     
+			return examID ;  	
+		} ;
+		
+		this.sendAjaxExamCalendarRequest = function ( $examID ) {
+			// $examID	= this.getExamID () ; 
+			$.ajax({
+				url: 'lib/Ajax/AjaxExamCalendarRequest.php',
+				async: false , 
+				type: 'post',
+				data: { 'examID' : $examID },
+				success: function(data, status) { 
+					alert ( data + " s: " + status  ) ;  
+					if(data.status.trim() === "dataRecived") {
+						if (data.examID.trim() === "existsInDB") {  
+							console.log ( data ) ; 
+							return ; 
+						} 
+					} 
+					console.log("Zapytanie ajax nie powiodło się ( Nie udało się sprawdzić czy exam ID występuje w bazie )");  	 
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(textStatus);
+				}
+			}); 
+		} ;	
+	} 
+// CLASSES & FUNCTIONS SECTION END *************************************************************************************************
 	
-	// test
-	exam = new Exam ( "" , 20 ) ; 
-	/*exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
-	
-	exam.addTerm( "21.02.03" , "14:20", "15:20", 30) ;
-	
-	exam.addTerm( "21.02.03" , "19:20", "21:20", 30) ;
-	
-	exam.addTerm( "11.02.03" , "14:20", "15:20", 30) ;
-	
-	exam.addTerm( "11.02.03" , "19:20", "21:20", 30) ;*/
-	
-	// exam.sortDaysArray("2014-12-01" , "2014-02-02") ;
-	
-    calendarControl = new CalendarControl() ;
-	
-	// jQuery functions 
-	
+// JQUERY SECTION BEGIN *****************************************************************************************************************
 	$('#addExamForm').submit(function () {
 		var validate = 0;
 		var examDate = $('#exam-date').val();
@@ -317,7 +339,6 @@ jQuery( document ).ready(function( $ ) {
 			$('#myModal').modal('hide') ;						 
 			$('#addExamForm')[0].reset();
 		}
-		
 		// alert  ( exam.name + " --- " + exam.duration  ) ; 
 		return false ; 
 	} );	
@@ -356,30 +377,26 @@ jQuery( document ).ready(function( $ ) {
 	$("#addExamDayGlyph").click( function ( ) { 
 		 $("#duration").val( $('#exam_duration').val() );
 	}); 
+// JQUERY SECTION END *****************************************************************************************************************
 	
-	function getExamID ( ) {
-	    query = window.location.search.substring(1); 
-		queryPart = query.split('&');
-	    examID = null ; 
-		for ( var idx in queryPart ) {  
-			if ( queryPart[idx].match(/examID/) != null  )  { 
-				examID = queryPart[idx].match(/\d+/ ) ; 
-				break ; 
-			}
-		}     
-		return examID ;  	
-	}
-
+// VARIABLES SECTION BEGIN ************************************************************************************************************
+	// test
+	exam = new Exam ( "" , 20 ) ; 
 	
-
-	//getExamID ();
-
-	// ajax functions  
-
-	function sendAjaxExamCalendarRequest ( $examID ) { 
-		
-	}	
+	/*exam.addTerm( "21.02.03" , "10:20", "13:20", 30) ; 
 	
+	exam.addTerm( "21.02.03" , "14:20", "15:20", 30) ;
 	
+	exam.addTerm( "21.02.03" , "19:20", "21:20", 30) ;
+	
+	exam.addTerm( "11.02.03" , "14:20", "15:20", 30) ;
+	
+	exam.addTerm( "11.02.03" , "19:20", "21:20", 30) ;*/
+	
+	// exam.sortDaysArray("2014-12-01" , "2014-02-02") ;
+	
+    calendarControl = new CalendarControl() ;
+	editExamCalendarManager = new EditExamCalendarManager () ; 
+	// jQuery functions 
 	
 } ); 
