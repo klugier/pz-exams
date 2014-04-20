@@ -4,21 +4,17 @@
 	include("html/Begin.php");
 	include("html/UserPanel.php");
 	
-	$sql1 = "Select COUNT(ID) From Exams where UserID = '" . unserialize($_SESSION['USER'])->getID() . "'";
-	$sql2 = "Select COUNT(ID) From Exams where UserID = '" . unserialize($_SESSION['USER'])->getID() . "' && Activated = 1";
-	$sql3 = "Select COUNT(ID) From Exams where UserID = '" . unserialize($_SESSION['USER'])->getID() . "' && Activated = 0";
+	$sql = "Select COUNT(ID) From Exams where UserID = '" . unserialize($_SESSION['USER'])->getID() . "'";
 
-	$result = DatabaseConnector::getConnection()->query($sql1);
+	$result = DatabaseConnector::getConnection()->query($sql);
 	$row = mysqli_fetch_array($result, MYSQLI_NUM);
-    $ExamsNum = $row[0];
+    	$ExamsNum = $row[0];
 
-    $result = DatabaseConnector::getConnection()->query($sql2);
-	$row = mysqli_fetch_array($result, MYSQLI_NUM);
-    $ExamsAct = $row[0];
+    	$ExamsAct = ExamUnitDatabase::countOpenExams(unserialize($_SESSION['USER'])->getID(),1);
+    	$ExamsNact = ExamUnitDatabase::countOpenExams(unserialize($_SESSION['USER'])->getID(),0);
 
-    $result = DatabaseConnector::getConnection()->query($sql3);
-	$row = mysqli_fetch_array($result, MYSQLI_NUM);
-    $ExamsNact = $row[0];
+	$StudentsN = RecordDatabase::countUserStudents(unserialize($_SESSION['USER'])->getID());
+    	$StudentsSignedN = RecordDatabase::countUserStudentsSingedToExams(unserialize($_SESSION['USER'])->getID()); 
 ?>
 <table style="font-size:17px; width:350px; " class="table">
 	<tr class="success">
@@ -38,11 +34,11 @@
 	</tr>
 	<tr>
 		<td>Liczba wprowadzonych studentów</td>
-		<td style="color:purple; font-weight:bold;">212</td>
+		<td style="color:purple; font-weight:bold;"><?php echo $StudentsN; ?></td>
 	</tr>
 	<tr>
 		<td>Liczba zapisanych studentów</td>
-		<td style="font-weight:bold;">0</td>
+		<td style="font-weight:bold;"><?php echo $StudentsSignedN; ?></td>
 	</tr>
 </table>
 <br/>
