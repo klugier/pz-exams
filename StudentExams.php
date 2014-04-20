@@ -88,12 +88,20 @@
 					echo "<td style=\"vertical-align:middle;\">";
 					$j = 0;
 					$uniqeDays = array_unique($examDays);
+					$startDay = null;
 					//echo '<pre>'; print_r($uniqeDays); echo '</pre>';
 					foreach ($uniqeDays as $day){
 						if($j == 0){
+							$startDay = $day;
 							echo $day;
 						}elseif($j == count($uniqeDays)-1){
-							echo date("/d",strtotime($day));
+							if(date("Y",strtotime($day)) != date("Y",strtotime($startDay))){
+								echo " do ".date("Y-m-d",strtotime($day));
+							}elseif(date("m",strtotime($day)) != date("m",strtotime($startDay))){
+								echo " do ".date("m-d",strtotime($day));
+							}elseif(date("d",strtotime($day)) != date("d",strtotime($startDay))){
+								echo "/".date("d",strtotime($day));
+							}
 						}
 						$j++;
 					}

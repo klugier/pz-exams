@@ -45,9 +45,11 @@
 		$header = "<table class=\"table table-hover\"><tbody>";
 		$rows = "";
 		foreach ($uniqeDays as $day){
-			$rows = $rows."<tr><td>";
-			$rows = $rows."<a class=\"btn btn-block btn-primary btn-lg\" href=\"#\" role=\"button\" name=\"date\" id=\"date\" data-target=\"#signIn2Modal\" title=\"$day\" examDate=\"".$day."\">".$day." (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($day)))).")</a>";
-			$rows = $rows."</td></tr>";
+			if (date_create($day) >= new DateTime("now")) {
+				$rows = $rows."<tr><td>";
+				$rows = $rows."<a class=\"btn btn-block btn-primary btn-lg\" href=\"#\" role=\"button\" name=\"date\" id=\"date\" data-target=\"#signIn2Modal\" title=\"$day\" examDate=\"".$day."\">".$day." (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($day)))).")</a>";
+				$rows = $rows."</td></tr>";
+			}
 		}
 		$footer = "<tbody></table>";
 		$response = $header.$rows.$footer;
