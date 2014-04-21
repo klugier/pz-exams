@@ -1,22 +1,25 @@
-jQuery( document ).ready(function( $ ) {
 
-// CLASSES & FUNCTIONS SECTION BEGIN ***************************************************************************************************
-	// klasa wymiany danych na kartach dodaj egzamin 
-	function converToMinutes(s) {
+// GLOBAL FUNCTIONS SECTION BEGIN *********************************************************************************************************
+function converToMinutes(s) {
 		var c = s.split(':');
 		return parseInt(c[0]) * 60 + parseInt(c[1]);
 	}
 
-	function parseTime(s) {
-		if (parseInt(s) % 60 == 0){
-			return Math.floor(parseInt(s) / 60) + ":" + "00";
-		} else {
-			return Math.floor(parseInt(s) / 60) + ":" + (( parseInt(s) % 60  < 10 ) ?  "0"+(parseInt(s)%60) : (parseInt(s)%60) )  ;
-		}
-	}
-
 	// when hour is in format like this 
-	// 12:3 it converts this time to 12:30 
+	// 12:3 it converts this time to 12:30
+function parseTime(s) {
+	if (parseInt(s) % 60 == 0){
+		return Math.floor(parseInt(s) / 60) + ":" + "00";
+	} else {
+		return Math.floor(parseInt(s) / 60) + ":" + (( parseInt(s) % 60  < 10 ) ?  "0"+(parseInt(s)%60) : (parseInt(s)%60) )  ;
+	}
+}
+// GLOBAL FUNCTIONS SECTION END *********************************************************************************************************
+
+jQuery( document ).ready(function( $ ) {
+
+// CLASSES & FUNCTIONS SECTION BEGIN ***************************************************************************************************
+	// klasa wymiany danych na kartach dodaj egzamin 
 
 	function ExamUnit(bHour, eHour){
 		this.bHour = bHour;
@@ -327,86 +330,7 @@ jQuery( document ).ready(function( $ ) {
 			return $timeArray[0]+":"+$timeArray[1];
 		} ; 
 	} 
-// CLASSES & FUNCTIONS SECTION END *************************************************************************************************
-	
-// JQUERY SECTION BEGIN *****************************************************************************************************************
-	$('#addExamForm').submit(function () {
-		var validate = 0;
-		var examDate = $('#exam-date').val();
-		var today = new Date();		
-
-		if(converToMinutes($('#start-hour').val()) >= converToMinutes($('#end-hour').val())){			
-			validate = 1;
-		}
-		if ( $("#duration").val() == '' || $("#exam-date").val() == '' || $("#start-hour").val() == '' || $("#end-hour").val() == ''){
-			validate = 2;
-		}
-		if (Date.parse(examDate) < today){
-			validate = 3;
-		}
-		if ($("#duration").val() < 5) {
-			validate = 4;
-		}
-
-		if( validate == 1){
-			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px">Godzina rozpoczęcia powinna być wcześniej niż godzina zakończenia.</span>') ; 			
-		} else if ( validate == 2) {
-			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px">Należy wypełnić wszystkie pola.</span>') ;			
-		} else if ( validate == 3) {
-			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px">Podana data już minęła. Podaj inną date.</span>') ;			
-		} else if ( validate == 4) {
-			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px">Czas egzaminu powinien wynosić co najmniej 5 minut.</span>') ;			
-		} else {
-			exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  
-			calendarControl.examDays = exam.day ;
-			calendarControl.printCalendar() ;			
-			$("#error").html('');
-			$('#myModal').modal('hide') ;						 
-			$('#addExamForm')[0].reset();
-		}
-		// alert  ( exam.name + " --- " + exam.duration  ) ; 
-		return false ; 
-	} );	
-	
-	
-	$('#exam_name').focusout ( function ( ) {  
-		//alert("exam name is " + $(this).val() );
-		exam.name =  $(this).val() ; 
-		exam.duration = $('#exam_duration').val();  
-	}); 
-	
-	$('#exam_duration').focusout ( function ( ) {  
-		exam.duration = $(this).val() ;
-	}); 
-	
-	$(document).on("click", "#removeDayButton", function() {  
-		// alert( $(this).attr("name") ) ; 
-		exam.delTerm($(this).attr("name"));
-		calendarControl.examDays = exam.day ;
-		calendarControl.printCalendar() ;
-	});  
-	
-	$(document).on("click", "#removeRecordIcon", function() {
-			var currentInput = $(this) ;  
-			$(this).closest("tr").fadeOut("slow" , function () { 
-				var date =   jQuery.trim( currentInput.closest(".panel").find(".panel-heading").html()) ;
-				var examHours = currentInput.closest("td").next().html().split("-") ;
-				var startHour = jQuery.trim(examHours[0]) ; 
-				exam.removeExamHoursForDay ( date , startHour ) ; 
-				calendarControl.examDays = exam.day ;
-				//alert ("printing calendar" ) ; 
-				calendarControl.printCalendar() ;
-			}) ; 
-	});
-	
-	$("#addExamDayGlyph").click( function ( ) { 
-		 $("#duration").val( $('#exam_duration').val() );
-	}); 
-// JQUERY SECTION END *****************************************************************************************************************
+// CLASSES & FUNCTIONS SECTION END ***************************************************************************************************
 	
 // VARIABLES SECTION BEGIN ************************************************************************************************************
 	// test

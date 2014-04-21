@@ -14,6 +14,8 @@
 		ob_end_flush();
 		return;
 	}
+	
+	include("html/UserPanel.php");
 ?>
 
 <div class="container col-md-12">
