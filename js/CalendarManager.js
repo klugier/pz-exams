@@ -270,7 +270,7 @@ jQuery( document ).ready(function( $ ) {
 	} 
 
 	function EditExamCalendarManager() { 
-		
+		this.exam = null ; 
 		this.calendarControl = new CalendarControl() ;  
 		this.getExamID = function() {
 			query = window.location.search.substring(1); 
@@ -296,12 +296,12 @@ jQuery( document ).ready(function( $ ) {
 				success: function(data, status) { 
 					if(data.status.trim() === "dataRecived") {
 						if (data.examID.trim() === "existsInDB") {
-							console.log ( data ) ; 
+							//console.log ( data ) ; 
 							$currentClass.calendarControl = new CalendarControl () ;  
 							$currentClass.insertExamUnitsToCalendar(data); 
 							return ; 
 						} 
-						console.log ( data ) ;
+						//console.log ( data ) ;
 					} 
 					console.log("Zapytanie ajax nie powiodło się ( Nie udało się sprawdzić czy exam ID występuje w bazie )");  	 
 				},
@@ -312,16 +312,17 @@ jQuery( document ).ready(function( $ ) {
 		} ;	
 		
 		this.insertExamUnitsToCalendar = function($jsonExamData) { 
-			$exam = new Exam($jsonExamData.name, $jsonExamData.durration ); 
+			this.exam = new Exam($jsonExamData.name, $jsonExamData.durration ); 
 			for ( var $idx in $jsonExamData.examUnits ) {    
 				$timeFrom = this.shortenTimeValue($jsonExamData.examUnits[$idx].timeFrom) ; 
 				$timeTo = this.shortenTimeValue($jsonExamData.examUnits[$idx].timeTo) ;
-				$exam.addSingleExamUnit($jsonExamData.examUnits[$idx].day , $timeFrom , $timeTo);
+				this.exam.addSingleExamUnit($jsonExamData.examUnits[$idx].day , $timeFrom , $timeTo);
 			} 
-			this.calendarControl.examDays = $exam.day ;
+			this.calendarControl.examDays = this.exam.day ;
 		} ; 
 		
 		this.printCalendar = function printCalendar() { 
+			//console.log (this.calendarControl.examDays ) ; 
 			this.calendarControl.printCalendar(); 
 		} ;
 		

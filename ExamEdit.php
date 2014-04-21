@@ -3,7 +3,7 @@
 	
 	include_once("lib/Lib.php");
 	$title = "$appName - Edytuj egzamin ";
-	$scripts = array(  "js/CalendarManager.js" );
+	$scripts = array(  "js/CalendarManager.js" , "js/ExamEdit.js" );
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
@@ -45,9 +45,9 @@
 				<!-- here goes calendar content --> 
 				</div>
 			<br />
-			<div class="pull-right">
-				<button type="button" class="btn btn-primary" id="exam-list-return" style="padding-left: 30px; padding-right: 30px;">Lista Egzaminów</button>
-			</div>
+			<?php
+				include("lib/Dialog/ModalButton.php");
+			?>
 	</div>
 </div>
 
