@@ -5,7 +5,6 @@ $( document ).ready(function() {
 		var validate = 0;
 		var examDate = $('#exam-date').val();
 		var today = new Date();		 
-		alert ( "edycja egzaminu 1") ; 
 		if(converToMinutes($('#start-hour').val()) >= converToMinutes($('#end-hour').val())){			
 			validate = 1;
 		}

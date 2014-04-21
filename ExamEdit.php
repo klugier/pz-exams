@@ -49,6 +49,7 @@
 				include("lib/Dialog/ModalButton.php");
 			?>
 	</div>
+	<hr/>
 </div>
 
 <script type="text/javascript">

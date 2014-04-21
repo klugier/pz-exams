@@ -144,37 +144,11 @@ jQuery( document ).ready(function( $ ) {
 	}    
 	
 	
-	function CalendarDayControl ( day , examUnits) {
+	function DayControl ( day , examUnits) {
 		
+		this.day = day ; 
+		this.examUnits = examUnits ; 
 		this.separatorPositions = new Array () ; 
-		this.printControl = function ( ) { 
-			
-			if ( examUnits.length == 0 ) { 
-				return ; 
-			} 
- 
-			htmlControl = this.controlStyleBegin ( day ); 
-			this.findSeparatorPositions(); 
-			
-			//alert ( this.separatorPositions.toString() ) ;  
-			
-			var i = 0 ; 
-			var separatorIndex = this.separatorPositions.shift(); 
-			for ( var item in examUnits )  { 
-				htmlControl += this.controlAddExamUnit(  examUnits[item].bHour , examUnits[item].eHour );
-				if ( separatorIndex == i ) { 
-					separatorIndex = this.separatorPositions.shift(); 
-					htmlControl += this.controlAddSeparator () ;
-				} 
-				i++ ; 
-			} 
-			htmlControl += this.controlAddSeparator () ;
-			
-			htmlControl += this.controlStyleEnd (day) ;
-		    // document.write ( htmlControl  ); 
-			return htmlControl ; 
-		} ;  
-		
 		this.findSeparatorPositions = function ( ) { 
 			for ( var i=0; i<examUnits.length-1 ; i++ ) { 
 				if ( examUnits[i].eHour !== examUnits[i+1].bHour  ) { 
@@ -213,13 +187,8 @@ jQuery( document ).ready(function( $ ) {
 			return end  ; 
 		} ;
 		
-		this.controlAddExamUnit = function ( startTime , endTime ) { 
-			//alert ( startTime +" aa  " +  endTime ) ; 
-			examUnit =	'<tr>'
-						+ '		<td><i id="removeRecordIcon" class="glyphicon glyphicon-trash"></i></td> '
-						+ '		<td style="white-space:nowrap">' +  startTime   + '-' +   endTime   + '</td> ' 
-						+ '</tr> ' ; 
-			return examUnit ; 
+		this.controlAddExamUnit = function ( startTime , endTime , name , surname ) { 
+			// method to be overloaded 
 		} ; 
 		
 		this.controlAddSeparator = function ( ) { 
@@ -227,8 +196,54 @@ jQuery( document ).ready(function( $ ) {
 		} ;
 	}
 
-	CalendarDayControl.prototype.height = 400; 
+	DayControl.prototype.height = 400; 
+    /*  
+	 *	extend classes from DayControl
+	 */
+	
+	function SimpleDayControl ( day , examUnits ) { 
+		DayControl.call(this , day , examUnits);
+	} 
+	
+	SimpleDayControl.prototype = new DayControl () ; 
+	
+	SimpleDayControl.prototype.constructor = SimpleDayControl ;  
+	
+	SimpleDayControl.prototype.controlAddExamUnit = function ( startTime , endTime , name , surname ) { 
+			examUnit =	'<tr>'
+						+ '		<td><i id="removeRecordIcon" class="glyphicon glyphicon-trash"></i></td> '
+						+ '		<td style="white-space:nowrap">' +  startTime   + '-' +   endTime   + '</td> ' 
+						+ '</tr> ' ; 
+			return examUnit ; 
+	}  
+	
+	SimpleDayControl.prototype.printControl = function ( ) {   
+			if ( this.examUnits.length == 0 ) { 
+				return ; 
+			} 
+			  
+			htmlControl = this.controlStyleBegin ( this.day ); 
+			this.findSeparatorPositions();  
 
+			var i = 0 ; 
+			var separatorIndex = this.separatorPositions.shift();
+			
+			for ( var item in this.examUnits )  { 
+				htmlControl += SimpleDayControl.prototype.controlAddExamUnit(  this.examUnits[item].bHour , this.examUnits[item].eHour , "" , "" );
+				if ( separatorIndex == i ) { 
+					separatorIndex = this.separatorPositions.shift(); 
+					htmlControl += this.controlAddSeparator () ;
+				} 
+				i++ ; 
+			} 
+			htmlControl += this.controlAddSeparator () ;
+			htmlControl += this.controlStyleEnd (this.day) ;
+		    // document.write ( htmlControl  ); 
+			return htmlControl ; 
+	} ;  
+	
+
+	
 	function CalendarControl (  )  { 
 		this.examDays = new Array() ; 
 		this.printCalendar = function ( ) 	{ 
@@ -246,8 +261,7 @@ jQuery( document ).ready(function( $ ) {
 					calendarControl+="<hr>" ;
 					calendarControl+=this.addRibbonStart() ; 
 				} 
-				//alert ( " day in calendar " + day   ) ;
-				calendarDayControl = new CalendarDayControl ( day , this.examDays[day]) ;
+				calendarDayControl = new SimpleDayControl ( day , this.examDays[day]) ;
 				calendarControl+=calendarDayControl.printControl();
 				daysCounter++; 
 			} 
