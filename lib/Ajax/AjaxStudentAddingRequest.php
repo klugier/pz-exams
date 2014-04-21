@@ -1,13 +1,19 @@
 <?php
 
-	if(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']))
+	if(isset($_POST['email']))
 	{
 		include_once("../../lib/Lib.php");
 
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
 		$email = $_POST['email'];
 		$exam_id = $_POST['exam_id'];
+
+		$firstname = '-';
+		$lastname = '-';
+
+		if (explode('@', $email)[1] == 'uj.edu.pl' && strpos(explode('.', $email)[0], '.') !== false) {
+			$firstname = ucfirst(explode('.', $email)[0]);
+			$lastname = ucfirst(explode('@', explode('.', $email)[1])[0]);
+		} 
 
 		$student = new Student();
 		$student->setFirstName($firstname);

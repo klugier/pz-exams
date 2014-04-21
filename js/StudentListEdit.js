@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+	// .modal-dialog{
+ //  		width: 100%;
+	// }
+
+	// #myModal .modal-body {max-height: 800px;}
+
 	$('button#add_students').click( function(){
 
 	emails = new Array();
@@ -73,30 +79,32 @@ $(document).ready(function() {
 });
 
 
-
-	$('button#add').click(function() {
+	$('body').on( "click", 'button#add', function(){
+	//$('body').click(function() {
 
 		var email_pattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-		if ($('input#firstname').val().trim() == '') {
-			$('div#fn').attr('class', 'form-group has-error');
-		} else {
-			$('div#fn').attr('class', 'form-group');
-		}
+		// if ($('input#firstname').val().trim() == '') {
+		// 	$('div#fn').attr('class', 'form-group has-error');
+		// } else {
+		// 	$('div#fn').attr('class', 'form-group');
+		// }
 
-		if ($('input#lastname').val().trim() == '') {
-			$('div#ln').attr('class', 'form-group has-error');
-		} else {
-			$('div#ln').attr('class', 'form-group');
-		}
+		// if ($('input#lastname').val().trim() == '') {
+		// 	$('div#ln').attr('class', 'form-group has-error');
+		// } else {
+		// 	$('div#ln').attr('class', 'form-group');
+		// }
 
 		if ($('input#email').val().trim() == '' || !(email_pattern.test($('input#email').val().trim()))) {
-			$('div#em').attr('class', 'form-group has-error');
+			$('div#em').attr('class', 'input-group has-error');
 		} else {
-			$('div#em').attr('class', 'form-group');
+			$('div#em').attr('class', 'input-group');
 		}
 
-		if($('input#firstname').val().trim() != '' && $('input#lastname').val().trim() != '' && $('input#email').val().trim() != '' && email_pattern.test($('input#email').val().trim()))
+		if(
+			//$('input#firstname').val().trim() != '' && $('input#lastname').val().trim() != '' && 
+			$('input#email').val().trim() != '' && email_pattern.test($('input#email').val().trim()))
 		{
 
 			$.ajax({
@@ -106,8 +114,8 @@ $(document).ready(function() {
 			dataType: "JSON",
 			data: {
 				exam_id : $('span#exam_id').text().trim(),
-				firstname : $('input#firstname').val().trim(),
-				lastname : $('input#lastname').val().trim(),
+				//firstname : $('input#firstname').val().trim(),
+				//lastname : $('input#lastname').val().trim(),
 				email : $('input#email').val().trim()
 			},
 			success: function (data) {
@@ -117,12 +125,12 @@ $(document).ready(function() {
 				$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number">' + nr +'</td><td id="firstname">' + 
 					data[1] + '</td><td id="lastname">' + 
 					data[2] + '</td><td id="email">' + 
-					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><span id="edit" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Edit" class="glyphicon glyphicon-pencil"></span></a><a><span id="remove" data-toggle="tooltip" data-placement="bottom" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></a></td></tr>');
+					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><span id="remove" data-toggle="tooltip" data-placement="bottom" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></a></td></tr>');
 				
 				$('#' + data[0]).hide();
 				$('#' + data[0]).fadeIn(500);
 
-				$('input#firstname').val("");
+				//$('input#firstname').val("");
 				$('input#lastname').val("");
 				$('input#email').val("");
 
@@ -253,6 +261,19 @@ $(document).ready(function() {
 
 			});
 
+	});
+
+	$('#add_one_student').click(function() {
+
+		if (!$('#mail_div').length)
+		{
+			$('#buttons').append('<div id="mail_div" class="col-lg-4"><div id="em" class="input-group"><input id="email" type="text" class="form-control input-sm" maxlength="50"><span class="input-group-btn"><button id="add" class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-plus"></span></button></span></div></div></div>');
+			$('#mail_div').hide();
+			$('#mail_div').fadeIn(400);
+
+			$('#email').focus();
+
+		}
 	});
 
 });

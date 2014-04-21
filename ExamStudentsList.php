@@ -27,21 +27,56 @@
 	echo '<span id="exam_id" style="visibility:hidden;">' . $id . '</span>';
 ?>
 
-<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px;">
+<div id="buttons" class="container col-md-10 col-md-offset-1" style="margin-top: 3%;">
+<div class="container col-md-4" style="width: 28%; padding-left: 0%; padding-right: 0%;">
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#student_list_modal">Dodaj listę studentów</button>
+<button id="add_one_student" type="button" class="btn btn-primary btn-sm">Dodaj studenta</button>
+</div>
+</div>
 
+<br/>
+<br/>
+
+<!-- Modal -->
+<div class="modal fade" id="student_list_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Dodawanie listy studentów</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
+		<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: imię nazwisko &lt;adres e-mail&gt;</label>
+
+			<textarea class="form-control" rows="6" id="student_list"></textarea>
+
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+        <button id="add_students" type="button" class="btn btn-primary">Dodaj</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px; margin-top: 5%;">
+
+<div class="container col-md-10 col-md-offset-1">
 <table class="table" id="students">
 <thead>
 		<tr>
 		<th>Lp.</th>
-		<th>Imię</th>
-		<th>Nazwisko</th>
+		<th style="width: 20%;">Imię</th>
+		<th style="width: 20%;">Nazwisko</th>
 		<th>E-mail</th>
 		<th style="text-align:center; vertical-align:middle;">Operacje</th>
 		</tr>
 
 </thead>
 <tbody>
-	<tr>
+<!-- 	<tr>
 		<td></td>
 		<td>
 			<div class="form-group" id="fn" style="margin-bottom: 0px;">
@@ -59,7 +94,7 @@
 			</div>
 		</td>
 		<td style="text-align:center; vertical-align:middle;"><button id="add" class="btn btn-success btn-sm" style="width: 60%;">Dodaj</button></td>
-	</tr>
+	</tr> -->
 
 <?php
 
@@ -82,7 +117,11 @@
 		echo '<td id="firstname">' . $student->getFirstName() . '</td>';
 		echo '<td id="lastname">' . $student->getSurname() . '</td>';
 		echo '<td id="email">' . $student->getEmail() . '</td>';
-		echo '<td style="text-align:center; vertical-align:middle;"><a><span id="edit" style="cursor: pointer;" title="Edit" class="glyphicon glyphicon-pencil"></span></a><a><span id="remove" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></a></td>';
+		echo '<td style="text-align:center; vertical-align:middle;">' .
+
+		//<a><span id="edit" style="cursor: pointer;" title="Edit" class="glyphicon glyphicon-pencil"></span></a>
+
+		'<a><span id="remove" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></a></td>';
 		echo '</tr>';
 
 		}
@@ -93,16 +132,7 @@
 
 </tbody>
 </table>
-
-	<div class="container col-md-6 col-sm-6" style="padding-left: 0px; padding-top: 0px;">
-		<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: imię nazwisko &lt;adres e-mail&gt;</label>
-
-			<textarea class="form-control" rows="3" id="student_list"></textarea>
-
-			<span class="pull-right">
-				<button type="button" class="btn btn-primary btn-sm" id="add_students" style="margin-top: 10px;">Dodaj</button>
-			</span>
-		</div>
+</div>
 
 </div>
 
