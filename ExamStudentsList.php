@@ -49,7 +49,7 @@
       <div class="modal-body">
         <div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
 		<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: imię nazwisko &lt;adres e-mail&gt;</label>
-			<textarea class="form-control" rows="6" id="student_list"></textarea>
+			<textarea class="form-control" rows="6" id="student_list" style="resize: vertical"></textarea>
 		</div>
       </div>
       <div class="modal-footer">
