@@ -166,8 +166,7 @@ jQuery( document ).ready(function( $ ) {
 					' 			<table class="table">' +  
 					' 				<thead> ' + 
 					'					<tr> ' + 
-					'						<th>usuń</th>' +  
-					'						<th>godzina</th>' +
+					'						<th colspan="2" style="white-space:nowrap">usuń termin</th>' +
 					'					</tr>' +
 					'				</thead> ' +
 					'				<tbody>' ; 
@@ -197,7 +196,7 @@ jQuery( document ).ready(function( $ ) {
 	}
 
 	DayControl.prototype.height = 400; 
-    /*  
+	/*  
 	 *	extend classes from DayControl
 	 */
 	
@@ -212,7 +211,7 @@ jQuery( document ).ready(function( $ ) {
 	SimpleDayControl.prototype.controlAddExamUnit = function ( startTime , endTime , name , surname ) { 
 			examUnit =	'<tr>'
 						+ '		<td><i id="removeRecordIcon" class="glyphicon glyphicon-trash"></i></td> '
-						+ '		<td style="white-space:nowrap">' +  startTime   + '-' +   endTime   + '</td> ' 
+						+ '		<td style="white-space:nowrap">'+startTime+'-'+endTime+'</td> ' 
 						+ '</tr> ' ; 
 			return examUnit ; 
 	}  
@@ -243,6 +242,48 @@ jQuery( document ).ready(function( $ ) {
 	} ;  
 	
 
+	function ExtendedDayControl ( day , examUnits ) { 
+		DayControl.call(this , day , examUnits);
+	} 
+	
+	ExtendedDayControl.prototype = new DayControl () ; 
+	
+	ExtendedDayControl.prototype.constructor = SimpleDayControl ;  
+	
+	ExtendedDayControl.prototype.controlAddExamUnit = function ( startTime , endTime , name , surname ) { 
+			examUnit =	'<tr>'
+						+ '		<td><i id="removeRecordIcon" class="glyphicon glyphicon-trash"></i></td> '
+						+ '		<td '  + (( name == null && surname == null ) ?  'class="danger"' : 'class="success"')  + ' >' +  startTime + '-' +'<br />' 
+						+(( name == null && surname == null ) ? 'termin nieprzypisany' : ( name + ' ' + surname )) + '</td> ' 
+						+ '</tr> ' ; 
+			return examUnit ; 
+	}  
+	
+	ExtendedDayControl.prototype.printControl = function ( ) {   
+			if ( this.examUnits.length == 0 ) { 
+				return ; 
+			} 
+			  
+			htmlControl = this.controlStyleBegin ( this.day ); 
+			this.findSeparatorPositions();  
+
+			var i = 0 ; 
+			var separatorIndex = this.separatorPositions.shift();
+			
+			for ( var item in this.examUnits )  { 
+				htmlControl += ExtendedDayControl.prototype.controlAddExamUnit(  this.examUnits[item].bHour , this.examUnits[item].eHour , "arek" , "koszczan" );
+				if ( separatorIndex == i ) { 
+					separatorIndex = this.separatorPositions.shift(); 
+					htmlControl += this.controlAddSeparator () ;
+				} 
+				i++ ; 
+			} 
+			htmlControl += this.controlAddSeparator () ;
+			htmlControl += this.controlStyleEnd (this.day) ;
+		    // document.write ( htmlControl  ); 
+			return htmlControl ; 
+	} ;  
+	
 	
 	function CalendarControl (  )  { 
 		this.examDays = new Array() ; 
