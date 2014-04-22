@@ -68,13 +68,13 @@ jQuery(document).ready(function($) {
 						/*if(data['emailsPost'] == '1'){
 							alert("Maile z informacją o egzaminie zostały wysłane do studentów.")
 						}*/
-						alert('Pomyślnie zmieniono status na aktywny.');
+						bootbox.alert('Pomyślnie zmieniono status na aktywny.');
 						$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
 						$("#" + id).html("<b>Dezaktywuj</b>");
 						$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
 						$("#" + id).attr("value", 1);	
 					} else {
-						alert('Deaktywowano egzamin.');
+						bootbox.alert('Deaktywowano egzamin.');
 						$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
 						$("#" + id).html("<b>Aktywuj</b>");
 						$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
@@ -83,7 +83,7 @@ jQuery(document).ready(function($) {
 				}
 			},
 			error: function (error) {				
-				alert('Wystąpił blad przy zmianie statusu egzaminu.');
+				bootbox.alert('Wystąpił blad przy zmianie statusu egzaminu.');
 			},
 			complete: function() {
 				//window.location = 'ExamList.php';
@@ -104,14 +104,14 @@ jQuery(document).ready(function($) {
 			},
 			success: function (data) {		
 				if(data['activated'] == '1'){
-					alert("Aby edytować ten egzamin musisz najpierw go deaktywować!");
+					bootbox.alert("Aby edytować ten egzamin musisz najpierw go deaktywować!");
 				} else {
 					window.location = 'ExamEdit.php?examID=' + examID;
 				}
 				
 			},
 			error: function (error) {				
-				alert('Wystąpił błąd.');
+				bootbox.alert('Wystąpił błąd.');
 			},
 			complete: function() {
 				//window.location = '';
