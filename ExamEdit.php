@@ -12,6 +12,13 @@
 	} 
 	if ( ! $accessEditExamGranted ) header('Location: ExamList.php') ;  
 	
+
+	if (isset($_GET["examID"])) {
+		$examID = $_GET["examID"];
+		$exam = ExamDatabase::getExam($examID);
+		if($exam -> getActivated()) header('Location: ExamList.php') ;
+	}
+	
 	$title = "$appName - Edytuj egzamin ";
 	$scripts = array(  "js/CalendarManager.js" , "js/ExamEdit.js" );
 	include("html/Begin.php");
