@@ -8,8 +8,7 @@ final class CalendarDatabase
 	/*
 	 * Zwraca instancje Calendar dla egzaminu o zadanym ID
 	 */
-	static public function getCalendarForExamId($id)
-	{
+	static public function getCalendarForExamId($id) {
 		$sql = "SELECT * FROM Exams  JOIN ExamUnits ON ExamUnits.ExamID = Exams.ID WHERE Exams.ID = '" . $id . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		$exam = new Exam();
@@ -31,11 +30,28 @@ final class CalendarDatabase
 		return $calendar;
 	}  
  	
+ 	static public function getPersonEnroledForDayTime ( $examId , $day , $timeFrom ) {
+		// statement for test purpose 
+		// SELECT S.Surname , S.FirstName , E.Name , E.Duration , U.Day ,  U.TimeFrom , U.TimeTo  FROM Students as S JOIN Records as R ON S.ID = R.StudentID JOIN Exams as E ON E.ID = R.ExamID JOIN ExamUnits as U ON R.ExamUnitID = U.ID WHERE E.ID = 7 AND U.Day='2015-06-18' AND U.TimeFrom='08:00:00' ;
+		$sql = "SELECT S.Surname , S.FirstName FROM Students as S " . 
+				"JOIN Records as R ON S.ID = R.StudentID " .
+				"JOIN Exams as E ON E.ID = R.ExamID " .
+				"JOIN ExamUnits as U ON R.ExamUnitID = U.ID " . 
+				"WHERE E.ID = '" . $examId . "' AND U.Day= ' " . $day . "' AND U.TimeFrom='" . $timeFrom . "'" ; 
+		$result = DatabaseConnector::getConnection()->query($sql); 
+		$row = $result->fetch_assoc() ; 
+		if ( $row == NULL ) 
+			return NULL ; 
+		return array ( 'FirstName'=> $row['FirstName'] , 'Surname'=> $row['Surname']  ) ;
+ 	} 
+ 
+ 	
 	private function __construct() { }
 } 
 
 // only test purpose 
 //echo "<h1> Calendar Database Test is done . </h1> "; 
 //CalendarDatabase::getCalendarForExamId(12)->printCalendar(); 
-
+//var_dump (  CalendarDatabase::getPersonEnroledForDayTime(7 , '2015-06-18' , '08:00:00' ));
+  
 ?>
