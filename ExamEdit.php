@@ -2,6 +2,16 @@
 	ob_start();
 	
 	include_once("lib/Lib.php");
+	
+	
+	// Check if user should access this page  
+	$userExamList = ExamDatabase::getExamList(unserialize($_SESSION['USER'])->getID());
+	$accessEditExamGranted = false ; 
+	foreach ($userExamList as $exam) { 
+		if ( $exam->getID() == $_GET['examID'] ) $accessEditExamGranted = true   ; 
+	} 
+	if ( ! $accessEditExamGranted ) header('Location: ExamList.php') ;  
+	
 	$title = "$appName - Edytuj egzamin ";
 	$scripts = array(  "js/CalendarManager.js" , "js/ExamEdit.js" );
 	include("html/Begin.php");
