@@ -2,7 +2,7 @@
 	ob_start();
 	
 	include_once("lib/Lib.php");
-	$title = "$appName - Edytuj listę studentów ";
+	$title = "$appName - List studentów";
 	$scripts = array("js/StudentListEdit.js");
 	include("html/Begin.php");
 	
@@ -16,24 +16,25 @@
 	}
 	
 	include("html/UserPanel.php");
+	$id   = $_GET['examID'];
+	$exam = ExamDatabase::getExam($id);
+	
+	echo "<h2>Lista studentów</h2>";
+	echo "<h4><i>(" . $exam->getName() . ")</i></h4>";
+	echo "<p>W tym miejscu znajduje się lista wszystkich studentów przypisanych do tego egzaminu. Przy pomocy przycisków możesz dodawać kolejnych studentów do listy.</p>";
+	echo "<hr />";
+	
+	// echo '<span id="exam_id" style="visibility:hidden;">' . $id . '</span>'; // <- Potrzebujemy ten kod, bo robi strasznie duży górny margines!
 ?>
 
-
-<h2> Edycja listy studentów </h2>
-
-<?php
-	$id = $_GET['examID'];
-
-	echo '<span id="exam_id" style="visibility:hidden;">' . $id . '</span>';
-?>
-
-<div id="buttons" class="container col-md-10 col-md-offset-1" style="margin-top: 3%;">
-<div class="container col-md-4" style="width: 28%; padding-left: 0%; padding-right: 0%;">
-<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#student_list_modal">Dodaj listę studentów</button>
-<button id="add_one_student" type="button" class="btn btn-primary btn-sm">Dodaj studenta</button>
-</div>
+<div id="buttons">
+	<span>
+		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#student_list_modal">Dodaj listę studentów</button>
+		<button id="add_one_student" type="button" class="btn btn-primary btn-sm">Dodaj studenta</button> <!-- Czy to nie powinno być zrobione również na modalu??? -->
+	</span>
 </div>
 
+<!-- Średnio mi te br w tym miejscu pasują, czy nie możemy dać po prostu margines> -->
 <br/>
 <br/>
 
@@ -48,9 +49,7 @@
       <div class="modal-body">
         <div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
 		<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: imię nazwisko &lt;adres e-mail&gt;</label>
-
 			<textarea class="form-control" rows="6" id="student_list"></textarea>
-
 		</div>
       </div>
       <div class="modal-footer">
@@ -61,79 +60,49 @@
   </div>
 </div>
 
-<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px; margin-top: 5%;">
-
-<div class="container col-md-10 col-md-offset-1">
-<table class="table" id="students">
-<thead>
-		<tr>
-		<th>Lp.</th>
-		<th style="width: 20%;">Imię</th>
-		<th style="width: 20%;">Nazwisko</th>
-		<th>E-mail</th>
-		<th style="text-align:center; vertical-align:middle;">Operacje</th>
-		</tr>
-
-</thead>
-<tbody>
-<!-- 	<tr>
-		<td></td>
-		<td>
-			<div class="form-group" id="fn" style="margin-bottom: 0px;">
-				<input id="firstname" type="text" class="form-control input-sm" style="width: 70%;"/>
-			</div>
-		</td>
-		<td>
-			<div class="form-group" id="ln" style="margin-bottom: 0px;">
-				<input id="lastname" type="text" class="form-control input-sm" style="width: 70%;"/>
-			</div>
-		</td>
-		<td>
-			<div class="form-group" id="em" style="margin-bottom: 0px;">
-				<input id="email" type="text" class="form-control input-sm" style="width: 70%;"/>
-			</div>
-		</td>
-		<td style="text-align:center; vertical-align:middle;"><button id="add" class="btn btn-success btn-sm" style="width: 60%;">Dodaj</button></td>
-	</tr> -->
-
+<div>
+	<table class="table" id="students">
+		<thead>
+			<tr>
+				<th style="text-align: center;">Lp.</th>
+				<th style="width: 20%;">Imię</th>
+				<th style="width: 20%;">Nazwisko</th>
+				<th>E-mail</th>
+				<th style="text-align:center;">Operacje</th>
+			</tr>
+		</thead>
+	<tbody>
+	
 <?php
-
 	$studentIDList = RecordDatabase::getStudentIDList($id);
-	$i = 0;
-
 	$studentList = null;
-
+	
 	if (is_array($studentIDList)) {
+		$i = 0;
 		foreach ($studentIDList as $studentID) {
 			$studentList[$i++] = StudentDatabase::getStudentByID($studentID);
 		}
 	}
 
 	if (is_array($studentIDList)) {
-	foreach ($studentList as $number => $student) {
-
-		echo '<tr id="' . $student->getID() . '">';
-		echo '<td id="number">' . ($number+1) .  '.</td>';
-		echo '<td id="firstname">' . $student->getFirstName() . '</td>';
-		echo '<td id="lastname">' . $student->getSurname() . '</td>';
-		echo '<td id="email">' . $student->getEmail() . '</td>';
-		echo '<td style="text-align:center; vertical-align:middle;">' .
-
-		//<a><span id="edit" style="cursor: pointer;" title="Edit" class="glyphicon glyphicon-pencil"></span></a>
-
-		'<a><span id="remove" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></a></td>';
-		echo '</tr>';
-
+		foreach ($studentList as $number => $student) {
+			echo '<tr id="' . $student->getID() . '">';
+			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
+			echo '<td id="firstname">' . $student->getFirstName() . '</td>';
+			echo '<td id="lastname">' . $student->getSurname() . '</td>';
+			echo '<td id="email">' . $student->getEmail() . '</td>';
+			echo '<td style="text-align: center;">';
+			
+			echo '<a id="remove" title="Usuń" style="cursor: pointer; margin-right: 5px;"><i class="glyphicon glyphicon-trash"></i></a>'; // <- To trzeba zaimplementować przy pomocy ajax-a...
+			echo '<a id="send" title="Wyślij wiadomość z kodem dostępu" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a>'; // <- To tak samo...
+			echo '</td>';
+			echo '</tr>';
 		}
 	}
 
 ?>
-
-
-</tbody>
-</table>
-</div>
-
+		</tbody>
+	</table>
 </div>
 
 <?php
