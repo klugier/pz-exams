@@ -21,9 +21,11 @@ jQuery( document ).ready(function( $ ) {
 // CLASSES & FUNCTIONS SECTION BEGIN ***************************************************************************************************
 	// klasa wymiany danych na kartach dodaj egzamin 
 
-	function ExamUnit(bHour, eHour){
+	function ExamUnit(bHour, eHour , studentName , studentSurname ){
 		this.bHour = bHour;
 		this.eHour = eHour;
+		this.studentName = studentName ; 
+		this.studentSurname = studentSurname ;
 	}
 	function Exam(name, durration){
 		this.name = name;
@@ -227,7 +229,7 @@ jQuery( document ).ready(function( $ ) {
 			var i = 0 ; 
 			var separatorIndex = this.separatorPositions.shift();
 			
-			for ( var item in this.examUnits )  { 
+			for ( var item in this.examUnits ) { 
 				htmlControl += SimpleDayControl.prototype.controlAddExamUnit(  this.examUnits[item].bHour , this.examUnits[item].eHour , "" , "" );
 				if ( separatorIndex == i ) { 
 					separatorIndex = this.separatorPositions.shift(); 
@@ -271,7 +273,7 @@ jQuery( document ).ready(function( $ ) {
 			var separatorIndex = this.separatorPositions.shift();
 			
 			for ( var item in this.examUnits )  { 
-				htmlControl += ExtendedDayControl.prototype.controlAddExamUnit(  this.examUnits[item].bHour , this.examUnits[item].eHour , "arek" , "koszczan" );
+				htmlControl += ExtendedDayControl.prototype.controlAddExamUnit(  this.examUnits[item].bHour , this.examUnits[item].eHour , "marian" , "testowicz" );
 				if ( separatorIndex == i ) { 
 					separatorIndex = this.separatorPositions.shift(); 
 					htmlControl += this.controlAddSeparator () ;
@@ -285,7 +287,8 @@ jQuery( document ).ready(function( $ ) {
 	} ;  
 	
 	
-	function CalendarControl (  )  { 
+	function CalendarControl ( displayStudentName )  {
+		this.displayStudentName = displayStudentName ; 
 		this.examDays = new Array() ; 
 		this.printCalendar = function ( ) 	{ 
 			//alert ( this.examDays.length ) ;
@@ -302,7 +305,11 @@ jQuery( document ).ready(function( $ ) {
 					calendarControl+="<hr>" ;
 					calendarControl+=this.addRibbonStart() ; 
 				} 
-				calendarDayControl = new SimpleDayControl ( day , this.examDays[day]) ;
+				if ( this.displayStudentName == true ) {  
+					calendarDayControl = new ExtendedDayControl ( day , this.examDays[day]) ;
+				} else { 
+					calendarDayControl = new SimpleDayControl ( day , this.examDays[day]) ;
+				} 
 				calendarControl+=calendarDayControl.printControl();
 				daysCounter++; 
 			} 
@@ -326,7 +333,7 @@ jQuery( document ).ready(function( $ ) {
 
 	function EditExamCalendarManager() { 
 		this.exam = null ; 
-		this.calendarControl = new CalendarControl() ;  
+		this.calendarControl = null ;  
 		this.getExamID = function() {
 			query = window.location.search.substring(1); 
 			queryPart = query.split('&');
@@ -352,7 +359,7 @@ jQuery( document ).ready(function( $ ) {
 					if(data.status.trim() === "dataRecived") {
 						if (data.examID.trim() === "existsInDB") {
 							//console.log ( data ) ; 
-							$currentClass.calendarControl = new CalendarControl () ;  
+							$currentClass.calendarControl = new CalendarControl ( true ) ;  // calendar with student name  
 							$currentClass.insertExamUnitsToCalendar(data); 
 							return ; 
 						} 
@@ -404,7 +411,7 @@ jQuery( document ).ready(function( $ ) {
 	
 	// exam.sortDaysArray("2014-12-01" , "2014-02-02") ;
 	
-    calendarControl = new CalendarControl() ;
+    calendarControl = new CalendarControl( false ) ;
 	editExamCalendarManager = new EditExamCalendarManager () ; 
 	// jQuery functions 
 	
