@@ -21,7 +21,15 @@ final class CalendarDatabase
 		$row = $result->data_seek(0);
 		
 		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-			$examUnit = new ExamUnit(); 
+			$examUnit = new ExtendedExamUnit(); 
+			$studentNameArray = CalendarDatabase::getPersonEnroledForDayTime($id , $row['Day'] , $row['TimeFrom']) ;
+			if ( $studentNameArray != NULL  ) { 
+				$examUnit->setStudentName( $studentNameArray['FirstName'] ) ;  
+				$examUnit->setStudentSurname ( $studentNameArray['Surname'] ) ;
+			} else { 
+				$examUnit->setStudentName( "null" ) ;
+				$examUnit->setStudentSurname("null" ) ; 
+			} 
 			$examUnit->setDay($row['Day']);
 			$examUnit->setTimeFrom($row['TimeFrom']);
 			$examUnit->setTimeTo($row['TimeTo']);
@@ -30,7 +38,7 @@ final class CalendarDatabase
 		return $calendar;
 	}  
  	
- 	static public function getPersonEnroledForDayTime ( $examId , $day , $timeFrom ) {
+ 	static private function getPersonEnroledForDayTime ( $examId , $day , $timeFrom ) {
 		// statement for test purpose 
 		// SELECT S.Surname , S.FirstName , E.Name , E.Duration , U.Day ,  U.TimeFrom , U.TimeTo  FROM Students as S JOIN Records as R ON S.ID = R.StudentID JOIN Exams as E ON E.ID = R.ExamID JOIN ExamUnits as U ON R.ExamUnitID = U.ID WHERE E.ID = 7 AND U.Day='2015-06-18' AND U.TimeFrom='08:00:00' ;
 		$sql = "SELECT S.Surname , S.FirstName FROM Students as S " . 
@@ -51,7 +59,7 @@ final class CalendarDatabase
 
 // only test purpose 
 //echo "<h1> Calendar Database Test is done . </h1> "; 
-//CalendarDatabase::getCalendarForExamId(12)->printCalendar(); 
+//CalendarDatabase::getCalendarForExamId(7)->printCalendar(); 
 //var_dump (  CalendarDatabase::getPersonEnroledForDayTime(7 , '2015-06-18' , '08:00:00' ));
   
 ?>

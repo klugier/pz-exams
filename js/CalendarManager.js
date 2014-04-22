@@ -1,5 +1,5 @@
 
-// GLOBAL FUNCTIONS SECTION BEGIN *********************************************************************************************************
+// GLOBAL FUNCTIONS SECTION BEGIN *******************************************************************************************************
 function converToMinutes(s) {
 		var c = s.split(':');
 		return parseInt(c[0]) * 60 + parseInt(c[1]);
@@ -18,7 +18,7 @@ function parseTime(s) {
 
 jQuery( document ).ready(function( $ ) {
 
-// CLASSES & FUNCTIONS SECTION BEGIN ***************************************************************************************************
+// CLASSES & FUNCTIONS SECTION BEGIN ****************************************************************************************************
 	// klasa wymiany danych na kartach dodaj egzamin 
 
 	function ExamUnit(bHour, eHour , studentName , studentSurname ){
@@ -55,11 +55,11 @@ jQuery( document ).ready(function( $ ) {
 			this.sortAllExamUnits();
 		};
 
-		this.addSingleExamUnit = function ( date, begHour, endHour ) { 
+		this.addSingleExamUnit = function ( date, begHour, endHour , studentName , studentSurname ) {
 			if(this.day[date] === undefined) {
 					this.day[date] = new Array();
 			}
-			$examUnit = new ExamUnit(begHour, endHour);
+			$examUnit = new ExamUnit(begHour, endHour , studentName , studentSurname);
 			this.day[date].push($examUnit); 
 		} ;
 		
@@ -230,7 +230,7 @@ jQuery( document ).ready(function( $ ) {
 			var separatorIndex = this.separatorPositions.shift();
 			
 			for ( var item in this.examUnits ) { 
-				htmlControl += SimpleDayControl.prototype.controlAddExamUnit(  this.examUnits[item].bHour , this.examUnits[item].eHour , "" , "" );
+				htmlControl += SimpleDayControl.prototype.controlAddExamUnit(  this.examUnits[item].bHour , this.examUnits[item].eHour , null , null);
 				if ( separatorIndex == i ) { 
 					separatorIndex = this.separatorPositions.shift(); 
 					htmlControl += this.controlAddSeparator () ;
@@ -255,7 +255,7 @@ jQuery( document ).ready(function( $ ) {
 	ExtendedDayControl.prototype.controlAddExamUnit = function ( startTime , endTime , name , surname ) { 
 			examUnit =	'<tr>'
 						+ '		<td><i id="removeRecordIcon" class="glyphicon glyphicon-trash"></i></td> '
-						+ '		<td '  + (( name == null && surname == null ) ?  'class="danger"' : 'class="success"')  + ' >' +  startTime + '-' +'<br />' 
+						+ '		<td '  + (( name == null && surname == null ) ?  'class="danger"' : 'class="success"')  + ' >' +  startTime + ' - ' + endTime +'<br />' 
 						+(( name == null && surname == null ) ? 'termin nieprzypisany' : ( name + ' ' + surname )) + '</td> ' 
 						+ '</tr> ' ; 
 			return examUnit ; 
@@ -273,7 +273,7 @@ jQuery( document ).ready(function( $ ) {
 			var separatorIndex = this.separatorPositions.shift();
 			
 			for ( var item in this.examUnits )  { 
-				htmlControl += ExtendedDayControl.prototype.controlAddExamUnit(  this.examUnits[item].bHour , this.examUnits[item].eHour , "marian" , "testowicz" );
+				htmlControl += ExtendedDayControl.prototype.controlAddExamUnit(  this.examUnits[item].bHour , this.examUnits[item].eHour , this.examUnits[item].studentName , this.examUnits[item].studentSurname  );
 				if ( separatorIndex == i ) { 
 					separatorIndex = this.separatorPositions.shift(); 
 					htmlControl += this.controlAddSeparator () ;
@@ -369,6 +369,7 @@ jQuery( document ).ready(function( $ ) {
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
 					console.log(textStatus);
+					console.log(errorThrown);
 				}
 			}); 
 		} ;	
@@ -378,7 +379,9 @@ jQuery( document ).ready(function( $ ) {
 			for ( var $idx in $jsonExamData.examUnits ) {    
 				$timeFrom = this.shortenTimeValue($jsonExamData.examUnits[$idx].timeFrom) ; 
 				$timeTo = this.shortenTimeValue($jsonExamData.examUnits[$idx].timeTo) ;
-				this.exam.addSingleExamUnit($jsonExamData.examUnits[$idx].day , $timeFrom , $timeTo);
+				$studentName = ($jsonExamData.examUnits[$idx].studentName.trim() =="null" ? null : $jsonExamData.examUnits[$idx].studentName) ;
+				$studentSurname = ($jsonExamData.examUnits[$idx].studentSurname.trim() =="null" ? null : $jsonExamData.examUnits[$idx].studentSurname) ;
+				this.exam.addSingleExamUnit($jsonExamData.examUnits[$idx].day , $timeFrom , $timeTo , $studentName ,  $studentSurname);
 			} 
 			this.calendarControl.examDays = this.exam.day ;
 		} ; 
@@ -393,7 +396,7 @@ jQuery( document ).ready(function( $ ) {
 			return $timeArray[0]+":"+$timeArray[1];
 		} ; 
 	} 
-// CLASSES & FUNCTIONS SECTION END ***************************************************************************************************
+// CLASSES & FUNCTIONS SECTION END ****************************************************************************************************
 	
 // VARIABLES SECTION BEGIN ************************************************************************************************************
 	// test
@@ -413,6 +416,5 @@ jQuery( document ).ready(function( $ ) {
 	
     calendarControl = new CalendarControl( false ) ;
 	editExamCalendarManager = new EditExamCalendarManager () ; 
-	// jQuery functions 
 	
 } ); 
