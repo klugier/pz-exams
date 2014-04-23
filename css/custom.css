@@ -178,6 +178,10 @@ hr#author {
 	top:3px;
 }
 
+#karuzela{
+    border: 9px solid #333;
+}
+
 .carousel-caption{
 
     background: rgba(0,0,0,0.75);
