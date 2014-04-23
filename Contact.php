@@ -75,7 +75,7 @@
 	</div>
 	<div class="form-group">
 		<div class="control-group">
-			<div class="col-xs-12 col-sm-12 col-md-12 controls">
+			<div class="col-xs-2 col-sm-2 col-md-2 controls">
 				<button type="submit" class="btn btn-lg btn-block btn-primary">Wyślij</button>
 			</div>
 		</div>
