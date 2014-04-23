@@ -6,6 +6,9 @@
 	
 			<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
 			<textarea class="form-control" rows="3" id="student_list" style="resize: vertical"></textarea>
+			<span class="pull-right">
+				<button type="button" class="btn btn-primary btn-sm" id="add_students" style="margin-top: 10px;">Dodaj</button>
+			</span>
 		</div>
 
 		<div class="container col-md-6 col-sm-6" id="student_data" style="padding-right: 0px;"></div>
