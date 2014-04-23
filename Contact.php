@@ -7,15 +7,29 @@
 	?>
 
 <?php
-			if (isset($_SESSION['formErrorCode'])) {
+			if (isset($_SESSION['contactFormErrorCode'])) {
 				echo '<div class="alert alert-danger">' ;
 				echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
-				if ($_SESSION['formErrorCode'] == 'invalidCaptcha') {  
-					echo '<strong>Uwaga!!! Rejestracja nie powiodła się. Wprowadzony kod jest nieprawidłowy. </strong>'; 
-					unset($_SESSION['formErrorCode']);
+				if ($_SESSION['contactFormErrorCode'] == 'mailerError') {  
+					echo '<strong>Próba wysłania wiadomości zakończona niepowodzeniem.</strong>'; 
+				} 
+				if ($_SESSION['contactFormErrorCode'] == 'invalidCaptcha') {  
+					echo '<strong>Niepoprawny kod captcha</strong>'; 
 				} 
 				echo '</div>' ; 
+				unset($_SESSION['contactFormErrorCode']);
 			}
+
+			if (isset($_SESSION['successContactForm'])) {
+				echo '<div class="alert alert-success">' ;
+				echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ;
+				if ($_SESSION['successContactForm'] == 'mailerSuccess') {  
+					echo '<strong>Z powodzeniem wysłano wiadomość!</strong>'; 
+				} 
+				echo '</div>' ; 
+				unset($_SESSION['successContactForm']);
+			}
+
 		?> 
 <form id="contactForm" class="form-horizontal" action="./php/HandlingContactForm.php" method="post">
 	<div class="form-group">
