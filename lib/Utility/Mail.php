@@ -37,7 +37,8 @@
 		
 		if(!$mail->Send()) {
 			$error = 'Mail error: ' . $mail->ErrorInfo; 
-			//echo 'Error: '.$mail->ErrorInfo;
+			//tutaj bedzie dostepny kod bledu
+			$_SESSION['mailerErrorInfo']=$mail->ErrorInfo;
 			//die('Error: '.$mail->ErrorInfo);
 			return false;
 		} else {

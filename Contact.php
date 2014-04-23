@@ -11,7 +11,7 @@
 				echo '<div class="alert alert-danger">' ;
 				echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
 				if ($_SESSION['contactFormErrorCode'] == 'mailerError') {  
-					echo '<strong>Próba wysłania wiadomości zakończona niepowodzeniem.</strong>'; 
+					echo '<strong>Próba wysłania wiadomości zakończona niepowodzeniem.</strong> '.$_SESSION['mailerErrorInfo']; 
 				} 
 				if ($_SESSION['contactFormErrorCode'] == 'invalidCaptcha') {  
 					echo '<strong>Niepoprawny kod captcha</strong>'; 

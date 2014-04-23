@@ -29,7 +29,7 @@ if ($securimage->check($captcha_code) == true) {
 		echo 'brak wiadomosc';
 	} else {
 		//zapisz wiadomosc
-		$cMessage=$_PSOT['message'];
+		$cMessage=$_POST['message'];
 	}
   
 	echo 'captcha code valid'; 
@@ -37,7 +37,7 @@ if ($securimage->check($captcha_code) == true) {
 	//cMail - adres podany w formularzy
 	//cSubject - temat podany w formularzu
 	//cMessage - tresc komunikatu
-	if(mailer('GUSER',$cMail,'Formularz kontaktowy',$cSubject,$cMessage,false)){
+	if(mailer(GUSER,$cMail,'Formularz kontaktowy',$cSubject,$cMessage,true)){
 		$_SESSION['successContactForm'] = 'mailerSuccess';
 	}else{
 		$_SESSION['contactFormErrorCode'] = 'mailerError';
