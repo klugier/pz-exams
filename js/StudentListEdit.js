@@ -241,7 +241,7 @@ $(document).ready(function() {
 						$('tr#' + st_id).remove(); 
 
 						$('td#number').each(function(index) {
-						$(this).text(index+1);
+						$(this).text((index+1) + '.');
 					});
 
 					});
