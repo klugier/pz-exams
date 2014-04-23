@@ -27,7 +27,7 @@
 		<div class="control-group">
 			<label class="col-xs-2 col-sm-2 col-md-2  control-label" for="inputEmail">Email</label>
 			<div class="col-xs-4 col-sm-4 col-md-4 controls">
-				<input class="form-control" type="text" name="email" id="email" placeholder="Email">
+				<input class="form-control" type="text" name="email" id="email" placeholder="Wprowadź email">
 			</div>
 			<span class="help-block col-xs-6 col-sm-6 col-md-6" id="email-error-message" >		      
 			</span>
@@ -37,7 +37,7 @@
 		<div class="form-group">
 			<label class="col-xs-2 col-sm-2 col-md-2  control-label" for="inputSubject">Temat</label>
 			<div class="col-xs-4 col-sm-4 col-md-4 controls">
-				<input class="form-control" type="text" name="subject" id="subject" placeholder="Temat">
+				<input class="form-control" type="text" name="subject" id="subject" placeholder="Wprowadź temat">
 			</div>
 			<span class="help-block col-xs-6 col-sm-6 col-md-6" id="subject-error-message" >
 			</span>
@@ -47,7 +47,7 @@
 		<div class="form-group">
 			<label class="col-xs-2 col-sm-2 col-md-2  control-label" for="inputMessage">Wiadomość</label>
 			<div class="col-xs-5 col-sm-5 col-md-5 controls">
-				<textarea class="form-control" type="text" name="message" id="message" placeholder="Wiadomość" rows="10"></textarea>	
+				<textarea class="form-control" type="text" name="message" id="message" placeholder="Wprowadź wiadomość" rows="10"></textarea>	
 			</div>
 			<span class="help-block col-xs-4 col-sm-4 col-md-4" id="message-error-message" >
 			</span>
