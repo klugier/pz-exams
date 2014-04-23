@@ -21,26 +21,26 @@
 		<!-- Slajdy -->
 		<div class="carousel-inner">
 		<?php
-		if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
-			echo '
-			<div class="item active">
+			if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
+				echo '
+				<div class="item active">
 
-				<a href="RegisterForm.php">
-					<img src="img/Rejestracja.jpg" alt="">
-				</a>
-				<!-- Opis slajdu -->
-				<div class="carousel-caption">
-					<h4>Rejestracja</h4>
-					<p>Dołącz do serwisu, który zmienia szare życie tysięcy egzaminatorów!</p>
-				</div>
-			</div>';
-		}
+					<a href="RegisterForm.php">
+						<img src="img/Rejestracja.jpg" alt="">
+					</a>
+					<!-- Opis slajdu -->
+					<div class="carousel-caption">
+						<h4>Rejestracja</h4>
+						<p>Dołącz do serwisu, który zmienia szare życie tysięcy egzaminatorów!</p>
+					</div>
+				</div>';
+			}
 
-		if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
-			echo'<div class="item">';
-		} else { 
-			echo'<div class="item active">';
-		}
+			if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
+				echo'<div class="item">';
+			} else { 
+				echo'<div class="item active">';
+			}
 		?>
 			<a href="Help.php">
 				<img src="img/Pomoc.jpg" alt="">
