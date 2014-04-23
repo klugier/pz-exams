@@ -39,7 +39,9 @@
 		<!-- Slajdy -->
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="img/Rejestracja.jpg" alt="">
+				<a href="RegisterForm.php">
+					<img src="img/Rejestracja.jpg" alt="">
+				</a>
 				<!-- Opis slajdu -->
 				<div class="carousel-caption">
 					<h4>Rejestracja</h4>
@@ -47,7 +49,9 @@
 				</div>
 			</div>
 	      	<div class="item">
-			<img src="img/Pomoc.jpg" alt="">
+			<a href="Help.php">
+				<img src="img/Pomoc.jpg" alt="">
+			</a>
 			<!-- Opis slajdu -->
 			<div class="carousel-caption">
 				<h4>Pomoc</h4>
@@ -56,7 +60,9 @@
 		</div>
 	      
 		<div class="item">
-			<img src="img/Autorzy.jpg" alt="">
+			<a href="Authors.php">
+				<img src="img/Autorzy.jpg" alt="">
+			</a>
 			<!-- Opis slajdu -->
 			<div class="carousel-caption">
 				<h4>Autorzy</h4>
