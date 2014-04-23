@@ -12,36 +12,36 @@
 			<li data-target="#karuzela" data-slide-to="0" class="active"></li>
 			<li data-target="#karuzela" data-slide-to="1"></li>
 			<?php
-			if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
-				echo '<li data-target="#karuzela" data-slide-to="2"></li>';
-			}
+				if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
+					echo '<li data-target="#karuzela" data-slide-to="2"></li>';
+				}
 			?>
 		</ol>
     
 		<!-- Slajdy -->
 		<div class="carousel-inner">
-		<?php
-			if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
-				echo '
-				<div class="item active">
+			<?php
+				if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
+					echo '
+					<div class="item active">
 
-					<a href="RegisterForm.php">
-						<img src="img/Rejestracja.jpg" alt="">
-					</a>
-					<!-- Opis slajdu -->
-					<div class="carousel-caption">
-						<h4>Rejestracja</h4>
-						<p>Dołącz do serwisu, który zmienia szare życie tysięcy egzaminatorów!</p>
-					</div>
-				</div>';
-			}
+						<a href="RegisterForm.php">
+							<img src="img/Rejestracja.jpg" alt="">
+						</a>
+						<!-- Opis slajdu -->
+						<div class="carousel-caption">
+							<h4>Rejestracja</h4>
+							<p>Dołącz do serwisu, który zmienia szare życie tysięcy egzaminatorów!</p>
+						</div>
+					</div>';
+				}
 
-			if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
-				echo'<div class="item">';
-			} else { 
-				echo'<div class="item active">';
-			}
-		?>
+				if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
+					echo'<div class="item">';
+				} else { 
+					echo'<div class="item active">';
+				}
+			?>
 			<a href="Help.php">
 				<img src="img/Pomoc.jpg" alt="">
 			</a>
@@ -75,9 +75,12 @@
 </div>
 
 <div class="container">
-<h3>Witaj!</h3>
-<p style="text-align: justify; margin-top: 30px;">
-PZ-exams to platforma rejestracji na egzaminy, na której mogą polegać zarówno wykładowcy jak i studenci.
-<p>
+	<h3>Witaj!</h3>
+	<p style="text-align: justify; margin-top: 30px;">
+	PZ-exams to platforma rejestracji na egzaminy, na której mogą polegać zarówno wykładowcy jak i studenci.
+	</p>
 </div>
-<?php include("html/End.php"); ?>
+
+<?php 
+	include("html/End.php");
+?>
