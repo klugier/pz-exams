@@ -43,7 +43,7 @@
 				<!-- Opis slajdu -->
 				<div class="carousel-caption">
 					<h4>Rejestracja</h4>
-					<p>formularz rejestracji w systemie</p>
+					<p>Dołącz do serwisu, który zmienia szare życie tysięcy egzaminatorów!</p>
 				</div>
 			</div>
 	      	<div class="item">
@@ -51,7 +51,7 @@
 			<!-- Opis slajdu -->
 			<div class="carousel-caption">
 				<h4>Pomoc</h4>
-				<p>Tu uzyskasz pomoc</p>
+				<p>Chcesz uzyskać informację na temat naszego systemu? Zajrzyj do obszernej instrukcji przygotowanych przez naszych specjalistów.</p>
 			</div>
 		</div>
 	      
@@ -60,7 +60,7 @@
 			<!-- Opis slajdu -->
 			<div class="carousel-caption">
 				<h4>Autorzy</h4>
-				<p>Informacje na temat autorów</p>
+				<p>Chcesz dowiedzieć się więcej o naszej drużynie developerskiej. Zajrzyj tutaj!</p>
 			</div>
 		</div>      
 	</div>
