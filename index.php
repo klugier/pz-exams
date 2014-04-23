@@ -5,46 +5,24 @@
 	include("html/Begin.php");
 ?>
 
-<?php 
-	if (isset($_SESSION['formSuccessCode'])) {
-		echo '<div class="alert alert-success">' ;
-		echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
-		echo '<strong>Użytownik zarejestrowany poprawnie. E-mail z linkiem aktywacyjnym został wysłany. </strong>'; 			
-		echo '</div>' ; 
-		unset($_SESSION['formSuccessCode']);
-	}
-	
-	if (isset($_GET['error'])) {
-		echo '<div class="alert alert-danger">' ;
-		echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
-		
-		if($_GET['error'] == '1') {
-			echo '<strong>Nie ma takiego użytkownika w bazie!</strong>';
-		}
-		elseif ($_GET['error'] == '2') {
-			echo '<strong>Podane hasło jest niepoprawne!</strong>';
-		}
-		echo '</div>' ;
-	}
-?> 
 <div class="container">
 	<div id="karuzela" class="carousel slide">
 		<!-- Kropki -->
 		<ol class="carousel-indicators">
 			<li data-target="#karuzela" data-slide-to="0" class="active"></li>
 			<li data-target="#karuzela" data-slide-to="1"></li>
-<?php
-	if (!isset($_SESSION['USER'])){
-		echo '<li data-target="#karuzela" data-slide-to="2"></li>';
-	}
-?>
+			<?php
+			if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))){
+				echo '<li data-target="#karuzela" data-slide-to="2"></li>';
+			}
+			?>
 		</ol>
     
 		<!-- Slajdy -->
 		<div class="carousel-inner">
-<?php
-	if (!isset($_SESSION['USER'])){
-?>
+		<?php
+		if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))){
+			echo '
 			<div class="item active">
 
 				<a href="RegisterForm.php">
@@ -55,21 +33,16 @@
 					<h4>Rejestracja</h4>
 					<p>Dołącz do serwisu, który zmienia szare życie tysięcy egzaminatorów!</p>
 				</div>
-			</div>
-<?php
-	}
-?>
-<?php
-	if (!isset($_SESSION['USER'])){
-?>
-	      	<div class="item">
-<?php 
-	}else{ 
-?>
-		<div class="item active">
-<?php
-	}
-?>
+			</div>';
+		}
+		?>
+		<?php
+		if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))){
+			echo'<div class="item">';
+		}else{ 
+			echo'<div class="item active">';
+		}
+		?>
 			<a href="Help.php">
 				<img src="img/Pomoc.jpg" alt="">
 			</a>
