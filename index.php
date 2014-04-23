@@ -105,7 +105,7 @@
 <div class="container">
 <h3>Witaj!</h3>
 <p style="text-align: justify; margin-top: 30px;">
-PZ-exams to platforma rejestracji na egzaminy, na ktrej moga polegac zarowno wykladowcy jak i studenci.
+PZ-exams to platforma rejestracji na egzaminy, na której mogą polegać zarówno wykładowcy jak i studenci.
 <p>
 </div>
 <?php include("html/End.php"); ?>
