@@ -23,8 +23,7 @@
 	echo "<h4><i>(" . $exam->getName() . ")</i></h4>";
 	echo "<p>W tym miejscu znajduje się lista wszystkich studentów przypisanych do tego egzaminu. Przy pomocy przycisków możesz dodawać kolejnych studentów do listy.</p>";
 	echo "<hr />";
-	
-	// echo '<span id="exam_id" style="visibility:hidden;">' . $id . '</span>'; // <- Potrzebujemy ten kod, bo robi strasznie duży górny margines!
+
 ?>
 
 <div id="buttons">
@@ -93,7 +92,7 @@
 			echo '<td id="email">' . $student->getEmail() . '</td>';
 			echo '<td style="text-align: center;">';
 			
-			echo '<a id="remove" title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i class="glyphicon glyphicon-trash"></i></a>'; // <- To trzeba zaimplementować przy pomocy ajax-a...
+			echo '<a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a>'; // <- To trzeba zaimplementować przy pomocy ajax-a...
 			echo '<a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a>'; // <- To tak samo...
 			echo '</td>';
 			echo '</tr>';
