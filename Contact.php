@@ -5,6 +5,18 @@
 	$scripts = array("js/Lib/jquery.validate.min.j");
 	include("html/Begin.php");
 	?>
+
+<?php
+			if (isset($_SESSION['formErrorCode'])) {
+				echo '<div class="alert alert-danger">' ;
+				echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
+				if ($_SESSION['formErrorCode'] == 'invalidCaptcha') {  
+					echo '<strong>Uwaga!!! Rejestracja nie powiodła się. Wprowadzony kod jest nieprawidłowy. </strong>'; 
+					unset($_SESSION['formErrorCode']);
+				} 
+				echo '</div>' ; 
+			}
+		?> 
 <form id="contactForm" class="form-horizontal" action="./php/HandlingContactForm.php" method="post">
 	<div class="form-group">
 		<fieldset>
@@ -72,5 +84,3 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
 
 <?php include ("html/End.php"); ?>
-
-

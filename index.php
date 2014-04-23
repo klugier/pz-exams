@@ -27,25 +27,58 @@
 		echo '</div>' ;
 	}
 ?> 
+<div class="container">
+	<div id="karuzela" class="carousel slide">
+		<!-- Kropki -->
+		<ol class="carousel-indicators">
+			<li data-target="#karuzela" data-slide-to="0" class="active"></li>
+			<li data-target="#karuzela" data-slide-to="1"></li>
+			<li data-target="#karuzela" data-slide-to="2"></li>
+		</ol>
+    
+		<!-- Slajdy -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<img src="img/Rejestracja.jpg" alt="">
+				<!-- Opis slajdu -->
+				<div class="carousel-caption">
+					<h4>Rejestracja</h4>
+					<p>formularz rejestracji w systemie</p>
+				</div>
+			</div>
+	      	<div class="item">
+			<img src="img/Pomoc.jpg" alt="">
+			<!-- Opis slajdu -->
+			<div class="carousel-caption">
+				<h4>Pomoc</h4>
+				<p>Tu uzyskasz pomoc</p>
+			</div>
+		</div>
+	      
+		<div class="item">
+			<img src="img/Autorzy.jpg" alt="">
+			<!-- Opis slajdu -->
+			<div class="carousel-caption">
+				<h4>Autorzy</h4>
+				<p>Informacje na temat autorów</p>
+			</div>
+		</div>      
+	</div>
+    
+	<!-- Strzalki -->
+	<a class="left carousel-control" href="#karuzela" data-slide="prev">
+		<span class="icon-prev"></span>
+	</a>
+	<a class="right carousel-control" href="#karuzela" data-slide="next">
+		<span class="icon-next"></span>
+	</a>
+	</div>
+</div>
 
-<h3>Witaj na platformie</h3>
-
+<div class="container">
+<h3>Witaj!</h3>
 <p style="text-align: justify; margin-top: 30px;">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-<hr>
-
-<p style="text-align: justify;">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+PZ-exams to platforma rejestracji na egzaminy, na ktrej moga polegac zarowno wykladowcy jak i studenci.
+<p>
+</div>
 <?php include("html/End.php"); ?>

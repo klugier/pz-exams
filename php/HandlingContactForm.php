@@ -1,6 +1,4 @@
 <?php
-echo 'to wysylanie';
-
 require_once '../lib/SecureImage/securimage.php';
 include_once "../lib/Lib.php";
 require_once '../lib/Utility/Mail.php';
@@ -42,6 +40,7 @@ if ($securimage->check($captcha_code) == true) {
 	//cMessage - tresc komunikatu
 	if(mailer('GUSER',$cMail,'Formularz kontaktowy',$cSubject,$cMessage,false))
 		echo 'Funkcja mailer() zwrocila prawde';
+		header('Location: ../index.php' ); 
 } else {
 	$_SESSION['formErrorCode'] = 'invalidCaptcha';
 	header('Location: ../Contact.php' ); 
