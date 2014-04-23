@@ -12,7 +12,7 @@
 			<li data-target="#karuzela" data-slide-to="0" class="active"></li>
 			<li data-target="#karuzela" data-slide-to="1"></li>
 			<?php
-			if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))){
+			if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
 				echo '<li data-target="#karuzela" data-slide-to="2"></li>';
 			}
 			?>
@@ -21,7 +21,7 @@
 		<!-- Slajdy -->
 		<div class="carousel-inner">
 		<?php
-		if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))){
+		if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
 			echo '
 			<div class="item active">
 
@@ -36,9 +36,9 @@
 			</div>';
 		}
 
-		if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))){
+		if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
 			echo'<div class="item">';
-		}else{ 
+		} else { 
 			echo'<div class="item active">';
 		}
 		?>
