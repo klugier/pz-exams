@@ -34,7 +34,7 @@ $(document).ready(function() {
 			url: "lib/Ajax/AjaxStudentAddingRequest.php",
 			dataType: "JSON",
 			data: {
-				//exam_id : $('span#exam_id').text().trim(),
+				exam_id : String(window.location).split("examID=")[1],
 				firstname : first_names[i],
 				lastname : last_names[i],
 				email : emails[i]
@@ -43,12 +43,12 @@ $(document).ready(function() {
 
 				if (data != null) {
 
-					var nr = $('#students').find('tr').size() - 1;
+					var nr = $('#students').find('tr').size();
 
-					$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number">' + nr +'</td><td id="firstname">' + 
-						data[1] + '</td><td id="lastname">' + 
-						data[2] + '</td><td id="email">' + 
-						data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><span id="edit" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="Edit" class="glyphicon glyphicon-pencil"></span></a><a><span id="remove" data-toggle="tooltip" data-placement="bottom" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></a></td></tr>');
+					$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
+					data[1] + '</td><td id="lastname">' + 
+					data[2] + '</td><td id="email">' + 
+					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
 
 					$('tr#'+data[0]).hide();
 					$('tr#'+data[0]).fadeIn(500);
@@ -107,19 +107,19 @@ $(document).ready(function() {
 			url: "lib/Ajax/AjaxStudentAddingRequest.php",
 			dataType: "JSON",
 			data: {
-				exam_id : $('span#exam_id').text().trim(),
+				exam_id : String(window.location).split("examID=")[1],
 				//firstname : $('input#firstname').val().trim(),
 				//lastname : $('input#lastname').val().trim(),
 				email : $('input#email').val().trim()
 			},
 			success: function (data) {
 
-				var nr = $('#students').find('tr').size() - 1;
+				var nr = $('#students').find('tr').size();
 
-				$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number">' + nr +'</td><td id="firstname">' + 
+				$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
 					data[1] + '</td><td id="lastname">' + 
 					data[2] + '</td><td id="email">' + 
-					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><span id="remove" data-toggle="tooltip" data-placement="bottom" title="Remove" class="glyphicon glyphicon-remove" style="margin-left: 10%; cursor: pointer;"></span></a></td></tr>');
+					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
 				
 				$('#' + data[0]).hide();
 				$('#' + data[0]).fadeIn(500);

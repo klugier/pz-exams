@@ -10,7 +10,7 @@
 		$firstname = '-';
 		$lastname = '-';
 
-		if (explode('@', $email)[1] == 'uj.edu.pl' && strpos(explode('.', $email)[0], '.') !== false) {
+		if (strpos(explode('@', $email)[0], '.') !== false) {
 			$firstname = ucfirst(explode('.', $email)[0]);
 			$lastname = ucfirst(explode('@', explode('.', $email)[1])[0]);
 		} 
