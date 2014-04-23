@@ -33,12 +33,20 @@
 		<ol class="carousel-indicators">
 			<li data-target="#karuzela" data-slide-to="0" class="active"></li>
 			<li data-target="#karuzela" data-slide-to="1"></li>
-			<li data-target="#karuzela" data-slide-to="2"></li>
+<?php
+	if (!isset($_SESSION['USER'])){
+		echo '<li data-target="#karuzela" data-slide-to="2"></li>';
+	}
+?>
 		</ol>
     
 		<!-- Slajdy -->
 		<div class="carousel-inner">
+<?php
+	if (!isset($_SESSION['USER'])){
+?>
 			<div class="item active">
+
 				<a href="RegisterForm.php">
 					<img src="img/Rejestracja.jpg" alt="">
 				</a>
@@ -48,7 +56,20 @@
 					<p>Dołącz do serwisu, który zmienia szare życie tysięcy egzaminatorów!</p>
 				</div>
 			</div>
+<?php
+	}
+?>
+<?php
+	if (!isset($_SESSION['USER'])){
+?>
 	      	<div class="item">
+<?php 
+	}else{ 
+?>
+		<div class="item active">
+<?php
+	}
+?>
 			<a href="Help.php">
 				<img src="img/Pomoc.jpg" alt="">
 			</a>
