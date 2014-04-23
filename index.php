@@ -1,7 +1,7 @@
 <?php
 	include_once("lib/Lib.php");
 
-	$title = "$appName";
+	$title = "$appName - Strona Główna";
 	include("html/Begin.php");
 ?>
 
@@ -35,8 +35,7 @@
 				</div>
 			</div>';
 		}
-		?>
-		<?php
+
 		if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))){
 			echo'<div class="item">';
 		}else{ 
