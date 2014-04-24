@@ -94,7 +94,7 @@ jQuery(document).ready(function($) {
 	$("a[id^=row-edit-id-]").click(function(){
 		var id = $(this).attr("id");	
 		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);		
-		
+		var html = '<br/><div class="alert alert-danger"><strong>Aby edytować ten egzamin musisz najpierw go deaktywować!</strong></div>';
 		$.ajax({
 			type: "POST",
 			url: "lib/Ajax/AjaxExamCheckActivated.php",
@@ -104,7 +104,7 @@ jQuery(document).ready(function($) {
 			},
 			success: function (data) {		
 				if(data['activated'] == '1'){
-					bootbox.alert("Aby edytować ten egzamin musisz najpierw go deaktywować!");
+					bootbox.alert(html);
 				} else {
 					window.location = 'ExamEdit.php?examID=' + examID;
 				}
