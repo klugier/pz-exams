@@ -75,7 +75,7 @@ final class ExamUnitDatabase
 	static public function countLockedExamUnits($examID)
 	{
 		$sql = "SELECT COUNT(ExamID) AS UnitExamsCount FROM ExamUnits
-		        WHERE ExamID = '" . $examID . "' AND State = 'Locked'";
+		        WHERE ExamID = '" . $examID . "' AND State = 'locked'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		$row = $result->fetch_array(MYSQLI_NUM);
 		
@@ -85,7 +85,7 @@ final class ExamUnitDatabase
 	static public function countLockedExamUnitsByDay($examID, $day)
 	{
 		$sql = "SELECT COUNT(ExamID) AS UnitExamsCount FROM ExamUnits
-		        WHERE ExamID = '" . $examID . "' AND Day = '" . $day . "' AND State = 'Locked'";
+		        WHERE ExamID = '" . $examID . "' AND Day = '" . $day . "' AND State = 'locked'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		$row = $result->fetch_array(MYSQLI_NUM);
 		
