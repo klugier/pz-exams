@@ -43,6 +43,7 @@
 	function stepOut($examID,$studentID)
 	{
 		$exam = ExamDatabase::getExam($examID);
+		$weekDays = array(1 => "Poniedziałek", 2 => "Wtorek", 3 => "Środa", 4 => "Czwartek", 5 => "Piątek", 6 => "Sobota", 0 => "Niedziela");
 		$response = '<div class="no-rec">not found</div>';
 		$header = "<span><b>Aktualnie jesteś zapisany na egzamin:</b></span><br>";
 		$header = $header."<span>".$exam->getName()."</span><br>";
@@ -51,7 +52,7 @@
 		$record = RecordDatabase::getRecord($id);
 		$examunit = ExamUnitDatabase::getExamUnit($record->getExamUnitID());
 		$body = "<span><b>Dnia:</b></span><br>";
-		$body = $body."<span>".$examunit->getDay()." (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($examunit->getDay())))).")</span><br>";
+		$body = $body."<span>".$examunit->getDay()." (".$weekDays[strftime('%w',strtotime($examunit->getDay()))].")</span><br>";
 		$footer = "<span><b>Na godzinę:</b></span><br>";
 		$timeFrom = $examunit->getDay()." ".$examunit->getTimeFrom();
 		$footer = $footer."<span>".strftime("%H:%M",strtotime($timeFrom))."</span><hr>";
@@ -65,6 +66,7 @@
 	function step1($exam)
 	{
 		$examDays = ExamUnitDatabase::getExamDays($exam);
+		$weekDays = array(1 => "Poniedziałek", 2 => "Wtorek", 3 => "Środa", 4 => "Czwartek", 5 => "Piątek", 6 => "Sobota", 0 => "Niedziela");
 		$uniqeDays = array_unique($examDays);
 		$response = '<div class="no-rec">not found</div>';
 		$header = "<table class=\"table table-hover\"><tbody>";
@@ -72,7 +74,7 @@
 		foreach ($uniqeDays as $day){
 			if (date_create($day) >= new DateTime("now")) {
 				$rows = $rows."<tr><td>";
-				$rows = $rows."<a class=\"btn btn-block btn-primary btn-lg\" href=\"#\" role=\"button\" name=\"date\" id=\"date\" data-target=\"#signIn2Modal\" title=\"$day\" examDate=\"".$day."\">".$day." (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($day)))).")</a>";
+				$rows = $rows."<a class=\"btn btn-block btn-primary btn-lg\" href=\"#\" role=\"button\" name=\"date\" id=\"date\" data-target=\"#signIn2Modal\" title=\"$day\" examDate=\"".$day."\">".$day." (".$weekDays[strftime('%w',strtotime($day))].")</a>";
 				$rows = $rows."</td></tr>";
 			}
 		}
