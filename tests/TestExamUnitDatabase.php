@@ -17,6 +17,10 @@
 		echo $day . "<br/>";
 	}
 	
+	$count = ExamUnitDatabase::countLockedExamUnits(15);
+	echo "<br/>" . $count . "<br/>";
+	
+	
 	$count = ExamUnitDatabase::countOpenExams(1,0);
 	echo "<br/>" . $count . "<br/>";
 	

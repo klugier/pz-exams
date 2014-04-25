@@ -133,8 +133,8 @@
 		 * Zwraca liczbe Studentów Egzaminatora
 		 */
 		static public function countUserStudents($userID){
-			$sql = "SELECT count(exams.ID) FROM records INNER JOIN exams ON records.ExamID = exams.ID 
-			        WHERE exams.userID = '" . $userID . "'";
+			$sql = "SELECT count(Exams.ID) FROM Records INNER JOIN Exams ON Records.ExamID = Exams.ID 
+			        WHERE Exams.UserID = '" . $userID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$examCount=0;
 			
@@ -151,8 +151,8 @@
 		 * Zwraca liczbe Studentów Egzaminatora zapisanych na egzaminy
 		 */
 		static public function countUserStudentsSingedToExams($userID){
-			$sql = "SELECT count(exams.ID) FROM records INNER JOIN exams ON records.ExamID = exams.ID 
-			        WHERE exams.userID = '" . $userID . "' AND records.ExamUnitID != 'NULL'";
+			$sql = "SELECT count(Exams.ID) FROM Records INNER JOIN exams ON Records.ExamID = Exams.ID 
+			        WHERE Exams.UserID = '" . $userID . "' AND Records.ExamUnitID != 'NULL'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$examCount=0;
 			
