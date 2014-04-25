@@ -2,5 +2,5 @@
 	<a class="navbar-brand" href="AddExam.php" id="user_m" >Dodaj egzamin</a>
 	<a class="navbar-brand" href="ExamList.php" id="user_m">Aktualne egzaminy</a>
 	<a class="navbar-brand" href="ExamListArchives.php" id="user_m">Archiwalne egzaminy</a>
-	<a class="navbar-brand pull-right" href="UserEdit.php" id="user_m"><i class="glyphicon glyphicon-cog"></i></a>
+	<a class="navbar-brand pull-right" href="UserEdit.php" title="Edytuj profil" id="user_m"><i class="glyphicon glyphicon-cog"></i></a>
 </div>
