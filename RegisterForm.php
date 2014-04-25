@@ -28,9 +28,9 @@
 		
 		<form class="form-horizontal" role="form" id="register_form" method="post" action="php/HandlingRegisterForm.php">
 			<div class="form-group">
-			<fieldset>
-			<legend>Zarejestruj się</legend>
-				
+				<fieldset style="padding-left:20px;padding-right:20px;">
+					<legend>Zarejestruj się</legend>
+				</fieldset>	
 				<!--<div class="row">
 					<h2 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-5 col-sm-5 col-md-5"> Zarejestruj Konto </h2>
 				</div>
@@ -61,7 +61,7 @@
 			<div class="form-group">
 				<label for="passwd" class="col-xs-2 col-sm-2 col-md-2 control-label"> Hasło* </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="password" required class="form-control inputPassword" id="passwd" name="passwd" placeholder="Wprowadź Haslo" title="">
+					<input type="password" required class="form-control inputPassword" id="passwd" name="passwd" placeholder="Wprowadź Hasło" title="">
 				</div>
 				<span class="help-block" id="passwd-error-message" >
 					
@@ -137,7 +137,6 @@
 					  </a>
 					</span>
 			</div>
-			</fieldset>
 		</form>
 	</div>
 
