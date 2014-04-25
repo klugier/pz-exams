@@ -8,8 +8,7 @@
 			<form name="modalForm" class="form-signin form-horizontal" id="studentEditForm" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="php/StudentSignInOut.php">
 				<div class="modal-body" id="studentEditBody">
 				</div>
-				<div id="signInFooter" class="modal-footer">
-					
+				<div id="studentEditFooter" class="modal-footer">
 					<input name="innerEStudentID" id="innerEStudentID" type="hidden">
 					<input name="innerEStudentCode" id="innerEStudentCode" type="hidden">
 					<button type="submit" class="btn btn-primary btn-lg" name="studentEdit" value="submit">Zapisz</button>
