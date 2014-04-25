@@ -6,6 +6,7 @@
 	
 	$arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
 	setlocale(LC_ALL, $arrLocales);
+	$weekDays = array(1 => "Poniedziałek", 2 => "Wtorek", 3 => "Środa", 4 => "Czwartek", 5 => "Piątek", 6 => "Sobota", 0 => "Niedziela");
 	
 	echo "<input id=\"studentCode\" type=\"hidden\" value=\"";
 	echo $_GET['code'];
@@ -93,7 +94,7 @@
 	echo "\">";
 	echo "<span id=\"valueField\"></span>";
 
-	echo "<a class=\"navbar-brand pull-right\" href=\"#\" data-toggle=\"modal\" name=\"studentEditGlyph\" id=\"studentEditGlyph\" data-target=\"#studentEditModal\" title=\"Edytuj dane osobowe.\" value=\"".$student->getID()."\"><i class=\"glyphicon glyphicon-cog\"></i></a>";
+	echo "<a class=\"navbar-brand pull-right h2\" href=\"#\" data-toggle=\"modal\" name=\"studentEditGlyph\" id=\"studentEditGlyph\" data-target=\"#studentEditModal\" title=\"Edytuj dane osobowe\" value=\"".$student->getID()."\"><i class=\"glyphicon glyphicon-cog h2\"></i></a>";
 	echo "<h2>Lista aktualnych egzaminów użytkownika: ".$student->getFirstName()." ".$student->getSurName()."</h2>";
 	echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych egzaminów.</p>";
 	echo "<hr />";
@@ -133,7 +134,8 @@
 					$eu = ExamUnitDatabase::getExamUnit($examUnitID);
 					echo $eu->getDay();
 					$time = $eu->getDay()." ".$eu->getTimeFrom();
-					echo " (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($time)))).") ";
+					//echo " (".iconv("ISO-8859-2","UTF-8",ucfirst(strftime('%A',strtotime($time)))).") ";
+					echo "(".$weekDays[strftime('%w',strtotime($time))].")";
 					echo " o ".strftime("%H:%M",strtotime($time));
 					echo "</b>";
 				}else{

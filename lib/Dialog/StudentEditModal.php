@@ -3,7 +3,7 @@
 		<div class="modal-content container" style="background-color:#BABEC2;">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="modal-title text-center" id="myModalLabelSO"><b>Edycja danych osobowych studenta.</b></h3>
+				<h3 class="modal-title text-center" id="myModalLabelSO"><b>Edycja danych osobowych studenta</b></h3>
 			</div>
 			<form name="modalForm" class="form-signin form-horizontal" id="studentEditForm" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="php/StudentSignInOut.php">
 				<div class="modal-body" id="studentEditBody">
