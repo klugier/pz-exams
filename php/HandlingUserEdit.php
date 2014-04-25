@@ -32,12 +32,14 @@
 
     if (isset($_POST['submitButton']) == true) {
         $user = unserialize($_SESSION['USER']);
+		$newUser = unserialize($_SESSION['USER']);
         $user2 = UserDatabase::getUser($user->getID());
         $user = UserDatabase::getUser($user->getID());
         
         if($_POST['nameEdit'] != $user->getFirstName()){
         if (UserDatabase::updateUserFirstName($user, $_POST['nameEdit'])) { 
             $_SESSION['formSuccessCode1'] = 'nameChanged';
+			$newUser->setFirstName($_POST['nameEdit']);
         }else {
 			$_SESSION['formErrorCode'] = 'databaseError';
 		}}
@@ -45,6 +47,7 @@
         if($_POST['surnameEdit'] != $user->getSurname()){
         if (UserDatabase::updateUserSurname($user, $_POST['surnameEdit'])) { 
             $_SESSION['formSuccessCode2'] = 'surnameChanged';
+			$newUser->setSurname($_POST['surnameEdit']);
         }else {
 			$_SESSION['formErrorCode'] = 'databaseError';
 		}}
@@ -57,6 +60,7 @@
         }else {
 			$_SESSION['formErrorCode'] = 'databaseError';
 		}}
+		$_SESSION['USER'] = serialize($newUser);
 
         header('Location: ../UserEdit.php' ); 
     }

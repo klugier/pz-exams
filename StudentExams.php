@@ -12,16 +12,16 @@
 	echo "\">";
 	$student = StudentDatabase::getStudentByCode($_GET['code']);
 	$id = $student->getID();
-
+	
 	if ($id == null) {
 		echo "<div class=\"alert alert-danger text-center\"><b>Kod niepoprawny.</b> Za 5 sekund zostaniesz przeniesiony na stronę główną.</div>";
 		header("refresh: 5; url=index.php");
 		include("html/End.php");
-		
+	
 		ob_end_flush();
 		return;
 	}
-
+	
 	$examsID = RecordDatabase::getExamIDList($student->getID());
 	$active = 1;
 	foreach ($examsID as $examID) {
@@ -34,17 +34,52 @@
 	if($active == 1){
 		echo "<div class=\"alert alert-info text-center\"><b>Brak aktywnych egzaminów.</b><br> Aktualnie nie masz egzaminów na które możesz się zapisać. Wróć później.</div>";
 		include("html/End.php");
-		
+	
 		ob_end_flush();
 		return;
 	}
+	
+	if	(isset($_SESSION['signInAlert'])){	
+		if	($_SESSION['signInAlert']	==	'pass'){
+			echo	'<div	class="alert	alert-success">';
+			echo	'<a	href="#"	class="close"	data-dismiss="alert">	&times;	</a>';		
+			echo	'<strong>Poprawnie	zapisano się na Egzamin.</strong>';	
+			echo	'</div>';
+			unset($_SESSION['signInAlert']);
+		};
+		if	($_SESSION['signInAlert']	==	'fail'){
+			echo	'<div	class="alert	alert-danger">'	;
+			echo	'<a	href="#"	class="close"	data-dismiss="alert">	&times;	</a>';		
+			echo	'<strong>Egzamin zablokowany przez Egzaminatora.</strong>';	
+			echo	'</div>';
+			unset($_SESSION['signInAlert']);
+		};	
+	}
+
+	if	(isset($_SESSION['signOutAlert'])){
+		if	($_SESSION['signOutAlert']	==	'pass'){	
+			echo	'<div	class="alert	alert-success">';
+			echo	'<a	href="#"	class="close"	data-dismiss="alert">	&times;	</a>';		
+			echo	'<strong>Poprawnie	wypisano się z Egzaminu.</strong>';	
+			echo	'</div>';
+			unset($_SESSION['signOutAlert']);
+		};
+		if	($_SESSION['signOutAlert']	==	'fail'){
+			echo	'<div	class="alert	alert-danger">';
+			echo	'<a	href="#"	class="close"	data-dismiss="alert">	&times;	</a>';		
+			echo	'<strong>Egzamin zablokowany przez Egzaminatora</strong>';	
+			echo	'</div>';
+			unset($_SESSION['signOutAlert']);
+		};	
+	}
+	
 	//echo '<pre>'; print_r($examsID); echo '</pre>';
 	echo "<input id=\"studentID\" type=\"hidden\" value=\"";
 	echo $id;
 	echo "\">";
 	echo "<span id=\"valueField\"></span>";
 	
-	echo "<h2>Lista aktualnych egzaminów</h2>";
+	echo "<h2>Lista aktualnych egzaminów użytkownika: ".$student->getFirstName()." ".$student->getSurName()."</h2>";
 	echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych egzaminów.</p>";
 	echo "<hr />";
 	
@@ -61,7 +96,7 @@
 			</thead>
 			<tbody>
 		';
-		
+	
 		$i = 1;
 		foreach ($examsID as $examID) {
 			$exam = ExamDatabase::getExam($examID);

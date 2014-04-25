@@ -14,14 +14,14 @@
 			case 'stepF2' : stepF2();break;
 		}
 	}
-
+	
 	function stepOut($examID,$studentID)
 	{
 		$exam = ExamDatabase::getExam($examID);
 		$response = '<div class="no-rec">not found</div>';
 		$header = "<span><b>Aktualnie jesteś zapisany na egzamin:</b></span><br>";
 		$header = $header."<span>".$exam->getName()."</span><br>";
-
+	
 		$id = RecordDatabase::getRecordID($examID,$studentID);
 		$record = RecordDatabase::getRecord($id);
 		$examunit = ExamUnitDatabase::getExamUnit($record->getExamUnitID());
@@ -30,7 +30,7 @@
 		$footer = "<span><b>Na godzinę:</b></span><br>";
 		$timeFrom = $examunit->getDay()." ".$examunit->getTimeFrom();
 		$footer = $footer."<span>".strftime("%H:%M",strtotime($timeFrom))."</span><hr>";
-
+	
 		$response = $header.$body.$footer;
 		$html = $response;
 	
@@ -64,7 +64,7 @@
 		$examUnitIDs = ExamUnitDatabase::getExamUnitIDListDay($exam,$examDate);
 		//echo '<pre>'; print_r($examIDs); echo '</pre>';
 		//echo $examIDs." ".$examDate;
-		
+	
 		$response = '<div class="no-rec">not found</div>';
 		$header = "<table class=\"table table-condensed table-bordered table-hover\">";
 		$rows = "<thead>
@@ -127,26 +127,33 @@
 		//echo " | ExamID ".$_POST['innerIExamID'];
 		//echo " | StudentCode ".$_POST['innerIStudentCode'];
 		//echo " | Exam Unit ".$_POST['optionsRadios'];
-
-		$examunit = ExamUnitDatabase::getExamUnit($_POST['optionsRadios']);
-		//echo "| Unit got";
-		$id = RecordDatabase::getRecordID($_POST['innerIExamID'],$_POST['innerIStudentID']);
-		//echo "| Id got =". $id;
-		$record = RecordDatabase::getRecord($id);
-		//echo "| Record got ". $record->getID();
-		$record->setExamUnitID($_POST['optionsRadios']);
-		$examunit->setState('locked');
-
-		if(RecordDatabase::updateRecord($record)){
-		//	echo " updateRecord Succes";
-			if(ExamUnitDatabase::updateExamUnit($examunit)){
-		//		echo " updateExamUnit Succes";
+		$exam = ExamDatabase::getExam($_POST['innerIExamID']);
+		if($exam->getActivated()){
+			$examunit = ExamUnitDatabase::getExamUnit($_POST['optionsRadios']);
+			//echo "| Unit got";
+			$id = RecordDatabase::getRecordID($_POST['innerIExamID'],$_POST['innerIStudentID']);
+			//echo "| Id got =". $id;
+			$record = RecordDatabase::getRecord($id);
+			//echo "| Record got ". $record->getID();
+			$record->setExamUnitID($_POST['optionsRadios']);
+			$examunit->setState('locked');
+	
+			if(RecordDatabase::updateRecord($record)){
+			//	echo " updateRecord Succes";
+				if(ExamUnitDatabase::updateExamUnit($examunit)){
+			//		echo " updateExamUnit Succes";
+				}else{
+			//		echo " updateExamUnit Fail";
+				}
 			}else{
-		//		echo " updateExamUnit Fail";
+				echo " updateRecord Fail";
 			}
+			$_SESSION['signInAlert'] = 'pass';
 		}else{
-			echo " updateRecord Fail";
+			$_SESSION['signInAlert'] = 'fail';
 		}
+	
+	
 	
 		header('Location: ../StudentExams.php?code='.$_POST['innerIStudentCode']); 
 	}
@@ -157,26 +164,32 @@
 		//echo "StudentID ".$_POST['innerStudentID'];
 		//echo " ExamID ".$_POST['innerExamID'];
 		//echo " StudentCode ".$_POST['innerStudentCode'];
-		$examUnitID = RecordDatabase::getExamUnitID($_POST['innerExamID'],$_POST['innerStudentID']);
-		$id = RecordDatabase::getRecordID($_POST['innerExamID'],$_POST['innerStudentID']);
-		//echo "| Id got =". $examUnitID;
-		$examunit = ExamUnitDatabase::getExamUnit($examUnitID);
-		//echo "| Unit got";
-		$record = RecordDatabase::getRecord($id);
-		//echo "| Record got ". $record->getID();
-		$record->setExamUnitID(0);
-		//echo "| Record set";
-		$examunit->setState('unlocked');
-		//echo "| State set";
-		if(RecordDatabase::updateRecord($record)){
-		//	echo " updateRecord Succes";
-			if(ExamUnitDatabase::updateExamUnit($examunit)){
-		//		echo " updateExamUnit Succes";
+		$exam = ExamDatabase::getExam($_POST['innerExamID']);
+		if($exam->getActivated()){
+			$examUnitID = RecordDatabase::getExamUnitID($_POST['innerExamID'],$_POST['innerStudentID']);
+			$id = RecordDatabase::getRecordID($_POST['innerExamID'],$_POST['innerStudentID']);
+			//echo "| Id got =". $examUnitID;
+			$examunit = ExamUnitDatabase::getExamUnit($examUnitID);
+			//echo "| Unit got";
+			$record = RecordDatabase::getRecord($id);
+			//echo "| Record got ". $record->getID();
+			$record->setExamUnitID(0);
+			//echo "| Record set";
+			$examunit->setState('unlocked');
+			//echo "| State set";
+			if(RecordDatabase::updateRecord($record)){
+			//	echo " updateRecord Succes";
+				if(ExamUnitDatabase::updateExamUnit($examunit)){
+			//		echo " updateExamUnit Succes";
+				}else{
+			//		echo " updateExamUnit Fail";
+				}
 			}else{
-		//		echo " updateExamUnit Fail";
+				echo " updateRecord Fail";
 			}
+			$_SESSION['signOutAlert'] = 'pass';
 		}else{
-			echo " updateRecord Fail";
+			$_SESSION['signOutAlert'] = 'fail';
 		}
 	
 		header('Location: ../StudentExams.php?code='.$_POST['innerStudentCode']); 
