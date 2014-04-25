@@ -19,6 +19,24 @@ function validateRadio(obj) {
 
 jQuery(document).ready(function ($) {
 
+	$("a#studentEditGlyph").click(function () {
+		$("#innerEStudentID").val($('#studentID').val());
+		$("#innerEStudentCode").val($('#studentCode').val());
+
+		var innerEStudentID = $('#studentID').val();
+
+		$.ajax({
+			type: "POST",
+			url: 'php/StudentSignInOut.php',
+			data: { action: 'edit', student: innerEStudentID },
+			dataType: "html",
+			cache: false,
+			success: function (html) {
+				$('#studentEditBody').html(html)
+			}
+		});
+	});
+
 	$("a#signOutGlyph").click(function () {
 		$("#innerStudentID").val($('#studentID').val());
 		$("#innerStudentCode").val($('#studentCode').val());

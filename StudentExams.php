@@ -38,6 +38,22 @@
 		ob_end_flush();
 		return;
 	}
+
+	if	(isset($_SESSION['studentEditAlert'])){	
+		if	($_SESSION['studentEditAlert']	==	'pass'){
+			echo	'<div	class="alert	alert-success">';
+			echo	'<a	href="#"	class="close"	data-dismiss="alert">	&times;	</a>';		
+			echo	'<strong>Poprawnie	zmieniono dane osobowe.</strong>';	
+			echo	'</div>';
+			unset($_SESSION['studentEditAlert']);
+		}elseif	($_SESSION['studentEditAlert']	==	'fail'){
+			echo	'<div	class="alert	alert-danger">'	;
+			echo	'<a	href="#"	class="close"	data-dismiss="alert">	&times;	</a>';		
+			echo	'<strong>Coś złego stało się w bazie danych.</strong>';	
+			echo	'</div>';
+			unset($_SESSION['studentEditAlert']);
+		};	
+	}
 	
 	if	(isset($_SESSION['signInAlert'])){	
 		if	($_SESSION['signInAlert']	==	'pass'){
@@ -46,8 +62,7 @@
 			echo	'<strong>Poprawnie	zapisano się na Egzamin.</strong>';	
 			echo	'</div>';
 			unset($_SESSION['signInAlert']);
-		};
-		if	($_SESSION['signInAlert']	==	'fail'){
+		}elseif	($_SESSION['signInAlert']	==	'fail'){
 			echo	'<div	class="alert	alert-danger">'	;
 			echo	'<a	href="#"	class="close"	data-dismiss="alert">	&times;	</a>';		
 			echo	'<strong>Egzamin zablokowany przez Egzaminatora.</strong>';	
@@ -63,8 +78,7 @@
 			echo	'<strong>Poprawnie	wypisano się z Egzaminu.</strong>';	
 			echo	'</div>';
 			unset($_SESSION['signOutAlert']);
-		};
-		if	($_SESSION['signOutAlert']	==	'fail'){
+		}elseif	($_SESSION['signOutAlert']	==	'fail'){
 			echo	'<div	class="alert	alert-danger">';
 			echo	'<a	href="#"	class="close"	data-dismiss="alert">	&times;	</a>';		
 			echo	'<strong>Egzamin zablokowany przez Egzaminatora</strong>';	
@@ -78,7 +92,8 @@
 	echo $id;
 	echo "\">";
 	echo "<span id=\"valueField\"></span>";
-	
+
+	echo "<a class=\"navbar-brand pull-right\" href=\"#\" data-toggle=\"modal\" name=\"studentEditGlyph\" id=\"studentEditGlyph\" data-target=\"#studentEditModal\" title=\"Edytuj dane osobowe.\" value=\"".$student->getID()."\"><i class=\"glyphicon glyphicon-cog\"></i></a>";
 	echo "<h2>Lista aktualnych egzaminów użytkownika: ".$student->getFirstName()." ".$student->getSurName()."</h2>";
 	echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych egzaminów.</p>";
 	echo "<hr />";
@@ -195,7 +210,8 @@
 		<tbody>
 	</table>
 	';
-	
+
+	include("lib/Dialog/StudentEditModal.php");
 	include("lib/Dialog/ExamSignOutButton.php");
 	include("lib/Dialog/ExamSignInButton.php");
 	include("html/End.php");

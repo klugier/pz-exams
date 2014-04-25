@@ -7,12 +7,37 @@
 	if(isset($_POST['action']) && !empty($_POST['action'])) {
 	$action = $_POST['action'];
 		switch($action) {
+			case 'edit' : edit($_POST['student']);break;
 			case 'stepOut' : stepOut($_POST['exam'],$_POST['student']);break;
 			case 'step1' : step1($_POST['exam']);break;
 			case 'step2' : step2($_POST['exam'],$_POST['examDate']);break;
 			case 'stepF1' : stepF1();break;
 			case 'stepF2' : stepF2();break;
 		}
+	}
+
+	function edit($studentID)
+	{
+		$student = StudentDatabase::getStudentByID($studentID);
+		$response = '<div class="no-rec">not found</div>';
+		$P1 = "
+		<div class=\"form-group\">
+			<label for=\"sNameEdit\" class=\"col-xs-4	col-sm-4	col-md-4	control-label\">Nowe Imię</label>
+			<div class=\"col-xs-6	col-sm-6	col-md-6\">
+				<input type=\"text\" class=\"form-control\" id=\"sNameEdit\" placeholder=\"Wprowadź	Imię\" name=\"sNameEdit\" value=\"".$student->getFirstName()."\">
+			</div>
+		</div>";
+		$P2 = "
+		<div class=\"form-group\">
+			<label for=\"sSurnameEdit\" class=\"col-xs-4	col-sm-4	col-md-4	control-label\">Nowe Nazwisko</label>
+			<div class=\"col-xs-6	col-sm-6	col-md-6\">
+				<input type=\"text\" class=\"form-control\" id=\"sSurnameEdit\" placeholder=\"Wprowadź	Nazwisko\" name=\"sSurnameEdit\" value=\"".$student->getSurName()."\">
+			</div>
+		</div>";
+		$response = $P1.$P2;
+		$html = $response;
+	
+		echo $html;
 	}
 	
 	function stepOut($examID,$studentID)
@@ -121,6 +146,33 @@
 		echo "<a class=\"btn btn-primary\" href=\"#\" role=\"button\" id=\"back\" name=\"back\">Cofnij</a>"."<button type=\"submit\" class=\"btn btn-success\" name=\"signIn\" value=\"submit\">Zapisz</button>"."<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Zamknij</button>";
 	}
 	
+	if (isset($_POST['studentEdit']) == true) {
+		echo $_POST['innerEStudentID'];
+		$student = StudentDatabase::getStudentByID($_POST['innerEStudentID']);
+		echo $student->getID();
+
+		if($_POST['sNameEdit'] != $student->getFirstName()){
+			$student->setFirstName($_POST['sNameEdit']);
+			echo "Stuudent Name Set";
+			if (StudentDatabase::updateStudent($student)){
+			    $_SESSION['studentEditAlert'] = 'pass';
+			}else {
+				$_SESSION['studentEditAlert'] = 'fail';
+			}
+		}
+        
+        if($_POST['sSurnameEdit'] != $student->getSurname()){
+			$student->setSurName($_POST['sSurnameEdit']);
+			echo "Stuudent Name Set";
+			if (StudentDatabase::updateStudent($student)){ 
+				$_SESSION['studentEditAlert'] = 'pass';
+			}else {
+				$_SESSION['studentEditAlert'] = 'fail';
+			}
+		}
+	
+		header('Location: ../StudentExams.php?code='.$_POST['innerEStudentCode']); 
+	}
 	
 	if (isset($_POST['signIn']) == true) {
 		//echo "StudentID ".$_POST['innerIStudentID'];//setInnerExamID($examID, $id);
@@ -152,8 +204,6 @@
 		}else{
 			$_SESSION['signInAlert'] = 'fail';
 		}
-	
-	
 	
 		header('Location: ../StudentExams.php?code='.$_POST['innerIStudentCode']); 
 	}
