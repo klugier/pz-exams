@@ -94,8 +94,10 @@
 	echo "\">";
 	echo "<span id=\"valueField\"></span>";
 
-	echo "<a class=\"navbar-brand pull-right h2\" href=\"#\" data-toggle=\"modal\" name=\"studentEditGlyph\" id=\"studentEditGlyph\" data-target=\"#studentEditModal\" title=\"Edytuj dane osobowe\" value=\"".$student->getID()."\"><i class=\"glyphicon glyphicon-cog h2\"></i></a>";
-	echo "<h2>Lista aktualnych egzaminów użytkownika: ".$student->getFirstName()." ".$student->getSurName()."</h2>";
+	
+	echo "<h2><span>Lista aktualnych egzaminów użytkownika: ".$student->getFirstName()." ".$student->getSurName()."</span>";
+	echo "<span style=\"float: right;\"><a href=\"#\" data-toggle=\"modal\" name=\"studentEditGlyph\" id=\"studentEditGlyph\" data-target=\"#studentEditModal\" title=\"Edytuj dane osobowe\" value=\"".$student->getID()."\"><i class=\"glyphicon glyphicon-cog h2\"></i></a></span>";
+	echo "</h2>";
 	echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych egzaminów.</p>";
 	echo "<hr />";
 	
