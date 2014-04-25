@@ -1,4 +1,6 @@
 <?php
+	ob_start();
+	
 	include_once("lib/Lib.php");
 	$title = "$appName - Strona studenta - List egzaminów";
 	$scripts = array("js/StudentRegister.js");
@@ -11,8 +13,12 @@
 	echo "<input id=\"studentCode\" type=\"hidden\" value=\"";
 	echo $_GET['code'];
 	echo "\">";
-	$student = StudentDatabase::getStudentByCode($_GET['code']);
-	$id = $student->getID();
+	$student = null;
+	$id = null;
+	if (isset($_GET['code'])) {
+		$student = StudentDatabase::getStudentByCode($_GET['code']);
+		$id = $student->getID();
+	}
 	
 	if ($id == null) {
 		echo "<div class=\"alert alert-danger text-center\"><b>Kod niepoprawny.</b> Za 5 sekund zostaniesz przeniesiony na stronę główną.</div>";

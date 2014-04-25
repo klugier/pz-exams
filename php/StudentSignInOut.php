@@ -1,5 +1,4 @@
 <?php
-	
 	include_once("../lib/Lib.php");
 	$arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
 	setlocale( LC_ALL, $arrLocales );
@@ -22,14 +21,14 @@
 		$response = '<div class="no-rec">not found</div>';
 		$P1 = "
 		<div class=\"form-group\">
-			<label for=\"sNameEdit\" class=\"col-xs-4	col-sm-4	col-md-4	control-label\">Nowe Imię</label>
+			<label for=\"sNameEdit\" class=\"col-xs-4	col-sm-4	col-md-4	control-label\">Imię</label>
 			<div class=\"col-xs-6	col-sm-6	col-md-6\">
 				<input type=\"text\" class=\"form-control\" id=\"sNameEdit\" placeholder=\"Wprowadź	Imię\" name=\"sNameEdit\" value=\"".$student->getFirstName()."\">
 			</div>
 		</div>";
 		$P2 = "
 		<div class=\"form-group\">
-			<label for=\"sSurnameEdit\" class=\"col-xs-4	col-sm-4	col-md-4	control-label\">Nowe Nazwisko</label>
+			<label for=\"sSurnameEdit\" class=\"col-xs-4	col-sm-4	col-md-4	control-label\">Nazwisko</label>
 			<div class=\"col-xs-6	col-sm-6	col-md-6\">
 				<input type=\"text\" class=\"form-control\" id=\"sSurnameEdit\" placeholder=\"Wprowadź	Nazwisko\" name=\"sSurnameEdit\" value=\"".$student->getSurName()."\">
 			</div>
