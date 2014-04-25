@@ -30,21 +30,6 @@
 	}
 	
 	$examsID = RecordDatabase::getExamIDList($student->getID());
-	$active = 1;
-	foreach ($examsID as $examID) {
-		$exam = ExamDatabase::getExam($examID);
-		$examDays = ExamUnitDatabase::getExamDays($examID);
-		if (date_create($examDays[count($examDays)-1]) >= new DateTime("now")) {
-			$active = 0;
-		}
-	}
-	if($active == 1){
-		echo "<div class=\"alert alert-info text-center\"><b>Brak aktywnych egzaminów.</b><br> Aktualnie nie masz egzaminów na które możesz się zapisać. Wróć później.</div>";
-		include("html/End.php");
-	
-		ob_end_flush();
-		return;
-	}
 
 	if	(isset($_SESSION['studentEditAlert'])){	
 		if	($_SESSION['studentEditAlert']	==	'pass'){
