@@ -215,6 +215,19 @@ $( document ).ready(function() {
 		var validate = 0;
 		var examDate = $('#exam-date').val();
 		var today = new Date();		 
+		var startHour = converToMinutes($('#start-hour').val());
+		var endHour = converToMinutes($('#end-hour').val());
+		
+		if(exam.day[examDate] != undefined){
+			for(term in exam.day[examDate]){				
+				if(startHour >= converToMinutes(exam.day[examDate][term].bHour) && startHour < converToMinutes(exam.day[examDate][term].eHour)){
+					validate = 5;
+				}
+				if(endHour > converToMinutes(exam.day[examDate][term].bHour) && endHour <= converToMinutes(exam.day[examDate][term].eHour)){
+					validate = 5
+				}
+			}
+		}
 		if(converToMinutes($('#start-hour').val()) >= converToMinutes($('#end-hour').val())){			
 			validate = 1;
 		}
@@ -228,27 +241,36 @@ $( document ).ready(function() {
 			validate = 4;
 		}
 
-		if( validate == 1){
-			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px">Godzina rozpoczęcia powinna być wcześniej niż godzina zakończenia.</span>') ; 			
-		} else if ( validate == 2) {
-			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px">Należy wypełnić wszystkie pola.</span>') ;			
-		} else if ( validate == 3) {
-			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px">Podana data już minęła. Podaj inną date.</span>') ;			
-		} else if ( validate == 4) {
-			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px">Czas egzaminu powinien wynosić co najmniej 5 minut.</span>') ;			
-		} else {
-			exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  
+		switch(validate)
+		{
+		case 1:
+  			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+							'<span style="padding:5px">Godzina rozpoczęcia powinna być wcześniej niż godzina zakończenia.</span>') ; 			
+  			break;
+		case 2:
+  			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Należy wypełnić wszystkie pola.</span>') ;
+  			break;
+  		case 3:
+  			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Podana data już minęła. Podaj inną date.</span>') ;
+  			break;
+  		case 4:
+  			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Czas egzaminu powinien wynosić co najmniej 5 minut.</span>') ;
+  			break;
+  		case 5:
+  			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Godziny egzaminu nakładają się na siebie! Podaj inne czasy.</span>') ;
+  			break;
+		default:
+  			exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  
 			calendarControl.examDays = exam.day ;
 			calendarControl.printCalendar() ;			
 			$("#error").html('');
 			$('#myModal').modal('hide') ;						 
 			$('#addExamForm')[0].reset();
-		}
-		// alert  ( exam.name + " --- " + exam.duration  ) ; 
+		}  
 		return false ; 
 	} );	
 	
