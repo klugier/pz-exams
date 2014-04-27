@@ -171,10 +171,9 @@
 		static public function insertRecord($record)
 		{
 			$values = "('"	. $record->getStudentID() . "','"
-			                . $record->getExamID() . "','"
-			                . $record->getExamUnitID() . "')";
+			                . $record->getExamID() .  "')";
 			
-			$sql =  "INSERT INTO Records (StudentID, ExamID, ExamUnitID) VALUES $values";
+			$sql =  "INSERT INTO Records (StudentID, ExamID) VALUES $values";
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		} 
 		
