@@ -14,14 +14,58 @@ function parseTime(s) {
 		return Math.floor(parseInt(s) / 60) + ":" + (( parseInt(s) % 60  < 10 ) ?  "0"+(parseInt(s)%60) : (parseInt(s)%60) )  ;
 	}
 }
+
+function getExamID() {
+	query = window.location.search.substring(1); 
+	queryPart = query.split('&');
+	examID = null ; 
+	for ( var idx in queryPart ) {  
+		if ( queryPart[idx].match(/examID/) != null  )  { 
+			examID = queryPart[idx].match(/\d+/ ) ; 
+			return examID[0] ;   
+		}
+	}     
+	return examID ;  	
+} ;
+
 // GLOBAL FUNCTIONS SECTION END *********************************************************************************************************
 
 jQuery( document ).ready(function( $ ) {
 
 // CLASSES & FUNCTIONS SECTION BEGIN ****************************************************************************************************
+	// klasa odpowiedzialna za wymianę informacji z bazą danych 
+	function DatabaseModificationsSaver() { 
+		this.addSingleExamUnit = function ( $day , $timeFrom , $timeTo) { 
+			examID	= getExamID () ;
+			$currentClass = this ; 
+			$.ajax({
+				url: 'lib/Ajax/AjaxCalendarSaver.php',
+				async: false , 
+				type: 'post',
+				data: { 'requestType' : 'addExamUnit' ,
+								'day' : $day ,  
+								'examID' : examID , 
+								'timeFrom' : $timeFrom , 
+								'timeTo' : $timeTo 
+							},
+				success: function(data, status) { 
+					console.log(data) ; 
+					if(data.status.trim() === "dataSavedProperly") {
+						console.log ("Exam unit (examID : " + examID +", timeFrom : " + $timeFrom + ", timeTo : "+ $timeTo +") dodano do bazy poprawnie" );
+					} 
+					console.log("Dodawanie do bazy exam unit nie powiodło się ");  	 
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			}); 
+		} ;	
+	}  
+
 	// klasa wymiany danych na kartach dodaj egzamin 
 
-	function ExamUnit(bHour, eHour , studentName , studentSurname ){
+	function ExamUnit(bHour, eHour , studentName , studentSurname) {
 		this.bHour = bHour;
 		this.eHour = eHour;
 		this.studentName = studentName ; 
@@ -32,7 +76,7 @@ jQuery( document ).ready(function( $ ) {
 		this.durration = durration;
 		this.day = new Array();
 		this.blockedUnits = new Array();
-
+		//this.databaseModificationsSaver = new DatabaseModificationsSaver() ;
 		this.addTerm = function (date, begHour, endHour, durat) {
 			var bHour = converToMinutes(begHour);
 			var eHour = converToMinutes(endHour);
@@ -45,6 +89,7 @@ jQuery( document ).ready(function( $ ) {
 				}
 				var conv1 = parseTime(bHour + durat * i);      
 				var conv2 = parseTime(bHour + durat * (i + 1));
+				//this.databaseModificationsSaver.addSingleExamUnit( date , conv1, conv2 ); 
 				var examUnit = new ExamUnit(conv1, conv2);
 				this.day[date].push(examUnit);
 			}
@@ -334,21 +379,8 @@ jQuery( document ).ready(function( $ ) {
 	function EditExamCalendarManager() { 
 		this.exam = null ; 
 		this.calendarControl = null ;  
-		this.getExamID = function() {
-			query = window.location.search.substring(1); 
-			queryPart = query.split('&');
-			examID = null ; 
-			for ( var idx in queryPart ) {  
-				if ( queryPart[idx].match(/examID/) != null  )  { 
-					examID = queryPart[idx].match(/\d+/ ) ; 
-					return examID[0] ;   
-				}
-			}     
-			return examID ;  	
-		} ;
-		
 		this.sendAjaxExamCalendarRequest = function ( ) {
-			examID	= this.getExamID () ;
+			examID	= getExamID () ;
 			$currentClass = this ; 
 			$.ajax({
 				url: 'lib/Ajax/AjaxExamCalendarRequest.php',
@@ -413,8 +445,8 @@ jQuery( document ).ready(function( $ ) {
 	exam.addTerm( "11.02.03" , "19:20", "21:20", 30) ;*/
 	
 	// exam.sortDaysArray("2014-12-01" , "2014-02-02") ;
-	
-    calendarControl = new CalendarControl( false ) ;
+	 
+  calendarControl = new CalendarControl( false ) ;
 	editExamCalendarManager = new EditExamCalendarManager () ; 
 	
 } ); 
