@@ -15,16 +15,16 @@
 		unset($_SESSION['formSuccessCode']);
 	}
 
-	if (isset($_GET['error'])) {
+	if (isset($_SESSION['ERROR'])) {
 		echo '<div class="alert alert-danger">';
 		echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>'; 
-		if($_GET['error'] == '1') {
+		if($_SESSION['ERROR'] == '1') {
 			echo '<strong>Nie ma takiego użytkownika w bazie!</strong>';
-		}
-		elseif ($_GET['error'] == '2') {
+		} elseif ($_SESSION['ERROR'] == '2') {
 			echo '<strong>Podane hasło jest niepoprawne!</strong>';
 		}
 		echo '</div>' ;
+		unset($_SESSION['ERROR']);
 	}
 ?>
 
