@@ -17,10 +17,12 @@
 				$_SESSION['USER'] = serialize($basicUser);
 				header('Location: ../UserSite.php');
 			} else {
-				header('Location: ../index.php?error=2');
+				$_SESSION['ERROR'] = 2;
+				header('Location: ../index.php');
 			}
 		} else {
-			header('Location: ../index.php?error=1');
+			$_SESSION['ERROR'] = 1;
+			header('Location: ../index.php');
 		}
 		
 	} else {
