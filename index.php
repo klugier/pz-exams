@@ -98,33 +98,38 @@
 </div>
 
 <div class="container text-center">
-	<h3>Witaj!</h3>
-	<p>
-	PZ-exams to platforma rejestracji na egzaminy, na której mogą polegać zarówno wykładowcy jak i studenci.
+	<h3>Tworzenie i zarządzanie egzaminami nigdy nie było takie proste!</h3>
+	<p style="margin-bottom: 30px;">
+	PZ-Exams to platforma służąca do tworzenia egzaminów ustnych jak i rejestracji na nie, na której mogą polegać zarówno wykładowcy jak i studenci. <br />
+	Nimniejszy serwis została opracowana przez zespół studentów, którzy doskonale zdają sobie sprawę z ograniczeń  uczelnianych systemów takich jak USOS. <br />
+	Dlatego jeżeli jesteś nauczycielem akdemickim, który uważa, że egzaminy ustne są jedyną dobrą formą egzaminu. To znaczy, że ten serwis jest właśnie dla ciebie!
+	</p>
 		<div class="col-xs-12 col-sm-12 col-md-12">
+			<!-- Przekierowanie na link z użytymi przez nas technologiami -->
 			<div class="col-xs-4 col-sm-4 col-md-4">
 				<button type="button" class="btn btn-primary btn-lg">
 					1
 				</button>
-				<h4>Pierwsza</h4>
-				<p>To co ma byc w pierwszej kolumnie</p>
+				<h4>Nowoczesne technologię</h4>
+				<p>Wykorzystujemy tylko najnowocześniejsze technologie. Sprawdź na czym zbudowaliśmy nasz serwis.</p>
 			</div>
+			<!-- Przekierowanie do formularz kontaktowego - Dobrze by było mieć ikonę koperty lub coś w tym stylu -->
 			<div class="col-xs-4 col-sm-4 col-md-4">
 				<button type="button" class="btn btn-primary btn-lg">
 					2
 				</button>	
-				<h4>Druga</h4>
-				<p>To co ma byc w drugiej kolumnie</p>
+				<h4>Formularz kontaktowy</h4>
+				<p>Systematycznie staramy się rozwijać nasz serwis. Jeżeli masz jakiekolwie uwagi to skontaktuj się z drużyną deweloperską!</p>
 			</div>
+			<!-- Przekierowanie do githuba!!! (Jakaś ikonka open source) --->
 			<div class="col-xs-4 col-sm-4 col-md-4">
 				<button type="button" class="btn btn-primary btn-lg">
 					3
 				</button>	
-				<h4>Trzecia</h4>
-				<p>To co ma byc w trzeciej kolumnie</p>
+				<h4>Otwarte oprogramowanie</h4>
+				<p>Kod źródłowy naszego serwisu jest dostępny publicznie.</p>
 			</div>
 		</div>
-	</p>
 </div>
 
 <?php 
