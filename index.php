@@ -97,10 +97,33 @@
 	</div>
 </div>
 
-<div class="container">
+<div class="container text-center">
 	<h3>Witaj!</h3>
-	<p style="text-align: justify; margin-top: 30px;">
+	<p>
 	PZ-exams to platforma rejestracji na egzaminy, na której mogą polegać zarówno wykładowcy jak i studenci.
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="col-xs-4 col-sm-4 col-md-4">
+				<button type="button" class="btn btn-primary btn-lg">
+					1
+				</button>
+				<h4>Pierwsza</h4>
+				<p>To co ma byc w pierwszej kolumnie</p>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-4">
+				<button type="button" class="btn btn-primary btn-lg">
+					2
+				</button>	
+				<h4>Druga</h4>
+				<p>To co ma byc w drugiej kolumnie</p>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-4">
+				<button type="button" class="btn btn-primary btn-lg">
+					3
+				</button>	
+				<h4>Trzecia</h4>
+				<p>To co ma byc w trzeciej kolumnie</p>
+			</div>
+		</div>
 	</p>
 </div>
 
