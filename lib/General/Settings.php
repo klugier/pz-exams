@@ -27,6 +27,16 @@ final class Settings
 		return self::getInstance()->adress;
 	}
 	
+	public static function getEmailAdress()
+	{
+		return self::getInstance()->emailAdress;
+	}
+	
+	public static function getEmailPassword()
+	{
+		return self::getInstance()->emailPassword;
+	}
+	
 	public static function setDebug($debug)
 	{
 		self::getInstance()->debug = $debug;
@@ -37,9 +47,19 @@ final class Settings
 		self::getInstance()->domains = $domains;
 	}
 	
-	public static function setAdress()
+	public static function setAdress($adress)
 	{
-		self::getInstance()->adress;
+		self::getInstance()->adress = $adress;
+	}
+	
+	public static function setEmailAdress($emailAdress)
+	{
+		self::getInstance()->emailAdress = $emailAdress;
+	}
+	
+	public static function setEmailPassword($emailPassword)
+	{
+		self::getInstance()->emailPassword = $emailPassword;
 	}
 	
 	private static function getInstance()
@@ -54,9 +74,11 @@ final class Settings
 	
 	private function __construct($cfgPath)
 	{
-		$this->debug   = 0;
-		$this->domains = null;
-		$this->adress  = "";
+		$this->debug         = 0;
+		$this->domains       = null;
+		$this->adress        = "";
+		$this->emailAdress   = "";
+		$this->emailPassword = "";
 		
 		$this->__load($cfgPath);
 	}
@@ -87,11 +109,18 @@ final class Settings
 		if ($dom->getElementsByTagName("Adress")->length > 0) {
 			$this->adress = $xml->Adress;
 		}
+		
+		if ($dom->getElementsByTagName("Email")->length > 0) {
+			$this->emailAdress = $xml->Email->Adress;
+			$this->emailPassword = $xml->Email->Password;
+		}
 	}
 	
 	private $debug;
 	private $domains;
 	private $address;
+	private $emailAdress;
+	private $emailPassword;
 	
 	private static $instance = false;
 }

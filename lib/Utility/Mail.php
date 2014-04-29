@@ -1,11 +1,10 @@
 <?php
 	include_once("Mail/PHPMailerAutoload.php");
-
-	define('GUSER', 'pz.exams@gmail.com');
-	define('GPWD', 'optymalnehaslo1337');
-
+	
+	include_once(__DIR__ . "/../General/Settings.php");
+	
 	/***
-	 * Jako pierwszy argument można podac jednego adresata, lub tablice
+	 * Jako pierwszy argument można podać jednego adresata, lub tablicę
 	 * bool $isHTML - czy tresc e-maila ($body) zawiera znaczniki HTML,
 	 * ktore maja zostac sparsowane.
 	 */
@@ -27,8 +26,8 @@
 		$mail->SMTPSecure = 'ssl';
 		$mail->Host = 'smtp.gmail.com';
 		$mail->Port = 465; 
-		$mail->Username = GUSER;  
-		$mail->Password = GPWD;          
+		$mail->Username = Settings::getEmailAdress();
+		$mail->Password = Settings::getEmailPassword();
 		$mail->SetFrom($from, $from_name);
 		$mail->Subject = $subject;
 		$mail->Body = $body;

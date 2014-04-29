@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Settings>
+	<Adress>192.168.1.2/pz-exams</Adress>
 	<Debug>1</Debug>
 	<Domains>
 		<Domain>uj.edu.pl</Domain>
 		<Domain>agh.edu.pl</Domain>
 		<Domain>gmail.com</Domain>
+		<Domain>poczta.onet.pl</Domain>
 	</Domains>
-	<Adress>192.168.1.2/pz-exams</Adress>
+	<Email>
+		<Adress>pz.exams@gmail.com</Adress>
+		<Password>optymalnehaslo1337</Password>
+	</Email>
 </Settings>
