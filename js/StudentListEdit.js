@@ -2,30 +2,33 @@ $(document).ready(function() {
 
 	$('button#add_students').click( function(){
 
-	emails = new Array();
-	first_names = new Array();
-	last_names = new Array();
+		var email_p = /(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/gm;
+		var full_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+/gm;
+		var elements = $();
 
-	var email_p = /<(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))>/gm;
-	var f_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+</gm;
-	var l_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+</gm;
-	var elements = $();
+		var emails = $('#student_list').val().match(email_p);
+		var full_names = $('#student_list').val().match(full_name_p);
 
-	 	
-		emails = $('#student_list').val().match(email_p);
-		first_names = $('#student_list').val().match(f_name_p);
-		last_names = $('#student_list').val().match(l_name_p);
+		var first_names = new Array();
+		var last_names = new Array();
+
+		for (var i = 0; i < full_names.length; i++) {
+
+			full_names[i] = full_names[i].trim();
+
+			var pieces = full_names[i].split(" ");
+			first_names.push(pieces[0].trim());
+
+			pieces.shift();
+
+			last_names.push(pieces.join(" "));
+
+		}
 
 		if (emails != null && first_names != null && last_names != null) {
-			for (var i = 0; i < first_names.length; i++){ 
-				first_names[i] = first_names[i].replace("<", "").replace(">", "").split(" ")[0].trim();
-			}
-
-			for (var i = 0; i < last_names.length; i++) {
-				last_names[i] = last_names[i].split(" ").splice(1, 2).join(' ').replace("<", "").trim();;
-			}
 
 		for (var i = 0; i < emails.length; i++) {
+
 			emails[i] = emails[i].replace("<", "").replace(">", "");
 
 			$.ajax({

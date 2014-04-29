@@ -29,15 +29,12 @@
 <div id="buttons">
 	<span>
 		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#student_list_modal">Dodaj listę studentów</button>
-		<button id="add_one_student" type="button" class="btn btn-primary btn-sm">Dodaj studenta</button> <!-- Czy to nie powinno być zrobione również na modalu??? -->
+		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#student_modal">Dodaj studenta</button> <!-- Czy to nie powinno być zrobione również na modalu??? -->
 	</span>
 </div>
 
-<!-- Średnio mi te br w tym miejscu pasują, czy nie możemy dać po prostu margines> -->
-<br/>
-<br/>
 
-<!-- Modal -->
+<!-- Modal1 - dodawanie listy studentów -->
 <div class="modal fade" id="student_list_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
@@ -58,8 +55,42 @@
     </div>
   </div>
 </div>
+<!-- Modal1 - end -->
 
-<div>
+<!-- Modal2 - dodawanie studentóa -->
+<div class="modal fade" id="student_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Dodawanie studenta</h4>
+      </div>
+      <div class="modal-body">
+        
+
+      	<div id="mail_div" class="col-lg-6">
+      		<div id="em" class="input-group">
+      			<input id="email" type="text" class="form-control input-sm" maxlength="50">
+      			<span class="input-group-btn">
+      				<button id="add" class="btn btn-default btn-sm" type="button">
+      					<span class="glyphicon glyphicon-plus"></span>
+      				</button>
+      			</span>
+      		</div>
+      	</div>
+
+
+      </div>
+      <div class="modal-footer" style="margin-top: 5%;">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+<!--         <button id="add_students" type="button" class="btn btn-primary">Dodaj</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal2 - end -->
+
+<div style="margin-top: 5%;">
 	<table class="table" id="students">
 		<thead>
 			<tr>
