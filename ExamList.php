@@ -132,7 +132,7 @@
 		echo "<td id=\"row-lp-" . $i . "\" style=\"text-align: center;\">" . $i . ".</td>\n";
 		
 		// Name
-		echo "<td id=\"row-name-id-" . $id . "\"><a href=\"ExamView.php?id=" . $id . "\">" . $name . "</a></td>\n";
+		echo "<td id=\"row-name-id-" . $id . "\"><a href=\"ExamView.php?id=" . $id . "\" style=\"color: #000\">" . $name . "</a></td>\n";
 		
 		// Dates
 		if ($examDays == null) {
