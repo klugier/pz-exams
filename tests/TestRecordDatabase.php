@@ -8,7 +8,7 @@
 	$testRecords[0]->setExamID(16);
 	$testRecords[0]->setExamUnitID(1);
 	
-	
+	$StudentsCount = RecordDatabase::countStudentsByExam(15);
 	
 	$ExamUnits = RecordDatabase::getExamUnitIDStudentIDList(15); 
 	if($ExamUnits == null){
@@ -20,7 +20,8 @@
 	
 	
 	$count = RecordDatabase::countUserStudentsSingedToExams(1);
-	echo "<br/>" . $count . "<br/>";
+	$StudentsCount = RecordDatabase::countStudentsByExam(17);
+	echo "<br/>" . $StudentsCount . "<br/>";
 	
 	
 	

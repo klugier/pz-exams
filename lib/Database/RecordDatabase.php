@@ -128,6 +128,23 @@
 			return $row[0];
 		}
 		
+		/*
+		 * Zwraca liczbe Studentów Egzaminatora
+		 */
+		static public function countStudentsByExam($examID){
+			$sql = "SELECT count(StudentID) FROM Records 
+			        WHERE ExamID = '" . $examID . "'";
+					
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$studentCount=0;
+			
+			if($result!=null){
+				$row = $result->fetch_array(MYSQLI_NUM);
+				$studentCount=$row[0];
+			}	
+			
+			return $studentCount;
+		}
 		
 		/*
 		 * Zwraca liczbe Studentów Egzaminatora
