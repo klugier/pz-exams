@@ -148,7 +148,7 @@
 		}
 		
 		// Populating
-		echo "<td style=\"text-align: center\">" . ExamUnitDatabase::countLockedExamUnits($id)  . "/" . ExamUnitDatabase::countExamUnits($id) . "</td>";
+		echo "<td style=\"text-align: center\"><span title=\"Ilość zapisanych studentów\">" . ExamUnitDatabase::countLockedExamUnits($id)  . "</span>/<span title=\"Ilość studentów\">" . RecordDatabase::countStudentsByExam($id) . "</span>/<span title=\"Ilość miejsc\">" . ExamUnitDatabase::countExamUnits($id) . "</span></td>";
 		
 		// Activated
 		echo "<td id=\"row-activated-id-" . $id . "\" style=\"text-align: center;\">";

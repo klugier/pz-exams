@@ -107,7 +107,7 @@
 		echo "<td id=\"row-lp-" . $i . "\" style=\"text-align: center;\">" . $i . ".</td>\n";
 		
 		// Name
-		echo "<td id=\"row-name-id-" . $id . "\">" . $name . "</td>\n";
+		echo "<td id=\"row-name-id-" . $id . "\"><a href=\"ExamView.php?id=" . $id . "\">" . $name . "</a></td>\n";
 		
 		// Dates
 		if ($examDays == null) {
@@ -123,7 +123,7 @@
 		}
 		
 		// Populating
-		echo "<td style=\"text-align: center\">" . ExamUnitDatabase::countLockedExamUnits($id)  . "/" . ExamUnitDatabase::countExamUnits($id) . "</td>";
+		echo "<td style=\"text-align: center\"><span title=\"Ilość zapisanych studentów\">" . ExamUnitDatabase::countLockedExamUnits($id)  . "</span>/<span title=\"Ilość studentów\">" . RecordDatabase::countStudentsByExam($id) . "</span>/<span title=\"Ilość miejsc\">" . ExamUnitDatabase::countExamUnits($id) . "</span></td>";
 		
 		echo "</tr>";
 		
