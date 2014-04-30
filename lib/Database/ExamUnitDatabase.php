@@ -168,14 +168,16 @@ final class ExamUnitDatabase
 	 */ 
 	static public function deleteExamUnit($examUnitID)
 	{
-		$sql = "Delete from ExamUnits WHERE ID  = '" . $examUnitID . "'";
-		
+		$sql = "UPDATE Records SET ExamUnitID = 'NULL' WHERE ExamUnitID  = '" . $examUnitID . "'";
+		if(DatabaseConnector::getConnection()->query($sql) ? true : false){
+			$sql = "Delete from ExamUnits WHERE ID  = '" . $examUnitID . "'";
+		}
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
     
 	static public function deleteExamUnit2($examID,$day,$timeFrom)
 	{
-		$sql = "Delete from ExamUnits WHERE ExamID  = '" . $examUnitID . "' AND 
+		$sql = "Delete from ExamUnits WHERE ExamID  = '" . $examID . "' AND 
 		                                    Day = '" . $day . "' AND 
 		                                    TimeFrom = '" . $timeFrom . "'";
 		
