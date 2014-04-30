@@ -77,5 +77,5 @@ CREATE TABLE `Records` (
 	`ExamUnitID` INT          NULL,
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`StudentID`) REFERENCES `Students` (`ID`),
-	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`)
+	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
