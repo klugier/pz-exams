@@ -24,7 +24,20 @@
 	$count = ExamUnitDatabase::countOpenExams(1,0);
 	echo "<br/>" . $count . "<br/>";
 	
+	
+	if(null!=0)
+		echo "Deleted <br/>";
+	else
+		echo "Not Deleted <br/>";
+	
+	
 	/*
+	if(ExamUnitDatabase::deleteExamUnit(1))
+		echo "Deleted <br/>";
+	else
+		echo "Not Deleted <br/>";	
+		
+	
 	if(ExamUnitDatabase::insertExamUnit($testExam,$testExamUnit)){
 		echo "Done and Done <br/>";
 	}else{
