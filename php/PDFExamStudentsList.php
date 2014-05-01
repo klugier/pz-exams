@@ -1,6 +1,5 @@
 <?php
-	
-	include("../lib/Lib.php");
+	include_once("../lib/Lib.php");
 	$id   = $_GET['examID'];
 	$exam = ExamDatabase::getExam($id);
 		class PDF extends TFPDF
