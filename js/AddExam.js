@@ -63,6 +63,8 @@ function back_to_stage1()
 
 $( document ).ready(function() {
 
+	Ladda.bind('button#confirm');
+
 	$('#stage2').hide();
 	$('#stage3').hide();
 
@@ -123,6 +125,8 @@ $( document ).ready(function() {
 
 	$('button#add_students').click( function(){
 
+		$(this).attr("disabled", "disabled");
+
 		var email_p = /<(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))>/gm;
 		var full_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+/gm;
 		var elements = $();
@@ -150,7 +154,7 @@ $( document ).ready(function() {
 
 			for (var i = 0; i < emails.length; i++) {
 				emails[i] = emails[i].replace("<", "").replace(">", "");
-				elements = elements.add('<div class="panel col-md-12" style="margin: 2px; margin-right: 0px; padding-right: 0px; padding-left: 6px; box-shadow: 2px 2px 5px #AAA;" id="student"><span style="margin-right: 10px;">' + first_names[i] + " " + last_names[i] + " (" + emails[i].replace("<", "").replace(">", "") + ')</span><i class="glyphicon glyphicon-remove pull-right" style="vertical-align: middle; font-size: 16px; margin-left: 18px;"></i></div>');
+				elements = elements.add('<div class="panel col-md-12" style="margin: 2px; margin-right: 0px; padding-right: 0px; padding-left: 6px; box-shadow: 2px 2px 5px #AAA;" id="student"><span style="margin-right: 10px;">' + first_names[i] + " " + last_names[i] + " (" + emails[i].replace("<", "").replace(">", "") + ')</span></div>');
 			}
 
 			$('#student_list').val("");
@@ -165,7 +169,9 @@ $( document ).ready(function() {
 	});
 
 
-	$('button#confirm').click(function(){
+	$('button#confirm').click(function(e){
+
+		// var l = Ladda.create( document.querySelector( 'button#confirm' ) );
 
 		var unlocked_units = new Object();
 

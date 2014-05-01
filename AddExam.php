@@ -3,7 +3,7 @@
 	
 	include_once("lib/Lib.php");
 	$title = "$appName - Dodaj egzamin";
-	$scripts = array(  "js/CalendarManager.js" , "js/AddExam.js" );
+	$scripts = array(  "js/CalendarManager.js" , "js/AddExam.js", "js/Lib/spin.min.js", "js/Lib/ladda.min.js" );
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {

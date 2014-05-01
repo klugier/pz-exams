@@ -23,8 +23,10 @@
 			<button type="button" class="btn btn-primary" id="prev2" style="padding-left: 30px; padding-right: 30px;">Cofnij</button>
 		</span>
 		
-		<span class="pull-right">
-			<button type="button" class="btn btn-success" id="confirm" style="padding-left: 25px; padding-right: 25px;">Zatwierdź</button>
+		<span class="pull-right" id="confirm">
+
+			<button id="confirm" class="btn btn-success ladda-button" data-style="expand-right"><span class="ladda-label">Potwierdź</span></button>
+
 		</span>
 	</div>
 </div>
