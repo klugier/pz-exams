@@ -12,18 +12,43 @@ final class ExamDatabase
 	static public function checkExamID($ID)
 	{
 		$sql = "Select * from Exams where ID = '" . $ID . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
 		
-		DatabaseConnector::getConnection()->query($sql) ? true : false;
+		if ($result->num_rows == 0) { 
+			return false;
+		}
+		
+		return true;
 	}
     
+	/*
+	 * Sprawdza czy egzamin o danym ID istnieje w bazie danych.
+	 */
+	static public function checkIfUserHasExam($userID, $examID)
+	{
+		$sql = "Select * from Exams where ID = '" . $examID . "' AND UserID = '" . $userID . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		
+		if ($result->num_rows == 0) { 
+			return false;
+		}
+		
+		return true;
+	}
+	
 	/*
 	 * Sprawdza czy egzamin o danej nazwie istnieje w bazie danych.
 	 */
 	static public function checkExamName($name)
 	{
 		$sql = "Select * from Exams where Name = '" . $name . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
 		
-		echo DatabaseConnector::getConnection()->query($sql) ? true : false;
+		if ($result->num_rows == 0) { 
+			return false;
+		}
+		
+		return true;
 	}
 	
 	/*

@@ -36,6 +36,12 @@
 	else
 		echo "Did not work <br/>";	
 	
+	echo "<br/>";
+	
+	if(ExamDatabase::checkIfUserHasExam(2, 15))
+		echo "Has <br/>";
+	else
+		echo "Does not have <br/>";	
 		/*
 		$testExam = new Exam;
 		$testExam->setName('Test');
