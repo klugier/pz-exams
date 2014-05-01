@@ -1,9 +1,8 @@
 <?php
 	
-	include_once("../lib/Lib.php");
-	$id = "1";
-		$exam = ExamDatabase::getExam($id);
-	
+	include("../lib/Lib.php");
+	$id   = $_GET['examID'];
+	$exam = ExamDatabase::getExam($id);
 		class PDF extends TFPDF
 		{
 
@@ -46,5 +45,7 @@
 		$pdf->Cell(160,10,$exam->getName(),0,0,'C');
 		$pdf->Ln();
 		$pdf->Table($header,$id);
-		$pdf->Output($exam->getName().".pdf","I");
+		$pdf->Output($exam->getName().".pdf","D");
+
+		header('Location: ../ExamStudentsList.php?examID='.$id); 
 ?>
