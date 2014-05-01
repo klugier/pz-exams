@@ -31,6 +31,7 @@
 	
 	$examsID = RecordDatabase::getExamIDList($student->getID());
 
+
 	if	(isset($_SESSION['studentEditAlert'])){	
 		if	($_SESSION['studentEditAlert']	==	'pass'){
 			echo	'<div	class="alert	alert-success">';
@@ -85,9 +86,18 @@
 	echo "\">";
 	echo "<span id=\"valueField\"></span>";
 
-	
-	echo "<h2><span>Lista aktualnych egzaminów użytkownika: ".$student->getFirstName()." ".$student->getSurName()."</span>";
-	echo "<span style=\"float: right;\"><a href=\"#\" data-toggle=\"modal\" name=\"studentEditGlyph\" id=\"studentEditGlyph\" data-target=\"#studentEditModal\" title=\"Edytuj dane osobowe\" value=\"".$student->getID()."\"><i class=\"glyphicon glyphicon-cog h2\"></i></a></span>";
+	if(($student->getFirstName() == NULL) || ($student->getFirstName() == "")){
+		echo "<h2><span>Lista aktualnych egzaminów użytkownika: ". $student->getEmail() ."</span>";
+		$_SESSION['studentNameAlert'] = 'alert';
+	}else{
+		echo "<h2><span>Lista aktualnych egzaminów użytkownika: ".$student->getFirstName()." ".$student->getSurName()."</span>";
+	}
+	echo "<span style=\"float: right;\">";
+	if	(isset($_SESSION['studentNameAlert'])){
+		echo '<span style="background-color:#F13333;" class="badge pull-left" title="Ustaw swoje Imię i Nazwisko">!</span>';
+		unset($_SESSION['studentNameAlert']);
+	}
+	echo "<a href=\"#\" data-toggle=\"modal\" name=\"studentEditGlyph\" id=\"studentEditGlyph\" data-target=\"#studentEditModal\" title=\"Edytuj dane osobowe\" value=\"".$student->getID()."\"><i class=\"glyphicon glyphicon-cog h2\"></i></a></span>";
 	echo "</h2>";
 	echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych egzaminów.</p>";
 	echo "<hr />";
