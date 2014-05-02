@@ -37,6 +37,16 @@
 	echo "<h4><i>(" . $exam->getName() . ")</i></h4><hr>";
 	
 	$examDays = ExamUnitDatabase::getExamDays($id);
+
+	if ($examDays == null) {
+		echo "<div class=\"alert alert-danger text-center\"><b>Egzamin pusty.</b><br>Egzamin nie posiada aktywnych terminów.<br> Za 5 sekund zostaniesz przeniesiony na poprzednią stronę.</div>";
+		header("refresh: 5; url=ExamList.php");
+		include("html/End.php");
+	
+		ob_end_flush();
+		return;
+	}
+
 	$uniqeDays = array_unique($examDays);
 	$weekDays = array(1 => "Poniedziałek", 2 => "Wtorek", 3 => "Środa", 4 => "Czwartek", 5 => "Piątek", 6 => "Sobota", 0 => "Niedziela");
 	

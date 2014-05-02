@@ -1,7 +1,9 @@
-$(document).ready(function() {
-	$(".panel-heading").click(function(){
+$(document).ready(function () {
+	$(".panel-heading").click(function () {
 		var elementID = $(this).attr("id");
-		//var doc = document.getElementById("#b"+elementID);
-		$("#b"+elementID).slideToggle();
+		if (elementID != null) {
+			$("#b" + elementID).slideToggle();
+			$("#g" + elementID).slideToggle();
+		}
 	});
 });
