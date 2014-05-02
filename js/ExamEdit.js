@@ -1,5 +1,34 @@
-
 $( document ).ready(function() {
+	
+	$('#updateBtn').click(function () {
+		
+		examID = String(window.location).split("examID=")[1];
+		examName = $('#exam_name').val();
+		examDuration = $('#exam_duration').val();
+			
+		$.ajax({
+			type: "POST",
+			url: "lib/Ajax/AjaxExamBasicUpdate.php",
+			dataType: "JSON",
+			data: {
+				examID : examID,
+				examName : examName,
+				examDuration : examDuration,
+			},
+			success: function (data) {				
+				if(data["changes"] == "1"){				
+					bootbox.alert('<div class="alert alert-success"><strong>Pomyślnie zaaktualizowano dane egzaminu.</strong></div>');
+				}				
+			},
+			error: function (error) {
+				alert('Wystapil błąd');
+			},
+			complete: function() {
+			
+			}
+		});		
+		return false;
+	});
 	
 	$('#addExamForm').submit(function () { 
 		var validate = 0;
