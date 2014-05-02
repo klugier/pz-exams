@@ -37,7 +37,7 @@
 
 <div class="container col-md-12">
 	<h2>Edycja Egzaminu</h2>
-	<hr/>
+	<hr style="height:1px;border:none;color:#333;background-color:#333;"/>
 	<?php
  		$examName = ExamDatabase::getExam($examID)->getName();
  		$examDuration = substr(ExamDatabase::getExam($examID)->getDuration(),3,2);
@@ -48,7 +48,7 @@
  
  		});
  	</script>
-	
+	<h3> Edycja podstawowych danych </h3>
 	<form role="form" class="form-horizontal" >
 
 		<div class="form-group" id="exam_name_group">
@@ -64,11 +64,16 @@
 
 			<div class="col-sm-4 col-md-4">
 				<input type="number" name="duration" class="form-control" id="exam_duration" placeholder="Zmień czas trwania" maxlength="2" min="0" max="100">
-			</div>
-			<button class="btn btn-success" id="updateBtn">Aktualizuj zmiany</button>
+			</div>			
+		</div>
+		<div class="form-group">
+			<span class="col-xs-2 col-sm-2 col-md-2 col-md-offset-3">
+				<button class="btn btn-success" id="updateBtn">Aktualizuj zmiany</button>
+			</span>
 		</div>
 	</form>
-	<hr/>
+	<hr style="height:1px;border:none;color:#333;background-color:#333;"/>
+	<h3> Edycja harmonogramu </h3>
 	<div class="row col-md-11" style="float:none;margin:0 auto;"> 
 			<br />
 				<div id="calendar-control"> 
@@ -78,9 +83,10 @@
 			<?php
 				include("lib/Dialog/ModalButton.php");
 			?>
-	</div>
-	<hr/>
+	</div>	
 </div>
+<hr style="height:1px;border:none;color:#333;background-color:#333;"/>
+
 
 <script type="text/javascript">
 	// loads calendar from database --> first CalendarManager script is  run
