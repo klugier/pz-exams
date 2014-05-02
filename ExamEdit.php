@@ -73,7 +73,6 @@
 	// loads calendar from database --> first CalendarManager script is  run
 	$(document).ready(function () {
 		editExamCalendarManager.sendAjaxExamCalendarRequest();
-		editExamCalendarManager.printCalendar();
 	});
 </script>
 
