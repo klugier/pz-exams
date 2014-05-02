@@ -76,7 +76,7 @@ jQuery( document ).ready(function( $ ) {
 		this.durration = durration;
 		this.day = new Array();
 		this.blockedUnits = new Array();
-		//this.databaseModificationsSaver = new DatabaseModificationsSaver() ;
+		
 		this.addTerm = function (date, begHour, endHour, durat) {
 			var bHour = converToMinutes(begHour);
 			var eHour = converToMinutes(endHour);
@@ -88,18 +88,21 @@ jQuery( document ).ready(function( $ ) {
 					this.day[date] = new Array();
 				}
 				var conv1 = parseTime(bHour + durat * i);      
-				var conv2 = parseTime(bHour + durat * (i + 1));
-				//this.databaseModificationsSaver.addSingleExamUnit( date , conv1, conv2 ); 
+				var conv2 = parseTime(bHour + durat * (i + 1)); 
 				var examUnit = new ExamUnit(conv1, conv2);
 				this.day[date].push(examUnit);
 			}
 			
+			this.sortExam () ; 
+		};
+
+		this.sortExam = function ( ) { 
 			// sort days 
 			this.sortDaysArray ( )  ;
 			// sort within days 
 			this.sortAllExamUnits();
-		};
-
+		} 
+		
 		this.addSingleExamUnit = function ( date, begHour, endHour , studentName , studentSurname ) {
 			if(this.day[date] === undefined) {
 					this.day[date] = new Array();
@@ -337,7 +340,6 @@ jQuery( document ).ready(function( $ ) {
 		this.examDays = new Array() ; 
 		this.printCalendar = function ( ) 	{ 
 			//alert ( this.examDays.length ) ;
-			
 			var calendarControl = "" ; 
 			var maxDaysNumPerRibbon = 4 ; 
 			var daysCounter = 0 ; 
@@ -379,6 +381,7 @@ jQuery( document ).ready(function( $ ) {
 	function EditExamCalendarManager() { 
 		this.exam = null ; 
 		this.calendarControl = null ;  
+		this.databaseModificationsSaver = new DatabaseModificationsSaver() ;
 		this.sendAjaxExamCalendarRequest = function ( ) {
 			examID	= getExamID () ;
 			$currentClass = this ; 
@@ -406,6 +409,24 @@ jQuery( document ).ready(function( $ ) {
 			}); 
 		} ;	
 		
+		this.insertExamUnits = function ( date , begHour , endHour , duration  ) { 
+			alert ( "insertExamUnits" ) ; 
+			this.exam.addTerm(  date , begHour , endHour , duration );
+			this.insertExamUnitsToDatabase (  date , begHour , endHour , duration );
+			this.exam.sortExam();
+		} ; 
+		this.insertExamUnitsToDatabase = function ( date , begHour , endHour , durat ) { 
+			var bHour = converToMinutes(begHour);
+			var eHour = converToMinutes(endHour);
+			var diff = eHour - bHour;
+			var count = diff / durat;
+			for (var i=0;i<count;i++) {
+				var conv1 = parseTime(bHour + durat * i);      
+				var conv2 = parseTime(bHour + durat * (i + 1)); 
+				this.databaseModificationsSaver.addSingleExamUnit( date , conv1, conv2 );
+			}
+		} ;
+		
 		this.insertExamUnitsToCalendar = function($jsonExamData) { 
 			this.exam = new Exam($jsonExamData.name, $jsonExamData.durration ); 
 			for ( var $idx in $jsonExamData.examUnits ) {    
@@ -416,6 +437,7 @@ jQuery( document ).ready(function( $ ) {
 				this.exam.addSingleExamUnit($jsonExamData.examUnits[$idx].day , $timeFrom , $timeTo , $studentName ,  $studentSurname);
 			} 
 			this.calendarControl.examDays = this.exam.day ;
+			this.calendarControl.printCalendar(); 
 		} ; 
 		
 		this.printCalendar = function printCalendar() { 
@@ -447,6 +469,6 @@ jQuery( document ).ready(function( $ ) {
 	// exam.sortDaysArray("2014-12-01" , "2014-02-02") ;
 	 
   calendarControl = new CalendarControl( false ) ;
-	editExamCalendarManager = new EditExamCalendarManager () ; 
+  editExamCalendarManager = new EditExamCalendarManager () ; 
 	
 } ); 

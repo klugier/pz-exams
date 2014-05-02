@@ -18,6 +18,8 @@
 					$examUnit->setTimeFrom($_POST['timeFrom']);
 					$examUnit->setTimeTo($_POST['timeTo']);
 					$examUnit->setDay($_POST['day']);
+					// stan unlocked - nikt nie miał sie szansy zapisać 
+					$examUnit->setState("unlocked");   
 					ExamUnitDatabase::insertExamUnit($exam , $examUnit);
 					echo json_encode($dataSavedInDB);
 				}				

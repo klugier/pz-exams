@@ -31,7 +31,7 @@ $( document ).ready(function() {
 			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
 											'<span style="padding:5px">Czas egzaminu powinien wynosić co najmniej 5 minut.</span>') ;			
 		} else {
-			editExamCalendarManager.exam.addTerm( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  
+			editExamCalendarManager.insertExamUnits( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  
 			editExamCalendarManager.calendarControl.examDays = editExamCalendarManager.exam.day ;
 			editExamCalendarManager.printCalendar() ;			
 			$("#error").html('');
