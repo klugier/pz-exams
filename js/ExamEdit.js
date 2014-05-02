@@ -84,10 +84,7 @@ $( document ).ready(function() {
 	}); 
 	
 	$(document).on("click", "#removeDayButton", function() {  
-		// alert( $(this).attr("name") ) ; 
-		editExamCalendarManager.exam.delTerm($(this).attr("name"));
-		editExamCalendarManager.calendarControl.examDays = editExamCalendarManager.exam.day ;
-		editExamCalendarManager.printCalendar() ;
+		editExamCalendarManager.removeAllUnitsForDay($(this).attr("name")) ;
 	});  
 	
 	$(document).on("click", "#removeRecordIcon", function() {

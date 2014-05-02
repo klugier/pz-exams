@@ -73,7 +73,7 @@ jQuery( document ).ready(function( $ ) {
 			$currentClass = this ; 
 			$.ajax({
 				url: 'lib/Ajax/AjaxCalendarSaver.php',
-				sync: true , 
+				async: false , 
 				type: 'post',
 				data: { 'requestType' : 'removeExamUnit' ,
 							'day' : $day ,  
@@ -426,8 +426,8 @@ jQuery( document ).ready(function( $ ) {
 				success: function(data, status) { 
 					if(data.status.trim() === "dataRecived") {
 						if (data.examID.trim() === "existsInDB") {
-							console.log( "odebrano dane " ) ; 
-							console.log ( data ) ; 
+							//console.log( "odebrano dane " ) ; 
+							//console.log ( data ) ; 
 							$currentClass.calendarControl = new CalendarControl ( true ) ;  // calendar with student name  
 							$currentClass.insertExamUnitsToCalendar(data); 
 							return ; 
@@ -462,9 +462,18 @@ jQuery( document ).ready(function( $ ) {
 			}
 		} ;
 		
+		this.removeAllUnitsForDay = function ( date ) {
+			//console.log("exam date " + this.exam.day[date]);
+			for (var examUnitIndex=0 ; examUnitIndex< this.exam.day[date].length ; examUnitIndex++) { 
+				//alert ( examUnitIndex + "usuwam " + this.exam.day[date][examUnitIndex]);
+				//alert ( date + " -- "+ this.exam.day[date][examUnitIndex].bHour ) ;
+				this.databaseModificationsSaver.removeSingleExamUnit(date , this.exam.day[date][examUnitIndex].bHour);
+			};
+			this.sendAjaxExamCalendarRequest();
+		} ; 
+		
 		this.removeSingleExamUnit = function (date , begHour ) { 
 			this.databaseModificationsSaver.removeSingleExamUnit( date , begHour  );
-			this.exam.removeExamHoursForDay ( date , begHour  ) ; 
 			this.sendAjaxExamCalendarRequest(); // reload data in exam
 		} ; 
 		
