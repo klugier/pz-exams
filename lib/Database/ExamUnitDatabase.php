@@ -177,9 +177,18 @@ final class ExamUnitDatabase
     
 	static public function deleteExamUnit2($examID,$day,$timeFrom)
 	{
-		$sql = "Delete from ExamUnits WHERE ExamID  = '" . $examID . "' AND 
-		                                    Day = '" . $day . "' AND 
-		                                    TimeFrom = '" . $timeFrom . "'";
+		$sql = "UPDATE Records INNER JOIN ExamUnits ON Records.ExamUnitID = ExamUnits.ID 
+				SET Records.ExamUnitID = 'NULL'
+				WHERE ExamUnits.ExamID  = '" . $examID . "' AND 
+				      ExamUnits.Day  = '" . $day . "' AND
+				      ExamUnits.TimeFrom  = '" . $timeFrom . "'";
+		
+		if(DatabaseConnector::getConnection()->query($sql) ? true : false){
+			$sql = "Delete from ExamUnits WHERE ExamID  = '" . $examID . "' AND 
+		                                        Day = '" . $day . "' AND 
+		                                        TimeFrom = '" . $timeFrom . "'";
+		}
+		
 		
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}

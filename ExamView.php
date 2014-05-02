@@ -26,6 +26,7 @@
 	$id   = $_GET['id'];
 	$exam = ExamDatabase::getExam($id);
 	echo "<h2>Informacje o egzaminie</h2>";
+	echo "<a class=\"btn btn-primary btn-sm pull-right\" href=\"php/PDFExamRegisteredStudentsList.php?examID=".$exam->getID()."\" role=\"button\" name=\"examRegisteredStudentsListPDFGlyph\" id=\"examRegisteredStudentsListPDFGlyph\" title=\"Pobierz PDF\" value=\"".$exam->getID()."\"\><i class=\"glyphicon glyphicon-download\"></i> <b>PDF</b></a>";
 	echo "<h4><i>(" . $exam->getName() . ")</i></h4><hr>";
 
 	$examDays = ExamUnitDatabase::getExamDays($id);
