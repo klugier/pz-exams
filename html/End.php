@@ -8,6 +8,7 @@
 					<span><a id="contact" href="Contact.php">Kontakt</a></span>
 					<span>| <a id="authors" href="Authors.php">Autorzy</a></span>
 					<span>| <a id="help" href="Help.php">Pomoc</a></span>
+					<span>| <a id="licence" href="Licence.php">Licencje</a></span>
 					<?php
 						if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
 							echo '<span>| <a id="help" href="RegisterForm.php">Rejestracja</a></span>';

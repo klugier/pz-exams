@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<h3>Informations</h3>
+Author: <a href="mailto:ian@bpm1.com?subject=tFPDF">Ian Back</a><br>
+License: LGPL
+<h3>Description</h3>
+This class is a modified version of <a href="http://www.fpdf.org/" target="_blank">FPDF</a> that adds UTF-8 support. Moreover, it embeds only
+the necessary parts of the fonts that are used in the document, making the file size much
+smaller than if the whole fonts were embedded. These features were originally developed
+for the <a href="http://www.mpdf1.com/mpdf/" target="_blank">mPDF</a> project.<br>
+<br>
+To use a Unicode font in your script, pass the font file name as third parameter of
+<code>AddFont()</code> and <code>true</code> as fourth parameter. The font may be located
+either in the font/unifont directory or directly in the system font folder (in case the
+<code>_SYSTEM_TTFONTS</code> constant is defined).
+The package ships with the <a href="http://dejavu-fonts.org" target="_blank">DejaVu</a>
+font family.<br><br>
+<strong>Note:</strong> this class requires the mbstring extension.
+</body>
+</html>

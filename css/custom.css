@@ -20,7 +20,7 @@ body {
     padding-bottom: 100px;
 }
 
-a#contact, a#authors, a#help {
+a#contact, a#authors, a#help, a#licence {
     color: #999;
 }
 
