@@ -192,7 +192,7 @@ $( document ).ready(function() {
 		dataType: "JSON",
 		data: {
 			exam_name : $('input#exam_name').val().trim(),
-			exam_duration : $('input#duration').val(),
+			exam_duration : $('input#exam_duration').val(),
 			students_emails : emails,
 			firstnames : first_names,
 			lastnames : last_names,
