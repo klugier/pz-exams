@@ -1,6 +1,6 @@
 <div class="modal fade modal-sm" id="studentListPDFModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelSO" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
-		<div class="modal-content container" style="background-color:#BABEC2;">
+		<div class="modal-content container">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="modal-title text-center" id="myModalLabelSO"><b>Wybierz typ PDFa</b></h3>
@@ -16,7 +16,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="duration" class="col-sm-5 control-label">Tylko zapisaniu studenci</label>
+						<label for="duration" class="col-sm-5 control-label">Tylko zapisani studenci</label>
 						<div class="col-sm-2">
 							<?php
 								echo "<a class=\"btn btn-primary btn-sm pull-right\" href=\"php/PDFExamRegisteredStudentsList.php?examID=".$exam->getID()."&setting=registered\" role=\"button\" name=\"examRegisteredStudentsListPDFGlyph\" id=\"examRegisteredStudentsListPDFGlyph\" title=\"Pobierz PDF\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-download\"></i> <b>PDF</b></a>";
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>;
+					<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
 				</div>
 			</form>
 		</div>
