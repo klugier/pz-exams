@@ -20,7 +20,7 @@
 	}
 	
 	$title = "$appName - Edytuj egzamin ";
-	$scripts = array(  "js/CalendarManager.js" , "js/ExamEdit.js" );
+	$scripts = array( "js/Lib/bootbox.min.js", "js/CalendarManager.js" , "js/ExamEdit.js" );
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
