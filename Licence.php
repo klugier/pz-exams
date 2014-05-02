@@ -15,7 +15,7 @@
 			</div>
 			<div class="panel-body">';
 
-		echo '<div class="panel panel-primary">
+		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="0">
 				<h3 class="panel-title">SecureImage<i id="g0" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
@@ -37,7 +37,7 @@
 			</div>
 			<div class="panel-body">';
 
-		echo '<div class="panel panel-primary">
+		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="1">
 				<h3 class="panel-title">PHPMailer<i id="g1" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
@@ -53,7 +53,7 @@
 			
 			</div></div>';
 
-		echo '<div class="panel panel-primary">
+		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="2">
 				<h3 class="panel-title">tFPDF<i id="g2" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
@@ -75,7 +75,7 @@
 			</div>
 			<div class="panel-body">';
 
-		echo '<div class="panel panel-primary">
+		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="3">
 				<h3 class="panel-title">Bootstrap<i id="g3" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
@@ -85,7 +85,7 @@
 				<a href="http://www.apache.org/licenses/LICENSE-2.0.txt">http://www.apache.org/licenses/LICENSE-2.0.txt</a><br>
 				</div></div>';
 
-		echo '<div class="panel panel-primary">
+		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="5">
 				<h3 class="panel-title">Bootstrap-datetimepicker<i id="g5" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
@@ -105,7 +105,7 @@
 			</div>
 			<div class="panel-body">';
 
-		echo '<div class="panel panel-primary">
+		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="4">
 				<h3 class="panel-title">Bootbox<i id="g4" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
@@ -113,7 +113,7 @@
 				bootbox.js v4.2.0<br>
 				<a href="http://bootboxjs.com/license.txt">http://bootboxjs.com/license.txt</a><br>
 				</div></div>';
-		echo '<div class="panel panel-primary">
+		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="6">
 				<h3 class="panel-title">jQuery v1.11.0<i id="g6" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
@@ -122,7 +122,7 @@
 				(c) 2005, 2014 jQuery Foundation, Inc.<br>
 				<a href="http://jquery.org/license">http://jquery.org/license</a>
 				</div></div>';
-		echo '<div class="panel panel-primary">
+		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="7">
 				<h3 class="panel-title">Ladda<i id="g7" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>

@@ -32,7 +32,7 @@
 	$exam = ExamDatabase::getExam($id);
 	echo "<h2>";
 	echo "<span>Informacje o egzaminie</span>";
-	echo "<span style=\"float: right\"><a class=\"btn btn-primary btn-sm pull-right\" href=\"php/PDFExamRegisteredStudentsList.php?examID=".$exam->getID()."\" role=\"button\" name=\"examRegisteredStudentsListPDFGlyph\" id=\"examRegisteredStudentsListPDFGlyph\" title=\"Pobierz PDF\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-download\"></i> <b>PDF</b></a></span>";
+	echo "<span style=\"float: right\"><a class=\"btn btn-primary btn-sm pull-right\" href=\"#\" data-toggle=\"modal\" name=\"examRegisteredStudentsListPDFGlyph\" id=\"examRegisteredStudentsListPDFGlyph\" data-target=\"#studentListPDFModal\" title=\"Pobierz PDF\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-download\"></i> <b>PDF</b></a></span>";
 	echo "</h2>";
 	echo "<h4><i>(" . $exam->getName() . ")</i></h4><hr>";
 	
@@ -96,7 +96,8 @@
 	<hr>
 	';
 	}
-	
+
+	include("lib/Dialog/StudentListPDFModal.php");
 	include("html/End.php");
 ?>
 
