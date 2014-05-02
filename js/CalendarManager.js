@@ -420,7 +420,7 @@ jQuery( document ).ready(function( $ ) {
 			$currentClass = this ; 
 			$.ajax({
 				url: 'lib/Ajax/AjaxExamCalendarRequest.php',
-				sync: true , 
+				async: false, 
 				type: 'post',
 				data: { 'examID' : examID },
 				success: function(data, status) { 
@@ -460,6 +460,7 @@ jQuery( document ).ready(function( $ ) {
 				var conv2 = parseTime(bHour + durat * (i + 1)); 
 				this.databaseModificationsSaver.addSingleExamUnit( date , conv1, conv2 );
 			}
+			this.sendAjaxExamCalendarRequest();	
 		} ;
 		
 		this.removeAllUnitsForDay = function ( date ) {
