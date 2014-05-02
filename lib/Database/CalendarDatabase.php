@@ -9,7 +9,8 @@ final class CalendarDatabase
 	 * Zwraca instancje Calendar dla egzaminu o zadanym ID
 	 */
 	static public function getCalendarForExamId($id) {
-		$sql = "SELECT * FROM Exams  JOIN ExamUnits ON ExamUnits.ExamID = Exams.ID WHERE Exams.ID = '" . $id . "'";
+		$sql = "SELECT * FROM Exams  JOIN ExamUnits ON ExamUnits.ExamID = Exams.ID WHERE Exams.ID = '" . $id . 
+				"' ORDER BY Day , TimeFrom";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		$exam = new Exam();
 		$examUnit = null;         

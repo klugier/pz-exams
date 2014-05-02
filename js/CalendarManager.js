@@ -101,7 +101,7 @@ jQuery( document ).ready(function( $ ) {
 			this.sortDaysArray ( )  ;
 			// sort within days 
 			this.sortAllExamUnits();
-		} 
+		} ;
 		
 		this.addSingleExamUnit = function ( date, begHour, endHour , studentName , studentSurname ) {
 			if(this.day[date] === undefined) {
@@ -409,8 +409,7 @@ jQuery( document ).ready(function( $ ) {
 			}); 
 		} ;	
 		
-		this.insertExamUnits = function ( date , begHour , endHour , duration  ) { 
-			alert ( "insertExamUnits" ) ; 
+		this.insertExamUnits = function ( date , begHour , endHour , duration  ) {  
 			this.exam.addTerm(  date , begHour , endHour , duration );
 			this.insertExamUnitsToDatabase (  date , begHour , endHour , duration );
 			this.exam.sortExam();
