@@ -26,24 +26,28 @@
 		if ( $exam->getID() == $_GET['id'] ) $accessEditExamGranted = true; 
 	} 
 	if (!$accessEditExamGranted)
-		header('Location: ExamList.php');	
+		header('Location: ExamList.php');
 	
 	$id   = $_GET['id'];
 	$exam = ExamDatabase::getExam($id);
+	$examDays = ExamUnitDatabase::getExamDays($id);
 	echo "<h2>";
 	echo "<span>Informacje o egzaminie</span>";
-	echo "<span style=\"float: right\"><a class=\"btn btn-primary btn-sm pull-right\" href=\"#\" data-toggle=\"modal\" name=\"examRegisteredStudentsListPDFGlyph\" id=\"examRegisteredStudentsListPDFGlyph\" data-target=\"#studentListPDFModal\" title=\"Pobierz PDF\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-download\"></i> <b>PDF</b></a></span>";
+	if ($examDays != null) {
+		echo "<span style=\"float: right\"><a class=\"btn btn-primary btn-sm pull-right\" href=\"#\" data-toggle=\"modal\" name=\"examRegisteredStudentsListPDFGlyph\" id=\"examRegisteredStudentsListPDFGlyph\" data-target=\"#studentListPDFModal\" title=\"Pobierz PDF\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-download\"></i> <b>PDF</b></a></span>";
+	}
 	echo "</h2>";
 	echo "<h4><i>(" . $exam->getName() . ")</i></h4><hr>";
 	
-	$examDays = ExamUnitDatabase::getExamDays($id);
-
 	if ($examDays == null) {
-		echo "<div class=\"alert alert-danger text-center\"><b>Egzamin pusty.</b><br>Egzamin nie posiada aktywnych terminów.<br> Za 5 sekund zostaniesz przeniesiony na poprzednią stronę.</div>";
-		header("refresh: 5; url=ExamList.php");
+		if (!$exam->getActivated()) {
+			echo "<div class=\"alert alert-info\"><strong>Niestety twój egzamin nie posiada aktualnie żadnych terminów!</strong> Możesz je dodać przechodząc do podstrony z <a class=\"alert-link\"  href=\"ExamEdit.php?examID=" . $id . "\">edycją egzaminu</a>.</div>";
+		} else {
+			echo "<div class=\"alert alert-warning\"><strong>Niestety twój egzamin nie posiada aktualnie żadnych terminów!</strong> Możesz je dodać przechodząc do podstrony z edycją egzaminu, ale najpierw musisz go dezaktywować w <a class=\"alert-link\" href=\"ExamList.php\">liście z aktualnymi egzaminami</a>.</div>";
+		}
+		
 		include("html/End.php");
-	
-		ob_end_flush();
+		
 		return;
 	}
 
