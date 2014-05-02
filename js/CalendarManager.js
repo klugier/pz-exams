@@ -49,11 +49,12 @@ jQuery( document ).ready(function( $ ) {
 								'timeTo' : $timeTo 
 							},
 				success: function(data, status) { 
-					console.log(data) ; 
+					//console.log(data) ; 
 					if(data.status.trim() === "dataSavedProperly") {
-						console.log ("Exam unit (examID : " + examID +", timeFrom : " + $timeFrom + ", timeTo : "+ $timeTo +") dodano do bazy poprawnie" );
+						console.log ("Exam unit (examID : " + examID + " day " + $day + ", timeFrom : " + $timeFrom + ", timeTo : "+ $timeTo +") dodano do bazy poprawnie" );
+						return ; 
 					} 
-					console.log("Dodawanie do bazy exam unit nie powiodło się ");  	 
+					console.log("Dodawanie do bazy exam unit (examID : " + examID + " day " + $day + ", timeFrom : " + $timeFrom + ", timeTo : "+ $timeTo +") nie powiodło się ");  	 
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
 					console.log(textStatus);
@@ -387,13 +388,14 @@ jQuery( document ).ready(function( $ ) {
 			$currentClass = this ; 
 			$.ajax({
 				url: 'lib/Ajax/AjaxExamCalendarRequest.php',
-				async: false , 
+				sync: true , 
 				type: 'post',
 				data: { 'examID' : examID },
 				success: function(data, status) { 
 					if(data.status.trim() === "dataRecived") {
 						if (data.examID.trim() === "existsInDB") {
-							//console.log ( data ) ; 
+							console.log( "odebrano dane " ) ; 
+							console.log ( data ) ; 
 							$currentClass.calendarControl = new CalendarControl ( true ) ;  // calendar with student name  
 							$currentClass.insertExamUnitsToCalendar(data); 
 							return ; 
@@ -412,8 +414,10 @@ jQuery( document ).ready(function( $ ) {
 		this.insertExamUnits = function ( date , begHour , endHour , duration  ) {  
 			this.exam.addTerm(  date , begHour , endHour , duration );
 			this.insertExamUnitsToDatabase (  date , begHour , endHour , duration );
+			this.sendAjaxExamCalendarRequest(); // reload data in exam
 			this.exam.sortExam();
 		} ; 
+		
 		this.insertExamUnitsToDatabase = function ( date , begHour , endHour , durat ) { 
 			var bHour = converToMinutes(begHour);
 			var eHour = converToMinutes(endHour);
