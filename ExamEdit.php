@@ -38,24 +38,37 @@
 <div class="container col-md-12">
 	<h2>Edycja Egzaminu</h2>
 	<hr/>
+	
+	<?php
+		$examName = ExamDatabase::getExam($examID)->getName();
+		$examDuration = substr(ExamDatabase::getExam($examID)->getDuration(),3,2);
+	?>
+	<script>
+		$(document).ready(function(){
+			$('#exam_duration').val("<?php Print($examDuration); ?>");
+
+		});
+	</script>
+	
 	<form role="form" class="form-horizontal" >
 
 		<div class="form-group" id="exam_name_group">
 			<label for="exam_name" class="control-label col-sm-3 col-md-3">Nazwa egzaminu</label>
 			<div class="col-sm-4 col-md-4">
-				<input type="text" class="form-control" id="exam_name" placeholder="Zmień nazwę" maxlength="120" >
+				<input type="text" class="form-control" id="exam_name" placeholder="Zmień nazwę" maxlength="120" value="<?php echo $examName; ?>">
 			</div>
 		</div>
 
 
 		<div class="form-group" id="duration_group">
 			<label for="duration" class="control-label col-sm-3 col-md-3">Czas trwania egzaminu (minuty)</label>
-
 			<div class="col-sm-4 col-md-4">
 				<input type="number" name="duration" class="form-control" id="exam_duration" placeholder="Zmień czas trwania" maxlength="2" min="0" max="100">
 			</div>
+			<button class="btn btn-success" id="updateBtn">Aktualizuj zmiany</button>
 		</div>
 	</form>
+	<hr/>
 	<div class="row col-md-11" style="float:none;margin:0 auto;"> 
 			<br />
 				<div id="calendar-control"> 
