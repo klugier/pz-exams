@@ -166,6 +166,8 @@ $( document ).ready(function() {
 
 		}
 
+		$(this).removeAttr("disabled");
+
 	});
 
 

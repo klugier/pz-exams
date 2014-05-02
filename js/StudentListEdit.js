@@ -237,7 +237,7 @@ $(document).ready(function() {
 			},
 			success: function (data) {
 
-				if (data[0] && data[1])
+				if (data)
 				{
 
 					$('tr#' + st_id).hide(300, function(){ 
@@ -252,7 +252,7 @@ $(document).ready(function() {
 
 			},
 			error: function (error) {
-				alert('Wystapil blad przy usuwaniu studenta.');
+				alert('Wystapił błąd przy usuwaniu studenta.');
 			},
 			complete: function() {
 				
