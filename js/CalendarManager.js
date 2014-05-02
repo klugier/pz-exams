@@ -28,6 +28,10 @@ function getExamID() {
 	return examID ;  	
 } ;
 
+function parseTimeToDatabaseFormat ($time) { 
+	return $time+":00"; 
+} ; 
+
 // GLOBAL FUNCTIONS SECTION END *********************************************************************************************************
 
 jQuery( document ).ready(function( $ ) {
@@ -62,6 +66,34 @@ jQuery( document ).ready(function( $ ) {
 				}
 			}); 
 		} ;	
+		
+		this.removeSingleExamUnit = function ( $day , $timeFrom ) { 
+			$timeFrom = parseTimeToDatabaseFormat ( $timeFrom ) ; 
+			examID	= getExamID () ;
+			$currentClass = this ; 
+			$.ajax({
+				url: 'lib/Ajax/AjaxCalendarSaver.php',
+				sync: true , 
+				type: 'post',
+				data: { 'requestType' : 'removeExamUnit' ,
+							'day' : $day ,  
+							'examID' : examID , 
+							'timeFrom' : $timeFrom 
+						},
+				success: function(data, status) { 
+					//console.log(data) ; 
+					if(data.status.trim() === "dataSavedProperly") {
+						console.log ("Exam unit (examID: " + examID + ", day :" + $day + ", timeFrom : " + $timeFrom + ") usunięto z bazy poprawnie" );
+						return ; 
+					} 
+					console.log("Usuwanie z bazy exam unit (examID: " + examID + ", day: " + $day + ", timeFrom : " + $timeFrom + ") nie powiodło się ");  	 
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			}); 
+		} ; 
 	}  
 
 	// klasa wymiany danych na kartach dodaj egzamin 
@@ -429,6 +461,12 @@ jQuery( document ).ready(function( $ ) {
 				this.databaseModificationsSaver.addSingleExamUnit( date , conv1, conv2 );
 			}
 		} ;
+		
+		this.removeSingleExamUnit = function (date , begHour ) { 
+			this.databaseModificationsSaver.removeSingleExamUnit( date , begHour  );
+			this.exam.removeExamHoursForDay ( date , begHour  ) ; 
+			this.sendAjaxExamCalendarRequest(); // reload data in exam
+		} ; 
 		
 		this.insertExamUnitsToCalendar = function($jsonExamData) { 
 			this.exam = new Exam($jsonExamData.name, $jsonExamData.durration ); 

@@ -5,7 +5,7 @@
 	header("content-type:application/json");
 	
 	$dataSavedInDB = array ('status' => 'dataSavedProperly') ; 
-	$dataNotSavedInDB = array ('status' => 'dataSavedUnproperly' ) ; 
+	$dataNotSavedInDB = array ('status' => 'dataSavedUnproperly' ) ;  
 	if (isset($_POST['examID']) && 
 		isset($_POST['requestType'])
 		) {
@@ -27,6 +27,14 @@
 					echo json_encode($dataNotSavedInDB);
 				} 			 		
 				break;
+			case 'removeExamUnit': 
+				if (isset($_POST['timeFrom']) && isset($_POST['day'])) { 
+					ExamUnitDatabase::deleteExamUnit2($_POST['examID'],$_POST['day'],$_POST['timeFrom']);
+					echo json_encode($dataSavedInDB);
+				} else { 
+					echo json_encode($dataNotSavedInDB);
+				} 
+				break; 
 			default : 
 				echo json_encode($dataNotSavedInDB);						
 		}
