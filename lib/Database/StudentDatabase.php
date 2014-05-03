@@ -83,9 +83,9 @@
 			$studentFirstName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentU->getFirstName());
 			$studentSurName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentU->getSurName());
 			
-			$values = "('"	. $studentEmail() . "','"
-			                . $studentFirstName() . "','"
-			                . $studentSurName() . "')";
+			$values = "('"	. $studentEmail . "','"
+			                . $studentFirstName . "','"
+			                . $studentSurName . "')";
 			
 			$sql =  "INSERT INTO Students (Email, FirstName, Surname) VALUES $values";
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;

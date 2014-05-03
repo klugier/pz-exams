@@ -23,13 +23,13 @@
 		echo "Something went Wrong<br/>";
 	}
 	
-	if(StudentDatabase::addStudentCode($testStudents[0], strval(md5(microtime())))){
+	if(StudentDatabase::addStudentCode($testStudents[0]->getID(), strval(md5(microtime())))){
 		echo "Code added <br/>";
 	}else{
 		echo "Code has failed <br/>";
 	}
 	
-	if(StudentDatabase::addStudentCode($testStudents[0], strval(md5(microtime())))){
+	if(StudentDatabase::addStudentCode($testStudents[0]->getID(), strval(md5(microtime())))){
 		echo "Code added <br/>";
 	}else{
 		echo "Code has failed <br/>";
