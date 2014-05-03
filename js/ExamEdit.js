@@ -82,7 +82,31 @@ $( document ).ready(function() {
 	}); 
 	
 	$(document).on("click", "#removeDayButton", function() {  
-		editExamCalendarManager.removeAllUnitsForDay($(this).attr("name")) ;
+		var date =  $(this).attr("name") ; 
+		if ( editExamCalendarManager.checkIfStudentsEnroledOnDay(date) ) {
+			bootbox.dialog({
+				message: "Na wybrany do usunięcia dzień są już zapisani studenci.",
+				title: "Uwaga",
+				buttons: {
+					cancel: {
+						label: "Cancel",
+						className: "btn",
+						callback: function() {
+							
+						}
+					},
+					remove: {
+						label: "Usuń",
+						className: "btn-danger",
+						callback: function() {
+							editExamCalendarManager.removeAllUnitsForDay(date) ;
+						}
+					}
+				}
+			});
+		} else { 
+			editExamCalendarManager.removeAllUnitsForDay($(this).attr("name")) ;
+		} 
 	});  
 	
 	$(document).on("click", "#removeRecordIcon", function() {
