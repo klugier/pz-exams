@@ -6,34 +6,46 @@ $( document ).ready(function() {
  		examID = String(window.location).split("examID=")[1];
  		examName = $('#exam_name').val();
  		examDuration = $('#exam_duration').val();
- 		var uBtn = this;
-    	uBtn.disabled = true;
 
- 		$.ajax({
- 			type: "POST",
- 			url: "lib/Ajax/AjaxExamBasicUpdate.php",
- 			dataType: "JSON",
- 			data: {
- 				examID : examID,
- 				examName : examName,
- 				examDuration : examDuration,
- 			},
- 			success: function (data) {				
- 				if(data["changes"] == "1"){				
- 					bootbox.alert('<div class="alert alert-success"><strong>Pomyślnie zaaktualizowano dane egzaminu.</strong></div>');
- 				}
- 				 setTimeout(function() {
-                		uBtn.disabled = false;
-            	}, 2000);			
- 			},
- 			error: function (error) {
- 				alert('Wystapil błąd');
- 			},
- 			complete: function() {
+ 		if(examName.length < 5){
+ 			$("#name-error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Nazwa powinna mieć co najmniej 5 znaków.</span>') ;
  			
- 			}
- 		});		
- 		return false;
+ 		} else if ( examDuration < 5 || examDuration > 60 ) {
+ 			$("#duration-error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Czas trwania egzaminu może mieć wartość od 5 do 60 min.</span>') ;
+ 		} else {
+ 			var uBtn = this;
+	    	uBtn.disabled = true;
+	    	$("#duration-error").html('');
+	    	$("#name-error").html('');
+ 			$.ajax({
+	 			type: "POST",
+ 				url: "lib/Ajax/AjaxExamBasicUpdate.php",
+ 				dataType: "JSON",
+ 				data: {
+	 				examID : examID,
+ 					examName : examName,
+ 					examDuration : examDuration,
+ 				},
+ 				success: function (data) {				
+	 				if(data["changes"] == "1"){				
+ 						bootbox.alert('<div class="alert alert-success"><strong>Pomyślnie zaaktualizowano dane egzaminu.</strong></div>');
+ 					}
+ 					setTimeout(function() {
+                			uBtn.disabled = false;
+            		}, 2000);			
+ 				},
+ 				error: function (error) {
+	 				alert('Wystapil błąd');
+ 				},
+ 				complete: function() {
+	 			
+ 				}
+ 			});		
+
+ 		}
+		return false;
  	});
 	
 	$('#addExamForm').submit(function () { 

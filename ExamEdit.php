@@ -40,7 +40,8 @@
 	<hr style="height:1px;border:none;color:#333;background-color:#333;"/>
 	<?php
  		$examName = ExamDatabase::getExam($examID)->getName();
- 		$examDuration = substr(ExamDatabase::getExam($examID)->getDuration(),3,2);
+ 		$hour = substr(ExamDatabase::getExam($examID)->getDuration(),0,2) * 60;
+ 		$examDuration = $hour + substr(ExamDatabase::getExam($examID)->getDuration(),3,2);
  	?>
  	<script>
  		$(document).ready(function(){
@@ -56,15 +57,16 @@
 			<div class="col-sm-4 col-md-4">
 				<input type="text" class="form-control" id="exam_name" placeholder="Zmień nazwę" maxlength="120" value="<?php echo $examName; ?>">
 			</div>
+			<span class="help-block" id="name-error"></span>
 		</div>
 
 
 		<div class="form-group" id="duration_group">
 			<label for="duration" class="control-label col-sm-3 col-md-3">Czas trwania egzaminu (minuty)</label>
-
 			<div class="col-sm-4 col-md-4">
 				<input type="number" name="duration" class="form-control" id="exam_duration" placeholder="Zmień czas trwania" maxlength="2" min="0" max="100">
-			</div>			
+			</div>
+			<span class="help-block" id="duration-error"></span>			
 		</div>
 		<div class="form-group">
 			<span class="col-xs-2 col-sm-2 col-md-2 col-md-offset-3">

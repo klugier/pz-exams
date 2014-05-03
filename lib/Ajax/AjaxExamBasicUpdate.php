@@ -30,7 +30,12 @@
 			$exam = ExamDatabase::getExam($_POST['examID']);
 			$examU = new Exam();
 			$examU -> setName($_POST['examName']);
-			$examU -> setDuration("00:".$_POST['examDuration'].":00");
+			if ($_POST['examDuration'] == 60) {
+				$examU -> setDuration("01:00:00");
+			} else {
+				$examU -> setDuration("00:".$_POST['examDuration'].":00");
+			}
+			//$examU -> setDuration("00:".$_POST['examDuration'].":00");
 			$examU -> setID($exam -> getID());		
 			
 			if( $exam -> getName() == $examU -> getName() && $exam -> getDuration() == $examU -> getDuration()){
