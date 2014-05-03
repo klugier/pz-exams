@@ -18,7 +18,11 @@
 			echo $examUnit['ExamUnitID'] . " | " . $examUnit['StudentID'] . "<br/>";
 	}
 	
-	
+	if(RecordDatabase::recordTransaction(2, 3)){
+		echo "Updated<br/>";
+	}else{
+		echo "Something went Wrong<br/>";
+	}
 	$count = RecordDatabase::countUserStudentsSingedToExams(1);
 	$StudentsCount = RecordDatabase::countStudentsByExam(17);
 	echo "<br/>" . $StudentsCount . "<br/>";

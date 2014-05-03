@@ -181,6 +181,49 @@
 			
 			return $examCount;
 		}
+		
+		static public function recordTransaction($recordID,$examUnitID)
+		{
+			$transaction = DatabaseConnector::getConnection();
+			
+			try{			
+				$transaction->begin_transaction();
+				$sql = "Select * from Records WHERE ID  = '" . $recordID . "'";
+				$result = $transaction->query($sql);
+				if ($result->num_rows == 0) { 
+					throw new Exception('There is no such Record');
+				}
+				
+				$row = $result->fetch_array(MYSQLI_ASSOC);
+				if($row['ExamUnitID']!=0){
+					throw new Exception('Overwriting not allowed');
+				}
+				
+				$sql = "UPDATE Records SET 
+						ExamUnitID = '" . $examUnitID . "'
+						WHERE ID = '" . $recordID . "'";
+					
+				if($transaction->query($sql)? false:true){
+					throw new Exception('Something failed while update');
+				}
+				
+				$sql = "Select * from Records WHERE ID  = '" . $recordID . "'";
+				$result = $transaction->query($sql);				
+				$row = $result->fetch_array(MYSQLI_ASSOC);
+				if($row['ExamUnitID']!=$examUnitID){
+					throw new Exception('Overwriting not allowed');
+				}
+			
+				$transaction->commit();
+				
+			}catch(Exception $e){
+				$transaction->rollback();
+				return false;
+			}
+			
+			return true;
+		} 
+		
 		/*********************************************************************
 		 ********************* Podstawowe funkcje sql ************************
 		 *********************************************************************/
@@ -201,12 +244,13 @@
 			if ($result->num_rows == 0) { 
 				return false;
 			}
-		
+
 			$sql = "UPDATE Records SET 
 			        StudentID  = '" . $record->getStudentID() . "', 
 			        ExamID = '" . $record->getExamID() . "', 
 			        ExamUnitID = '" . $record->getExamUnitID() . "'
 			        WHERE ID = '" . $record->getID() . "'";
+				
 			
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		} 
@@ -218,7 +262,7 @@
 			if ($result->num_rows == 0) { 
 				return false;
 			}
-		
+			
 			$sql = "Delete from Records WHERE ID  = '" . $record->getID() . "'";
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		}
