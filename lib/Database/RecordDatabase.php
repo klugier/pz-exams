@@ -228,42 +228,52 @@
 		 ********************* Podstawowe funkcje sql ************************
 		 *********************************************************************/
 		 
-		static public function insertRecord($record)
+		static public function insertRecord($recordU)
 		{
-			$values = "('"	. $record->getStudentID() . "','"
-			                . $record->getExamID() .  "')";
+			$recordStudentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getStudentID());
+			$recordExamID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getExamID());
+			
+			$values = "('"	. $recordStudentID . "','"
+			                . $recordExamID .  "')";
 			
 			$sql =  "INSERT INTO Records (StudentID, ExamID) VALUES $values";
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		} 
 		
-		static public function updateRecord($record)
+		static public function updateRecord($recordU)
 		{
-			$sql = "Select * from Records WHERE ID  = '" . $record->getID() . "'";
+			$recordID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getID());
+			$recordStudentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getStudentID());
+			$recordExamID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getExamID());
+			$recordExamUnitID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getExamUnitID());
+			
+			$sql = "Select * from Records WHERE ID  = '" . $recordID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			if ($result->num_rows == 0) { 
 				return false;
 			}
 
 			$sql = "UPDATE Records SET 
-			        StudentID  = '" . $record->getStudentID() . "', 
-			        ExamID = '" . $record->getExamID() . "', 
-			        ExamUnitID = '" . $record->getExamUnitID() . "'
-			        WHERE ID = '" . $record->getID() . "'";
+			        StudentID  = '" . $recordStudentID . "', 
+			        ExamID = '" . $recordExamID . "', 
+			        ExamUnitID = '" . $recordExamUnitID . "'
+			        WHERE ID = '" . $recordID . "'";
 				
 			
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		} 
 
-		static public function deleteRecord($record)
+		static public function deleteRecord($recordU)
 		{
-			$sql = "Select * from Records WHERE ID  = '" . $record->getID() . "'";
+			$recordID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getID());
+			
+			$sql = "Select * from Records WHERE ID  = '" . $recordID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			if ($result->num_rows == 0) { 
 				return false;
 			}
 			
-			$sql = "Delete from Records WHERE ID  = '" . $record->getID() . "'";
+			$sql = "Delete from Records WHERE ID  = '" . $recordID . "'";
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		}
 		

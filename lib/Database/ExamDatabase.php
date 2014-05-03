@@ -9,8 +9,10 @@ final class ExamDatabase
 	/*
 	 * Sprawdza czy egzamin o danym ID istnieje w bazie danych.
 	 */
-	static public function checkExamID($ID)
-	{
+	static public function checkExamID($IDU)
+	{	
+		$ID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $IDU);
+		
 		$sql = "Select * from Exams where ID = '" . $ID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		
@@ -24,8 +26,11 @@ final class ExamDatabase
 	/*
 	 * Sprawdza czy egzamin o danym ID istnieje w bazie danych.
 	 */
-	static public function checkIfUserHasExam($userID, $examID)
-	{
+	static public function checkIfUserHasExam($userIDU, $examIDU)
+	{	
+		$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+		$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+		
 		$sql = "Select * from Exams where ID = '" . $examID . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		
@@ -39,8 +44,10 @@ final class ExamDatabase
 	/*
 	 * Sprawdza czy egzamin o danej nazwie istnieje w bazie danych.
 	 */
-	static public function checkExamName($name)
+	static public function checkExamName($nameU)
 	{
+		$name = mysqli_real_escape_string(DatabaseConnector::getConnection(), $nameU);
+		
 		$sql = "Select * from Exams where Name = '" . $name . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		
@@ -54,8 +61,10 @@ final class ExamDatabase
 	/*
 	 * Zwraca exam o danym ID
 	 */
-	static public function getExam($id)
+	static public function getExam($idU)
 	{
+		$id = mysqli_real_escape_string(DatabaseConnector::getConnection(), $idU);
+		
 		$sql = "SELECT * FROM Exams WHERE ID = '" . $id . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		$exam = null;
@@ -74,8 +83,10 @@ final class ExamDatabase
 	/*
 	 * Zwraca listę egzaminów w tabeli danego usera
 	 */
-	static public function getExamList($userID)
+	static public function getExamList($userIDU)
 	{
+		$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+		
 		$sql = "SELECT * FROM Exams WHERE UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		$exams = null;
@@ -98,8 +109,10 @@ final class ExamDatabase
 	/*
 	 * Zwraca ilość egzaminów danego usera
 	 */
-	static public function countExams($userID)
+	static public function countExams($userIDU)
 	{
+		$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+		
 		$sql = "SELECT COUNT(UserID) AS UserExams FROM Exams
 		        WHERE UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
@@ -111,8 +124,11 @@ final class ExamDatabase
 	/*
 	 * Funkcja do aktywacji egzaminu 
 	 */
-	static public function activateExam($userID, $examID)
+	static public function activateExam($userIDU, $examIDU)
 	{	
+		$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+		$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+		
 		$sql = "Select * from Exams WHERE ID  = '" . $examID . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 
@@ -135,8 +151,11 @@ final class ExamDatabase
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
 	
-	static public function PostEmail($userID, $examID)
+	static public function PostEmail($userIDU, $examIDU)
 	{
+		$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+		$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+		
 		$sql = "Select * from Exams WHERE ID  = '" . $examID . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 
@@ -154,13 +173,19 @@ final class ExamDatabase
 	 ********************* Podstawowe funkcje sql ************************
 	 *********************************************************************/
 		 
-	static public function insertExam($userID, $exam)
+	static public function insertExam($userIDU, $examU)
 	{ 
+		$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+		$examName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examU->getName());
+		$examDuration = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examU->getDuration());
+		$examActivated = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examU->getActivated());
+		$examEmailsPosted = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examU->getEmailsPosted());
+		
 		$values = "('"  . $userID . "','"
-		                . $exam->getName() . "','" 
-		                . $exam->getDuration() . "','"
-		                . $exam->getActivated() . "','"  
-		                . $exam->getEmailsPosted() . "')";
+		                . $examName . "','" 
+		                . $examDuration . "','"
+		                . $examActivated . "','"  
+		                . $examEmailsPosted . "')";
 				
 		$sql =  "INSERT INTO Exams (UserID, Name, Duration, Activated, EmailsPosted)" 
 		        .  "VALUES $values";
@@ -172,9 +197,14 @@ final class ExamDatabase
 	 * Edycja egzaminu (nazwa, czas trwania) w bazie danych, wraz ze sprawdzeniem czy dany egzaminator
 	 * zamieścił egzamin i ma do tego uprawnienia
 	 */ 
-	static public function updateExam($userID, $exam)
-	{
-		$sql = "Select * from Exams WHERE ID  = '" . $exam->getID() . "' AND UserID = '" . $userID . "'";
+	static public function updateExam($userIDU, $examU)
+	{	
+		$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+		$examName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examU->getName());
+		$examDuration = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examU->getDuration());
+		$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examU->getID());
+		
+		$sql = "Select * from Exams WHERE ID  = '" . $examID . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 
 			return false;
@@ -194,6 +224,9 @@ final class ExamDatabase
 	 */ 
 	static public function deleteExam($userID, $examID)
 	{
+		$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+		$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+		
 		$sql = "Select * from Exams WHERE ID  = '" . $examID . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
 		if ($result->num_rows == 0) { 

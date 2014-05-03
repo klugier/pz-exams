@@ -8,9 +8,11 @@
         /*
          * Metoda sprawdza czy użytkownik o zadanym e-mailu istnieje w bazie danych.
          */
-        static public function checkEmail($basicUser)
+        static public function checkEmail($basicUserU)
         {
-            $sql = "Select * from Users WHERE Email = '".$basicUser->getEmail()."'";
+			$basicUserEmail = mysqli_real_escape_string(DatabaseConnector::getConnection(), $basicUserU->getEmail());
+			
+            $sql = "Select * from Users WHERE Email = '".$basicUserEmail."'";
             // echo $sql;
     
             $result = DatabaseConnector::getConnection()->query($sql);
@@ -22,9 +24,12 @@
         /*
          * Metoda sprawdza czy przypisane hasło do klasy $user jest poprawne.
          */
-        static public function checkPassword($basicUser)
+        static public function checkPassword($basicUserU)
         {
-            $sql = "Select * from Users WHERE Email = '" . $basicUser->getEmail() . "' && Password = '" . $basicUser->getPassword() . "'";
+			$basicUserEmail = mysqli_real_escape_string(DatabaseConnector::getConnection(), $basicUserU->getEmail());
+			$basicUserPassword = mysqli_real_escape_string(DatabaseConnector::getConnection(), $basicUserU->getPassword());
+			
+            $sql = "Select * from Users WHERE Email = '" . $basicUserEmail . "' && Password = '" . $basicUserPassword . "'";
             $result = DatabaseConnector::getConnection()->query($sql);
             if ($result->num_rows == 1)
             {
@@ -39,26 +44,36 @@
             return false;		
         }
     
-        static public function checkActivated($basicUser)
+        static public function checkActivated($basicUserU)
         {
-            $sql = "Select * from Users WHERE Email = '" . $basicUser->getEmail() . "' && Activated = TRUE";
+			$basicUserEmail = mysqli_real_escape_string(DatabaseConnector::getConnection(), $basicUserU->getEmail());
+			
+            $sql = "Select * from Users WHERE Email = '" . $basicUserEmail . "' && Activated = TRUE";
             $result = DatabaseConnector::getConnection()->query($sql);
             if ($result->num_rows == 1)
                 return true;
             return false;
         }
     
-        static public function addUser($user)
-        { 
+        static public function addUser($userU)
+        {
+			$userEmail = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getEmail());
+			$userPassword = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getPassword());
+			$userActivated = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getActivated());
+			$userActivationCode = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getActivationCode());
+			$userFirstName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getFirstName());
+			$userSurname = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getSurname());
+			$userGender = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getGender());
+			
 			date_default_timezone_set('Europe/Warsaw');
 			
-            $values = "('"	. $user->getEmail()    . "', '"
-                            . sha1($user->getPassword()) . "', '"
-                            . ($user->getActivated()        ? "TRUE" : "FALSE") . "', '"
-                            . $user->getActivationCode() . "', "
-                            . (is_null($user->getFirstName())    ? "NULL" : "'" . $user->getFirstName()    . "'")  . ", " 
-                            . (is_null($user->getSurname()) ? "NULL" : "'" . $user->getSurname() . "'")  . ", 'private', 'examiner'," 
-                            . (is_null($user->getGender())  ? "NULL" : "'" . $user->getGender()  . "'" ) . " , '"
+            $values = "('"	. $userEmail    . "', '"
+                            . sha1($userPassword) . "', '"
+                            . ($userActivated        ? "TRUE" : "FALSE") . "', '"
+                            . $userActivationCode . "', "
+                            . (is_null($userFirstName)    ? "NULL" : "'" . $userFirstName    . "'")  . ", " 
+                            . (is_null($userSurname) ? "NULL" : "'" . $userSurname . "'")  . ", 'private', 'examiner'," 
+                            . (is_null($userGender)  ? "NULL" : "'" . $userGender  . "'" ) . " , '"
                             . date("Y/m/d") . "')";  
     
             $sql =  "INSERT INTO Users (Email, Password, Activated, ActivationCode, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) " 
@@ -69,8 +84,10 @@
             return DatabaseConnector::getConnection()->query($sql) ? true : false;
         } 
     
-        static public function getUser($id)
+        static public function getUser($idU)
         {
+			$id = mysqli_real_escape_string(DatabaseConnector::getConnection(), $idU);
+			
             $sql = "SELECT * FROM Users WHERE ID = " . $id ;
             $result = DatabaseConnector::getConnection()->query($sql);
             if (!$result) {
@@ -93,11 +110,14 @@
         /*
          * Aktualizacja imienia usera
          */
-         static public function updateUserFirstName($user, $firstName)
+         static public function updateUserFirstName($userU, $firstNameU)
          { 
+			$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getID());
+			$firstName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $firstNameU);
+			
              $sql = "UPDATE Users SET 
              FirstName  = '" . $firstName . "' 
-             WHERE ID = '" . $user->getID() . "'";
+             WHERE ID = '" . $userID . "'";
     
              return DatabaseConnector::getConnection()->query($sql) ? true : false;
          } 
@@ -105,8 +125,11 @@
          /*
          * Aktualizacja hasla usera
          */
-         static public function updateUserPassword($user, $password)
+         static public function updateUserPassword($userU, $passwordU)
          { 
+			$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getID());
+			$password = mysqli_real_escape_string(DatabaseConnector::getConnection(), $passwordU);
+			
              $sql = "UPDATE Users SET 
              Password  = '" . $password . "' 
              WHERE ID = '" . $user->getID() . "'";
@@ -117,11 +140,14 @@
          /*
          * Aktualizacja nicku usera
          */
-         static public function updateUserSurname($user, $surname)
+         static public function updateUserSurname($userU, $surnameU)
          { 
+			$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getID());
+			$surname = mysqli_real_escape_string(DatabaseConnector::getConnection(), $surnameU);
+			
              $sql = "UPDATE Users SET 
              Surname  = '" . $surname . "' 
-             WHERE ID = '" . $user->getID() . "'";
+             WHERE ID = '" . $userID . "'";
     
              return DatabaseConnector::getConnection()->query($sql) ? true : false;
          } 
@@ -129,8 +155,11 @@
          /*
          * Aktualizacja plci usera
          */
-         static public function updateUserGender($user, $gender)
+         static public function updateUserGender($userU, $genderU)
          { 
+			$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getID());
+			$gender = mysqli_real_escape_string(DatabaseConnector::getConnection(), $genderU);
+			
              $sql = "UPDATE Users SET 
              Gender  = '" . $gender . "'
              WHERE ID = '" . $user->getID() . "'";
@@ -140,8 +169,8 @@
     
         static public function activate($email, $code)
         {
-            $email = mysql_real_escape_string($email);
-            $code = mysql_real_escape_string($code);
+            $email = mysqli_real_escape_string(DatabaseConnector::getConnection(), $email);
+            $code = mysqli_real_escape_string(DatabaseConnector::getConnection(), $code);
     
             $user = new User();
             $user->setEmail($email);
