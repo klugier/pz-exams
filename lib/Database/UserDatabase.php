@@ -24,10 +24,10 @@
         /*
          * Metoda sprawdza czy przypisane hasło do klasy $user jest poprawne.
          */
-        static public function checkPassword($basicUserU)
+        static public function checkPassword($basicUser)
         {
-			$basicUserEmail = mysqli_real_escape_string(DatabaseConnector::getConnection(), $basicUserU->getEmail());
-			$basicUserPassword = mysqli_real_escape_string(DatabaseConnector::getConnection(), $basicUserU->getPassword());
+			$basicUserEmail = mysqli_real_escape_string(DatabaseConnector::getConnection(), $basicUser->getEmail());
+			$basicUserPassword = mysqli_real_escape_string(DatabaseConnector::getConnection(), $basicUser->getPassword());
 			
             $sql = "Select * from Users WHERE Email = '" . $basicUserEmail . "' && Password = '" . $basicUserPassword . "'";
             $result = DatabaseConnector::getConnection()->query($sql);
