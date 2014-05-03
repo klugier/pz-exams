@@ -6,7 +6,9 @@ $( document ).ready(function() {
  		examID = String(window.location).split("examID=")[1];
  		examName = $('#exam_name').val();
  		examDuration = $('#exam_duration').val();
- 			
+ 		var uBtn = this;
+    	uBtn.disabled = true;
+
  		$.ajax({
  			type: "POST",
  			url: "lib/Ajax/AjaxExamBasicUpdate.php",
@@ -19,7 +21,10 @@ $( document ).ready(function() {
  			success: function (data) {				
  				if(data["changes"] == "1"){				
  					bootbox.alert('<div class="alert alert-success"><strong>Pomyślnie zaaktualizowano dane egzaminu.</strong></div>');
- 				}				
+ 				}
+ 				 setTimeout(function() {
+                		uBtn.disabled = false;
+            	}, 2000);			
  			},
  			error: function (error) {
  				alert('Wystapil błąd');

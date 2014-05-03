@@ -52,7 +52,9 @@ jQuery(document).ready(function($) {
 		var status = $(this).attr("value");
 		var id = $(this).attr("id");
 		var examID = id.slice(id.lastIndexOf("-") + 1, id.length);		
-		
+		var sBtn = this;
+    	sBtn.disabled = true;
+
 		$.ajax({
 			type: "POST",
 			url: "lib/Ajax/AjaxExamActivationRequest.php",
@@ -80,6 +82,9 @@ jQuery(document).ready(function($) {
 						$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");
 						$("#" + id).attr("value", 0);	
 					}
+					 setTimeout(function() {
+                		sBtn.disabled = false;
+            		}, 2000);
 				}
 			},
 			error: function (error) {				
