@@ -11,7 +11,7 @@
 
 	echo '<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">All rights reserved</h3>
+				<h3 class="panel-title">BSD</h3>
 			</div>
 			<div class="panel-body">';
 
@@ -132,6 +132,21 @@
 				MIT licensed<br>
 				Copyright (C) 2013 Hakim El Hattab, <a href="http://hakim.se">http://hakim.se</a>
 				</div></div>';
+	echo'</div></div>';
+
+	echo '<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">CC0</h3>
+			</div>
+			<div class="panel-body">';
+
+		echo '<div class="panel panel-default">
+			<div class="panel-heading" id="8">
+				<h3 class="panel-title">Images<i id="g8" class="glyphicon glyphicon-list pull-right"></i></h3>
+			</div>
+			<div class="panel-body" id="b8" style="display: none;">
+			Copyright (C) 2014 Michał Svitleslav Gawryluk
+			</div></div>';
 	echo'</div></div>';
 
 	echo '</div>';
