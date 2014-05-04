@@ -37,7 +37,7 @@ if ($securimage->check($captcha_code) == true) {
 	//cMail - adres podany w formularzy
 	//cSubject - temat podany w formularzu
 	//cMessage - tresc komunikatu
-	if(mailer(GUSER,$cMail,'Formularz kontaktowy',$cSubject,$cMessage,false)){
+	if(mailer('pz.exams@gmail.com',$cMail,'Formularz kontaktowy',$cSubject,$cMessage,false)){
 		$_SESSION['successContactForm'] = 'mailerSuccess';
 	}else{
 		$_SESSION['contactFormErrorCode'] = 'mailerError';
