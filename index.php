@@ -107,25 +107,25 @@
 		<div class="col-xs-12 col-sm-12 col-md-12">
 			<!-- Przekierowanie na link z użytymi przez nas technologiami -->
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-primary btn-lg">
-					1
-				</button>
-				<h4>Nowoczesne technologię</h4>
+				<a href="Licence.php">
+					<img src="img/IconTechnology.png">
+				</a>
+				<h4>Nowoczesne technologie</h4>
 				<p>Wykorzystujemy tylko najnowocześniejsze technologie. Sprawdź na czym zbudowaliśmy nasz serwis.</p>
 			</div>
 			<!-- Przekierowanie do formularz kontaktowego - Dobrze by było mieć ikonę koperty lub coś w tym stylu -->
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-primary btn-lg">
-					2
-				</button>	
+				<a href="Contact.php">
+					<img src="img/IconContact.png">
+				</a>	
 				<h4>Formularz kontaktowy</h4>
 				<p>Systematycznie staramy się rozwijać nasz serwis. Jeżeli masz jakiekolwie uwagi to skontaktuj się z drużyną deweloperską!</p>
 			</div>
 			<!-- Przekierowanie do githuba!!! (Jakaś ikonka open source) --->
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<button type="button" class="btn btn-primary btn-lg">
-					3
-				</button>	
+				<a href="https://github.com/klugier/pz-exams">
+					<img src="img/IconCode.png">
+				</a>
 				<h4>Otwarte oprogramowanie</h4>
 				<p>Kod źródłowy naszego serwisu jest dostępny publicznie.</p>
 			</div>
