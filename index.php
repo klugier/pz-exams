@@ -2,8 +2,8 @@
 	include_once("lib/Lib.php");
 
 	$title = "$appName - Strona Główna";
-	include("html/Begin.php");
-	
+	$scriptsDefer = array("js/index.js");
+	include("html/Begin.php");	
 	if (isset($_SESSION['formSuccessCode'])) {
 		echo '<div class="alert alert-success">';
 		echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>'; 
@@ -47,7 +47,6 @@
 				if (!(isset($_SESSION['USER'])&&($_SESSION['USER']!=''))) {
 					echo '
 					<div class="item active">
-
 						<a href="RegisterForm.php">
 							<img src="img/Rejestracja.jpg" alt="">
 						</a>
@@ -100,31 +99,28 @@
 <div class="container text-center">
 	<h3>Tworzenie i zarządzanie egzaminami nigdy nie było takie proste!</h3>
 	<p style="margin-bottom: 30px;">
-	PZ-Exams to platforma służąca do tworzenia egzaminów ustnych jak i rejestracji na nie, na której mogą polegać zarówno wykładowcy jak i studenci. <br />
-	Nimniejszy serwis została opracowana przez zespół studentów, którzy doskonale zdają sobie sprawę z ograniczeń  uczelnianych systemów takich jak USOS. <br />
+	PZ-Exams to platforma służąca do tworzenia egzaminów ustnych jak i rejestracji na nie, na której mogą polegać zarówno wykładowcy jak i studenci. <br/>
+	Nimniejszy serwis została opracowana przez zespół studentów, którzy doskonale zdają sobie sprawę z ograniczeń  uczelnianych systemów takich jak USOS. <br/>
 	Dlatego jeżeli jesteś nauczycielem akdemickim, który uważa, że egzaminy ustne są jedyną dobrą formą egzaminu. To znaczy, że ten serwis jest właśnie dla ciebie!
 	</p>
 		<div class="col-xs-12 col-sm-12 col-md-12">
-			<!-- Przekierowanie na link z użytymi przez nas technologiami -->
 			<div class="col-xs-4 col-sm-4 col-md-4">
 				<a href="Licence.php">
-					<img src="img/IconTechnology.png">
+					<img src="img/IconTechnology.png" alt="">
 				</a>
 				<h4>Nowoczesne technologie</h4>
 				<p>Wykorzystujemy tylko najnowocześniejsze technologie. Sprawdź na czym zbudowaliśmy nasz serwis.</p>
 			</div>
-			<!-- Przekierowanie do formularz kontaktowego - Dobrze by było mieć ikonę koperty lub coś w tym stylu -->
 			<div class="col-xs-4 col-sm-4 col-md-4">
 				<a href="Contact.php">
-					<img src="img/IconContact.png">
+					<img src="img/IconContact.png" alt="">
 				</a>	
 				<h4>Formularz kontaktowy</h4>
 				<p>Systematycznie staramy się rozwijać nasz serwis. Jeżeli masz jakiekolwie uwagi to skontaktuj się z drużyną deweloperską!</p>
 			</div>
-			<!-- Przekierowanie do githuba!!! (Jakaś ikonka open source) --->
 			<div class="col-xs-4 col-sm-4 col-md-4">
 				<a href="https://github.com/klugier/pz-exams">
-					<img src="img/IconCode.png">
+					<img src="img/IconCode.png" alt="">
 				</a>
 				<h4>Otwarte oprogramowanie</h4>
 				<p>Kod źródłowy naszego serwisu jest dostępny publicznie.</p>
