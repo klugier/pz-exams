@@ -199,6 +199,12 @@
 					throw new Exception('Overwriting not allowed');
 				}
 				
+				$sql = "Select * from Records WHERE ExamUnitID  = '" . $examUnitID . "'";
+				$result = $transaction->query($sql);
+				if ($result->num_rows > 0) { 
+					throw new Exception('Already taken');
+				}
+				
 				$sql = "UPDATE Records SET 
 						ExamUnitID = '" . $examUnitID . "'
 						WHERE ID = '" . $recordID . "'";
