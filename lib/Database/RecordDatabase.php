@@ -187,7 +187,7 @@
 			$transaction = DatabaseConnector::getConnection();
 			
 			try{			
-				$transaction->begin_transaction();
+				$transaction->autocommit(false);
 				$sql = "Select * from Records WHERE ID  = '" . $recordID . "'";
 				$result = $transaction->query($sql);
 				if ($result->num_rows == 0) { 
@@ -220,7 +220,7 @@
 				$transaction->rollback();
 				return false;
 			}
-			
+			$transaction->autocommit(true);
 			return true;
 		} 
 		
