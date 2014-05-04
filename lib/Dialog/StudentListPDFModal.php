@@ -15,14 +15,17 @@
 							?>
 						</div>
 					</div>
-					<div class="form-group">
+					<?php
+					if(ExamUnitDatabase::countLockedExamUnits($exam->getID()) > 0){
+					echo '<div class="form-group">
 						<label for="duration" class="col-sm-5 control-label">Tylko zapisani studenci</label>
-						<div class="col-sm-2">
-							<?php
+						<div class="col-sm-2">';
 								echo "<a class=\"btn btn-primary btn-sm pull-right\" href=\"php/PDFExamRegisteredStudentsList.php?examID=".$exam->getID()."&setting=registered\" role=\"button\" name=\"examRegisteredStudentsListPDFGlyph\" id=\"examRegisteredStudentsListPDFGlyph\" title=\"Pobierz PDF\" value=\"".$exam->getID()."\"><i class=\"glyphicon glyphicon-download\"></i> <b>PDF</b></a>";
-							?>
-						</div>
-					</div>
+							
+					echo	'</div>
+					</div>';
+					}
+					?>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
