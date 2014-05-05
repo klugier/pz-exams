@@ -245,7 +245,7 @@ jQuery( document ).ready(function( $ ) {
 			begin = '<div class="col-xs-3 col-sm-3 col-md-3">' +	 
 					'	<div class="panel panel-primary "> ' +
 					'		<div class="panel-heading" >' + date + ' </div> ' +  
-					'		<div class="panel-body" style="height:' + this.height +  'px; overflow-y: scroll;">' +
+					'		<div class="panel-body" id="' + date + '" style="height:' + this.height +  'px; overflow-y: scroll;">' +
 					' 			<table class="table">' +  
 					' 				<thead> ' + 
 					'					<tr> ' + 
