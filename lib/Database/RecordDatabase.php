@@ -187,7 +187,7 @@
 			$transaction = DatabaseConnector::getConnection();
 			
 			try{			
-				$transaction->begin_transaction();
+				$transaction->autocommit(false);
 				$sql = "Select * from Records WHERE ID  = '" . $recordID . "'";
 				$result = $transaction->query($sql);
 				if ($result->num_rows == 0) { 
@@ -197,6 +197,12 @@
 				$row = $result->fetch_array(MYSQLI_ASSOC);
 				if($row['ExamUnitID']!=0){
 					throw new Exception('Overwriting not allowed');
+				}
+				
+				$sql = "Select * from Records WHERE ExamUnitID  = '" . $examUnitID . "'";
+				$result = $transaction->query($sql);
+				if ($result->num_rows > 0) { 
+					throw new Exception('Already taken');
 				}
 				
 				$sql = "UPDATE Records SET 
@@ -220,7 +226,7 @@
 				$transaction->rollback();
 				return false;
 			}
-			
+			$transaction->autocommit(true);
 			return true;
 		} 
 		

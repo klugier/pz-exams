@@ -106,7 +106,7 @@ $( document ).ready(function() {
 				title: "Uwaga",
 				buttons: {
 					cancel: {
-						label: "Cancel",
+						label: "Anuluj",
 						className: "btn",
 						callback: function() {
 							
@@ -127,14 +127,36 @@ $( document ).ready(function() {
 	});  
 	
 	$(document).on("click", "#removeRecordIcon", function() {
-			var currentInput = $(this) ;
-			$(this).closest("tr").fadeOut("slow" , function () {
-				var date =   jQuery.trim( currentInput.closest(".panel").find(".panel-heading").html()) ;
-				var examHours = currentInput.closest("td").next().html().split("-") ;
-				var startHour = jQuery.trim(examHours[0]) ;
-				editExamCalendarManager.removeSingleExamUnit( date, startHour ) ; 
-				
-			}) ; 
+		var currentInput = $(this) ;
+		var date =   jQuery.trim( currentInput.closest(".panel").find(".panel-heading").html()) ;
+		var examHours = currentInput.closest("td").next().html().split("-") ;
+		var startHour = jQuery.trim(examHours[0]) ;
+		if (editExamCalendarManager.checkIfStudentEnroledOnExamUnit(date , startHour)) {
+				bootbox.dialog({
+					message: "Na wybrany do usunięcia dzień jest zapisany student.",
+					title: "Uwaga",
+					buttons: {
+						cancel: {
+							label: "Anuluj",
+							className: "btn",
+							callback: function() {
+								
+							}
+						},
+						remove: {
+							label: "Usuń",
+							className: "btn-danger",
+							callback: function() {
+								$(this).closest("tr").fadeOut("slow" ) ; 
+								editExamCalendarManager.removeSingleExamUnit( date, startHour ) ;
+							}
+						}
+					}
+				});
+			} else {
+				$(this).closest("tr").fadeOut("slow" ) ; 
+				editExamCalendarManager.removeSingleExamUnit( date, startHour ) ;
+		}
 	});
 	
 	$("#addExamDayGlyph").click( function ( ) { 
