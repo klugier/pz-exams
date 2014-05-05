@@ -293,15 +293,20 @@ $( document ).ready(function() {
 	});  
 	
 	$(document).on("click", "#removeRecordIcon", function() {
-			var currentInput = $(this) ;  
+			var currentInput = $(this) ;
+			var date =   jQuery.trim( currentInput.closest(".panel").find(".panel-heading").html()) ; 
+			var dt = '#'+ date;
+			var px = $(dt).scrollTop();
+			
 			$(this).closest("tr").fadeOut("slow" , function () { 
-				var date =   jQuery.trim( currentInput.closest(".panel").find(".panel-heading").html()) ;
+			//	var date =   jQuery.trim( currentInput.closest(".panel").find(".panel-heading").html()) ;
 				var examHours = currentInput.closest("td").next().html().split("-") ;
 				var startHour = jQuery.trim(examHours[0]) ; 
 				exam.removeExamHoursForDay ( date , startHour ) ; 
 				calendarControl.examDays = exam.day ;
 				//alert ("printing calendar" ) ; 
 				calendarControl.printCalendar() ;
+				$(dt).scrollTop(px);
 			}) ; 
 	});
 	
