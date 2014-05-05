@@ -131,6 +131,9 @@ $( document ).ready(function() {
 		var date =   jQuery.trim( currentInput.closest(".panel").find(".panel-heading").html()) ;
 		var examHours = currentInput.closest("td").next().html().split("-") ;
 		var startHour = jQuery.trim(examHours[0]) ;
+		var dt = "#" + date ;
+		var px = $(dt).scrollTop() ;
+		
 		if (editExamCalendarManager.checkIfStudentEnroledOnExamUnit(date , startHour)) {
 				bootbox.dialog({
 					message: "Na wybrany do usunięcia dzień jest zapisany student.",
@@ -153,9 +156,11 @@ $( document ).ready(function() {
 						}
 					}
 				});
+				$(dt).scrollTop(px);
 			} else {
 				$(this).closest("tr").fadeOut("slow" ) ; 
 				editExamCalendarManager.removeSingleExamUnit( date, startHour ) ;
+				$(dt).scrollTop(px) ;
 		}
 	});
 	
