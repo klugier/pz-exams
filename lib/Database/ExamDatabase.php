@@ -203,6 +203,7 @@ final class ExamDatabase
 		$examName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examU->getName());
 		$examDuration = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examU->getDuration());
 		$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examU->getID());
+
 		
 		$sql = "Select * from Exams WHERE ID  = '" . $examID . "' AND UserID = '" . $userID . "'";
 		$result = DatabaseConnector::getConnection()->query($sql);
@@ -211,9 +212,9 @@ final class ExamDatabase
 		}
 		
 		$sql = "UPDATE Exams SET 
-		        Name  = '" . $exam->getName() . "', 
-		        Duration = '" . $exam->getDuration() . "' 
-		        WHERE ID = '" . $exam->getID() . "'";
+		        Name  = '" . $examName . "', 
+		        Duration = '" . $examDuration . "' 
+		        WHERE ID = '" . $examID . "'";
 					
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	} 
