@@ -1,6 +1,8 @@
 #!/bin/bash 
 # Sposób użycia: ./create.sh -u root -d new_database
 
+absoluteDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 isQuite=0
 isEmpty=0;
 databaseName=""
@@ -48,16 +50,16 @@ fi
 if [ $isEmpty == 0 ] ; then
 	/usr/bin/mysql -u $databaseUser -p -e "
 		SET @databaseName:='$databaseName';
-		SOURCE Create/Database.sql;
+		SOURCE $absoluteDir/Create/Database.sql;
 		USE $databaseName;
-		SOURCE Create/Tables.sql;
-		SOURCE Create/Content.sql;
+		SOURCE $absoluteDir/Create/Tables.sql;
+		SOURCE $absoluteDir/Create/Content.sql;
 	"
 else
 	/usr/bin/mysql -u $databaseUser -p -e "
 		SET @databaseName:='$databaseName';
-		SOURCE Create/Database.sql;
+		SOURCE $absoluteDir/Create/Database.sql;
 		USE $databaseName;
-		SOURCE Create/Tables.sql;
+		SOURCE $absoluteDir/Create/Tables.sql;
 	"
 fi
