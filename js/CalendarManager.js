@@ -475,10 +475,23 @@ jQuery( document ).ready(function( $ ) {
 		
 		this.checkIfStudentsEnroledOnDay = function ( date ) { 
 			for (var examUnitIndex=0 ; examUnitIndex< this.exam.day[date].length ; examUnitIndex++) { 
-				if ( this.exam.day[date][examUnitIndex].studentName != null || this.exam.day[date][examUnitIndex].studentSurame != null ) 
-					return true ; 
-				else false ; 
+				if ( this.exam.day[date][examUnitIndex].studentName != null 
+					|| this.exam.day[date][examUnitIndex].studentSurame != null 
+				) {  
+					return true ;
+				} 
 			} ;
+			return false ; 
+		} ; 
+		
+		this.checkIfStudentEnroledOnExamUnit = function ( date , begHour ) { 
+			for (var examUnitIndex=0 ; examUnitIndex< this.exam.day[date].length ; examUnitIndex++) {
+				if ( this.exam.day[date][examUnitIndex].bHour == begHour ) 
+					if ( this.exam.day[date][examUnitIndex].studentName != null 
+						|| this.exam.day[date][examUnitIndex].studentSurame != null )  
+							return true ;  
+			} 
+			return false ;
 		} ; 
 		
 		this.removeSingleExamUnit = function (date , begHour ) { 
