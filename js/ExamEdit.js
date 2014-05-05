@@ -150,17 +150,21 @@ $( document ).ready(function() {
 							label: "Usuń",
 							className: "btn-danger",
 							callback: function() {
-								$(this).closest("tr").fadeOut("slow" ) ; 
-								editExamCalendarManager.removeSingleExamUnit( date, startHour ) ;
+								$(this).closest("tr").fadeOut("slow", function() {
+									editExamCalendarManager.removeSingleExamUnit( date, startHour ) ;
+									$(dt).scrollTop(px);
+								}) ; 								
 							}
 						}
 					}
 				});
-				$(dt).scrollTop(px);
+				
 			} else {
-				$(this).closest("tr").fadeOut("slow" ) ; 
-				editExamCalendarManager.removeSingleExamUnit( date, startHour ) ;
-				$(dt).scrollTop(px) ;
+				$(this).closest("tr").fadeOut("slow", function (){
+					editExamCalendarManager.removeSingleExamUnit( date, startHour ) ;
+					$(dt).scrollTop(px) ;	
+				});
+				
 		}
 	});
 	
