@@ -22,23 +22,23 @@
 	<tr>
 	<tr>
 		<td>Ilość egzaminów</td>	
-		<td style="color:green; font-weight:bold;"><?php echo $ExamsNum; ?></td>
+		<td style="color:green; font-weight:bold; text-align:right;"><?php echo $ExamsNum; ?></td>
 	</tr>
 	<tr>
 		<td>Ilość aktywnych egzaminów</td>
-		<td style="color:blue; font-weight:bold;"><?php echo $ExamsAct; ?></td>
+		<td style="color:blue; font-weight:bold; text-align:right;"><?php echo $ExamsAct; ?></td>
 	</tr>
 	<tr>
 		<td>Ilość nieaktywnych egzaminów</td>
-		<td style="color:red;font-weight:bold;"><?php echo $ExamsNact; ?></td>
+		<td style="color:red;font-weight:bold; text-align:right;"><?php echo $ExamsNact; ?></td>
 	</tr>
 	<tr>
 		<td>Liczba wprowadzonych studentów</td>
-		<td style="color:purple; font-weight:bold;"><?php echo $StudentsN; ?></td>
+		<td style="color:purple; font-weight:bold; text-align:right;"><?php echo $StudentsN; ?></td>
 	</tr>
 	<tr>
 		<td>Liczba zapisanych studentów</td>
-		<td style="font-weight:bold;"><?php echo $StudentsSignedN; ?></td>
+		<td style="font-weight:bold; text-align:right;"><?php echo $StudentsSignedN; ?></td>
 	</tr>
 </table>
 <br/>
