@@ -1,5 +1,47 @@
 $(document).ready(function() {
 
+	$("a[id^=send").click(function() {
+		var studentID = $(this).parent().parent().first().attr('id');
+		var email = $(this).parent().parent().find("#emails").html();
+		
+		$.ajax({
+			type: "POST",
+			url: "lib/Ajax/AjaxSendMailsToStudents.php",
+			dataType: "JSON",
+			data: {
+				examID : String(window.location).split("examID=")[1],
+				studentID : studentID,				
+			},
+			success: function (data) {
+				bootbox.alert('<div class="alert alert-success">Mail został wysłany na adres <b>'+ email +'</b>!</div>');
+			},
+			error: function (error) {
+				alert('Wystapil blad przy wysyłaniu mailów!');
+			},
+			complete: function() {
+			}
+		});
+	});
+
+	$('button#sendEmails').click( function() {
+		$.ajax({
+			type: "POST",
+			url: "lib/Ajax/AjaxSendMailsToStudents.php",
+			dataType: "JSON",
+			data: {
+				examID : String(window.location).split("examID=")[1],
+				mails : 1,				
+			},
+			success: function (data) {
+				bootbox.alert('<div class="alert alert-success"><strong>Maile zostały wysłane do studentów z listy!</strong></div>');	
+			},
+			error: function (error) {
+				alert('Wystapil blad przy wysyłaniu maila!');
+			},
+			complete: function() {
+			}
+		});
+	});
 	$('button#add_students').click( function(){
 
 		var email_p = /(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/gm;

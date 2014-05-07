@@ -3,7 +3,7 @@
 	
 	include_once("lib/Lib.php");
 	$title = "$appName - List studentów";
-	$scripts = array("js/StudentListEdit.js");
+	$scripts = array("js/StudentListEdit.js", "js/Lib/bootbox.min.js");
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
@@ -29,6 +29,7 @@
 	<span>
 		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#student_list_modal">Dodaj listę studentów</button>
 		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#student_modal">Dodaj studenta</button> <!-- Czy to nie powinno być zrobione również na modalu??? -->
+		<button type="button" class="btn btn-warning btn-sm" id="sendEmails">Wyślij email do wszystkich <i class="glyphicon glyphicon-envelope"></i></button>
 		<a class="btn btn-primary btn-sm pull-right" href="php/PDFExamStudentsList.php?examID=<?php echo $exam->getID(); ?>" role="button" name="examStudentsListPDFGlyph" id="examStudentsListPDFGlyph" title="Pobierz PDF" value=<?php echo "\"".$exam->getID()."\""; ?>\><i class="glyphicon glyphicon-download"></i> <b>PDF</b></a>
 	</span>
 </div>
@@ -120,7 +121,7 @@
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
 			echo '<td id="firstname">' . $student->getFirstName() . '</td>';
 			echo '<td id="lastname">' . $student->getSurname() . '</td>';
-			echo '<td id="email">' . $student->getEmail() . '</td>';
+			echo '<td id="emails">' . $student->getEmail() . '</td>';
 			echo '<td style="text-align: center;">';
 			
 			echo '<a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a>'; // <- To trzeba zaimplementować przy pomocy ajax-a...
