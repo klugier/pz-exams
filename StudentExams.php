@@ -173,7 +173,7 @@
 				if (!($exam->getActivated())){
 					echo "<td  class=\"col-md-3\"><div class=\"progress fake-center\">";
 					echo "<div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"$percent\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 0%\">";
-					echo "<span><b style=\"vertical-align:middle;\">Egzamin Nieaktywny</b></span>";
+					echo "<span><b style=\"vertical-align:middle;\">Edycja zablokowana</b></span>";
 					echo "</div></div></td>";
 					// Zapisz się (Button z id egzaminu)
 					echo "<td class=\"text-center\">";
