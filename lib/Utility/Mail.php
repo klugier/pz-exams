@@ -20,8 +20,10 @@
 			$mail->AddAddress($to);
 		}
 	
+		$from = Settings::getEmailAdress();
+		
 		$mail->IsSMTP();
-		$mail->SMTPDebug = 1;
+		$mail->SMTPDebug = 0;
 		$mail->SMTPAuth = true;
 		$mail->SMTPSecure = 'ssl';
 		$mail->Host = 'smtp.gmail.com';
@@ -44,6 +46,7 @@
 			$error = 'Message sent!';
 			// echo 'Poszlo';
 			//die('OK');
+			$mail->ClearAllRecipients();
 			return true;
 		}
 	}
