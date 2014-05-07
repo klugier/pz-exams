@@ -224,7 +224,10 @@ $( document ).ready(function() {
 					validate = 5;
 				}
 				if(endHour > converToMinutes(exam.day[examDate][term].bHour) && endHour <= converToMinutes(exam.day[examDate][term].eHour)){
-					validate = 5
+					validate = 5;
+				}
+				if(startHour < converToMinutes(exam.day[examDate][term].bHour) && endHour > converToMinutes(exam.day[examDate][term].eHour)){
+					validate = 5;
 				}
 			}
 		}
