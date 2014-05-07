@@ -66,6 +66,35 @@ jQuery( document ).ready(function( $ ) {
 				}
 			}); 
 		} ;	
+		// for speed purpose 
+		this.addExamUnitsBlock = function ( $ExamUnitsBlock ) { 
+			examID	= getExamID () ;
+			$currentClass = this ; 
+			$.ajax({
+					url: 'lib/Ajax/AjaxCalendarSaver.php',
+					//async: false , 
+					type: 'post',
+					contentType: 'application/json;  charset=utf-8' , 
+					data: JSON.stringify({ 'requestType' : 'addExamUnitsBlock' ,
+							 'examID' : examID ,
+							 'examUnitsBlock' :  $ExamUnitsBlock 
+						   }) ,
+					success: function(data, status) { 
+						console.log("wszystko ok ");
+						if(data.status.trim() === "dataSavedProperly") {
+							console.log ("Blok ExamUnits dodano do bazy poprawnie" );
+							
+							return ; 
+						} 
+						console.log("Dodawanie do bazy bloku ExamUnits nie powiodło się ");  	 
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						//alert ( "cos jest sle " ) ;
+						console.log(textStatus);
+						console.log(errorThrown);
+					}
+			}); 
+		}; 
 		
 		this.removeSingleExamUnit = function ( $day , $timeFrom ) { 
 			$timeFrom = parseTimeToDatabaseFormat ( $timeFrom ) ; 
@@ -455,11 +484,14 @@ jQuery( document ).ready(function( $ ) {
 			var eHour = converToMinutes(endHour);
 			var diff = eHour - bHour;
 			var count = diff / durat;
+			var ExamUnitsBlock = [];
 			for (var i=0;i<count;i++) {
 				var conv1 = parseTime(bHour + durat * i);      
 				var conv2 = parseTime(bHour + durat * (i + 1)); 
-				this.databaseModificationsSaver.addSingleExamUnit( date , conv1, conv2 );
+				ExamUnitsBlock.push({ 'day' : date , 'timeFrom' :  parseTimeToDatabaseFormat(conv1) , 'timeTo' :  parseTimeToDatabaseFormat(conv2) });
+				//this.databaseModificationsSaver.addSingleExamUnit( date , conv1, conv2 );
 			}
+			this.databaseModificationsSaver.addExamUnitsBlock(ExamUnitsBlock) ; 
 			this.sendAjaxExamCalendarRequest();	
 		} ;
 		
