@@ -86,6 +86,7 @@
 				include("lib/Dialog/ModalButton.php");
 			?>
 	</div>	
+	<a class="btn btn-success pull-right" href="ExamList.php"> Powrót do listy egzaminów </a>
 </div>
 <hr style="height:1px;border:none;color:#333;background-color:#333;"/>
 

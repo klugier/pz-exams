@@ -33,7 +33,7 @@
 		?> 
 <form id="contactForm" class="form-horizontal" action="./php/HandlingContactForm.php" method="post">
 	<div class="form-group">
-		<fieldset>
+		<fieldset style="padding-left:20px;padding-right:20px;">
 			<legend>Formularz kontaktowy</legend>
 		</fieldset>
 	</div>
