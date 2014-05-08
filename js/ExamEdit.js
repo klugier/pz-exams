@@ -6,10 +6,10 @@ $( document ).ready(function() {
  		examID = String(window.location).split("examID=")[1];
  		examName = $('#exam_name').val();
  		examDuration = $('#exam_duration').val();
-
- 		if(examName.length < 5){
+ 		
+ 		if(examName.length < 5 || examName.length > 60){
  			$("#name-error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px">Nazwa powinna mieć co najmniej 5 znaków.</span>') ;
+											'<span style="padding:5px">Nazwa powinna mieć od 5 do 60 znaków.</span>') ;
  			
  		} else if ( examDuration < 5 || examDuration > 60 ) {
  			$("#duration-error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +

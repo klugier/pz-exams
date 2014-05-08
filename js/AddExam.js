@@ -11,7 +11,16 @@ function go_to_stage2()
 			$('div#exam_name_group').attr('class', 'form-group has-error');
 			errors[errors.length] = true;
 			$('span#exam_name-error-message').remove();
-			$('div#exam_name_group').append('<span class="help-block" id="exam_name-error-message">Podaj nazwę egzaminu</span>');
+			$('div#exam_name_group').append('<span class="help-block" id="exam_name-error-message"><span style="background-color:#F13333;" class="badge pull-left ">!</span>'+
+				'<span style="padding:5px">Podaj nazwę egzaminu</span></span>');
+			$('span#exam_name-error-message').hide();
+			$('span#exam_name-error-message').fadeIn(500);
+	} else if ($('input#exam_name').val().trim().length < 5 || $('input#exam_name').val().trim().length > 60){
+			$('div#exam_name_group').attr('class', 'form-group has-error');
+			errors[errors.length] = true;
+			$('span#exam_name-error-message').remove();
+			$('div#exam_name_group').append('<span class="help-block"  id="exam_name-error-message"><span style="background-color:#F13333;" class="badge pull-left ">!</span>'+
+				'<spanstyle="padding:5px">Nazwa powinna mieć od 5 do 60 znaków.</span></span>');
 			$('span#exam_name-error-message').hide();
 			$('span#exam_name-error-message').fadeIn(500);
 	} else {
@@ -24,9 +33,19 @@ function go_to_stage2()
 			$('div#duration_group').attr('class', 'form-group has-error');
 			errors[errors.length] = true;
 			$('span#duration-error-message').remove();
-			$('div#duration_group').append('<span class="help-block" id="duration-error-message">Podaj czas trwania egzaminu</span>');
+			$('div#duration_group').append('<span class="help-block" id="duration-error-message"><span style="background-color:#F13333;" class="badge pull-left ">!</span>'+
+				'<span style="padding:5px">Podaj czas trwania egzaminu</span></span>');
 			$('span#duration-error-message').hide();
 			$('span#duration-error-message').fadeIn(500);
+	} else if($('input#exam_duration').val() < 5 || $('input#exam_duration').val() > 60){
+			$('div#duration_group').attr('class', 'form-group has-error');
+			errors[errors.length] = true;
+			$('span#duration-error-message').remove();
+			$('div#duration_group').append('<span class="help-block" id="duration-error-message"><span style="background-color:#F13333;" class="badge pull-left ">!</span>'+
+				'<span style="padding:5px">Czas trwania egzaminu może mieć wartość od 5 do 60 min.</span></span>');
+			$('span#duration-error-message').hide();
+			$('span#duration-error-message').fadeIn(500);
+
 	} else {
 			$('div#duration_group').attr('class', 'form-group');
 			errors[errors.length] = false;
