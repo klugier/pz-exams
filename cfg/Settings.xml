@@ -11,5 +11,7 @@
 	<Email>
 		<Adress>pz.exams@gmail.com</Adress>
 		<Password>optymalnehaslo1337</Password>
+		<Host>smtp.gmail.com</Host>
+		<Port>465</Port>
 	</Email>
 </Settings>

@@ -37,6 +37,16 @@ final class Settings
 		return self::getInstance()->emailPassword;
 	}
 	
+	public static function getEmailHost()
+	{
+		return self::getInstance()->emailHost;
+	}
+	
+	public static function getEmailPort()
+	{
+		return self::getInstance()->emailPort;
+	}
+	
 	public static function setDebug($debug)
 	{
 		self::getInstance()->debug = $debug;
@@ -60,6 +70,16 @@ final class Settings
 	public static function setEmailPassword($emailPassword)
 	{
 		self::getInstance()->emailPassword = $emailPassword;
+	}
+	
+	public static function setEmailHost($emailHost)
+	{
+		self::getInstance()->emailHost = $emailHost;
+	}
+	
+	public static function setEmailPort($emailPort)
+	{
+		self::getInstance()->emailPort = $emailPort;
 	}
 	
 	private static function getInstance()
@@ -113,6 +133,8 @@ final class Settings
 		if ($dom->getElementsByTagName("Email")->length > 0) {
 			$this->emailAdress = $xml->Email->Adress;
 			$this->emailPassword = $xml->Email->Password;
+			$this->emailHost = $xml->Email->Host;
+			$this->emailPort = (int)$xml->Email->Port;
 		}
 	}
 	
@@ -121,6 +143,8 @@ final class Settings
 	private $address;
 	private $emailAdress;
 	private $emailPassword;
+	private $emailHost;
+	private $emailPort;
 	
 	private static $instance = false;
 }

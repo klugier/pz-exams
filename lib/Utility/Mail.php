@@ -26,8 +26,8 @@
 		$mail->SMTPDebug = 0;
 		$mail->SMTPAuth = true;
 		$mail->SMTPSecure = 'ssl';
-		$mail->Host = 'smtp.gmail.com';
-		$mail->Port = 465; 
+		$mail->Host = Settings::getEmailHost();
+		$mail->Port = Settings::getEmailPort();
 		$mail->Username = Settings::getEmailAdress();
 		$mail->Password = Settings::getEmailPassword();
 		$mail->SetFrom($from, $from_name);
