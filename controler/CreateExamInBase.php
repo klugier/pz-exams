@@ -10,7 +10,13 @@ if(isset($_POST['exam_name']) && isset($_POST['exam_duration'])) {
 	$userID = unserialize($_SESSION['USER'])->getID();
 
 	$exam->setName($_POST['exam_name']);
-	$exam->setDuration("00:".$_POST['exam_duration'].":00");
+	
+	if ($_POST['examDuration'] == 60) {
+		$exam -> setDuration("01:00:00");
+	} else {
+		$exam -> setDuration("00:".$_POST['examDuration'].":00");
+	}
+		
 	$exam->setActivated(0);
 
 	if (ExamDatabase::insertExam($userID, $exam)) {
