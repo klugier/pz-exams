@@ -27,6 +27,11 @@
 	if (isset($_POST["examID"])) {
 		
 		if(isset($_POST['examName']) || isset($_POST['examDuration'])){
+			if (!DatabaseConnector::isConnected()) {
+				$msg = "Wystąpił błąd przy połączeniu z bazą!";
+				handlingError($msg);
+				return;
+			}
 			$exam = ExamDatabase::getExam($_POST['examID']);
 			$examU = new Exam();
 			$examU -> setName($_POST['examName']);
@@ -47,9 +52,12 @@
 					handlingSuccess2();
 					return;
 				}
+				$errorMsg = "Błąd przy edycji egzaminu";
+				handlingError($errorMsg);
+				return;	
 			}			
 		}
-		$errorMsg = "Błąd krytyczny";
+		$errorMsg = "Błąd przy edycji egzaminu";
 		handlingError($errorMsg);
 		return;
 

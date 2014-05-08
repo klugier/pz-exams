@@ -28,10 +28,14 @@ $( document ).ready(function() {
  					examName : examName,
  					examDuration : examDuration,
  				},
- 				success: function (data) {				
+ 				success: function (data) {
+ 					if(data['status'] == 'failed'){
+ 						bootbox.alert('<div class="alert alert-danger"><strong>' + data['errorMsg'] + '</strong></div>');
+ 					}				
 	 				if(data["changes"] == "1"){				
  						bootbox.alert('<div class="alert alert-success"><strong>Pomyślnie zaaktualizowano dane egzaminu.</strong></div>');
  					}
+ 					
  					setTimeout(function() {
                 			uBtn.disabled = false;
             		}, 2000);			
