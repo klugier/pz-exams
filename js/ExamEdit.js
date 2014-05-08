@@ -51,6 +51,8 @@ $( document ).ready(function() {
 	$('#addExamForm').submit(function () { 
 		var validate = 0;
 		var examDate = $('#exam-date').val();
+		var startHour = converToMinutes($('#start-hour').val());
+		var endHour = converToMinutes($('#end-hour').val());
 		var today = new Date();		 
 		if(converToMinutes($('#start-hour').val()) >= converToMinutes($('#end-hour').val())){			
 			validate = 1;
@@ -64,21 +66,37 @@ $( document ).ready(function() {
 		if ($("#duration").val() < 5) {
 			validate = 4;
 		}
-
-		if( validate == 1){
+		if(editExamCalendarManager.exam.day[examDate] != undefined){
+			for(var term in editExamCalendarManager.exam.day[examDate]){
+				if(startHour >= converToMinutes(editExamCalendarManager.exam.day[examDate][term].bHour) && startHour < converToMinutes(editExamCalendarManager.exam.day[examDate][term].eHour)){
+					validate = 5;
+				}
+				if(endHour > converToMinutes(editExamCalendarManager.exam.day[examDate][term].bHour) && endHour <= converToMinutes(editExamCalendarManager.exam.day[examDate][term].eHour)){
+					validate = 5;
+				}
+				if(startHour < converToMinutes(editExamCalendarManager.exam.day[examDate][term].bHour) && endHour > converToMinutes(editExamCalendarManager.exam.day[examDate][term].eHour)){
+					validate = 5;
+				}
+			}
+		}
+		
+		if(validate == 1){
 			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
 											'<span style="padding:5px">Godzina rozpoczęcia powinna być wcześniej niż godzina zakończenia.</span>') ; 			
-		} else if ( validate == 2) {
+		} else if (validate == 2) {
 			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
 											'<span style="padding:5px">Należy wypełnić wszystkie pola.</span>') ;			
-		} else if ( validate == 3) {
+		} else if (validate == 3) {
 			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
 											'<span style="padding:5px">Podana data już minęła. Podaj inną date.</span>') ;			
-		} else if ( validate == 4) {
+		} else if (validate == 4) {
 			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-											'<span style="padding:5px">Czas egzaminu powinien wynosić co najmniej 5 minut.</span>') ;			
+											'<span style="padding:5px">Czas egzaminu powinien wynosić co najmniej 5 minut.</span>') ;	
+		} else if (validate == 5) {
+  			$("#error").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
+											'<span style="padding:5px">Godziny egzaminu nakładają się na siebie! Podaj inne czasy.</span>') ;
 		} else {
-			editExamCalendarManager.insertExamUnits( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val() ) ;  	
+			editExamCalendarManager.insertExamUnits( $("#exam-date").val() , $("#start-hour").val() , $("#end-hour").val()  , $("#duration").val()) ;  	
 			$("#error").html('');
 			$('#myModal').modal('hide') ;						 
 			$('#addExamForm')[0].reset();
