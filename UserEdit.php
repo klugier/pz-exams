@@ -81,7 +81,7 @@
 ?>
 <h1>Edytuj profil</h1>
 <hr />
-<form class="form-horizontal" role="form" id="passwd_form" method="post" action="php/HandlingUserEdit.php">
+<form class="form-horizontal" role="form" id="passwd_form" method="post" action="controler/HandlingUserEdit.php">
 	<fieldset class="col-xs-12	col-sm-12	col-md-12">
 		<legend>Zmiana	hasła</legend>
 		<div class="form-group">
@@ -113,7 +113,7 @@
 		</div>
 	</fieldset>
 </form>
-<form class="form-horizontal" role="form" id="firstname_form" method="post" action="php/HandlingUserEdit.php">
+<form class="form-horizontal" role="form" id="firstname_form" method="post" action="controler/HandlingUserEdit.php">
 	<fieldset class="col-xs-12	col-sm-12	col-md-12">
 		<legend>Zmiana	ustawień	osobistych</legend>
 		<div class="form-group">

@@ -5,7 +5,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="modal-title text-center" id="myModalLabelSO"><b>Moje dane osobowe</b></h3>
 			</div>
-			<form name="modalForm" class="form-signin form-horizontal" id="studentEditForm" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="php/StudentSignInOut.php">
+			<form name="modalForm" class="form-signin form-horizontal" id="studentEditForm" role="form" style="margin:10px; margin-right:10px;margin-left:10px" method="post" action="controler/StudentSignInOut.php">
 				<div class="modal-body" id="studentEditBody">
 				</div>
 				<div id="studentEditFooter" class="modal-footer">

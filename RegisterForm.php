@@ -26,7 +26,7 @@
 			}
 		?> 
 		
-		<form class="form-horizontal" role="form" id="register_form" method="post" action="php/HandlingRegisterForm.php">
+		<form class="form-horizontal" role="form" id="register_form" method="post" action="controler/HandlingRegisterForm.php">
 			<div class="form-group">
 				<fieldset style="padding-left:20px;padding-right:20px;">
 					<legend>Zarejestruj się</legend>
@@ -132,7 +132,7 @@
 						<button type="submit" class="btn btn-success btn-lg btn-block" name="submitButton" value="submit">Zarejestruj konto</button>
 					</span>
 					<span class="col-xs-2 col-sm-2 col-md-2">
-					  <a href="php/HandlingRegisterForm.php">
+					  <a href="controler/HandlingRegisterForm.php">
 						<button type="button" class="btn btn-lg btn-primary btn-block" name="clearButton"  >Wyczyść</button>
 					  </a>
 					</span>

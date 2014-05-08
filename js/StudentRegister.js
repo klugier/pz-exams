@@ -27,7 +27,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: 'php/StudentSignInOut.php',
+			url: 'controler/StudentSignInOut.php',
 			data: { action: 'edit', student: innerEStudentID },
 			dataType: "html",
 			cache: false,
@@ -47,7 +47,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: 'php/StudentSignInOut.php',
+			url: 'controler/StudentSignInOut.php',
 			data: { action: 'stepOut', exam: innerExamID, student: innerStudentID },
 			dataType: "html",
 			cache: false,
@@ -70,7 +70,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: 'php/StudentSignInOut.php',
+			url: 'controler/StudentSignInOut.php',
 			data: { action: 'step1', exam: innerIExamID },
 			dataType: "html",
 			cache: false,
@@ -81,7 +81,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: 'php/StudentSignInOut.php',
+			url: 'controler/StudentSignInOut.php',
 			data: { action: 'stepF1' },
 			dataType: "html",
 			cache: false,
@@ -99,7 +99,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: 'php/StudentSignInOut.php',
+			url: 'controler/StudentSignInOut.php',
 			data: { action: 'step2', exam: innerIExamID, examDate: examDate },
 			dataType: "html",
 			cache: false,
@@ -110,7 +110,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: 'php/StudentSignInOut.php',
+			url: 'controler/StudentSignInOut.php',
 			data: { action: 'stepF2' },
 			dataType: "html",
 			cache: false,
@@ -127,7 +127,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: 'php/StudentSignInOut.php',
+			url: 'controler/StudentSignInOut.php',
 			data: { action: 'step1', exam: innerIExamID },
 			dataType: "html",
 			cache: false,
@@ -138,7 +138,7 @@ jQuery(document).ready(function ($) {
 
 		$.ajax({
 			type: "POST",
-			url: 'php/StudentSignInOut.php',
+			url: 'controler/StudentSignInOut.php',
 			data: { action: 'stepF1' },
 			dataType: "html",
 			cache: false,

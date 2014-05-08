@@ -31,7 +31,7 @@
 			}
 
 		?> 
-<form id="contactForm" class="form-horizontal" action="./php/HandlingContactForm.php" method="post">
+<form id="contactForm" class="form-horizontal" action="./controler/HandlingContactForm.php" method="post">
 	<div class="form-group">
 		<fieldset style="padding-left:20px;padding-right:20px;">
 			<legend>Formularz kontaktowy</legend>

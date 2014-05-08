@@ -188,7 +188,7 @@ $( document ).ready(function() {
 		$.ajax({
 
 		type: "POST",
-		url: "php/CreateExamInBase.php",
+		url: "controler/CreateExamInBase.php",
 		dataType: "JSON",
 		data: {
 			exam_name : $('input#exam_name').val().trim(),

@@ -5,7 +5,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="modal-title text-center" id="myModalLabelSO"><b><span id="innerExamName"></span></b></h3>
 			</div>
-			<form name="modalForm" class="form-signin form-horizontal" id="examSignInForm" role="form" style="margin:10px; margin-right:10px;margin-left:10px" onsubmit="return validateRadio(this);" method="post" action="php/StudentSignInOut.php">
+			<form name="modalForm" class="form-signin form-horizontal" id="examSignInForm" role="form" style="margin:10px; margin-right:10px;margin-left:10px" onsubmit="return validateRadio(this);" method="post" action="controler/StudentSignInOut.php">
 				<div class="modal-body">
 					<input name="innerIStudentID" id="innerIStudentID" type="hidden">
 					<input name="innerIExamID" id="innerIExamID" type="hidden">
