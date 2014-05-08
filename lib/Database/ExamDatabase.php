@@ -223,7 +223,7 @@ final class ExamDatabase
 	 * Usunięcie egzaminu z bazy danych, wraz ze sprawdzeniem czy dany egzaminator
 	 * zamieścił egzamin i ma do tego uprawnienia
 	 */ 
-	static public function deleteExam($userID, $examID)
+	static public function deleteExam($userIDU, $examIDU)
 	{
 		$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
 		$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
