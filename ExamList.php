@@ -112,8 +112,9 @@
 		// Row begin
 		$echoRowDefault = "<tr id=\"row-id-" . $id . "\">";
 		$echoRowActive  = "<tr id=\"row-id-" . $id . "\" class=\"success\">";
+		$echoRowDanger  = "<tr id=\"row-id-" . $id . "\" class=\"danger\">";
 		if ($examDaysSize == 0) {
-			echo $echoRowDefault;
+			echo $echoRowDanger;
 		} elseif ($examDaysSize == 1) {
 			if ($examDays[0] == $currentDate) {
 				echo $echoRowActive;
