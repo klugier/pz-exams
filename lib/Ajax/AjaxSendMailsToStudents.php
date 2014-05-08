@@ -8,10 +8,10 @@
 	}
 	
 	function handlingSuccess1() {
-		echo json_encode(array("status" => "success", "errorMsg" => ""));
+		echo json_encode(array("status" => "success", "errorMsg" => "", "send" => "0"));
 	}
 	function handlingSuccess2() {
-		echo json_encode(array("status" => "success", "errorMsg" => ""));
+		echo json_encode(array("status" => "success", "errorMsg" => "", "send" => "1"));
 	}	
 
 
@@ -24,6 +24,11 @@
 	}
 
 	if(isset($_POST['examID']) && isset($_POST['mails']) && $_POST['mails'] == 1){
+		if (!DatabaseConnector::isConnected()) {
+			$msg = "Wystąpił błąd przy połączeniu z bazą!";
+			handlingError($msg);
+			return;
+		}
 		$studentsID = RecordDatabase::getStudentIDList($_POST['examID']);
 		$examName = ExamDatabase::getExam($_POST['examID'])->getName();
 		if(sizeof($studentsID) >= 1){
@@ -49,14 +54,26 @@
 					"______________________________<br/>" .
 					"Pozdrawiamy - zespół PZ-Exams<br/>";
 			
-				mailer($email,'cos nieistiotnego',"PZ-Exams", "Nowy egzamin", $messageBody, true);				
+							
+				if(mailer($email,'cos nieistotnego',"PZ-Exams", "Nowy egzamin", $messageBody, true)){
+					hanlidngSucces1();
+					return;
+				} else {
+					$msg = "Wystąpił błąd przy wysyłaniu maila!";
+					handlingError($msg);
+					return;
+				}					
 			}
 		}
 		handlingSuccess1();
 		return;
 	}
 	else if(isset($_POST['examID']) && isset($_POST['studentID'])){
-
+		if (!DatabaseConnector::isConnected()) {
+			$msg = "Wystąpił błąd przy połączeniu z bazą!";
+			handlingError($msg);
+			return;
+		}
 		$exam = ExamDatabase::getExam($_POST['examID']);
 		$student = StudentDatabase::getStudentByID($_POST['studentID']);
 
@@ -90,10 +107,14 @@
 						"______________________________<br/>" .
 						"Pozdrawiamy - zespół PZ-Exams<br/>";
 				
-		mailer($email,'cos nieistotnego',"PZ-Exams", "Nowy egzamin", $messageBody, true);	
-		$msg = $mailson;
-		handlingError($msg);
-		return;
+		if(mailer($email,'cos nieistotnego',"PZ-Exams", "Nowy egzamin", $messageBody, true)){
+			handlingSuccess2();
+			return;
+		} else {
+			$msg = "Wystąpił błąd przy wysyłaniu maila!";
+			handlingError($msg);
+			return;
+		}		
 	} else {
 		$msg = "Nie podano podstawowych parametrow";
 		handlingError($msg);

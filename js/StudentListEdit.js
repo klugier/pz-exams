@@ -13,10 +13,14 @@ $(document).ready(function() {
 				studentID : studentID,				
 			},
 			success: function (data) {
-				bootbox.alert('<div class="alert alert-success">Mail został wysłany na adres <b>'+ email +'</b>!</div>');
+				if(data['status'] == 'failed'){
+					bootbox.alert('<div class="alert alert-danger"><strong>'+ data['errorMsg'] +'</strong></div>');		
+				} else {
+					bootbox.alert('<div class="alert alert-success">Mail został wysłany na adres <b>'+ email +'</b>!</div>');
+				}
 			},
 			error: function (error) {
-				alert('Wystapil blad przy wysyłaniu mailów!');
+				alert('Wystapil blad przy wysyłaniu maila!');
 			},
 			complete: function() {
 			}
@@ -33,10 +37,14 @@ $(document).ready(function() {
 				mails : 1,				
 			},
 			success: function (data) {
-				bootbox.alert('<div class="alert alert-success"><strong>Maile zostały wysłane do studentów z listy!</strong></div>');	
+				if(data['status'] == 'failed'){
+					bootbox.alert('<div class="alert alert-danger"><strong>'+ data['errorMsg'] +'</strong></div>');		
+				} else {
+					bootbox.alert('<div class="alert alert-success"><strong>Maile zostały wysłane do studentów z listy!</strong></div>');	
+				}				
 			},
 			error: function (error) {
-				alert('Wystapil blad przy wysyłaniu maila!');
+				alert('Wystapil blad przy wysyłaniu mailów!');
 			},
 			complete: function() {
 			}
@@ -163,8 +171,8 @@ $(document).ready(function() {
 
 				$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
 					data[1] + '</td><td id="lastname">' + 
-					data[2] + '</td><td id="email">' + 
-					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
+					data[2] + '</td><td id="emails">' + 
+					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Usuń studenta" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
 				
 				$('#' + data[0]).hide();
 				$('#' + data[0]).fadeIn(500);
