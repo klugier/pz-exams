@@ -47,16 +47,16 @@ Aby ujednolicić kod wszystkie funkcję, które bezpośrednio odwołują się do
 Jeżeli znaleźliście błąd w kodzie, to zgłoście go używujacą trackera na githubie.
 
 ### Opis struktury katalogów ###
-* cfg   - pliki konfiguracyjne
-* css   - arkusze stylów
-* doc   - pliki z dokumentacją
-* html  - pliki szkieletu strony
-* img   - obrazki
-* js    - pliki ze skryptami JavaScript
-* lib   - biblioteka zawierająca najważniejsze moduły naszej aplikacji napisane w PHP
-* php   - pliki PHP, które zawierają jedynie obsługę strony WWW
-* sql   - pliki źródłowe związane z bazą danych
-* tests - pliki zawierające wszelkiego rodzaju testy
+* cfg     - pliki konfiguracyjne
+* css     - arkusze stylów
+* doc     - pliki z dokumentacją
+* html    - pliki szkieletu strony
+* img     - obrazki
+* js      - pliki ze skryptami JavaScript
+* lib     - biblioteka zawierająca najważniejsze moduły naszej aplikacji napisane w PHP
+* content - pliki PHP, które zawierają jedynie obsługę strony WWW
+* sql     - pliki źródłowe związane z bazą danych
+* tests   - pliki zawierające wszelkiego rodzaju testy
 
 ### Styl kodowania ###
 Patrz sekcja "Przydatne linki" (tam znajduje się odnośnik do stylu kodowania).
