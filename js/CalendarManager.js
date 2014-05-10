@@ -100,7 +100,7 @@ jQuery( document ).ready(function( $ ) {
 			$timeFrom = parseTimeToDatabaseFormat ( $timeFrom ) ; 
 			examID	= getExamID () ;
 			$currentClass = this ; 
-			$.ajax({
+			return $.ajax({
 				url: 'lib/Ajax/AjaxCalendarSaver.php',
 				async: false , 
 				type: 'post',
@@ -472,11 +472,11 @@ jQuery( document ).ready(function( $ ) {
 			}); 
 		} ;	
 		
-		this.insertExamUnits = function ( date , begHour , endHour , duration  ) {  
+		this.insertExamUnits = function ( date , begHour , endHour , duration , ladLoadingButton ) {  
 			this.insertExamUnitsToDatabase (  date , begHour , endHour , duration );
 			this.exam.addTerm(  date , begHour , endHour , duration );
 			this.exam.sortExam();
-			$currentClass.calendarControl = new CalendarControl ( true ) ;
+			$currentClass.calendarControl = new CalendarControl ( true ) ; 
 			$currentClass.calendarControl.printCalendar();
 		} ; 
 		
@@ -525,13 +525,18 @@ jQuery( document ).ready(function( $ ) {
 			return false ;
 		} ; 
 		
-		this.removeSingleExamUnit = function (date , begHour ) { 
-			this.databaseModificationsSaver.removeSingleExamUnit( date , begHour  );
+		this.removeSingleExamUnit = function (date , begHour ) {
+			$.when( this.databaseModificationsSaver.removeSingleExamUnit( date , begHour  ) ).then(this.updateExamView(date , begHour));
+			
+		} ; 
+		
+		this.updateExamView = function (date , begHour) { 
 			this.exam.removeExamHoursForDay(date , begHour);
 			this.exam.sortExam();
 			$currentClass.calendarControl = new CalendarControl ( true ) ;
+			$currentClass.calendarControl.examDays = this.exam.day;
 			$currentClass.calendarControl.printCalendar();
-		} ; 
+		} 
 		
 		this.insertExamUnitsToCalendar = function($jsonExamData) { 
 			this.exam = new Exam($jsonExamData.name, $jsonExamData.durration ); 
