@@ -473,10 +473,11 @@ jQuery( document ).ready(function( $ ) {
 		} ;	
 		
 		this.insertExamUnits = function ( date , begHour , endHour , duration  ) {  
-			this.exam.addTerm(  date , begHour , endHour , duration );
 			this.insertExamUnitsToDatabase (  date , begHour , endHour , duration );
-			this.sendAjaxExamCalendarRequest(); // reload data in exam
+			this.exam.addTerm(  date , begHour , endHour , duration );
 			this.exam.sortExam();
+			$currentClass.calendarControl = new CalendarControl ( true ) ;
+			$currentClass.calendarControl.printCalendar();
 		} ; 
 		
 		this.insertExamUnitsToDatabase = function ( date , begHour , endHour , durat ) { 
@@ -489,20 +490,18 @@ jQuery( document ).ready(function( $ ) {
 				var conv1 = parseTime(bHour + durat * i);      
 				var conv2 = parseTime(bHour + durat * (i + 1)); 
 				ExamUnitsBlock.push({ 'day' : date , 'timeFrom' :  parseTimeToDatabaseFormat(conv1) , 'timeTo' :  parseTimeToDatabaseFormat(conv2) });
-				//this.databaseModificationsSaver.addSingleExamUnit( date , conv1, conv2 );
 			}
 			this.databaseModificationsSaver.addExamUnitsBlock(ExamUnitsBlock) ; 
-			this.sendAjaxExamCalendarRequest();	
 		} ;
 		
 		this.removeAllUnitsForDay = function ( date ) {
-			//console.log("exam date " + this.exam.day[date]);
 			for (var examUnitIndex=0 ; examUnitIndex< this.exam.day[date].length ; examUnitIndex++) { 
-				//alert ( examUnitIndex + "usuwam " + this.exam.day[date][examUnitIndex]);
-				//alert ( date + " -- "+ this.exam.day[date][examUnitIndex].bHour ) ;
 				this.databaseModificationsSaver.removeSingleExamUnit(date , this.exam.day[date][examUnitIndex].bHour);
 			};
-			this.sendAjaxExamCalendarRequest();
+			this.exam.delTerm(date);
+			this.exam.sortExam();
+			$currentClass.calendarControl = new CalendarControl ( true ) ;
+			$currentClass.calendarControl.printCalendar();
 		} ; 
 		
 		this.checkIfStudentsEnroledOnDay = function ( date ) { 
@@ -528,7 +527,10 @@ jQuery( document ).ready(function( $ ) {
 		
 		this.removeSingleExamUnit = function (date , begHour ) { 
 			this.databaseModificationsSaver.removeSingleExamUnit( date , begHour  );
-			this.sendAjaxExamCalendarRequest(); // reload data in exam
+			this.exam.removeExamHoursForDay(date , begHour);
+			this.exam.sortExam();
+			$currentClass.calendarControl = new CalendarControl ( true ) ;
+			$currentClass.calendarControl.printCalendar();
 		} ; 
 		
 		this.insertExamUnitsToCalendar = function($jsonExamData) { 
