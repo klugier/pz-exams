@@ -52,18 +52,34 @@ if(isset($_POST['students_emails']) && isset($_POST['firstnames']) && isset($_PO
 
 			if (StudentDatabase::insertStudent($student)) {
 				//echo '<br/>Wpisano studenta';
+
+				$record = new Record();
+				$record->setStudentID(DatabaseConnector::getLastInsertedID());
+				$record->setExamID($exam_id);
+
+				if(RecordDatabase::insertRecord($record)) {
+					//echo '<br/>Wpisano rekord';
+				} else {
+					//echo '<br/>Blad przy wpisywaniu rekordu';
+				}
+
+			} else if (StudentDatabase::getStudentID($student) != null){
+				//echo '<br/>Blad przy wpisywaniu studenta';
+
+				//echo StudentDatabase::getStudentID($student);
+
+				$record = new Record();
+				$record->setStudentID(StudentDatabase::getStudentID($student));
+				$record->setExamID($exam_id);
+
+				if(RecordDatabase::insertRecord($record)) {
+					//echo '<br/>Wpisano rekord';
+				} else {
+					//echo '<br/>Blad przy wpisywaniu rekordu';
+				}
+
 			} else {
 				//echo '<br/>Blad przy wpisywaniu studenta';
-			}
-
-			$record = new Record();
-			$record->setStudentID(DatabaseConnector::getLastInsertedID());
-			$record->setExamID($exam_id);
-
-			if(RecordDatabase::insertRecord($record)) {
-				//echo '<br/>Wpisano rekord';
-			} else {
-				//echo '<br/>Blad przy wpisywaniu rekordu';
 			}
 
 		}
