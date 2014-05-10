@@ -187,7 +187,7 @@ jQuery( document ).ready(function( $ ) {
 			// sort days 
 			this.sortDaysArray ( )  ;
 			// sort within days 
-			//this.sortAllExamUnits();
+			this.sortAllExamUnits();
 		} ;
 		
 		this.addSingleExamUnit = function ( date, begHour, endHour , studentName , studentSurname ) {
@@ -222,23 +222,27 @@ jQuery( document ).ready(function( $ ) {
 		} ; 
 		
 		this.sortExamUnit = function(date){
-			var tmpB = new Array();
-			var tmpE = new Array();
-
-			for (var k in this.day[date]){
-				tmpB.push(converToMinutes(this.day[date][k].bHour));
-				tmpE.push(converToMinutes(this.day[date][k].eHour));            
-			}
-			
-			tmpB.sort(this.sortNumbers);
-			tmpE.sort(this.sortNumbers); 
-			delete this.day[date];
-			this.day[date] = new Array();       
-			for( var i in tmpB ){
-				var exmUnit = new ExamUnit(parseTime(tmpB[i]), parseTime(tmpE[i]));
-				this.day[date].push(exmUnit);
-			}
+			this.day[date].sort(this.compareTwoExamUnits) ;  
 		};
+		
+		this.compareTwoExamUnits =  function compare(a,b) {
+			if ( converToMinutes (a.bHour ) < converToMinutes (b.bHour ))
+				return -1;
+			if (converToMinutes (a.bHour ) > converToMinutes (b.bHour ))
+				return 1;
+			return 0;
+		}
+		
+		this.findExamUnitByBeginHour = function ( date , bHour ) {
+			for ( var examUnitIdx in this.day[date] ) { 
+				//console.log ( this.day[date][examUnitIdx].bHour + " " +  bHour ) ; 
+				if ( this.day[date][examUnitIdx].bHour.trim() == bHour.trim() ) {
+					//console.log ( "match found " ) ; 
+					return this.day[date][examUnitIdx] ; 
+				}
+			}	
+			return null ; 
+		} ;
 		
 		this.removeDaysWithoutExams = function ( ) { 
 			for ( var date in this.day ) {  
