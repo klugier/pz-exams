@@ -55,6 +55,14 @@
 					} else { 
 						echo json_encode($dataNotSavedInDB);
 					} 
+					break;
+				case 'removeDay': 
+					if (isset($_POST['day'])) { 
+						ExamUnitDatabase::deleteDayWithAllExamUnits($_POST['examID'],$_POST['day']);
+						echo json_encode($dataSavedInDB);
+					} else { 
+						echo json_encode($dataNotSavedInDB);
+					} 
 					break; 
 				default : 
 					echo json_encode($dataNotSavedInDB);						

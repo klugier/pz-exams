@@ -95,7 +95,7 @@ jQuery( document ).ready(function( $ ) {
 			}); 
 		}; 
 		
-		/*this.removeDay = function ( $day  ) { 
+		this.removeDay = function ( $day  ) { 
 			examID	= getExamID () ;
 			$currentClass = this ; 
 			return $.ajax({
@@ -119,7 +119,7 @@ jQuery( document ).ready(function( $ ) {
 					console.log(errorThrown);
 				}
 			}); 
-		} ;*/ 
+		} ; 
 		
 		this.removeSingleExamUnit = function ( $day , $timeFrom ) { 
 			$timeFrom = parseTimeToDatabaseFormat ( $timeFrom ) ; 
@@ -179,7 +179,6 @@ jQuery( document ).ready(function( $ ) {
 				var examUnit = new ExamUnit(conv1, conv2);
 				this.day[date].push(examUnit);
 			}
-			
 			this.sortExam () ; 
 		};
 
@@ -521,9 +520,7 @@ jQuery( document ).ready(function( $ ) {
 		} ;
 		
 		this.removeAllUnitsForDay = function ( date ) {
-			for (var examUnitIndex=0 ; examUnitIndex< this.exam.day[date].length ; examUnitIndex++) { 
-				this.databaseModificationsSaver.removeSingleExamUnit(date , this.exam.day[date][examUnitIndex].bHour);
-			};
+			this.databaseModificationsSaver.removeDay (date );
 			this.updatePageViewAfterDayRemoval(date);
 		} ; 
 		

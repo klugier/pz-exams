@@ -148,6 +148,23 @@ final class ExamUnitDatabase
 		return $examCount;
 	}
 
+	/*
+	 *	usuwa dzień z wszystkimi exam unitami
+	 */ 
+	
+	static public function deleteDayWithAllExamUnits($examID, $date) {
+		$sql = "Select * from ExamUnits WHERE ExamID  = '" . $examID . "' AND Day = '" . $date . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		
+		while ($row = $result->fetch_array(MYSQLI_NUM)) {
+			$examUnitID = $row[0];
+			$sql2 = "UPDATE Records SET ExamUnitID = 'NULL' WHERE ExamUnitID  = '" . $examUnitID . "'";
+			DatabaseConnector::getConnection()->query($sql2);			
+		}
+		$sql = "DELETE from ExamUnits where ExamID = '" . $examID . "' AND Day = '" . $date ."'";
+		return DatabaseConnector::getConnection()->query($sql) ? true : false;
+	}
+	
 	/*********************************************************************
 	 ********************* Podstawowe funkcje sql ************************
 	 *********************************************************************/
