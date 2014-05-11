@@ -12,6 +12,9 @@
 			<li><a	class="navbar-brand"	href="Contact.php">Kontakt</a></li>
 			<li><a	class="navbar-brand"	href="Authors.php">Autorzy</a></li>
 			<li><a	class="navbar-brand"	href="Help.php">Pomoc</a></li>
+			<?php	if(isset($_SESSION['USER'])	&&	$_SESSION['USER']	!=	""){	?>
+				<li><a class="navbar-brand"	href="UserSite.php">Lista Egzaminów</a></li>
+			<?php	}	?>
 			</ul>
 			<?php
 				if	(Settings::getDebug()	==	1)	{
