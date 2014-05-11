@@ -24,6 +24,13 @@
 	$count = ExamUnitDatabase::countOpenExams(1,0);
 	echo "<br/>" . $count . "<br/>";
 	
+	if(ExamUnitDatabase::deleteDayWithAllExamUnits(17, '2014-04-16'))
+		echo "<br/> Day Deleted <br/>";
+	else
+		echo "<br/> Day Not Deleted <br/>";
+	
+	
+	
 	/*
 	if(ExamUnitDatabase::deleteExamUnit2(17,'2014-04-09', '09:00:00'))
 		echo "<br/> 2 Deleted <br/>";

@@ -152,16 +152,17 @@ final class ExamUnitDatabase
 	 *	usuwa dzień z wszystkimi exam unitami
 	 */ 
 	
-	static public function deleteDayWithAllExamUnits($examID, $date) {
-		$sql = "Select * from ExamUnits WHERE ExamID  = '" . $examID . "' AND Day = '" . $date . "'";
-		$result = DatabaseConnector::getConnection()->query($sql);
+	static public function deleteDayWithAllExamUnits($examIDU, $dayU) 
+	{
+		$day = mysqli_real_escape_string(DatabaseConnector::getConnection(), $dayU);
+		$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
 		
-		while ($row = $result->fetch_array(MYSQLI_NUM)) {
-			$examUnitID = $row[0];
-			$sql2 = "UPDATE Records SET ExamUnitID = 'NULL' WHERE ExamUnitID  = '" . $examUnitID . "'";
-			DatabaseConnector::getConnection()->query($sql2);			
+		$sql = "UPDATE Records INNER JOIN ExamUnits ON Records.ExamUnitID = ExamUnits.ID 
+		        SET Records.ExamUnitID = 'NULL' WHERE ExamUnits.ExamID  = '" . $examID . "' AND ExamUnits.Day  = '" . $day . "'";
+				
+		if(DatabaseConnector::getConnection()->query($sql) ? true : false){
+			$sql = "DELETE FROM ExamUnits WHERE ExamID  = '" . $examID . "' AND Day = '" . $day . "'";
 		}
-		$sql = "DELETE from ExamUnits where ExamID = '" . $examID . "' AND Day = '" . $date ."'";
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
 	
