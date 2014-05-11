@@ -112,7 +112,7 @@
 		// Row begin
 		$echoRowDefault = "<tr id=\"row-id-" . $id . "\">";
 		$echoRowActive  = "<tr id=\"row-id-" . $id . "\" class=\"success\">";
-		$echoRowDanger  = "<tr id=\"row-id-" . $id . "\" class=\"danger\">";
+		$echoRowDanger  = "<tr id=\"row-id-" . $id . "\" class=\"warning\">";
 		if ($examDaysSize == 0) {
 			echo $echoRowDanger;
 		} elseif ($examDaysSize == 1) {
