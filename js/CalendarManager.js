@@ -350,7 +350,7 @@ jQuery( document ).ready(function( $ ) {
 	
 	SimpleDayControl.prototype.controlAddExamUnit = function ( startTime , endTime , name , surname ) { 
 			examUnit =	'<tr>'
-						+ '		<td><i id="removeRecordIcon" class="glyphicon glyphicon-trash"></i></td> '
+						+ '		<td><i style="cursor:pointer;" id="removeRecordIcon" class="glyphicon glyphicon-trash"></i></td> '
 						+ '		<td style="white-space:nowrap">'+startTime+'-'+endTime+'</td> ' 
 						+ '</tr> ' ; 
 			return examUnit ; 
@@ -392,7 +392,7 @@ jQuery( document ).ready(function( $ ) {
 	
 	ExtendedDayControl.prototype.controlAddExamUnit = function ( startTime , endTime , name , surname ) { 
 			examUnit =	'<tr>'
-						+ '		<td><i id="removeRecordIcon" class="glyphicon glyphicon-trash"></i></td> '
+						+ '		<td><i  style="cursor:pointer;" id="removeRecordIcon" class="glyphicon glyphicon-trash"></i></td> '
 						+ '		<td '  + (( name == null && surname == null ) ?  'class="danger"' : 'class="success"')  + ' >' +  startTime + ' - ' + endTime +'<br />' 
 						+(( name == null && surname == null ) ? 'termin nieprzypisany' : ( name + ' ' + surname )) + '</td> ' 
 						+ '</tr> ' ; 
