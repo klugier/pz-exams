@@ -68,6 +68,22 @@ div #creator {
 	font-weight: bold;
 }
 
+a.ExamList{
+	color:#fff;
+	font-size: 15px;
+	padding: 10px;
+	margin-top: 3px;
+}
+
+a.Logout{
+	color:#fff;
+	font-size: 18px;
+	padding: 10px;
+	margin-top: 3px;
+	background-color:#E42217;
+	border-color:#269abc;
+}
+
 .center {
     text-align: center;
     margin-left: auto;
