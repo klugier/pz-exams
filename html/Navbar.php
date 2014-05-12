@@ -23,8 +23,9 @@
 			<ul	class="nav	navbar-nav	pull-right"	style="padding-right:	0px;">
 				<?php	if(isset($_SESSION['USER'])	&&	$_SESSION['USER']	!=	""){	?>
 				<li	class="navbar-form"	style="padding-right:	0px;">
-						  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b>
-							<?php
+										<form	action="UserSite.php">
+								<button	type="submit"	class="btn	btn-info"><b>
+								<?php
 								if (unserialize($_SESSION['USER'])->getFirstName() != NULL && unserialize($_SESSION['USER'])->getSurname() != NULL){
 									echo unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
 								} else {
@@ -32,22 +33,15 @@
 								}
 							//	TODO:	Jeżeli	użytkownik	posiada	imie	i/lub	nazwisko	należ	je	tutaj	wyświetlić	zamiast	adresu	email
 							
-								?> <span class="caret"></span>
-						  </b></button>
-						  <ul class="dropdown-menu">
-							<li>
-								<a class="ExamList" href="UserSite.php">
-									<span class="glyphicon glyphicon-stats"></span> <b>Strona Egzaminatora</b> 
-								</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a class="Logout" href="controler/LogOff.php">
-									<span class="glyphicon glyphicon-off"></span> <b>Wyloguj</b> 
-								</a>
-							</li>
-						  </ul>
-				</li>
+								?></b></button>
+			</form>
+		</li>
+				<li	class="navbar-form"	style="padding-right:	0px;">
+						<form	action="controler/LogOff.php">
+								<button	type="submit"	class="btn	btn-danger"><b>Wyloguj</b></button>
+			</form>
+		</li>	
+
 		<?php	}	else	{	?>
 					
 				<li	class="dropdown	navbar-form">
