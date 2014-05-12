@@ -23,9 +23,8 @@
 			<ul	class="nav	navbar-nav	pull-right"	style="padding-right:	0px;">
 				<?php	if(isset($_SESSION['USER'])	&&	$_SESSION['USER']	!=	""){	?>
 				<li	class="navbar-form"	style="padding-right:	0px;">
-						<form	action="UserSite.php">
-								<button	type="submit"	class="btn	btn-info"><b>
-								<?php
+						  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b>
+							<?php
 								if (unserialize($_SESSION['USER'])->getFirstName() != NULL && unserialize($_SESSION['USER'])->getSurname() != NULL){
 									echo unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
 								} else {
@@ -33,14 +32,14 @@
 								}
 							//	TODO:	Jeżeli	użytkownik	posiada	imie	i/lub	nazwisko	należ	je	tutaj	wyświetlić	zamiast	adresu	email
 							
-								?></b></button>
-			</form>
-		</li>
-				<li	class="navbar-form"	style="padding-right:	0px;">
-						<form	action="controler/LogOff.php">
-								<button	type="submit"	class="btn	btn-danger"><b>Wyloguj</b></button>
-			</form>
-		</li>	
+								?> <span class="caret"></span>
+						  </b></button>
+						  <ul class="dropdown-menu">
+							<li><a class="ExamList" href="UserSite.php"><b>Lista Egzaminów</b></a></li>
+							<li class="divider"></li>
+							<li><a class="Logout" href="controler/LogOff.php"><b>Wyloguj</b></a></li>
+						  </ul>
+				</li>
 		<?php	}	else	{	?>
 					
 				<li	class="dropdown	navbar-form">
