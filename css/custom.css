@@ -77,11 +77,10 @@ a.ExamList{
 
 a.Logout{
 	color:#fff;
-	font-size: 18px;
+	font-size: 15px;
 	padding: 10px;
 	margin-top: 3px;
 	background-color:#E42217;
-	border-color:#269abc;
 }
 
 .center {

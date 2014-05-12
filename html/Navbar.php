@@ -35,9 +35,17 @@
 								?> <span class="caret"></span>
 						  </b></button>
 						  <ul class="dropdown-menu">
-							<li><a class="ExamList" href="UserSite.php"><b>Lista Egzaminów</b></a></li>
+							<li>
+								<a class="ExamList" href="UserSite.php">
+									<span class="glyphicon glyphicon-stats"></span> <b>Strona Egzaminatora</b> 
+								</a>
+							</li>
 							<li class="divider"></li>
-							<li><a class="Logout" href="controler/LogOff.php"><b>Wyloguj</b></a></li>
+							<li>
+								<a class="Logout" href="controler/LogOff.php">
+									<span class="glyphicon glyphicon-off"></span> <b>Wyloguj</b> 
+								</a>
+							</li>
 						  </ul>
 				</li>
 		<?php	}	else	{	?>
