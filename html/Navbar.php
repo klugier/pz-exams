@@ -35,7 +35,7 @@
 												?> <span class="caret"></span>
 						  </b></button>
 						  <ul class="dropdown-menu" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;">
-							<li><a class="navbar-brand" href="UserSite.php"><i class="glyphicon glyphicon-stats"></i>  <b>Statystyki egzaminów</b></a></li>
+							<li><a class="navbar-brand" href="UserSite.php"><i class="glyphicon glyphicon-home"></i>  <b>Start</b></a></li>
 							<li><a class="navbar-brand" href="AddExam.php" id="user_m" ><i class="glyphicon glyphicon-plus"></i>  <b>Dodaj egzamin</b></a></li>
 							<li><a class="navbar-brand" href="ExamList.php" id="user_m"><i class="glyphicon glyphicon-list"></i>  <b>Aktualne egzaminy</b></a></li>
 							<li><a class="navbar-brand" href="ExamListArchives.php" id="user_m"><i class="glyphicon glyphicon-floppy-disk"></i>  <b>Archiwalne egzaminy</b></a></li>
