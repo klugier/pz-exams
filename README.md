@@ -66,3 +66,6 @@ Patrz sekcja "Przydatne linki" (tam znajduje się odnośnik do stylu kodowania).
 ### Przydatne linki ###
 * [Styl kodowania (Zend framework)](http://framework.zend.com/manual/1.12/en/coding-standard.coding-style.html)
 * [Pivotal Tracker (Zarządzanie Scrumem)](http://www.pivotaltracker.com/)
+
+### Lokalizacja projektu w sieci ###
+* [OpenShift](http://pzexams-klugier.rhcloud.com)
