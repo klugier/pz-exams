@@ -14,8 +14,14 @@
 		{
 			if(UserDatabase::checkPassword($basicUser))
 			{
-				$_SESSION['USER'] = serialize($basicUser);
-				header('Location: ../UserSite.php');
+				if(UserDatabase::checkActivated($basicUser)){
+					$_SESSION['USER'] = serialize($basicUser);
+					header('Location: ../UserSite.php');	
+				} else {
+					$_SESSION['ERROR'] = 3;
+					header('Location: ../index.php');
+				}		
+				
 			} else {
 				$_SESSION['ERROR'] = 2;
 				header('Location: ../index.php');

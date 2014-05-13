@@ -22,6 +22,8 @@
 			echo '<strong>Nie ma takiego użytkownika w bazie!</strong>';
 		} elseif ($_SESSION['ERROR'] == '2') {
 			echo '<strong>Podane hasło jest niepoprawne!</strong>';
+		} elseif ($_SESSION['ERROR'] == '3') {
+			echo '<strong>Konto nie zostało aktywowane! Proszę aktywować konto poprzez link wysłany na adres mailowy.</strong>';
 		}
 		echo '</div>' ;
 		unset($_SESSION['ERROR']);
