@@ -7,13 +7,13 @@
 		$email = $_POST['email'];
 		$exam_id = $_POST['exam_id'];
 
-		$firstname = '-';
-		$lastname = '-';
+		$firstname = '';
+		$lastname = '';
 
-		if (strpos(explode('@', $email)[0], '.') !== false) {
+		/*if (strpos(explode('@', $email)[0], '.') !== false) {
 			$firstname = ucfirst(explode('.', $email)[0]);
 			$lastname = ucfirst(explode('@', explode('.', $email)[1])[0]);
-		} 
+		} */
 
 		$student = new Student();
 		$student->setFirstName($firstname);
