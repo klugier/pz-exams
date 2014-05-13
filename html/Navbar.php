@@ -23,7 +23,7 @@
 			<ul	class="nav	navbar-nav	pull-right"	style="padding-right:	0px;">
 				<?php	if(isset($_SESSION['USER'])	&&	$_SESSION['USER']	!=	""){	?>
 				<li	class="navbar-form"	style="padding-right:	0px;">
-					<button class="btn btn-info btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b>
+					<button class="btn btn-info btn-default dropdown-toggle" type="button" data-toggle="dropdown"><i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i><b>
 						<?php
 								if (unserialize($_SESSION['USER'])->getFirstName() != NULL && unserialize($_SESSION['USER'])->getSurname() != NULL){
 									echo unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
@@ -44,13 +44,13 @@
 				</li>
 				<li	class="navbar-form"	style="padding-right:	0px;">
 						<form	action="controler/LogOff.php">
-								<button	type="submit"	class="btn	btn-danger"><i class="glyphicon glyphicon-off"></i> <b>Wyloguj</b></button>
+								<button	type="submit"	class="btn	btn-danger"><i class="glyphicon glyphicon-log-out"></i> <b>Wyloguj</b></button>
 						</form>
 				</li>	
 		<?php	}	else	{	?>
 					
 				<li	class="dropdown	navbar-form">
-					<button	type="submit"	class="btn	btn-success	dropdown-toggle"	data-toggle="dropdown"><b>Logowanie</b></button>
+					<button	type="submit"	class="btn	btn-success	dropdown-toggle"	data-toggle="dropdown"><i class="glyphicon glyphicon-log-in" style="margin-right: 5px;"></i><b>Logowanie</b></button>
 					
 					<ul	class="dropdown-menu"	style="width:250px;	background:	rgba(255,255,255,0.9);-webkit-border-radius:	5px;	-khtml-border-radius:	5px;-moz-border-radius:	5px;	border-radius:	5px;	margin-top:8px;">
 						<li>	
@@ -69,7 +69,7 @@
 				</li>
 				<li	class="navbar-form"	style="margin-left:-20px;	padding-right:	0px;">
 							<form	action="RegisterForm.php">
-								<button	type="submit"	class="btn	btn-info"><b>Rejestracja</b></button>
+								<button	type="submit"	class="btn	btn-info"><i class="glyphicon glyphicon-book" style="margin-right: 5px;"></i><b>Rejestracja</b></button>
 			</form>
 		</li>	
 		<?php	}	?>
