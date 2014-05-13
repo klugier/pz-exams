@@ -180,7 +180,7 @@ $( document ).ready(function() {
 
 				for (var i = 0; i < emails.length; i++) {
 					emails[i] = emails[i].replace("<", "").replace(">", "");
-					elements = elements.add('<tr id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">' + first_names[i] + '</td><td id="ln">' + last_names[i] + '</td><td id="em">' + emails[i].replace("<", "").replace(">", "") + ')</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
+					elements = elements.add('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">' + first_names[i] + '</td><td id="ln">' + last_names[i] + '</td><td id="em">' + emails[i].replace("<", "").replace(">", "") + ')</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
 
 				}
 
@@ -188,8 +188,8 @@ $( document ).ready(function() {
 
 				$('table#st').append(elements);
 
-				$('#student').hide();
-				$('#student').fadeIn(500);
+				$('.student').hide();
+				$('.student').fadeIn(500);
 
 			}
 
