@@ -23,24 +23,30 @@
 			<ul	class="nav	navbar-nav	pull-right"	style="padding-right:	0px;">
 				<?php	if(isset($_SESSION['USER'])	&&	$_SESSION['USER']	!=	""){	?>
 				<li	class="navbar-form"	style="padding-right:	0px;">
-					<button class="btn btn-info btn-default dropdown-toggle" type="button" data-toggle="dropdown"><i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i><b>
+					<form	action="UserSite.php">
+						<div class="btn-group">
+							<button class="btn btn-info"><i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i><b> 
 						<?php
-								if (unserialize($_SESSION['USER'])->getFirstName() != NULL && unserialize($_SESSION['USER'])->getSurname() != NULL){
-									echo unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
-								} else {
-									echo	'	'.unserialize($_SESSION['USER'])->getEmail();		
-								}
-							//	TODO:	Jeżeli	użytkownik	posiada	imie	i/lub	nazwisko	należ	je	tutaj	wyświetlić	zamiast	adresu	email
-							
-												?> <span class="caret"></span>
-						  </b></button>
-						  <ul class="dropdown-menu" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;">
-							<li><a class="navbar-brand" href="UserSite.php"><i class="glyphicon glyphicon-home"></i>  <b>Start</b></a></li>
-							<li><a class="navbar-brand" href="AddExam.php" id="user_m" ><i class="glyphicon glyphicon-plus"></i>  <b>Dodaj egzamin</b></a></li>
-							<li><a class="navbar-brand" href="ExamList.php" id="user_m"><i class="glyphicon glyphicon-list"></i>  <b>Aktualne egzaminy</b></a></li>
-							<li><a class="navbar-brand" href="ExamListArchives.php" id="user_m"><i class="glyphicon glyphicon-floppy-disk"></i>  <b>Archiwalne egzaminy</b></a></li>
-							<li><a class="navbar-brand" href="UserEdit.php" title="Edytuj profil" id="user_m"><i class="glyphicon glyphicon-cog"></i>  <b>Edytuj Profil</b></a></li>
-						</ul>
+									if (unserialize($_SESSION['USER'])->getFirstName() != NULL && unserialize($_SESSION['USER'])->getSurname() != NULL){
+										echo unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
+									} else {
+										echo	'	'.unserialize($_SESSION['USER'])->getEmail();		
+									}
+								//	TODO:	Jeżeli	użytkownik	posiada	imie	i/lub	nazwisko	należ	je	tutaj	wyświetlić	zamiast	adresu	email
+								
+						?></b></button>
+						
+						 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">	
+							 <span class="caret"></span>
+							  </b></button>
+							  <ul class="dropdown-menu" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;">
+								<li><a href="AddExam.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-plus"></i>  <b>Dodaj egzamin</b></a></li>
+								<li><a href="ExamList.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-list"></i>  <b>Aktualne egzaminy</b></a></li>
+								<li><a href="ExamListArchives.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-floppy-disk"></i>  <b>Archiwalne egzaminy</b></a></li>
+								<li><a href="UserEdit.php" title="Edytuj profil" id="user_m" style="color:white"><i class="glyphicon glyphicon-cog"></i>  <b>Edytuj Profil</b></a></li>
+							</ul>
+						</div>
+					</form>
 				</li>
 				<li	class="navbar-form"	style="padding-right:	0px;">
 						<form	action="controler/LogOff.php">
