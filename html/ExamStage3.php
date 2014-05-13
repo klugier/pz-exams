@@ -16,7 +16,9 @@
 		</div>
 
 		<div class="container col-md-12" style="margin-top: 20px; padding-left: 0px; padding-right: 0px;">
-		
+		<table class="table" id="st"></table>
+
+
 		<hr/>
 
 		<span class="pull-left">

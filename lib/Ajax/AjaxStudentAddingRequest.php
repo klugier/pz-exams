@@ -44,6 +44,32 @@
 			header('Content-Type: application/json');
 			echo json_encode($array);
 
+		} else if (StudentDatabase::getStudentID($student) != null) {
+
+			$student_id = StudentDatabase::getStudentID($student);
+
+			$student = StudentDatabase::getStudentByID($student_id);
+
+			$record = new Record();
+			$record->setStudentID(StudentDatabase::getStudentID($student));
+			$record->setExamID($exam_id);
+
+			if(RecordDatabase::insertRecord($record)) {
+				//echo '<br/>Wpisano rekord';
+			} else {
+				//echo '<br/>Blad przy wpisywaniu rekordu';
+			}
+
+			$array = [
+				0 => $student_id,
+				1 => $student->getFirstName(),
+				2 => $student->getSurName(),
+				3 => $student->getEmail()
+			];
+
+			header('Content-Type: application/json');
+			echo json_encode($array);
+
 		} else {
 			header('Content-Type: application/json');
 			echo json_encode(null);

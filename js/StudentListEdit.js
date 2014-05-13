@@ -127,7 +127,6 @@ $(document).ready(function() {
 
 
 	$('body').on( "click", 'button#add', function(){
-	//$('body').click(function() {
 
 		var email_pattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -194,83 +193,6 @@ $(document).ready(function() {
 		}
 
 	});
-
-	// 	$('body').on( "click", 'a#edit', function(){
-
-	// 	if ($(this).attr('class') == 'glyphicon glyphicon-pencil')
-	// 		{
-	// 			var st_id = $(this).closest('tr').attr('id');
-
-	// 			$(this).closest('tr').children('#firstname').html('<div class="form-group" id="ef' + st_id + '" style="margin-bottom: 0px;"><input id="editf" type="text" class="form-control input-sm" style="width: 72%;" value="' + $(this).closest('tr').children('#firstname').text() +'"/></div>');
-	// 			$(this).closest('tr').children('#lastname').html('<div class="form-group" id="el' + st_id + '" style="margin-bottom: 0px;"><input id="editl" type="text" class="form-control input-sm" style="width: 72%;" value="' + $(this).closest('tr').children('#lastname').text() + '"/></div');
-	// 			$(this).closest('tr').children('#email').html('<div class="form-group" id="em' + st_id + '" style="margin-bottom: 0px;"><input id="editm" type="text" class="form-control input-sm" style="width: 72%;" value="' + $(this).closest('tr').children('#email').text() + '"/></div>');
-
-	// 			$(this).attr('title', 'Confirm');
-
-	// 			$(this).attr('class', 'glyphicon glyphicon-ok');
-	// 		}
-	// 		else
-	// 		{
-	// 			var st_id = $(this).closest('tr').attr('id');
-
-	// 			$(this).attr('title', 'Edit');
-
-	// 			if ($('div#ef' + st_id + ' input#editf').val().trim() == '') {
-	// 				$('div#ef' + st_id).attr('class', 'form-group has-error');
-	// 			} else {
-	// 				$('div#ef' + st_id).attr('class', 'form-group');
-	// 			}
-
-	// 			if ($('div#el' + st_id + ' input#editl').val().trim() == '') {
-	// 				$('div#el' + st_id).attr('class', 'form-group has-error');
-	// 			} else {
-	// 				$('div#el' + st_id).attr('class', 'form-group');
-	// 			}
-
-	// 			if ($('div#em' + st_id + ' input#editm').val().trim() == '') {
-	// 				$('div#em' + st_id).attr('class', 'form-group has-error');
-	// 			} else {
-	// 				$('div#em' + st_id).attr('class', 'form-group');
-	// 			}
-
-	// 			if($('div#ef' + st_id + ' input#editf').val().trim() != '' && $('div#el' + st_id + ' input#editl').val().trim() != '' && $('div#em' + st_id + ' input#editm').val().trim() != '')
-	// 			{
-
-	// 				$.ajax({
-
-	// 					type: "POST",
-	// 					url: "lib/Ajax/AjaxStudentUpdatingRequest.php",
-	// 					dataType: "JSON",
-	// 					data: {
-	// 						student_id : st_id,
-	// 						firstname : $('#editf').val().trim(),
-	// 						lastname : $('#editl').val().trim(),
-	// 						email : $('#editm').val().trim()
-	// 					},
-	// 					success: function (data) {
-
-	// 						$('tr#'+st_id).closest('tr').children('#firstname').html(data[0]);
-	// 						$('tr#'+st_id).closest('tr').children('#lastname').html(data[1]);
-	// 						$('tr#'+st_id).closest('tr').children('#email').html(data[2]);
-							
-	// 						$('tr#'+st_id+' #edit').attr('class', 'glyphicon glyphicon-pencil');
-
-	// 					},
-	// 					error: function (error) {
-	// 						alert('Wystapil blad przy edycji danych studenta.');
-	// 					},
-	// 					complete: function() {
-							
-	// 					}
-
-	// 					});
-
-	// 				}
-	// 	}
-
-	// });
-
-		//alert(window.location.split('ExamID=')[1]);
 
 		$('body').on( "click", 'i#remove', function(){
 

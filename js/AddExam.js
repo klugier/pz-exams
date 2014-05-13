@@ -1,6 +1,7 @@
 var emails;
 var first_names;
 var last_names;
+var counter = 0;
 
 // GLOBAL FUNCTIONS SECTION BEGIN *********************************************************************************************************
 function go_to_stage2()
@@ -20,7 +21,7 @@ function go_to_stage2()
 			errors[errors.length] = true;
 			$('span#exam_name-error-message').remove();
 			$('div#exam_name_group').append('<span class="help-block"  id="exam_name-error-message"><span style="background-color:#F13333;" class="badge pull-left ">!</span>'+
-				'<spanstyle="padding:5px">Nazwa powinna mieć od 5 do 60 znaków.</span></span>');
+				'<span style="padding:5px">Nazwa powinna mieć od 5 do 60 znaków.</span></span>');
 			$('span#exam_name-error-message').hide();
 			$('span#exam_name-error-message').fadeIn(500);
 	} else {
@@ -150,38 +151,47 @@ $( document ).ready(function() {
 		var full_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+/gm;
 		var elements = $();
 
-		emails = $('#student_list').val().match(email_p);
-		var full_names = $('#student_list').val().match(full_name_p);
+		if ($('#student_list').val().trim() != '') {
 
-		first_names = new Array();
-		last_names = new Array();
+			emails = $('#student_list').val().match(email_p);
+			var full_names = $('#student_list').val().match(full_name_p);
 
-		for (var i = 0; i < full_names.length; i++) {
+			first_names = new Array();
+			last_names = new Array();
 
-			full_names[i] = full_names[i].trim();
+			if (full_names != null) {
 
-			var pieces = full_names[i].split(" ");
-			first_names.push(pieces[0].trim());
+				for (var i = 0; i < full_names.length; i++) {
 
-			pieces.shift();
+					full_names[i] = full_names[i].trim();
 
-			last_names.push(pieces.join(" "));
+					var pieces = full_names[i].split(" ");
+					first_names.push(pieces[0].trim());
 
-		}
+					pieces.shift();
 
-			if (emails != null && first_names != null && last_names != null) {
+					last_names.push(pieces.join(" "));
 
-			for (var i = 0; i < emails.length; i++) {
-				emails[i] = emails[i].replace("<", "").replace(">", "");
-				elements = elements.add('<div class="panel col-md-12" style="margin: 2px; margin-right: 0px; padding-right: 0px; padding-left: 6px; box-shadow: 2px 2px 5px #AAA;" id="student"><span style="margin-right: 10px;">' + first_names[i] + " " + last_names[i] + " (" + emails[i].replace("<", "").replace(">", "") + ')</span></div>');
+				}
+
 			}
 
-			$('#student_list').val("");
-			$('#student_data').append(elements);
+				if (emails != null && first_names != null && last_names != null) {
 
-			$('div#student').hide();
-			$('div#student').fadeIn(500);
+				for (var i = 0; i < emails.length; i++) {
+					emails[i] = emails[i].replace("<", "").replace(">", "");
+					elements = elements.add('<tr id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">' + first_names[i] + '</td><td id="ln">' + last_names[i] + '</td><td id="em">' + emails[i].replace("<", "").replace(">", "") + ')</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
 
+				}
+
+				$('#student_list').val("");
+
+				$('table#st').append(elements);
+
+				$('#student').hide();
+				$('#student').fadeIn(500);
+
+			}
 
 		}
 
@@ -201,6 +211,19 @@ $( document ).ready(function() {
 
 			for(var i = 0; i < exam.day[key].length; i++) {
 				unlocked_units[key][i] = new Array(exam.day[key][i].bHour, exam.day[key][i].eHour, true);
+			}
+		}
+
+		emails = new Array();
+		first_names = new Array();
+		last_names = new Array();
+
+		for (var z = 0; z < counter; z++) {
+
+			if ($('#' + z).is(":visible") ) {
+				emails.push($('#' + z).find('#em').html());
+				first_names.push($('#' + z).find('#fn').html());
+				last_names.push($('#' + z).find('#ln').html());
 			}
 		}
 
@@ -334,5 +357,19 @@ $( document ).ready(function() {
 	
 	$("#addExamDayGlyph").click( function ( ) { 
 		$("#duration").val( $('#exam_duration').val() );
-	}); 
+	});
+
+	$('body').on( "click", 'i#remove', function(){
+
+		var st_id = $(this).parent().parent().parent().first().attr('id');
+
+		$('tr#' + st_id).hide(300, function(){ 
+			$('tr#' + st_id).remove(); 
+
+			$('td#number').each(function(index) {
+				$(this).text((index+1) + '.');
+			});
+		});
+
+	});
 });
