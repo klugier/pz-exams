@@ -34,13 +34,13 @@
 		if(sizeof($studentsID) >= 1){
 			foreach($studentsID as $studentID ){
 				$student = StudentDatabase::getStudentByID($studentID);
-				if( $student -> getCode() == NULL || $student -> getCode() == 0 ){
+				/*if( $student -> getCode() == NULL || $student -> getCode() == 0 ){
 					$code = md5(microtime());
 					while(StudentDatabase::addStudentCode($studentID, $code) != true){
 						$code = md5(microtime());
 					}	
 					$student = StudentDatabase::getStudentByID($studentID);
-				}				
+				}		*/		
 				
 				$email = $student -> getEmail();
 				$code = $student -> getCode();
@@ -55,14 +55,10 @@
 					"Pozdrawiamy - zespół PZ-Exams<br/>";
 			
 							
-				if(mailer($email,'cos nieistotnego',"PZ-Exams", "Nowy egzamin", $messageBody, true)){
-					hanlidngSucces1();
-					return;
-				} else {
-					$msg = "Wystąpił błąd przy wysyłaniu maila!";
+				if(!mailer($email,'cos nieistotnego',"PZ-Exams", "Nowy egzamin", $messageBody, true)){
+					$msg = "Wystąpił błąd przy wysyłaniu maili!";
 					handlingError($msg);
-					return;
-				}					
+				} 		
 			}
 		}
 		handlingSuccess1();
@@ -77,13 +73,13 @@
 		$exam = ExamDatabase::getExam($_POST['examID']);
 		$student = StudentDatabase::getStudentByID($_POST['studentID']);
 
-		if($student -> getCode() == NULL){
+		/*if($student -> getCode() == NULL){
 			$code = md5(microtime());
 			while(StudentDatabase::addStudentCode($student->getID(), $code) != true){
 						$code = md5(microtime());
 			}	
 			$student = StudentDatabase::getStudentByID($student->getID());
-		}
+		}*/
 
 		$examName = $exam -> getName();					
 		$email = $student -> getEmail();
@@ -106,6 +102,7 @@
 						"<a href=\"" . $studentCodeUrl . "\">" . $studentCodeUrl . "</a><br/><br/>" .
 						"______________________________<br/>" .
 						"Pozdrawiamy - zespół PZ-Exams<br/>";
+			
 				
 		if(mailer($email,'cos nieistotnego',"PZ-Exams", "Nowy egzamin", $messageBody, true)){
 			handlingSuccess2();
