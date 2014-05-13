@@ -82,9 +82,19 @@
 			$studentEmail = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentU->getEmail());
 			$studentFirstName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentU->getFirstName());
 			$studentSurName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentU->getSurName());
+			$code = md5($studentEmail . time());
+			
+			$sql =  "SELECT * FROM Students WHERE Code = '" . $code . "'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			
+			while($result->num_rows!=0){
+				$code = md5($studentEmail . time());
+				$sql =  "SELECT * FROM Students WHERE Code = '" . $code . "'";
+				$result = DatabaseConnector::getConnection()->query($sql);
+			}
 			
 			$values = "('"	. $studentEmail . "','"
-			                . md5($studentEmail . time()) . "','"
+			                . $code . "','"
 			                . $studentFirstName . "','"
 			                . $studentSurName . "')";
 			
