@@ -84,10 +84,11 @@
 			$studentSurName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentU->getSurName());
 			
 			$values = "('"	. $studentEmail . "','"
+			                . md5($studentEmail . time()) . "','"
 			                . $studentFirstName . "','"
 			                . $studentSurName . "')";
 			
-			$sql =  "INSERT INTO Students (Email, FirstName, Surname) VALUES $values";
+			$sql =  "INSERT INTO Students (Email, Code, FirstName, Surname) VALUES $values";
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		} 
 		
