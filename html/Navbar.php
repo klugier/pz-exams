@@ -23,9 +23,8 @@
 			<ul	class="nav	navbar-nav	pull-right"	style="padding-right:	0px;">
 				<?php	if(isset($_SESSION['USER'])	&&	$_SESSION['USER']	!=	""){	?>
 				<li	class="navbar-form"	style="padding-right:	0px;">
-										<form	action="UserSite.php">
-								<button	type="submit"	class="btn	btn-info"><b>
-								<?php
+					<button class="btn btn-info btn-default dropdown-toggle" type="button" data-toggle="dropdown"><b>
+						<?php
 								if (unserialize($_SESSION['USER'])->getFirstName() != NULL && unserialize($_SESSION['USER'])->getSurname() != NULL){
 									echo unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
 								} else {
@@ -33,15 +32,21 @@
 								}
 							//	TODO:	Jeżeli	użytkownik	posiada	imie	i/lub	nazwisko	należ	je	tutaj	wyświetlić	zamiast	adresu	email
 							
-								?></b></button>
-			</form>
-		</li>
+												?> <span class="caret"></span>
+						  </b></button>
+						  <ul class="dropdown-menu" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;">
+							<li><a class="navbar-brand" href="UserSite.php"><i class="glyphicon glyphicon-stats"></i>  <b>Statystyki egzaminów</b></a></li>
+							<li><a class="navbar-brand" href="AddExam.php" id="user_m" ><i class="glyphicon glyphicon-plus"></i>  <b>Dodaj egzamin</b></a></li>
+							<li><a class="navbar-brand" href="ExamList.php" id="user_m"><i class="glyphicon glyphicon-list"></i>  <b>Aktualne egzaminy</b></a></li>
+							<li><a class="navbar-brand" href="ExamListArchives.php" id="user_m"><i class="glyphicon glyphicon-floppy-disk"></i>  <b>Archiwalne egzaminy</b></a></li>
+							<li><a class="navbar-brand" href="UserEdit.php" title="Edytuj profil" id="user_m"><i class="glyphicon glyphicon-cog"></i>  <b>Edytuj Profil</b></a></li>
+						</ul>
+				</li>
 				<li	class="navbar-form"	style="padding-right:	0px;">
 						<form	action="controler/LogOff.php">
-								<button	type="submit"	class="btn	btn-danger"><b>Wyloguj</b></button>
-			</form>
-		</li>	
-
+								<button	type="submit"	class="btn	btn-danger"><i class="glyphicon glyphicon-off"></i> <b>Wyloguj</b></button>
+						</form>
+				</li>	
 		<?php	}	else	{	?>
 					
 				<li	class="dropdown	navbar-form">
