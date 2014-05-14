@@ -31,7 +31,7 @@
 	echo "</h2>";
 ?>
 
-<p>Witamy w serwisie <?php echo $appName ?>! Na tej stronie możesz przejrzeć informację związane z twoim profilem takie jak statystyki.</p>
+<p>Witamy w serwisie <?php echo $appName ?>! Na tej stronie możesz przejrzeć statystki swojego profilu.</p>
 <hr />
 
 <?php
@@ -48,32 +48,35 @@
 	$StudentsN = RecordDatabase::countUserStudents($user->getID());
 	$StudentsSignedN = RecordDatabase::countUserStudentsSingedToExams($user->getID()); 
 ?>
-<table style="font-size:17px; width:350px;" class="table">
-	<tr class="success">
-		<th colspan="2" style="font-size:21px; text-align: center;" >Statystyki</th>
-	<tr>
-	<tr>
-		<td>Ilość egzaminów</td>	
-		<td style="color:green; font-weight:bold; text-align:right;"><?php echo $ExamsNum; ?></td>
-	</tr>
-	<tr>
-		<td>Ilość aktywnych egzaminów</td>
-		<td style="color:blue; font-weight:bold; text-align:right;"><?php echo $ExamsAct; ?></td>
-	</tr>
-	<tr>
-		<td>Ilość nieaktywnych egzaminów</td>
-		<td style="color:red;font-weight:bold; text-align:right;"><?php echo $ExamsNact; ?></td>
-	</tr>
-	<tr>
-		<td>Liczba wprowadzonych studentów</td>
-		<td style="color:purple; font-weight:bold; text-align:right;"><?php echo $StudentsN; ?></td>
-	</tr>
-	<tr>
-		<td>Liczba zapisanych studentów</td>
-		<td style="font-weight:bold; text-align:right;"><?php echo $StudentsSignedN; ?></td>
-	</tr>
-</table>
-<br/>
+<div class="row">
+	<div class="col-md-4">
+		<table style="font-size:17px; " class="table">
+			<tr class="success">
+				<th colspan="2" style="font-size:21px;" >Statystyki</th>
+			</tr>
+			<tr>
+				<td>Ilość egzaminów</td>	
+				<td style="color:green; font-weight:bold; text-align:right;"><?php echo $ExamsNum; ?></td>
+			</tr>
+			<tr>
+				<td>Ilość aktywnych egzaminów</td>
+				<td style="color:blue; font-weight:bold; text-align:right;"><?php echo $ExamsAct; ?></td>
+			</tr>
+			<tr>
+				<td>Ilość nieaktywnych egzaminów</td>
+				<td style="color:red;font-weight:bold; text-align:right;"><?php echo $ExamsNact; ?></td>
+			</tr>
+			<tr>
+				<td>Liczba wprowadzonych studentów</td>
+				<td style="color:purple; font-weight:bold; text-align:right;"><?php echo $StudentsN; ?></td>
+			</tr>
+			<tr>
+				<td>Liczba zapisanych studentów</td>
+				<td style="font-weight:bold; text-align:right;"><?php echo $StudentsSignedN; ?></td>
+			</tr>
+		</table>
+	</div>
+</div>
 <?php
 	finish();
 ?>
