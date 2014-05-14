@@ -52,76 +52,181 @@ $(document).ready(function() {
 	});
 	$('button#add_students').click( function(){
 
-		var email_p = /(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/gm;
-		var full_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+/gm;
-		var elements = $();
+		var errorCounter = 0;
+		var repetGlobalCounter = 0;
 
-		var emails = $('#student_list').val().match(email_p);
-		var full_names = $('#student_list').val().match(full_name_p);
+		var email_p = /[<]?(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))[>]?/gm;
 
-		var first_names = new Array();
-		var last_names = new Array();
+		var parts = $('#student_list').val().trim().split(",");
 
-		for (var i = 0; i < full_names.length; i++) {
+		if (parts != null) {
 
-			full_names[i] = full_names[i].trim();
+			for(var i = 0; i < parts.length; i++) {
 
-			var pieces = full_names[i].split(" ");
-			first_names.push(pieces[0].trim());
+				var repetCounter = 0;
 
-			pieces.shift();
+				var elems = parts[i].trim().split(" ");
 
-			last_names.push(pieces.join(" "));
+				if (parts[i] != null & parts[i] != "") {
+				if (elems[elems.length-1].trim().match(email_p) != null) {
 
-		}
+					var emailToAppend = elems[elems.length-1].trim().replace("<", "").replace(">", "");
 
-		if (emails != null && first_names != null && last_names != null) {
+					if (elems.length == 1) {
 
-		for (var i = 0; i < emails.length; i++) {
+						$('tr.student').each(function(index, element) {
+							if ($(element).find('#em').text() == emailToAppend) {
+								repetCounter++;
+							}
+						});
 
-			emails[i] = emails[i].replace("<", "").replace(">", "");
+						if (repetCounter == 0) {
+							addStudent("", "", emailToAppend);
+							$('#student_list').val($('#student_list').val().trim().replace(parts[i] + ",", ""));
+							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
 
-			$.ajax({
+						} else {
+							repetGlobalCounter++;
+						}
 
-			type: "POST",
-			url: "lib/Ajax/AjaxStudentAddingRequest.php",
-			dataType: "JSON",
-			data: {
-				exam_id : String(window.location).split("examID=")[1],
-				firstname : first_names[i],
-				lastname : last_names[i],
-				email : emails[i]
-			},
-			success: function (data) {
+					} else {
 
-				if (data != null) {
+						var firstnameStr = elems[0].trim();
+						var lastnameStr = "";
 
-					var nr = $('#students').find('tr').size();
+						for (var j = 1; j < elems.length-1; j++) {
+							lastnameStr += " " + elems[j].trim();
+						}
 
-					$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
-					data[1] + '</td><td id="lastname">' + 
-					data[2] + '</td><td id="email">' + 
-					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
+						$('tr.student').each(function(index, element) {
+							if ($(element).find('#em').text() == emailToAppend) {
+								repetCounter++;
+							}
+						});
 
-					$('tr#'+data[0]).hide();
-					$('tr#'+data[0]).fadeIn(500);
+						if (repetCounter == 0) {
+							addStudent(firstnameStr, lastnameStr, emailToAppend);
+							$('#student_list').val($('#student_list').val().trim().replace(parts[i] + ",", ""));
+							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
 
-					$('#student_list').val("");
-				}
+						} else {
+							repetGlobalCounter++;
+						}
+					}
 
-			},
-			error: function (error) {
-				alert('Wystapil blad przy dodawaniu studenta/ów.');
-			},
-			complete: function() {
-				
+				} else { errorCounter++;}
 			}
-
-			});
-
+		}
 		}
 
-	}
+		if(errorCounter > 0) {
+
+			if (!($("div#error_msg").length > 0)) {
+				$('div#student_input').append('<div id="error_msg" class="form-group has-error"><label class="control-label">Część danych została wprowadzona w niewłaściwym formacie</label></div>');
+				$("div#error_msg").hide();
+				$("div#error_msg").fadeIn();
+			}
+		} else {
+			if ($("div#error_msg").length > 0) {
+				$('div#error_msg').fadeOut();
+			}
+		}
+
+		if(repetGlobalCounter > 0) {
+
+			if (!($("div#repet_msg").length > 0)) {
+				$('div#student_input').append('<div id="repet_msg" class="form-group has-warning"><label class="control-label">Niektóre dane zostały już wprowadzone</label></div>');
+				$("div#repet_msg").hide();
+				$("div#repet_msg").fadeIn();
+			}
+		} else {
+			if ($("div#repet_msg").length > 0) {
+				$('div#repet_msg').fadeOut();
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// 	var email_p = /(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/gm;
+	// 	var full_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+/gm;
+	// 	var elements = $();
+
+	// 	var emails = $('#student_list').val().match(email_p);
+	// 	var full_names = $('#student_list').val().match(full_name_p);
+
+	// 	var first_names = new Array();
+	// 	var last_names = new Array();
+
+	// 	for (var i = 0; i < full_names.length; i++) {
+
+	// 		full_names[i] = full_names[i].trim();
+
+	// 		var pieces = full_names[i].split(" ");
+	// 		first_names.push(pieces[0].trim());
+
+	// 		pieces.shift();
+
+	// 		last_names.push(pieces.join(" "));
+
+	// 	}
+
+	// 	if (emails != null && first_names != null && last_names != null) {
+
+	// 	for (var i = 0; i < emails.length; i++) {
+
+	// 		emails[i] = emails[i].replace("<", "").replace(">", "");
+
+	// 		$.ajax({
+
+	// 		type: "POST",
+	// 		url: "lib/Ajax/AjaxStudentAddingRequest.php",
+	// 		dataType: "JSON",
+	// 		data: {
+	// 			exam_id : String(window.location).split("examID=")[1],
+	// 			firstname : first_names[i],
+	// 			lastname : last_names[i],
+	// 			email : emails[i]
+	// 		},
+	// 		success: function (data) {
+
+	// 			if (data != null) {
+
+	// 				var nr = $('#students').find('tr').size();
+
+	// 				$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
+	// 				data[1] + '</td><td id="lastname">' + 
+	// 				data[2] + '</td><td id="email">' + 
+	// 				data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
+
+	// 				$('tr#'+data[0]).hide();
+	// 				$('tr#'+data[0]).fadeIn(500);
+
+	// 				$('#student_list').val("");
+	// 			}
+
+	// 		},
+	// 		error: function (error) {
+	// 			alert('Wystapil blad przy dodawaniu studenta/ów.');
+	// 		},
+	// 		complete: function() {
+				
+	// 		}
+
+	// 		});
+
+	// 	}
+
+	// }
 
 });
 
@@ -248,3 +353,46 @@ $(document).ready(function() {
 	});
 
 });
+
+function addStudent(fn, ln, em) {
+
+		$.ajax({
+
+			type: "POST",
+			url: "lib/Ajax/AjaxStudentAddingRequest.php",
+			dataType: "JSON",
+			data: {
+				exam_id : String(window.location).split("examID=")[1],
+				firstname : fn,
+				lastname : ln,
+				email : em
+			},
+			success: function (data) {
+
+				if (data != null) {
+
+					var nr = $('#students').find('tr').size();
+
+					$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
+					data[1] + '</td><td id="lastname">' + 
+					data[2] + '</td><td id="email">' + 
+					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
+
+					$('tr#'+data[0]).hide();
+					$('tr#'+data[0]).fadeIn(500);
+
+					$('#student_list').val("");
+				}
+
+			},
+			error: function (error) {
+				alert('Wystapil blad przy dodawaniu studenta/ów.');
+			},
+			complete: function() {
+				
+			}
+
+			});
+
+
+}

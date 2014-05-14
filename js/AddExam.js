@@ -178,8 +178,8 @@ $( document ).ready(function() {
 						if (repetCounter == 0) {
 							$('table#st').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">-</td><td id="ln">-</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
 						
-							$('#student_list').val($('#student_list').val().replace(parts[i] + ",", ""));
-							$('#student_list').val($('#student_list').val().replace(parts[i], ""));
+							$('#student_list').val($('#student_list').val().trim().replace(parts[i] + ",", ""));
+							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
 
 						} else {
 							repetGlobalCounter++;
@@ -202,8 +202,8 @@ $( document ).ready(function() {
 
 						if (repetCounter == 0) {
 							$('table#st').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">' + firstnameStr + '</td><td id="ln">' + lastnameStr + '</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
-							$('#student_list').val($('#student_list').val().replace(parts[i] + ",", ""));
-							$('#student_list').val($('#student_list').val().replace(parts[i], ""));
+							$('#student_list').val($('#student_list').val().trim().replace(parts[i] + ",", ""));
+							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
 
 						} else {
 							repetGlobalCounter++;
