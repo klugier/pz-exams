@@ -27,18 +27,18 @@
 						<div class="btn-group">
 							<button class="btn btn-info"><i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i><b> 
 						<?php
-									if (unserialize($_SESSION['USER'])->getFirstName() != NULL && unserialize($_SESSION['USER'])->getSurname() != NULL){
-										echo unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
+									if (unserialize($_SESSION['USER'])->getFirstName() != NULL || unserialize($_SESSION['USER'])->getSurname() != NULL){
+										echo ' '.unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
 									} else {
-										echo	'	'.unserialize($_SESSION['USER'])->getEmail();		
+										echo ' '.unserialize($_SESSION['USER'])->getEmail();		
 									}
 								//	TODO:	Jeżeli	użytkownik	posiada	imie	i/lub	nazwisko	należ	je	tutaj	wyświetlić	zamiast	adresu	email
 								
 						?></b></button>
 						
-						 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">	
+						<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">	
 							 <span class="caret"></span>
-							  </b></button>
+						</button>
 							  <ul class="dropdown-menu" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;">
 								<li><a href="AddExam.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-plus"></i>  <b>Dodaj egzamin</b></a></li>
 								<li><a href="ExamList.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-list"></i>  <b>Aktualne egzaminy</b></a></li>
