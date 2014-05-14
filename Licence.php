@@ -20,7 +20,7 @@
 
 		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="0">
-				<h3 class="panel-title">SecureImage<i id="g0" class="glyphicon glyphicon-list pull-right"></i></h3>
+				<h3 class="panel-title">SecureImage<i id="g0" style="cursor: pointer" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
 			<div class="panel-body" id="b0" style="display: none;">';
 				$filename = "lib\SecureImage\LICENSE.txt";
@@ -42,7 +42,7 @@
 
 		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="1">
-				<h3 class="panel-title">PHPMailer<i id="g1" class="glyphicon glyphicon-list pull-right"></i></h3>
+				<h3 class="panel-title">PHPMailer<i id="g1" style="cursor: pointer" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
 			<div class="panel-body" id="b1" style="display: none;">
 			PHPMailer was originally written in 2001 by Brent R. Matzelle as a [SourceForge project](<a href="http://sourceforge.net/projects/phpmailer/">http://sourceforge.net/projects/phpmailer/</a>).<br>
@@ -58,7 +58,7 @@
 
 		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="2">
-				<h3 class="panel-title">tFPDF<i id="g2" class="glyphicon glyphicon-list pull-right"></i></h3>
+				<h3 class="panel-title">tFPDF<i id="g2" style="cursor: pointer" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
 			<div class="panel-body" id="b2" style="display: none;">';
 				$filename = "lib/Utility/PDF/info.htm";
@@ -80,7 +80,7 @@
 
 		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="3">
-				<h3 class="panel-title">Bootstrap<i id="g3" class="glyphicon glyphicon-list pull-right"></i></h3>
+				<h3 class="panel-title">Bootstrap<i id="g3" style="cursor: pointer" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
 			<div class="panel-body" id="b3" style="display: none;">
 				Bootstrap.js by @fat & @mdo<br>
@@ -90,7 +90,7 @@
 
 		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="5">
-				<h3 class="panel-title">Bootstrap-datetimepicker<i id="g5" class="glyphicon glyphicon-list pull-right"></i></h3>
+				<h3 class="panel-title">Bootstrap-datetimepicker<i id="g5" style="cursor: pointer" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
 			<div class="panel-body" id="b5" style="display: none;">
 				Copyright 2012 Stefan Petre<br>
@@ -110,7 +110,7 @@
 
 		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="4">
-				<h3 class="panel-title">Bootbox<i id="g4" class="glyphicon glyphicon-list pull-right"></i></h3>
+				<h3 class="panel-title">Bootbox<i id="g4" style="cursor: pointer" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
 			<div class="panel-body" id="b4" style="display: none;">
 				bootbox.js v4.2.0<br>
@@ -118,7 +118,7 @@
 				</div></div>';
 		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="6">
-				<h3 class="panel-title">jQuery v1.11.0<i id="g6" class="glyphicon glyphicon-list pull-right"></i></h3>
+				<h3 class="panel-title">jQuery v1.11.0<i id="g6" style="cursor: pointer" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
 			<div class="panel-body" id="b6" style="display: none;">
 				jQuery v1.11.0<br>
@@ -127,7 +127,7 @@
 				</div></div>';
 		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="7">
-				<h3 class="panel-title">Ladda<i id="g7" class="glyphicon glyphicon-list pull-right"></i></h3>
+				<h3 class="panel-title">Ladda<i id="g7" style="cursor: pointer" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
 			<div class="panel-body" id="b7" style="display: none;">
 				Ladda<br>
@@ -145,7 +145,7 @@
 
 		echo '<div class="panel panel-default">
 			<div class="panel-heading" id="8">
-				<h3 class="panel-title">Images<i id="g8" class="glyphicon glyphicon-list pull-right"></i></h3>
+				<h3 class="panel-title">Images<i style="cursor: pointer" id="g8" class="glyphicon glyphicon-list pull-right"></i></h3>
 			</div>
 			<div class="panel-body" id="b8" style="display: none;">
 			Copyright (C) 2014 Michał Svitleslav Gawryluk
