@@ -1,6 +1,12 @@
+var char1 = "<";
+var char2 = ">";
+var separator = ",";
+
 $(document).ready(function() {
 
-	$("a[id^=send").click(function() {
+	$('button#add_students').attr("disabled", "disabled");
+
+	$('body').on( 'click', 'a#send', function(){
 		var studentID = $(this).parent().parent().first().attr('id');
 		var email = $(this).parent().parent().find("#emails").html();
 		
@@ -55,9 +61,9 @@ $(document).ready(function() {
 		var errorCounter = 0;
 		var repetGlobalCounter = 0;
 
-		var email_p = /[<]?(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))[>]?/gm;
+		var email_p = new RegExp("^[\\" + char1 + "]?[\\w-_\.+]*[\\w-_\.]\@([\\w]+\\.)+[\\w]+[\\w][\\" + char2 +"]?$", "gm");
 
-		var parts = $('#student_list').val().trim().split(",");
+		var parts = $('#student_list').val().trim().split(separator);
 
 		if (parts != null) {
 
@@ -67,10 +73,11 @@ $(document).ready(function() {
 
 				var elems = parts[i].trim().split(" ");
 
-				if (parts[i] != null & parts[i] != "") {
-				if (elems[elems.length-1].trim().match(email_p) != null) {
+				if (parts[i].trim() != "" && parts[i] != null) {
 
-					var emailToAppend = elems[elems.length-1].trim().replace("<", "").replace(">", "");
+				 if (elems[elems.length-1].trim().match(email_p) != null) {
+
+					var emailToAppend = elems[elems.length-1].trim().replace(char1, "").replace(char2, "");
 
 					if (elems.length == 1) {
 
@@ -112,7 +119,9 @@ $(document).ready(function() {
 						}
 					}
 
-				} else { errorCounter++;}
+				} else { 
+					errorCounter++;
+				}
 			}
 		}
 		}
@@ -199,7 +208,54 @@ $(document).ready(function() {
 		}
 	});
 
+	$('a#changeChars').click(function() {
+
+		if ($(this).text() == "Zmień") {
+
+			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 3%; margin-right: 0px;" maxlength="1"/>');
+			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 3%; margin-right: 0px;" maxlength="1"/>');
+			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 3%; margin-right: 0px;" maxlength="1"/>');
+		
+			$('a#changeChars').text('Zatwierdź');
+
+			$('button#add_students').attr('disabled', 'disabled');
+
+		} else {
+
+			char1 = $('#charToSet1').val();
+			char2 = $('#charToSet2').val();
+			separator = $('#separatorToSet').val();
+
+			$('span#char1').html(char1);
+			$('span#char2').html(char2);
+			$('span#separator').html(separator);
+
+			$('a#changeChars').text('Zmień');
+
+			$('button#add_students').removeAttr("disabled");
+		}
+	});
+
+	$('#student_list').keyup(function() {
+
+		if ($('#student_list').val().trim() == "") {
+			$('button#add_students').attr("disabled", "disabled");
+		} else {
+			$('button#add_students').removeAttr("disabled");
+		}
+	});
+
+	$('#student_list').change(function() {
+
+		if ($('#student_list').val().trim() == "") {
+			$('button#add_students').attr("disabled", "disabled");
+		} else {
+			$('button#add_students').removeAttr("disabled");
+		}
+	});
+
 });
+
 
 function addStudent(fn, ln, em) {
 

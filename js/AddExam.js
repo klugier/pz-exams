@@ -3,6 +3,10 @@ var first_names;
 var last_names;
 var counter = 0;
 
+var char1 = "<";
+var char2 = ">";
+var separator = ",";
+
 // GLOBAL FUNCTIONS SECTION BEGIN *********************************************************************************************************
 function go_to_stage2()
 {
@@ -150,9 +154,9 @@ $( document ).ready(function() {
 		var errorCounter = 0;
 		var repetGlobalCounter = 0;
 
-		var email_p = /[<]?(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))[>]?/gm;
+		var email_p = new RegExp("^[\\" + char1 + "]?[\\w-_\.+]*[\\w-_\.]\@([\\w]+\\.)+[\\w]+[\\w][\\" + char2 +"]?$", "gm");
 
-		var parts = $('#student_list').val().trim().split(",");
+		var parts = $('#student_list').val().trim().split(separator);
 
 		if (parts != null) {
 
@@ -162,7 +166,8 @@ $( document ).ready(function() {
 
 				var elems = parts[i].trim().split(" ");
 
-				if (parts[i] != null & parts[i] != "") {
+				if (parts[i].trim() != "" && parts[i] != null) {
+
 				if (elems[elems.length-1].trim().match(email_p) != null) {
 
 					var emailToAppend = elems[elems.length-1].trim().replace("<", "").replace(">", "");
@@ -178,7 +183,6 @@ $( document ).ready(function() {
 						if (repetCounter == 0) {
 							$('table#st').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">-</td><td id="ln">-</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
 						
-							$('#student_list').val($('#student_list').val().trim().replace(parts[i] + ",", ""));
 							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
 
 						} else {
@@ -202,7 +206,6 @@ $( document ).ready(function() {
 
 						if (repetCounter == 0) {
 							$('table#st').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">' + firstnameStr + '</td><td id="ln">' + lastnameStr + '</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
-							$('#student_list').val($('#student_list').val().trim().replace(parts[i] + ",", ""));
 							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
 
 						} else {
@@ -432,6 +435,34 @@ $( document ).ready(function() {
 		if ($('#student_list').val().trim() == "") {
 			$('button#add_students2').attr("disabled", "disabled");
 		} else {
+			$('button#add_students2').removeAttr("disabled");
+		}
+	});
+
+	$('a#changeChars').click(function() {
+
+		if ($(this).text() == "Zmień") {
+
+			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 2%; margin-right: 0px;" maxlength="1"/>');
+			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 2%; margin-right: 0px;" maxlength="1"/>');
+			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 2%; margin-right: 0px;" maxlength="1"/>');
+		
+			$('a#changeChars').text('Zatwierdź');
+
+			$('button#add_students2').attr('disabled', 'disabled');
+
+		} else {
+
+			char1 = $('#charToSet1').val();
+			char2 = $('#charToSet2').val();
+			separator = $('#separatorToSet').val();
+
+			$('span#char1').html(char1);
+			$('span#char2').html(char2);
+			$('span#separator').html(separator);
+
+			$('a#changeChars').text('Zmień');
+
 			$('button#add_students2').removeAttr("disabled");
 		}
 	});

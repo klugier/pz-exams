@@ -48,7 +48,9 @@
 			Przed każdym z nich możesz opcjonalnie umieścić imię i nazwisko studenta.
 		</p>
         <div id="student_input" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
-		<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: &lt;adres e-mail&gt;,</label>
+			<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: <span id="char1">&lt;</span>adres e-mail<span id="char2">&gt;</span><span id="separator">,</span>
+				<a id="changeChars" style="cursor: pointer;">Zmień</a>
+			</label>
 			<textarea class="form-control" rows="6" id="student_list" style="resize: vertical"></textarea>
 		</div>
       </div>
