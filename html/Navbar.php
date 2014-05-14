@@ -25,7 +25,7 @@
 				<li	class="navbar-form"	style="padding-right:	0px;">
 					<form	action="UserSite.php">
 						<div class="btn-group">
-							<button type="button" class="btn btn-info"><i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i><b> 
+							<button class="btn btn-info"><i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i><b> 
 							<?php
 								if (unserialize($_SESSION['USER'])->getFirstName() != NULL || unserialize($_SESSION['USER'])->getSurname() != NULL){
 									echo ' '.unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
@@ -35,7 +35,7 @@
 							?>
 							</b></button>
 						
-							<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">	
+							<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">	
 								<span class="caret"></span>
 								<b></b>
 							</button>
