@@ -1,7 +1,7 @@
 <div id="stage3">
 	<h2>Lista studentów</h2>
 		<p id="exam_info" style="margin-top: 20px;">
-			Umieść w ponizszym polu listę studentów, którzy moga przystąpic do egzaminu. Poszczególne adresy oddzielaj określonym w formacie separatorem.
+			Umieść w poniższym polu listę studentów, którzy mogą przystąpić do egzaminu. Poszczególne adresy oddzielaj określonym w formacie separatorem.
 			Przed każdym z nich możesz opcjonalnie umieścić imię i nazwisko studenta.
 		</p>
 			<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: &lt;adres e-mail&gt;,</label>

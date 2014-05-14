@@ -7,8 +7,8 @@
 		$email = $_POST['email'];
 		$exam_id = $_POST['exam_id'];
 
-		$firstname = '';
-		$lastname = '';
+		$firstname = $_POST['firstname'];
+		$lastname = $_POST['lastname'];
 
 		/*if (strpos(explode('@', $email)[0], '.') !== false) {
 			$firstname = ucfirst(explode('.', $email)[0]);
@@ -44,7 +44,7 @@
 			header('Content-Type: application/json');
 			echo json_encode($array);
 
-		} else if (StudentDatabase::getStudentID($student) != null) {
+		} else if (StudentDatabase::getStudentID($student) != null && RecordDatabase::getRecordID($exam_id, StudentDatabase::getStudentID($student)) == null) {
 
 			$student_id = StudentDatabase::getStudentID($student);
 

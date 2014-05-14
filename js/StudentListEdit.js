@@ -20,7 +20,7 @@ $(document).ready(function() {
 				}
 			},
 			error: function (error) {
-				alert('Wystapil blad przy wysyłaniu maila!');
+				alert('Wystąpil błąd przy wysyłaniu maila!');
 			},
 			complete: function() {
 			}
@@ -74,15 +74,14 @@ $(document).ready(function() {
 
 					if (elems.length == 1) {
 
-						$('tr.student').each(function(index, element) {
-							if ($(element).find('#em').text() == emailToAppend) {
+						$('.student').each(function(index, element) {
+							if ($(element).find('#emails').text() == emailToAppend) {
 								repetCounter++;
 							}
 						});
 
 						if (repetCounter == 0) {
 							addStudent("", "", emailToAppend);
-							$('#student_list').val($('#student_list').val().trim().replace(parts[i] + ",", ""));
 							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
 
 						} else {
@@ -98,15 +97,14 @@ $(document).ready(function() {
 							lastnameStr += " " + elems[j].trim();
 						}
 
-						$('tr.student').each(function(index, element) {
-							if ($(element).find('#em').text() == emailToAppend) {
+						$('.student').each(function(index, element) {
+							if ($(element).find('#emails').text() == emailToAppend) {
 								repetCounter++;
 							}
 						});
 
 						if (repetCounter == 0) {
 							addStudent(firstnameStr, lastnameStr, emailToAppend);
-							$('#student_list').val($('#student_list').val().trim().replace(parts[i] + ",", ""));
 							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
 
 						} else {
@@ -145,159 +143,8 @@ $(document).ready(function() {
 			}
 		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-	// 	var email_p = /(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/gm;
-	// 	var full_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+/gm;
-	// 	var elements = $();
-
-	// 	var emails = $('#student_list').val().match(email_p);
-	// 	var full_names = $('#student_list').val().match(full_name_p);
-
-	// 	var first_names = new Array();
-	// 	var last_names = new Array();
-
-	// 	for (var i = 0; i < full_names.length; i++) {
-
-	// 		full_names[i] = full_names[i].trim();
-
-	// 		var pieces = full_names[i].split(" ");
-	// 		first_names.push(pieces[0].trim());
-
-	// 		pieces.shift();
-
-	// 		last_names.push(pieces.join(" "));
-
-	// 	}
-
-	// 	if (emails != null && first_names != null && last_names != null) {
-
-	// 	for (var i = 0; i < emails.length; i++) {
-
-	// 		emails[i] = emails[i].replace("<", "").replace(">", "");
-
-	// 		$.ajax({
-
-	// 		type: "POST",
-	// 		url: "lib/Ajax/AjaxStudentAddingRequest.php",
-	// 		dataType: "JSON",
-	// 		data: {
-	// 			exam_id : String(window.location).split("examID=")[1],
-	// 			firstname : first_names[i],
-	// 			lastname : last_names[i],
-	// 			email : emails[i]
-	// 		},
-	// 		success: function (data) {
-
-	// 			if (data != null) {
-
-	// 				var nr = $('#students').find('tr').size();
-
-	// 				$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
-	// 				data[1] + '</td><td id="lastname">' + 
-	// 				data[2] + '</td><td id="email">' + 
-	// 				data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
-
-	// 				$('tr#'+data[0]).hide();
-	// 				$('tr#'+data[0]).fadeIn(500);
-
-	// 				$('#student_list').val("");
-	// 			}
-
-	// 		},
-	// 		error: function (error) {
-	// 			alert('Wystapil blad przy dodawaniu studenta/ów.');
-	// 		},
-	// 		complete: function() {
-				
-	// 		}
-
-	// 		});
-
-	// 	}
-
-	// }
-
 });
 
-
-	$('body').on( "click", 'button#add', function(){
-
-		var email_pattern =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-		// if ($('input#firstname').val().trim() == '') {
-		// 	$('div#fn').attr('class', 'form-group has-error');
-		// } else {
-		// 	$('div#fn').attr('class', 'form-group');
-		// }
-
-		// if ($('input#lastname').val().trim() == '') {
-		// 	$('div#ln').attr('class', 'form-group has-error');
-		// } else {
-		// 	$('div#ln').attr('class', 'form-group');
-		// }
-
-		if ($('input#email').val().trim() == '' || !(email_pattern.test($('input#email').val().trim()))) {
-			$('div#em').attr('class', 'input-group has-error');
-		} else {
-			$('div#em').attr('class', 'input-group');
-		}
-
-		if(
-			//$('input#firstname').val().trim() != '' && $('input#lastname').val().trim() != '' && 
-			$('input#email').val().trim() != '' && email_pattern.test($('input#email').val().trim()))
-		{
-
-			$.ajax({
-
-			type: "POST",
-			url: "lib/Ajax/AjaxStudentAddingRequest.php",
-			dataType: "JSON",
-			data: {
-				exam_id : String(window.location).split("examID=")[1],
-				//firstname : $('input#firstname').val().trim(),
-				//lastname : $('input#lastname').val().trim(),
-				email : $('input#email').val().trim()
-			},
-			success: function (data) {
-
-				var nr = $('#students').find('tr').size();
-
-				$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
-					data[1] + '</td><td id="lastname">' + 
-					data[2] + '</td><td id="emails">' + 
-					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Usuń studenta" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
-				
-				$('#' + data[0]).hide();
-				$('#' + data[0]).fadeIn(500);
-
-				//$('input#firstname').val("");
-				$('input#lastname').val("");
-				$('input#email').val("");
-
-			},
-			error: function (error) {
-				alert('Wystapil blad przy dodawaniu studenta/ów.');
-			},
-			complete: function() {
-				
-			}
-
-			});
-
-		}
-
-	});
 
 		$('body').on( "click", 'i#remove', function(){
 
@@ -372,10 +219,24 @@ function addStudent(fn, ln, em) {
 				if (data != null) {
 
 					var nr = $('#students').find('tr').size();
+					var first = "";
+					var last = "";
 
-					$('table#students tbody').append('<tr id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
-					data[1] + '</td><td id="lastname">' + 
-					data[2] + '</td><td id="email">' + 
+					if (data[1] == "") {
+						first = "-";
+					} else {
+						first = data[1];
+					}
+
+					if (data[2] == "") {
+						last = "-";
+					} else {
+						last = data[2];
+					}
+
+					$('table#students tbody').append('<tr class="student" id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
+					first + '</td><td id="lastname">' + 
+					last + '</td><td id="emails">' + 
 					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
 
 					$('tr#'+data[0]).hide();
