@@ -48,7 +48,7 @@
 			Przed każdym z nich możesz opcjonalnie umieścić imię i nazwisko studenta.
 		</p>
         <div id="student_input" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
-		<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: imię nazwisko &lt;adres e-mail&gt;</label>
+		<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: &lt;adres e-mail&gt;,</label>
 			<textarea class="form-control" rows="6" id="student_list" style="resize: vertical"></textarea>
 		</div>
       </div>
@@ -89,8 +89,20 @@
 		foreach ($studentList as $number => $student) {
 			echo '<tr class="student" id="' . $student->getID() . '">';
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
-			echo '<td id="firstname">' . $student->getFirstName() . '</td>';
-			echo '<td id="lastname">' . $student->getSurname() . '</td>';
+
+			$fName = "-";
+			$lName = "-";
+
+			if ($student->getFirstName() != "") {
+				$fName = $student->getFirstName();
+			}
+
+			if ($student->getSurname() != "") {
+				$lName = $student->getSurname();
+			}
+
+			echo '<td id="firstname">' . $fName . '</td>';
+			echo '<td id="lastname">' . $lName . '</td>';
 			echo '<td id="emails">' . $student->getEmail() . '</td>';
 			echo '<td style="text-align: center;">';
 			
