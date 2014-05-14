@@ -7,8 +7,11 @@
 	include("html/Begin.php");
 
 	echo '<div class="container">
-		<h2>Licencje użytych technologii.</h2>';
-
+		<h2>Licencje użytych technologii</h2>';
+	echo '<p>' . $appName . ' to projekt wykorzystujący najnowocześniejsze technologię open source. Na nimniejszej stronie znajduje się ich kompletna lista.' . '</p>';
+	echo '<hr />';
+	
+	
 	echo '<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">BSD</h3>
