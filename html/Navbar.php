@@ -27,11 +27,11 @@
 						<div class="btn-group">
 							<button class="btn btn-info"><i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i><b> 
 							<?php
-								if (unserialize($_SESSION['USER'])->getFirstName() != NULL || unserialize($_SESSION['USER'])->getSurname() != NULL){
-									echo ' '.unserialize($_SESSION['USER'])->getFirstName().' '.unserialize($_SESSION['USER'])->getSurname();
-								} else {
-									echo ' '.unserialize($_SESSION['USER'])->getEmail();		
-								}
+								$user = unserialize($_SESSION['USER']);
+								if ($user->getFirstName() != NULL && $user->getSurname() != NULL)
+									echo ' ' . $user->getFirstName() . ' ' . $user->getSurname();
+								else
+									echo ' ' . $user->getEmail();
 							?>
 							</b></button>
 						
