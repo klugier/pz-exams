@@ -85,6 +85,8 @@ $( document ).ready(function() {
 
 	Ladda.bind('button#confirm');
 
+	$('button#add_students2').attr("disabled", "disabled");
+
 	$('#stage2').hide();
 	$('#stage3').hide();
 
@@ -143,59 +145,101 @@ $( document ).ready(function() {
 		
 	})
 
-	$('button#add_students').click( function(){
+	$('button#add_students2').click( function(){
 
-		$(this).attr("disabled", "disabled");
+		var errorCounter = 0;
+		var repetGlobalCounter = 0;
 
-		var email_p = /<(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))>/gm;
-		var full_name_p = /[a-zA-Z\-\'\sżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[\s]+/gm;
-		var elements = $();
+		var email_p = /[<]?(([^()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))[>]?/gm;
 
-		if ($('#student_list').val().trim() != '') {
+		var parts = $('#student_list').val().trim().split(",");
 
-			emails = $('#student_list').val().match(email_p);
-			var full_names = $('#student_list').val().match(full_name_p);
+		if (parts != null) {
 
-			first_names = new Array();
-			last_names = new Array();
+			for(var i = 0; i < parts.length; i++) {
 
-			if (full_names != null) {
+				var repetCounter = 0;
 
-				for (var i = 0; i < full_names.length; i++) {
+				var elems = parts[i].trim().split(" ");
 
-					full_names[i] = full_names[i].trim();
+				if (parts[i] != null & parts[i] != "") {
+				if (elems[elems.length-1].trim().match(email_p) != null) {
 
-					var pieces = full_names[i].split(" ");
-					first_names.push(pieces[0].trim());
+					var emailToAppend = elems[elems.length-1].trim().replace("<", "").replace(">", "");
 
-					pieces.shift();
+					if (elems.length == 1) {
 
-					last_names.push(pieces.join(" "));
+						$('tr.student').each(function(index, element) {
+							if ($(element).find('#em').text() == emailToAppend) {
+								repetCounter++;
+							}
+						});
 
-				}
+						if (repetCounter == 0) {
+							$('table#st').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">-</td><td id="ln">-</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
+						
+							$('#student_list').val($('#student_list').val().replace(parts[i] + ",", ""));
+							$('#student_list').val($('#student_list').val().replace(parts[i], ""));
 
+						} else {
+							repetGlobalCounter++;
+						}
+
+					} else {
+
+						var firstnameStr = elems[0].trim();
+						var lastnameStr = "";
+
+						for (var j = 1; j < elems.length-1; j++) {
+							lastnameStr += " " + elems[j].trim();
+						}
+
+						$('tr.student').each(function(index, element) {
+							if ($(element).find('#em').text() == emailToAppend) {
+								repetCounter++;
+							}
+						});
+
+						if (repetCounter == 0) {
+							$('table#st').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">' + firstnameStr + '</td><td id="ln">' + lastnameStr + '</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
+							$('#student_list').val($('#student_list').val().replace(parts[i] + ",", ""));
+							$('#student_list').val($('#student_list').val().replace(parts[i], ""));
+
+						} else {
+							repetGlobalCounter++;
+						}
+					}
+
+				} else { errorCounter++;}
 			}
-
-				if (emails != null && first_names != null && last_names != null) {
-
-				for (var i = 0; i < emails.length; i++) {
-					emails[i] = emails[i].replace("<", "").replace(">", "");
-					elements = elements.add('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">' + first_names[i] + '</td><td id="ln">' + last_names[i] + '</td><td id="em">' + emails[i].replace("<", "").replace(">", "") + ')</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
-
-				}
-
-				$('#student_list').val("");
-
-				$('table#st').append(elements);
-
-				$('.student').hide();
-				$('.student').fadeIn(500);
-
-			}
-
+		}
 		}
 
-		$(this).removeAttr("disabled");
+		if(errorCounter > 0) {
+
+			if (!($("div#error_msg").length > 0)) {
+				$('div#student_input').append('<div id="error_msg" class="form-group has-error"><label class="control-label">Część danych została wprowadzona w niewłaściwym formacie</label></div>');
+				$("div#error_msg").hide();
+				$("div#error_msg").fadeIn();
+			}
+		} else {
+			if ($("div#error_msg").length > 0) {
+				$('div#error_msg').fadeOut();
+			}
+		}
+
+		if(repetGlobalCounter > 0) {
+
+			if (!($("div#repet_msg").length > 0)) {
+				$('div#student_input').append('<div id="repet_msg" class="form-group has-warning"><label class="control-label">Niektóre dane zostały już wprowadzone</label></div>');
+				$("div#repet_msg").hide();
+				$("div#repet_msg").fadeIn();
+			}
+		} else {
+			if ($("div#repet_msg").length > 0) {
+				$('div#repet_msg').fadeOut();
+			}
+		}
 
 	});
 
@@ -365,6 +409,7 @@ $( document ).ready(function() {
 
 		$('tr#' + st_id).hide(300, function(){ 
 			$('tr#' + st_id).remove(); 
+			counter--;
 
 			$('td#number').each(function(index) {
 				$(this).text((index+1) + '.');
@@ -372,4 +417,23 @@ $( document ).ready(function() {
 		});
 
 	});
+
+	$('#student_list').keyup(function() {
+
+		if ($('#student_list').val().trim() == "") {
+			$('button#add_students2').attr("disabled", "disabled");
+		} else {
+			$('button#add_students2').removeAttr("disabled");
+		}
+	});
+
+	$('#student_list').change(function() {
+
+		if ($('#student_list').val().trim() == "") {
+			$('button#add_students2').attr("disabled", "disabled");
+		} else {
+			$('button#add_students2').removeAttr("disabled");
+		}
+	});
+
 });

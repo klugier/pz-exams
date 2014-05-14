@@ -1,13 +1,16 @@
 <div id="stage3">
 	<h2>Lista studentów</h2>
-		<p id="exam_info" style="margin-top: 20px;">Podaj listę studentów, którzy będą mogli się rejestrować na ten egzamin.</p>
-			<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: imię nazwisko &lt;adres e-mail&gt;</label>
+		<p id="exam_info" style="margin-top: 20px;">
+			Umieść w ponizszym polu listę studentów, którzy moga przystąpic do egzaminu. Poszczególne adresy oddzielaj określonym w formacie separatorem.
+			Przed każdym z nich możesz opcjonalnie umieścić imię i nazwisko studenta.
+		</p>
+			<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: &lt;adres e-mail&gt;,</label>
 			<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px;">
 	
-			<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
-			<textarea class="form-control" rows="3" id="student_list" style="resize: vertical"></textarea>
+			<div id="student_input" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
+			<textarea class="form-control" rows="5" id="student_list" style="resize: vertical"></textarea>
 			<span class="pull-right">
-				<button type="button" class="btn btn-primary btn-sm" id="add_students" style="margin-top: 10px;">Dodaj</button>
+				<button type="button" class="btn btn-primary btn-sm" id="add_students2" style="margin-top: 10px;">Dodaj</button>
 			</span>
 		</div>
 
