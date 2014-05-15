@@ -64,7 +64,27 @@
 <!-- Modal - end -->
 
 <div style="margin-top: 5%;">
-	<table class="table" id="students">
+	
+<?php
+	$studentIDList = RecordDatabase::getStudentIDList($id);
+	$studentList = null;
+	$tableDisplay = "";
+	
+	if (is_array($studentIDList)) {
+		$i = 0;
+		foreach ($studentIDList as $studentID) {
+			$studentList[$i++] = StudentDatabase::getStudentByID($studentID);
+		}
+	}
+
+	if (!is_array($studentIDList)) {
+		$tableDisplay = 'style="display: none;"';
+
+		echo '<h3 id="empty_list" style="text-align: center; margin-bottom: 4%;">Lista studentów jest obecnie pusta</h3>';
+	}
+
+		echo 
+		'<table class="table" id="students"' . $tableDisplay . '>
 		<thead>
 			<tr>
 				<th style="text-align: center;">Lp.</th>
@@ -74,20 +94,10 @@
 				<th style="text-align:center;">Operacje</th>
 			</tr>
 		</thead>
-	<tbody>
-	
-<?php
-	$studentIDList = RecordDatabase::getStudentIDList($id);
-	$studentList = null;
-	
-	if (is_array($studentIDList)) {
-		$i = 0;
-		foreach ($studentIDList as $studentID) {
-			$studentList[$i++] = StudentDatabase::getStudentByID($studentID);
-		}
-	}
+		<tbody>';
 
-	if (is_array($studentIDList)) {
+		if (is_array($studentIDList)) {
+
 		foreach ($studentList as $number => $student) {
 			echo '<tr class="student" id="' . $student->getID() . '">';
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';

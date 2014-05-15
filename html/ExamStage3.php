@@ -21,7 +21,19 @@
 		</div>
 
 		<div class="container col-md-12" style="margin-top: 20px; padding-left: 0px; padding-right: 0px;">
-		<table class="table" id="st"></table>
+		<h3 id="empty_list" style="text-align: center; margin-bottom: 4%;">Lista studentów jest obecnie pusta</h3>
+		<table class="table" id="st" style="display: none;">
+			<thead>
+				<tr>
+					<th>Lp.</th>
+					<th>Imię</th>
+					<th>Nazwisko</th>
+					<th>E-mail</th>
+					<th>Operacje</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
 
 
 		<hr/>

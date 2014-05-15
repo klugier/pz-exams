@@ -56,6 +56,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+
 	$('button#add_students').click( function(){
 
 		var errorCounter = 0;
@@ -173,6 +174,12 @@ $(document).ready(function() {
 				if (data)
 				{
 
+					var isEmpty = false;
+
+					if ($('tbody .student').length == 1) {
+						isEmpty = true;
+					}
+
 					$('tr#' + st_id).hide(300, function(){ 
 						$('tr#' + st_id).remove(); 
 
@@ -181,6 +188,14 @@ $(document).ready(function() {
 					});
 
 					});
+
+					if (isEmpty) {
+						$('#empty_list').fadeIn();
+
+						$('#students').css('display', 'none');
+					}
+
+
 				}
 
 			},
@@ -195,18 +210,6 @@ $(document).ready(function() {
 
 	});
 
-	$('#add_one_student').click(function() {
-
-		if (!$('#mail_div').length)
-		{
-			$('#buttons').append('<div id="mail_div" class="col-lg-4"><div id="em" class="input-group"><input id="email" type="text" class="form-control input-sm" maxlength="50"><span class="input-group-btn"><button id="add" class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-plus"></span></button></span></div></div></div>');
-			$('#mail_div').hide();
-			$('#mail_div').fadeIn(400);
-
-			$('#email').focus();
-
-		}
-	});
 
 	$('a#changeChars').click(function() {
 
@@ -299,6 +302,10 @@ function addStudent(fn, ln, em) {
 					$('tr#'+data[0]).fadeIn(500);
 
 					$('#student_list').val("");
+
+					$('#empty_list').fadeOut();
+
+					$('#students').css('display', '');
 				}
 
 			},

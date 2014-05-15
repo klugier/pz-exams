@@ -181,8 +181,14 @@ $( document ).ready(function() {
 						});
 
 						if (repetCounter == 0) {
-							$('table#st').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">-</td><td id="ln">-</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
-						
+							$('table#st').css('display', '');
+							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">-</td><td id="ln">-</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
+							
+							$('.student:last').hide();
+							$('.student:last').fadeIn();
+
+							$('#empty_list').css('display', 'none');
+
 							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
 
 						} else {
@@ -205,7 +211,14 @@ $( document ).ready(function() {
 						});
 
 						if (repetCounter == 0) {
-							$('table#st').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">' + firstnameStr + '</td><td id="ln">' + lastnameStr + '</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
+							$('table#st').css('display', '');
+							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">' + firstnameStr + '</td><td id="ln">' + lastnameStr + '</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
+							
+							$('.student:last').hide();
+							$('.student:last').fadeIn();
+
+							$('#empty_list').css('display', 'none');
+
 							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
 
 						} else {
@@ -410,6 +423,12 @@ $( document ).ready(function() {
 
 		var st_id = $(this).parent().parent().parent().first().attr('id');
 
+		var isEmpty = false;
+
+		if ($('tbody .student').length == 1) {
+			isEmpty = true;
+		}
+
 		$('tr#' + st_id).hide(300, function(){ 
 			$('tr#' + st_id).remove(); 
 			counter--;
@@ -418,6 +437,12 @@ $( document ).ready(function() {
 				$(this).text((index+1) + '.');
 			});
 		});
+
+		if (isEmpty) {
+			$('#empty_list').fadeIn();
+
+			$('#st').css('display', 'none');
+		}
 
 	});
 
