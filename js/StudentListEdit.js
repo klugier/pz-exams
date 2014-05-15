@@ -1,6 +1,7 @@
 var char1 = "<";
 var char2 = ">";
 var separator = ",";
+var emailsAdded = new Array();
 
 $(document).ready(function() {
 
@@ -60,7 +61,7 @@ $(document).ready(function() {
 	$('button#add_students').click( function(){
 
 		var errorCounter = 0;
-		var repetGlobalCounter = 0;
+		var rep = false;
 
 		var email_p = new RegExp("^[\\" + char1 + "]?[\\w-_\.+]*[\\w-_\.]\@([\\w]+\\.)+[\\w]+[\\w][\\" + char2 +"]?$", "gm");
 
@@ -78,23 +79,33 @@ $(document).ready(function() {
 
 				 if (elems[elems.length-1].trim().match(email_p) != null) {
 
+				 	var repThis = false;
+
 					var emailToAppend = elems[elems.length-1].trim().replace(char1, "").replace(char2, "");
+					emailsAdded.push(emailToAppend);
+
+					for (var g = 0; g < emailsAdded.length-1; g++) {
+						if (emailToAppend.trim() == emailsAdded[g]) {
+							rep = true;
+						}
+					}
+
+					for (var g = 0; g < emailsAdded.length-1; g++) {
+						if (emailToAppend.trim() == emailsAdded[g]) {
+							repThis = true;
+					}}
 
 					if (elems.length == 1) {
 
-						$('.student').each(function(index, element) {
-							if ($(element).find('#emails').text() == emailToAppend) {
-								repetCounter++;
-							}
-						});
-
-						if (repetCounter == 0) {
 							addStudent("", "", emailToAppend);
-							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
+												
+							if (!repThis) {				
+								var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
+								$('#student_list').val($('#student_list').val().trim().replace(textToReplace, "")); 
+							}
 
-						} else {
-							repetGlobalCounter++;
-						}
+							$('#student_list').val($('#student_list').val().trim());
+
 
 					} else {
 
@@ -105,19 +116,14 @@ $(document).ready(function() {
 							lastnameStr += " " + elems[j].trim();
 						}
 
-						$('.student').each(function(index, element) {
-							if ($(element).find('#emails').text() == emailToAppend) {
-								repetCounter++;
-							}
-						});
-
-						if (repetCounter == 0) {
-							addStudent(firstnameStr, lastnameStr, emailToAppend);
-							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
-
-						} else {
-							repetGlobalCounter++;
+						addStudent(firstnameStr, lastnameStr, emailToAppend);
+					 							
+					 	if (!repThis) {
+					 		var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
+							$('#student_list').val($('#student_list').val().trim().replace(textToReplace, ""));
 						}
+
+						$('#student_list').val($('#student_list').val().trim()); 
 					}
 
 				} else { 
@@ -140,7 +146,7 @@ $(document).ready(function() {
 			}
 		}
 
-		if(repetGlobalCounter > 0) {
+		if(rep) {
 
 			if (!($("div#repet_msg").length > 0)) {
 				$('div#student_input').append('<div id="repet_msg" class="form-group has-warning"><label class="control-label">Niektóre dane zostały już wprowadzone</label></div>');
@@ -301,11 +307,10 @@ function addStudent(fn, ln, em) {
 					$('tr#'+data[0]).hide();
 					$('tr#'+data[0]).fadeIn(500);
 
-					$('#student_list').val("");
-
 					$('#empty_list').fadeOut();
 
 					$('#students').css('display', '');
+
 				}
 
 			},
@@ -318,5 +323,5 @@ function addStudent(fn, ln, em) {
 
 			});
 
-
+	
 }

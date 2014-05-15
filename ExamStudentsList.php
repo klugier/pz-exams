@@ -68,7 +68,7 @@
 <?php
 	$studentIDList = RecordDatabase::getStudentIDList($id);
 	$studentList = null;
-	$tableDisplay = "";
+	$display = "";
 	
 	if (is_array($studentIDList)) {
 		$i = 0;
@@ -78,18 +78,16 @@
 	}
 
 	if (!is_array($studentIDList)) {
-		$tableDisplay = 'style="display: none;"';
-
-		echo '<h3 id="empty_list" style="text-align: center; margin-bottom: 4%;">Lista studentów jest obecnie pusta</h3>';
+		$display = 'style="display: none;"';
 	}
 
-		echo 
-		'<table class="table" id="students"' . $tableDisplay . '>
+		echo '<h3 id="empty_list" style="text-align: center; margin-bottom: 4%;"' . $display . '>Lista studentów jest obecnie pusta</h3>
+		<table class="table" id="students"' . $display . '>
 		<thead>
 			<tr>
 				<th style="text-align: center;">Lp.</th>
-				<th style="width: 20%;">Imię</th>
-				<th style="width: 20%;">Nazwisko</th>
+				<th style="width: 26%;">Imię</th>
+				<th style="width: 26%;">Nazwisko</th>
 				<th>E-mail</th>
 				<th style="text-align:center;">Operacje</th>
 			</tr>
@@ -118,8 +116,8 @@
 			echo '<td id="emails">' . $student->getEmail() . '</td>';
 			echo '<td style="text-align: center;">';
 			
-			echo '<a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a>'; // <- To trzeba zaimplementować przy pomocy ajax-a...
-			echo '<a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a>'; // <- To tak samo...
+			echo '<a title="Usuń studenta" style="cursor: pointer; margin-right: 12px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a>';
+			echo '<a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a>';
 			echo '</td>';
 			echo '</tr>';
 		}

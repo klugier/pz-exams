@@ -38,7 +38,7 @@
 				0 => $new_student_id,
 				1 => $firstname,
 				2 => $lastname,
-				3 => $email
+				3 => $email,
 			];
 
 			header('Content-Type: application/json');
@@ -64,7 +64,7 @@
 				0 => $student_id,
 				1 => $student->getFirstName(),
 				2 => $student->getSurName(),
-				3 => $student->getEmail()
+				3 => $student->getEmail(),
 			];
 
 			header('Content-Type: application/json');

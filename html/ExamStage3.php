@@ -10,7 +10,7 @@
 			<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px;">
 	
 			<div id="student_input" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
-			<textarea class="form-control" rows="5" id="student_list" style="resize: vertical"></textarea>
+			<textarea class="form-control" rows="6" id="student_list" style="resize: vertical"></textarea>
 			<span class="pull-right">
 				<button type="button" class="btn btn-primary btn-sm" id="add_students2" style="margin-top: 10px;">Dodaj</button>
 			</span>
@@ -25,11 +25,11 @@
 		<table class="table" id="st" style="display: none;">
 			<thead>
 				<tr>
-					<th>Lp.</th>
-					<th>Imię</th>
-					<th>Nazwisko</th>
+					<th style="text-align: center; width: 5%;">Lp.</th>
+					<th style="width: 28%;">Imię</th>
+					<th style="width: 28%;">Nazwisko</th>
 					<th>E-mail</th>
-					<th>Operacje</th>
+					<th style="text-align:center; width: 5%;">Operacje</th>
 				</tr>
 			</thead>
 			<tbody></tbody>

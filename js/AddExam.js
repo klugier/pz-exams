@@ -182,14 +182,18 @@ $( document ).ready(function() {
 
 						if (repetCounter == 0) {
 							$('table#st').css('display', '');
-							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">-</td><td id="ln">-</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
+							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number" style="text-align: center;">' + counter + '.</td><td id="fn">-</td><td id="ln">-</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-left: 38%;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
 							
 							$('.student:last').hide();
 							$('.student:last').fadeIn();
 
 							$('#empty_list').css('display', 'none');
 
-							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
+							var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
+
+							$('#student_list').val($('#student_list').val().trim().replace(textToReplace, ""));
+
+							$('#student_list').val($('#student_list').val().trim());
 
 						} else {
 							repetGlobalCounter++;
@@ -212,14 +216,18 @@ $( document ).ready(function() {
 
 						if (repetCounter == 0) {
 							$('table#st').css('display', '');
-							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number">' + counter + '.</td><td id="fn">' + firstnameStr + '</td><td id="ln">' + lastnameStr + '</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-right: 5px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
+							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number" style="text-align: center;">' + counter + '.</td><td id="fn">' + firstnameStr + '</td><td id="ln">' + lastnameStr + '</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-left: 38%;"><i id="remove" class="glyphicon glyphicon-trash" style="text-align: center;"></i></a></td></tr>');
 							
 							$('.student:last').hide();
 							$('.student:last').fadeIn();
 
 							$('#empty_list').css('display', 'none');
 
-							$('#student_list').val($('#student_list').val().trim().replace(parts[i], ""));
+							var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
+
+							$('#student_list').val($('#student_list').val().trim().replace(textToReplace, ""));
+
+							$('#student_list').val($('#student_list').val().trim());
 
 						} else {
 							repetGlobalCounter++;
