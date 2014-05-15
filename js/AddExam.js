@@ -7,6 +7,8 @@ var char1 = "<";
 var char2 = ">";
 var separator = ",";
 
+var emailsAdded = new Array();
+
 // GLOBAL FUNCTIONS SECTION BEGIN *********************************************************************************************************
 function go_to_stage2()
 {
@@ -64,9 +66,7 @@ function go_to_stage2()
 	}
 
 	$('#stage1').hide(300);
-
-	$('#stages').append($('#stage2'));
-	$('#stage3').show(400);
+	$('#stage2').show(400);
 
 	$('li#exam_option1').css("font-weight", "bold");
 	$('li#exam_option0').css("font-weight", "");
@@ -75,7 +75,7 @@ function go_to_stage2()
 
 function back_to_stage1()
 {
-	$('#stage3').hide(300);
+	$('#stage2').hide(300);
 
 	$('#stages').append($('#stage1').show(400));
 
@@ -89,13 +89,12 @@ $( document ).ready(function() {
 
 	Ladda.bind('button#confirm');
 
-	$('button#add_students2').attr("disabled", "disabled");
+	$('button#add_students').attr("disabled", "disabled");
 
 	$('#stage2').hide();
-	$('#stage3').hide();
 
 	$('input#exam_duration').keyup(function () { 
-				this.value = this.value.replace(/[^0-9\.]/g,'');
+		this.value = this.value.replace(/[^0-9\.]/g,'');
 	});
 
 	$('button#prev1').click(function () {
@@ -105,29 +104,6 @@ $( document ).ready(function() {
 	$('button#next1').click(function () {
 
 		go_to_stage2();
-
-	});
-
-	$('button#next2').click(function () {
-
-		$('#stage2').hide(300);
-
-
-		$('#stages').append($('#stage3').show(400));
-
-		$('li#exam_option3').css("font-weight", "bold");
-		$('li#exam_option2').css("font-weight", "");
-
-	});
-
-	$('button#prev1').click(function () {
-
-		$('#stage2').hide(300);
-
-		$('#stages').append($('#stage1').show(400));
-
-		$('li#exam_option1').css("font-weight", "bold");
-		$('li#exam_option2').css("font-weight", "");
 
 	});
 
@@ -149,7 +125,9 @@ $( document ).ready(function() {
 		
 	})
 
-	$('button#add_students2').click( function(){
+	$('button#add_students').click( function(){
+
+		var rep = false;
 
 		var errorCounter = 0;
 		var repetGlobalCounter = 0;
@@ -170,17 +148,22 @@ $( document ).ready(function() {
 
 				if (elems[elems.length-1].trim().match(email_p) != null) {
 
+					var repThis = false;
+
 					var emailToAppend = elems[elems.length-1].trim().replace("<", "").replace(">", "");
+
+					emailsAdded.push(emailToAppend);
+
+					for (var g = 0; g < emailsAdded.length-1; g++) {
+						if (emailToAppend.trim() == emailsAdded[g]) {
+							rep = true;
+							repThis = true;
+						}
+					}
 
 					if (elems.length == 1) {
 
-						$('tr.student').each(function(index, element) {
-							if ($(element).find('#em').text() == emailToAppend) {
-								repetCounter++;
-							}
-						});
-
-						if (repetCounter == 0) {
+						if (!repThis) {
 							$('table#st').css('display', '');
 							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number" style="text-align: center;">' + counter + '.</td><td id="fn">-</td><td id="ln">-</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-left: 38%;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
 							
@@ -188,16 +171,14 @@ $( document ).ready(function() {
 							$('.student:last').fadeIn();
 
 							$('#empty_list').css('display', 'none');
-
+			
 							var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
-
-							$('#student_list').val($('#student_list').val().trim().replace(textToReplace, ""));
+							$('#student_list').val($('#student_list').val().trim().replace(textToReplace, "")); 
 
 							$('#student_list').val($('#student_list').val().trim());
-
-						} else {
-							repetGlobalCounter++;
 						}
+
+						$('#student_list').val($('#student_list').val().trim());
 
 					} else {
 
@@ -208,13 +189,7 @@ $( document ).ready(function() {
 							lastnameStr += " " + elems[j].trim();
 						}
 
-						$('tr.student').each(function(index, element) {
-							if ($(element).find('#em').text() == emailToAppend) {
-								repetCounter++;
-							}
-						});
-
-						if (repetCounter == 0) {
+						if (!repThis) {
 							$('table#st').css('display', '');
 							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number" style="text-align: center;">' + counter + '.</td><td id="fn">' + firstnameStr + '</td><td id="ln">' + lastnameStr + '</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-left: 38%;"><i id="remove" class="glyphicon glyphicon-trash" style="text-align: center;"></i></a></td></tr>');
 							
@@ -223,15 +198,11 @@ $( document ).ready(function() {
 
 							$('#empty_list').css('display', 'none');
 
-							var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
-
+					 		var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
 							$('#student_list').val($('#student_list').val().trim().replace(textToReplace, ""));
-
-							$('#student_list').val($('#student_list').val().trim());
-
-						} else {
-							repetGlobalCounter++;
 						}
+
+						$('#student_list').val($('#student_list').val().trim()); 
 					}
 
 				} else { errorCounter++;}
@@ -256,7 +227,8 @@ $( document ).ready(function() {
 
 		$("div#repet_msg").remove();
 
-		if(repetGlobalCounter > 0) {
+		if(rep) {
+
 			if (!($("div#repet_msg").length > 0)) {
 				$('div#student_input').append('<div id="repet_msg" class="form-group has-warning" style="margin-top: 10px;"><label class="control-label">Niektóre dane zostały już wprowadzone</label></div>');
 				$("div#repet_msg").hide();
@@ -265,7 +237,6 @@ $( document ).ready(function() {
 		} else {
 			if ($("div#repet_msg").length > 0) {
 				$('div#repet_msg').fadeOut();
-				$("div#repet_msg").remove();
 			}
 		}
 
@@ -461,18 +432,18 @@ $( document ).ready(function() {
 	$('#student_list').keyup(function() {
 
 		if ($('#student_list').val().trim() == "") {
-			$('button#add_students2').attr("disabled", "disabled");
+			$('button#add_students').attr("disabled", "disabled");
 		} else {
-			$('button#add_students2').removeAttr("disabled");
+			$('button#add_students').removeAttr("disabled");
 		}
 	});
 
 	$('#student_list').change(function() {
 
 		if ($('#student_list').val().trim() == "") {
-			$('button#add_students2').attr("disabled", "disabled");
+			$('button#add_students').attr("disabled", "disabled");
 		} else {
-			$('button#add_students2').removeAttr("disabled");
+			$('button#add_students').removeAttr("disabled");
 		}
 	});
 
@@ -480,13 +451,13 @@ $( document ).ready(function() {
 
 		if ($(this).text() == "Zmień") {
 
-			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 2%; margin-right: 0px;" maxlength="1"/>');
-			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 2%; margin-right: 0px;" maxlength="1"/>');
-			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 2%; margin-right: 0px;" maxlength="1"/>');
+			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 2%; height: 20px; margin-right: 0px;" maxlength="1"/>');
+			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 2%; height: 20px; margin-right: 0px;" maxlength="1"/>');
+			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 2%; height: 20px; margin-right: 0px;" maxlength="1"/>');
 		
 			$('a#changeChars').text('Zatwierdź');
 
-			$('button#add_students2').attr('disabled', 'disabled');
+			$('button#add_students').attr('disabled', 'disabled');
 
 		} else {
 
@@ -500,7 +471,7 @@ $( document ).ready(function() {
 
 			$('a#changeChars').text('Zmień');
 
-			$('button#add_students2').removeAttr("disabled");
+			$('button#add_students').removeAttr("disabled");
 		}
 	});
 

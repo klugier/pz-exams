@@ -5,6 +5,14 @@ var emailsAdded = new Array();
 
 $(document).ready(function() {
 
+	$('tbody .student').each(function(index, element) {
+		emailsAdded.push($(element).find('#emails').text());
+	});
+
+	$('#student_list_modal').on('hidden.bs.modal', function () {
+    	$('#student_list').val('');
+	})
+
 	$('button#add_students').attr("disabled", "disabled");
 
 	$('body').on( 'click', 'a#send', function(){
@@ -87,13 +95,9 @@ $(document).ready(function() {
 					for (var g = 0; g < emailsAdded.length-1; g++) {
 						if (emailToAppend.trim() == emailsAdded[g]) {
 							rep = true;
+							repThis = true;
 						}
 					}
-
-					for (var g = 0; g < emailsAdded.length-1; g++) {
-						if (emailToAppend.trim() == emailsAdded[g]) {
-							repThis = true;
-					}}
 
 					if (elems.length == 1) {
 
@@ -225,9 +229,9 @@ $(document).ready(function() {
 
 		if ($(this).text() == "Zmień") {
 
-			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 3%; margin-right: 0px;" maxlength="1"/>');
-			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 3%; margin-right: 0px;" maxlength="1"/>');
-			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 3%; margin-right: 0px;" maxlength="1"/>');
+			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 3%; height: 20px; margin-right: 0px;" maxlength="1"/>');
+			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 3%; height: 20px; margin-right: 0px;" maxlength="1"/>');
+			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 3%; height: 20px; margin-right: 0px;" maxlength="1"/>');
 		
 			$('a#changeChars').text('Zatwierdź');
 
