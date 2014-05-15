@@ -133,10 +133,12 @@ $(document).ready(function() {
 		}
 		}
 
+		$("div#error_msg").remove();
+
 		if(errorCounter > 0) {
 
 			if (!($("div#error_msg").length > 0)) {
-				$('div#student_input').append('<div id="error_msg" class="form-group has-error"><label class="control-label">Część danych została wprowadzona w niewłaściwym formacie</label></div>');
+				$('div#student_input').append('<div id="error_msg" class="form-group has-error" style="margin-top: 10px;"><label class="control-label">Część danych została wprowadzona w niewłaściwym formacie</label></div>');
 				$("div#error_msg").hide();
 				$("div#error_msg").fadeIn();
 			}
@@ -146,10 +148,12 @@ $(document).ready(function() {
 			}
 		}
 
+		$("div#repet_msg").remove();
+
 		if(rep) {
 
 			if (!($("div#repet_msg").length > 0)) {
-				$('div#student_input').append('<div id="repet_msg" class="form-group has-warning"><label class="control-label">Niektóre dane zostały już wprowadzone</label></div>');
+				$('div#student_input').append('<div id="repet_msg" class="form-group has-warning" style="margin-top: 10px;"><label class="control-label">Niektóre dane zostały już wprowadzone</label></div>');
 				$("div#repet_msg").hide();
 				$("div#repet_msg").fadeIn();
 			}
@@ -302,7 +306,7 @@ function addStudent(fn, ln, em) {
 					$('table#students tbody').append('<tr class="student" id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
 					first + '</td><td id="lastname">' + 
 					last + '</td><td id="emails">' + 
-					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 5px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
+					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 12px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
 
 					$('tr#'+data[0]).hide();
 					$('tr#'+data[0]).fadeIn(500);

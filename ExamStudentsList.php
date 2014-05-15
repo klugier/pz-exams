@@ -68,7 +68,8 @@
 <?php
 	$studentIDList = RecordDatabase::getStudentIDList($id);
 	$studentList = null;
-	$display = "";
+	$displayTable = "";
+	$displayInfo = '"';
 	
 	if (is_array($studentIDList)) {
 		$i = 0;
@@ -78,11 +79,13 @@
 	}
 
 	if (!is_array($studentIDList)) {
-		$display = 'style="display: none;"';
+		$displayTable = ' style="display: none;"';
+	} else {
+		$displayInfo = ' display: none;"';
 	}
 
-		echo '<h3 id="empty_list" style="text-align: center; margin-bottom: 4%;"' . $display . '>Lista studentów jest obecnie pusta</h3>
-		<table class="table" id="students"' . $display . '>
+		echo '<h3 id="empty_list" style="text-align: center; margin-bottom: 4%;' . $displayInfo . '>Lista studentów jest obecnie pusta</h3>
+		<table class="table" id="students"' . $displayTable . '>
 		<thead>
 			<tr>
 				<th style="text-align: center;">Lp.</th>

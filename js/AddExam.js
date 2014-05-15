@@ -239,10 +239,12 @@ $( document ).ready(function() {
 		}
 		}
 
+		$("div#error_msg").remove();
+
 		if(errorCounter > 0) {
 
 			if (!($("div#error_msg").length > 0)) {
-				$('div#student_input').append('<div id="error_msg" class="form-group has-error"><label class="control-label">Część danych została wprowadzona w niewłaściwym formacie</label></div>');
+				$('div#student_input').append('<div id="error_msg" class="form-group has-error" style="margin-top: 10px;"><label class="control-label">Część danych została wprowadzona w niewłaściwym formacie</label></div>');
 				$("div#error_msg").hide();
 				$("div#error_msg").fadeIn();
 			}
@@ -252,16 +254,18 @@ $( document ).ready(function() {
 			}
 		}
 
-		if(repetGlobalCounter > 0) {
+		$("div#repet_msg").remove();
 
+		if(repetGlobalCounter > 0) {
 			if (!($("div#repet_msg").length > 0)) {
-				$('div#student_input').append('<div id="repet_msg" class="form-group has-warning"><label class="control-label">Niektóre dane zostały już wprowadzone</label></div>');
+				$('div#student_input').append('<div id="repet_msg" class="form-group has-warning" style="margin-top: 10px;"><label class="control-label">Niektóre dane zostały już wprowadzone</label></div>');
 				$("div#repet_msg").hide();
 				$("div#repet_msg").fadeIn();
 			}
 		} else {
 			if ($("div#repet_msg").length > 0) {
 				$('div#repet_msg').fadeOut();
+				$("div#repet_msg").remove();
 			}
 		}
 
