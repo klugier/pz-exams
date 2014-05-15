@@ -1,4 +1,4 @@
-<div id="stage2">
+<div id="stage2" style="padding-left: 20px; padding-right: 20px;">
 	<h2>Lista studentów</h2>
 		<p id="exam_info" style="margin-top: 20px; text-align: justify;">
 		Umieść w poniższym polu listę studentów, którzy mogą przystąpić do egzaminu. Poszczególne adresy oddzielaj określonym w formacie separatorem.
@@ -8,12 +8,12 @@
 			<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: <span id="char1">&lt;</span>adres e-mail<span id="char2">&gt;</span><span id="separator">,</span>
 				<a id="changeChars" style="cursor: pointer;">Zmień</a>
 			</label>
-			<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px;">
+			<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px; padding-top: 0px;">
 	
-			<div id="student_input" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
+			<div id="student_input" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px; padding-top: 0px;">
 			<textarea class="form-control" rows="6" id="student_list" style="resize: vertical"></textarea>
 			<span class="pull-right">
-				<button type="button" class="btn btn-primary btn-sm" id="add_students" style="margin-top: 10px;">Dodaj</button>
+				<button type="button" class="btn btn-primary btn-sm" id="add_students" style="margin-top: 10px; padding-left: 25px; padding-right: 25px;">Dodaj</button>
 			</span>
 		</div>
 

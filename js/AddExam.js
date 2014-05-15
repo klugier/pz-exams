@@ -132,7 +132,7 @@ $( document ).ready(function() {
 		var errorCounter = 0;
 		var repetGlobalCounter = 0;
 
-		var email_p = new RegExp("^[\\" + char1 + "]?[\\w-_\.+]*[\\w-_\.]\@([\\w]+\\.)+[\\w]+[\\w][\\" + char2 +"]?$", "gm");
+		var email_p = new RegExp("^[\\" + char1 + "]?[\\w-_\.+]*[\\w-_\.]\@([\\w]+\\.)+[\\w]+[\\w][\\" + char2 +"]?$");
 
 		var parts = $('#student_list').val().trim().split(separator);
 
@@ -152,7 +152,7 @@ $( document ).ready(function() {
 
 					var emailToAppend = elems[elems.length-1].trim().replace("<", "").replace(">", "");
 
-					emailsAdded.push(emailToAppend);
+					emailsAdded.push(emailToAppend.trim());
 
 					for (var g = 0; g < emailsAdded.length-1; g++) {
 						if (emailToAppend.trim() == emailsAdded[g]) {
@@ -165,7 +165,7 @@ $( document ).ready(function() {
 
 						if (!repThis) {
 							$('table#st').css('display', '');
-							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number" style="text-align: center;">' + counter + '.</td><td id="fn">-</td><td id="ln">-</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-left: 38%;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
+							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number" style="text-align: center;">' + counter + '.</td><td id="fn">-</td><td id="ln">-</td><td id="em">' + emailToAppend.trim() + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-left: 38%;"><i id="remove" class="glyphicon glyphicon-trash"></i></a></td></tr>');
 							
 							$('.student:last').hide();
 							$('.student:last').fadeIn();

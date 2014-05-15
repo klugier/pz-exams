@@ -31,7 +31,6 @@
 
 <?php
 	include("html/ExamStage2.php");
-	//include("html/ExamStage3.php");
 	include("html/ExamSideMenuEnd.php");
 	include("html/End.php");
 	

@@ -6,11 +6,11 @@ var emailsAdded = new Array();
 $(document).ready(function() {
 
 	$('tbody .student').each(function(index, element) {
-		emailsAdded.push($(element).find('#emails').text());
+		emailsAdded.push($(element).find('#emails').text().trim());
 	});
 
 	$('#student_list_modal').on('hidden.bs.modal', function () {
-    	$('#student_list').val('');
+		$('#student_list').val('');
 	})
 
 	$('button#add_students').attr("disabled", "disabled");
@@ -71,7 +71,7 @@ $(document).ready(function() {
 		var errorCounter = 0;
 		var rep = false;
 
-		var email_p = new RegExp("^[\\" + char1 + "]?[\\w-_\.+]*[\\w-_\.]\@([\\w]+\\.)+[\\w]+[\\w][\\" + char2 +"]?$", "gm");
+		var email_p = new RegExp("^[\\" + char1 + "]?[\\w-_\.+]*[\\w-_\.]\@([\\w]+\\.)+[\\w]+[\\w][\\" + char2 +"]?$");
 
 		var parts = $('#student_list').val().trim().split(separator);
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
 
 				 if (elems[elems.length-1].trim().match(email_p) != null) {
 
-				 	var repThis = false;
+					var repThis = false;
 
 					var emailToAppend = elems[elems.length-1].trim().replace(char1, "").replace(char2, "");
 					emailsAdded.push(emailToAppend);
@@ -121,9 +121,9 @@ $(document).ready(function() {
 						}
 
 						addStudent(firstnameStr, lastnameStr, emailToAppend);
-					 							
-					 	if (!repThis) {
-					 		var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
+												
+						if (!repThis) {
+							var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
 							$('#student_list').val($('#student_list').val().trim().replace(textToReplace, ""));
 						}
 
