@@ -5,13 +5,22 @@ var emailsAdded = new Array();
 
 $(document).ready(function() {
 
+	if($('tbody .student').length <= 0) {
+		$('#examStudentsListPDFGlyph').attr('disabled', 'disabled');
+		$('#sendEmails').attr('disabled', 'disabled');
+	}
+
 	$('tbody .student').each(function(index, element) {
 		emailsAdded.push($(element).find('#emails').text().trim());
 	});
 
 	$('#student_list_modal').on('hidden.bs.modal', function () {
 		$('#student_list').val('');
-	})
+	});
+
+	// $('#student_list_modal').on('shown', function () {
+	// 	$('#student_list').focus();
+	// });
 
 	$('button#add_students').attr("disabled", "disabled");
 
@@ -205,7 +214,8 @@ $(document).ready(function() {
 
 					if (isEmpty) {
 						$('#empty_list').fadeIn();
-
+						$('#examStudentsListPDFGlyph').attr('disabled', 'disabled');
+						$('#sendEmails').attr('disabled', 'disabled');
 						$('#students').css('display', 'none');
 					}
 
@@ -232,24 +242,36 @@ $(document).ready(function() {
 			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 3%; height: 20px; margin-right: 0px;" maxlength="1"/>');
 			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 3%; height: 20px; margin-right: 0px;" maxlength="1"/>');
 			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 3%; height: 20px; margin-right: 0px;" maxlength="1"/>');
-		
+
 			$('a#changeChars').text('Zatwierdź');
 
 			$('button#add_students').attr('disabled', 'disabled');
 
 		} else {
 
-			char1 = $('#charToSet1').val();
-			char2 = $('#charToSet2').val();
-			separator = $('#separatorToSet').val();
+			if ($('#separatorToSet').val().trim() == "") {
+				$('#empty_separator_info').remove();
 
-			$('span#char1').html(char1);
-			$('span#char2').html(char2);
-			$('span#separator').html(separator);
+				if($('#empty_separator_info').length <= 0) {
+					$('#format_label').append('<span id="empty_separator_info" class="pull-right" style="color: #b94a48">Podaj separator!</span>');
+					$('#empty_separator_info').hide();
+					$('#empty_separator_info').fadeIn();
+				}
+			} else {
+				$('#empty_separator_info').fadeOut();
 
-			$('a#changeChars').text('Zmień');
+				char1 = $('#charToSet1').val();
+				char2 = $('#charToSet2').val();
+				separator = $('#separatorToSet').val();
 
-			$('button#add_students').removeAttr("disabled");
+				$('span#char1').html(char1);
+				$('span#char2').html(char2);
+				$('span#separator').html(separator);
+
+				$('a#changeChars').text('Zmień');
+
+				$('button#add_students').removeAttr("disabled");
+			}
 		}
 	});
 
@@ -316,6 +338,8 @@ function addStudent(fn, ln, em) {
 					$('tr#'+data[0]).fadeIn(500);
 
 					$('#empty_list').fadeOut();
+					$('#examStudentsListPDFGlyph').removeAttr('disabled');
+					$('#sendEmails').removeAttr('disabled');
 
 					$('#students').css('display', '');
 

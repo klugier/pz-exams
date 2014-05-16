@@ -21,7 +21,7 @@
 	
 	echo "<h2>Lista studentów</h2>";
 	echo "<h4><i>(" . $exam->getName() . ")</i></h4>";
-	echo "<p>W tym miejscu znajduje się lista wszystkich studentów przypisanych do tego egzaminu. Przy pomocy przycisków możesz dodawać kolejnych studentów do listy.</p>";
+	echo "<p>W tym miejscu znajduje się lista wszystkich studentów przypisanych do tego egzaminu. Przy pomocy przycisku możesz dodawać studentów do listy.</p>";
 	echo "<hr />";
 ?>
 
@@ -49,7 +49,7 @@
 		znakami specjalnymi, określ je w formacie. Natomiast podanie tych znaków w liście nie jest obowiązkowe (nawet jeśli są uwzględnione w formacie).
 		</p>
         <div id="student_input" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
-			<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: <span id="char1">&lt;</span>adres e-mail<span id="char2">&gt;</span><span id="separator">,</span>
+			<label id="format_label" for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: <span id="char1">&lt;</span>adres e-mail<span id="char2">&gt;</span><span id="separator">,</span>
 				<a id="changeChars" style="cursor: pointer;">Zmień</a>
 			</label>
 			<textarea class="form-control" rows="6" id="student_list" style="resize: vertical"></textarea>
