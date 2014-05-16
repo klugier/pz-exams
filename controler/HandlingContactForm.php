@@ -2,12 +2,13 @@
 require_once '../lib/SecureImage/securimage.php';
 include_once "../lib/Lib.php";
 require_once '../lib/Utility/Mail.php';
+require_once '../lib/General/Settings.php';
 
 $captcha_code        = $_POST['captcha_code'];
 
 $securimage = new Securimage();
 
-if ($securimage->check($captcha_code) == true) { 
+if ($securimage->check($captcha_code) == true) {
 	if (empty($_POST['email'])) {
 		//puste pole email
 		echo 'brak maila';
@@ -37,7 +38,7 @@ if ($securimage->check($captcha_code) == true) {
 	//cMail - adres podany w formularzy
 	//cSubject - temat podany w formularzu
 	//cMessage - tresc komunikatu
-	if(mailer(GeneralSettings::getEmailAdress(),$cMail,'Formularz kontaktowy',$cSubject,$cMessage,false)){
+	if(mailer(Settings::getEmailAdress(),$cMail,'Formularz kontaktowy',$cSubject,$cMessage,false)){
 		$_SESSION['successContactForm'] = 'mailerSuccess';
 	}else{
 		$_SESSION['contactFormErrorCode'] = 'mailerError';
