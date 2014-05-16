@@ -70,13 +70,13 @@ jQuery(document).ready(function($) {
 						/*if(data['emailsPost'] == '1'){
 							alert("Maile z informacją o egzaminie zostały wysłane do studentów.")
 						}*/
-						bootbox.alert('Pomyślnie zmieniono status na aktywny.');
+						bootbox.alert('<div class="alert alert-success"><strong>Pomyślnie zmieniono status na aktywny.</strong></div>');
 						$("#" + id).attr("class", "btn btn-danger dropdown-toggle btn-sm");
 						$("#" + id).html("<b>Dezaktywuj</b>");
 						$("#row-activated-id-" + examID).html("<b style=\"color: #156815;\">Tak</b>");
 						$("#" + id).attr("value", 1);	
 					} else {
-						bootbox.alert('Deaktywowano egzamin.');
+						bootbox.alert('<div class="alert alert-success"><strong>Pomyślnie <z style="color:red;">deaktywowano</z> egzamin.</strong></div>');
 						$("#" + id).attr("class", "btn btn-success dropdown-toggle btn-sm");
 						$("#" + id).html("<b>Aktywuj</b>");
 						$("#row-activated-id-" + examID).html("<b style=\"color: #801313;\">Nie</b>");

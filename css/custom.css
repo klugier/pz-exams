@@ -195,3 +195,9 @@ a.bg-info:hover {
   background-color: #afd9ee;
 }
 
+#slideTitle {
+    color: #FFFFFF;    
+}
+#slideTitle:hover {
+    text-decoration: none;
+}

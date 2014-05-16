@@ -54,8 +54,10 @@
 						</a>
 						<!-- Opis slajdu -->
 						<div class="carousel-caption">
-							<h4>Rejestracja</h4>
-							<p>Dołącz do serwisu, który zmienia szare życie tysięcy egzaminatorów!</p>
+							<a href="RegisterForm.php" id="slideTitle">
+								<h4>Rejestracja</h4>
+								<p>Dołącz do serwisu, który zmienia szare życie tysięcy egzaminatorów!</p>
+							</a>
 						</div>
 					</div>';
 				}
@@ -71,8 +73,10 @@
 			</a>
 			<!-- Opis slajdu -->
 			<div class="carousel-caption">
-				<h4>Pomoc</h4>
-				<p>Chcesz uzyskać informację na temat naszego systemu? Zajrzyj do obszernej instrukcji przygotowanych przez naszych specjalistów.</p>
+				<a href="Help.php" id="slideTitle">
+					<h4>Pomoc</h4>
+					<p>Chcesz uzyskać informację na temat naszego systemu? Zajrzyj do obszernej instrukcji przygotowanych przez naszych specjalistów.</p>
+				</a>
 			</div>
 		</div>
 	      
@@ -82,8 +86,10 @@
 			</a>
 			<!-- Opis slajdu -->
 			<div class="carousel-caption">
-				<h4>Autorzy</h4>
-				<p>Chcesz dowiedzieć się więcej o naszej drużynie developerskiej. Zajrzyj tutaj!</p>
+				<a href="Authors.php" id="slideTitle">
+					<h4>Autorzy</h4>
+					<p>Chcesz dowiedzieć się więcej o naszej drużynie developerskiej. Zajrzyj tutaj!</p>
+				</a>
 			</div>
 		</div>      
 	</div>
