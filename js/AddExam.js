@@ -451,9 +451,9 @@ $( document ).ready(function() {
 
 		if ($(this).text() == "Zmień") {
 
-			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 2%; height: 20px; margin-right: 0px;" maxlength="1"/>');
-			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 2%; height: 20px; margin-right: 0px;" maxlength="1"/>');
-			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 2%; height: 20px; margin-right: 0px;" maxlength="1"/>');
+			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
+			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
+			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
 		
 			$('a#changeChars').text('Zatwierdź');
 
@@ -461,17 +461,29 @@ $( document ).ready(function() {
 
 		} else {
 
-			char1 = $('#charToSet1').val();
-			char2 = $('#charToSet2').val();
-			separator = $('#separatorToSet').val();
+			if ($('#separatorToSet').val().trim() == "") {
+				$('#empty_separator_info').remove();
 
-			$('span#char1').html(char1);
-			$('span#char2').html(char2);
-			$('span#separator').html(separator);
+				if($('#empty_separator_info').length <= 0) {
+					$('#format_label').append('<span id="empty_separator_info" class="pull-right" style="color: #b94a48">Podaj separator!</span>');
+					$('#empty_separator_info').hide();
+					$('#empty_separator_info').fadeIn();
+				}
+			} else {
+				$('#empty_separator_info').fadeOut();
 
-			$('a#changeChars').text('Zmień');
+				char1 = $('#charToSet1').val();
+				char2 = $('#charToSet2').val();
+				separator = $('#separatorToSet').val();
 
-			$('button#add_students').removeAttr("disabled");
+				$('span#char1').html(char1);
+				$('span#char2').html(char2);
+				$('span#separator').html(separator);
+
+				$('a#changeChars').text('Zmień');
+
+				$('button#add_students').removeAttr("disabled");
+			}
 		}
 	});
 

@@ -5,8 +5,8 @@
 		Przed każdym z nich możesz opcjonalnie umieścić imię i nazwisko studenta. Jeśli w Twojej liście adresy e-mail znajdują się między jakimiś 
 		znakami specjalnymi, określ je w formacie. Natomiast podanie tych znaków w liście nie jest obowiązkowe (nawet jeśli są uwzględnione w formacie).
 		</p>
-			<label for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: <span id="char1">&lt;</span>adres e-mail<span id="char2">&gt;</span><span id="separator">,</span>
-				<a id="changeChars" style="cursor: pointer;">Zmień</a>
+			<label id="format_label" for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: <span id="char1">&lt;</span>adres e-mail<span id="char2">&gt;</span><span id="separator">,</span>
+				<a id="changeChars" style="cursor: pointer; margin-left: 8px;">Zmień</a>
 			</label>
 			<div class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px; padding-top: 0px;">
 	

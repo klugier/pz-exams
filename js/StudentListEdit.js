@@ -18,9 +18,9 @@ $(document).ready(function() {
 		$('#student_list').val('');
 	});
 
-	// $('#student_list_modal').on('shown', function () {
-	// 	$('#student_list').focus();
-	// });
+	$('#student_list_modal').on('shown', function () {
+		$('#student_list').focus();
+	});
 
 	$('button#add_students').attr("disabled", "disabled");
 
@@ -239,9 +239,9 @@ $(document).ready(function() {
 
 		if ($(this).text() == "Zmień") {
 
-			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 3%; height: 20px; margin-right: 0px;" maxlength="1"/>');
-			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 3%; height: 20px; margin-right: 0px;" maxlength="1"/>');
-			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 3%; height: 20px; margin-right: 0px;" maxlength="1"/>');
+			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
+			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
+			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
 
 			$('a#changeChars').text('Zatwierdź');
 

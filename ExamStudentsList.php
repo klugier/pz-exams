@@ -50,7 +50,7 @@
 		</p>
         <div id="student_input" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
 			<label id="format_label" for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: <span id="char1">&lt;</span>adres e-mail<span id="char2">&gt;</span><span id="separator">,</span>
-				<a id="changeChars" style="cursor: pointer;">Zmień</a>
+				<a id="changeChars" style="cursor: pointer; margin-left: 8px;">Zmień</a>
 			</label>
 			<textarea class="form-control" rows="6" id="student_list" style="resize: vertical"></textarea>
 		</div>
