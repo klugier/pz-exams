@@ -3,7 +3,13 @@ var char2 = ">";
 var separator = ",";
 var emailsAdded = new Array();
 
+var ajax_requests = 0;
+
+var ld = null;
+
 $(document).ready(function() {
+
+	ld = Ladda.create(document.querySelector('#add_students'));
 
 	if($('tbody .student').length <= 0) {
 		$('#examStudentsListPDFGlyph').attr('disabled', 'disabled');
@@ -77,6 +83,8 @@ $(document).ready(function() {
 
 	$('button#add_students').click( function(){
 
+		ld.start();
+
 		var errorCounter = 0;
 		var rep = false;
 
@@ -110,15 +118,12 @@ $(document).ready(function() {
 
 					if (elems.length == 1) {
 
-							addStudent("", "", emailToAppend);
+							addStudent("", "", emailToAppend); ajax_requests++;
 												
 							if (!repThis) {				
 								var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
 								$('#student_list').val($('#student_list').val().trim().replace(textToReplace, "")); 
 							}
-
-							$('#student_list').val($('#student_list').val().trim());
-
 
 					} else {
 
@@ -129,14 +134,12 @@ $(document).ready(function() {
 							lastnameStr += " " + elems[j].trim();
 						}
 
-						addStudent(firstnameStr, lastnameStr, emailToAppend);
+						addStudent(firstnameStr, lastnameStr, emailToAppend); ajax_requests++;
 												
 						if (!repThis) {
 							var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
 							$('#student_list').val($('#student_list').val().trim().replace(textToReplace, ""));
 						}
-
-						$('#student_list').val($('#student_list').val().trim()); 
 					}
 
 				} else { 
@@ -176,10 +179,15 @@ $(document).ready(function() {
 			}
 		}
 
+		$('#student_list').val($('#student_list').val().trim().replace('\n\n', '\n'));
+
+		if (ajax_requests == 0) {
+			ld.stop();
+		}
 });
 
 
-		$('body').on( "click", 'i#remove', function(){
+	$('body').on( "click", 'i#remove', function(){
 
 		var st_id = $(this).parent().parent().parent().first().attr('id');
 
@@ -196,7 +204,6 @@ $(document).ready(function() {
 
 				if (data)
 				{
-
 					var isEmpty = false;
 
 					if ($('tbody .student').length == 1) {
@@ -207,10 +214,16 @@ $(document).ready(function() {
 						$('tr#' + st_id).remove(); 
 
 						$('td#number').each(function(index) {
-						$(this).text((index+1) + '.');
-					});
+							$(this).text((index+1) + '.');
+						});
 
 					});
+
+					for(var i = emailsAdded.length - 1; i >= 0; i--) {
+    					if(emailsAdded[i] === $('tr#' + st_id).find('#emails').html()) {
+       						emailsAdded.splice(i, 1);
+    					}
+					}
 
 					if (isEmpty) {
 						$('#empty_list').fadeIn();
@@ -218,10 +231,7 @@ $(document).ready(function() {
 						$('#sendEmails').attr('disabled', 'disabled');
 						$('#students').css('display', 'none');
 					}
-
-
 				}
-
 			},
 			error: function (error) {
 				alert('Wystapił błąd przy usuwaniu studenta.');
@@ -335,13 +345,19 @@ function addStudent(fn, ln, em) {
 					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 12px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
 
 					$('tr#'+data[0]).hide();
-					$('tr#'+data[0]).fadeIn(500);
+					$('tr#'+data[0]).fadeIn(400);
 
 					$('#empty_list').fadeOut();
 					$('#examStudentsListPDFGlyph').removeAttr('disabled');
 					$('#sendEmails').removeAttr('disabled');
 
 					$('#students').css('display', '');
+					
+					ajax_requests--;
+
+					if (ajax_requests == 0) { 
+						ld.stop(); 
+					}
 
 				}
 
@@ -350,7 +366,7 @@ function addStudent(fn, ln, em) {
 				alert('Wystapil blad przy dodawaniu studenta/ów.');
 			},
 			complete: function() {
-				
+				ld.stop();
 			}
 
 			});

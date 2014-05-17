@@ -173,9 +173,6 @@ $( document ).ready(function() {
 							$('#empty_list').css('display', 'none');
 			
 							var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
-							$('#student_list').val($('#student_list').val().trim().replace(textToReplace, "")); 
-
-							$('#student_list').val($('#student_list').val().trim());
 						}
 
 						$('#student_list').val($('#student_list').val().trim());
@@ -201,8 +198,6 @@ $( document ).ready(function() {
 					 		var textToReplace = new RegExp(parts[i].trim() + '[\s]*[' + separator + ']?[\s]*');
 							$('#student_list').val($('#student_list').val().trim().replace(textToReplace, ""));
 						}
-
-						$('#student_list').val($('#student_list').val().trim()); 
 					}
 
 				} else { errorCounter++;}
@@ -239,6 +234,8 @@ $( document ).ready(function() {
 				$('div#repet_msg').fadeOut();
 			}
 		}
+
+		$('#student_list').val($('#student_list').val().trim().replace('\n\n', '\n'));
 
 	});
 
@@ -420,6 +417,12 @@ $( document ).ready(function() {
 				$(this).text((index+1) + '.');
 			});
 		});
+
+		for(var i = emailsAdded.length - 1; i >= 0; i--) {
+    		if(emailsAdded[i] === $('tr#' + st_id).find('#em').html()) {
+       			emailsAdded.splice(i, 1);
+    		}
+		}
 
 		if (isEmpty) {
 			$('#empty_list').fadeIn();

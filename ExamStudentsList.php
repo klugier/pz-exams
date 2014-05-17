@@ -3,7 +3,7 @@
 	
 	include_once("lib/Lib.php");
 	$title = "$appName - List studentów";
-	$scripts = array("js/StudentListEdit.js", "js/Lib/bootbox.min.js");
+	$scripts = array("js/StudentListEdit.js", "js/Lib/bootbox.min.js", "js/Lib/spin.min.js", "js/Lib/ladda.min.js");
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
@@ -29,6 +29,7 @@
 	<span>
 		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#student_list_modal">Dodaj studentów</button>
 		<button type="button" class="btn btn-warning btn-sm" id="sendEmails">Wyślij email do wszystkich <i class="glyphicon glyphicon-envelope"></i></button>
+		
 		<a class="btn btn-primary btn-sm pull-right" href="controler/PDFExamStudentsList.php?examID=<?php echo $exam->getID(); ?>" role="button" name="examStudentsListPDFGlyph" id="examStudentsListPDFGlyph" title="Pobierz PDF" value=<?php echo "\"".$exam->getID()."\""; ?>\><i class="glyphicon glyphicon-download"></i> <b>PDF</b></a>
 	</span>
 </div>
@@ -42,22 +43,26 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Dodawanie studentów</h4>
       </div>
-      <div class="modal-body">
-      	<p id="exam_info" style="margin-top: 5px; text-align: justify;">
+      <div class="modal-body" style="padding: 20px; padding-bottom: 8px;">
+      	<p style="margin-top: 5px; text-align: justify;">
 		Umieść w poniższym polu listę studentów, którzy mogą przystąpić do egzaminu. Poszczególne adresy oddzielaj określonym w formacie separatorem.
-		Przed każdym z nich możesz opcjonalnie umieścić imię i nazwisko studenta. Jeśli w Twojej liście adresy e-mail znajdują się między jakimiś 
+		Przed każdym z nich możesz opcjonalnie umieścić imię i nazwisko studenta.
+		</p>
+		<p style="text-align: justify;">
+		Jeśli w Twojej liście adresy e-mail znajdują się między jakimiś 
 		znakami specjalnymi, określ je w formacie. Natomiast podanie tych znaków w liście nie jest obowiązkowe (nawet jeśli są uwzględnione w formacie).
 		</p>
-        <div id="student_input" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-top: 0px;">
+        <div id="student_input" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px; padding-top: 0px;">
 			<label id="format_label" for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: <span id="char1">&lt;</span>adres e-mail<span id="char2">&gt;</span><span id="separator">,</span>
 				<a id="changeChars" style="cursor: pointer; margin-left: 8px;">Zmień</a>
 			</label>
 			<textarea class="form-control" rows="6" id="student_list" style="resize: vertical"></textarea>
 		</div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-        <button id="add_students" type="button" class="btn btn-primary">Dodaj</button>
+
+      <div class="modal-footer" style="padding-top: 12px; padding-bottom: 12px; margin-top: 10px;">
+        <button id="close_modal" type="button" class="btn btn-default btn-sm" data-dismiss="modal">Zamknij</button>
+        <button id="add_students" class="btn btn-primary btn-sm ladda-button" data-style="expand-right" data-spinner-size="30px" style="padding-left: 25px; padding-right: 25px;"><span class="ladda-label">Dodaj</span></button>
       </div>
     </div>
   </div>
