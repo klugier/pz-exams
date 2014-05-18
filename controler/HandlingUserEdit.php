@@ -1,17 +1,6 @@
 <?php
     
     include_once("../lib/Lib.php");
-    
-    if (isset($_POST['clearButton']) == false) {
-        //echo "przekierowanie poszło" ;
-        $_SESSION['passwd-old'] = ""  ;
-        $_SESSION['passwd'] = ""  ;
-        $_SESSION['passwd-repeat'] = ""  ;
-        $_SESSION['gender'] = ""  ;
-        $_SESSION['name'] = ""   ;
-        $_SESSION['surname'] = "";
-        header('Location: ../UserEdit.php' ); 
-    }
 
     if (isset($_POST['submitButtonPassword']) == true) {
         
@@ -51,9 +40,8 @@
         }else {
 			$_SESSION['formErrorCode'] = 'databaseError';
 		}}
-        
-        
         ( $_POST['genderEdit'] == "Kobieta" ) ? $user2->setGender("female") : $user2->setGender("male") ;
+		echo $user2->getGender("female");
         if($user2->getGender() != $user->getGender()){
         if (UserDatabase::updateUserGender($user, $user2->getGender())) { 
             $_SESSION['formSuccessCode3'] = 'genderChanged';
@@ -61,7 +49,6 @@
 			$_SESSION['formErrorCode'] = 'databaseError';
 		}}
 		$_SESSION['USER'] = serialize($newUser);
-
-        header('Location: ../UserEdit.php' ); 
+		header('Location: ../UserEdit.php' ); 
     }
 ?>
