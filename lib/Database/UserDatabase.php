@@ -132,7 +132,7 @@
 			
              $sql = "UPDATE Users SET 
              Password  = '" . $password . "' 
-             WHERE ID = '" . $user->getID() . "'";
+             WHERE ID = '" . $userID . "'";
     
              return DatabaseConnector::getConnection()->query($sql) ? true : false;
          } 
@@ -162,7 +162,7 @@
 			
              $sql = "UPDATE Users SET 
              Gender  = '" . $gender . "'
-             WHERE ID = '" . $user->getID() . "'";
+             WHERE ID = '" . $userID . "'";
     
              return DatabaseConnector::getConnection()->query($sql) ? true : false;
          }

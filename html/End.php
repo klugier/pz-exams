@@ -1,8 +1,7 @@
-<!-- 				</div> -->
+				</div>
 			</div>
-		</div>
 
-			<div id="footer" class="container col-md-12">
+			<div id="footer" class="container col-sm-12 col-md-12 col-lg-12">
 				<p class="pull-left" style="letter-spacing:1px">PZ-Exams 2014. Wszystkie prawa zastrzeżone ©</p>
 				<span class="pull-right" style="margin-top: 1px; margin-left: 80px;">
 					<span><a id="contact" href="Contact.php">Kontakt</a></span>

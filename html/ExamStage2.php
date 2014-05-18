@@ -1,8 +1,11 @@
 <div id="stage2" style="padding-left: 20px; padding-right: 20px;">
 	<h2>Lista studentów</h2>
-		<p id="exam_info" style="margin-top: 20px; text-align: justify;">
+		<p style="margin-top: 22px; text-align: justify;">
 		Umieść w poniższym polu listę studentów, którzy mogą przystąpić do egzaminu. Poszczególne adresy oddzielaj określonym w formacie separatorem.
-		Przed każdym z nich możesz opcjonalnie umieścić imię i nazwisko studenta. Jeśli w Twojej liście adresy e-mail znajdują się między jakimiś 
+		Przed każdym z nich możesz opcjonalnie umieścić imię i nazwisko studenta.
+		</p>
+		<p style="text-align: justify;">
+		Jeśli w Twojej liście adresy e-mail znajdują się między jakimiś 
 		znakami specjalnymi, określ je w formacie. Natomiast podanie tych znaków w liście nie jest obowiązkowe (nawet jeśli są uwzględnione w formacie).
 		</p>
 			<label id="format_label" for="student_list" class="col-sm-12 control-label" style="margin-top: 20px; padding-left: 0px;">Format: <span id="char1">&lt;</span>adres e-mail<span id="char2">&gt;</span><span id="separator">,</span>
@@ -35,7 +38,6 @@
 			</thead>
 			<tbody></tbody>
 		</table>
-
 
 		<hr/>
 

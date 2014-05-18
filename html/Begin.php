@@ -56,26 +56,23 @@
 
 	<body style="background-image: url('img/books.jpg'); padding-top: 70px; height: 100%;">
 		<?php include_once("Navbar.php"); ?>
- 		<div id="wrapper" class="container col-md-12 col-sm-12" style="padding-left: 0px; padding-right: 0px;">
-<!-- 			<div class="container col-md-12" style="padding: 0px; padding-top:0px;"> -->
-				<div id="content_wrapper">
-				<div class="panel col-md-12 col-sm-12" style="padding: 20px; background: rgba(250, 250, 250, 1.0);
+		<div id="wrapper" class="container col-sm-12 col-md-12 col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+			<div id="content_wrapper">
+				<div class="panel col-sm-12 col-md-12 col-lg-12" style="padding: 20px; background: rgba(250, 250, 250, 1.0);
 				box-shadow: 2px 2px 12px #666; box-shadow: -2px -2px 12px #666;
 				">
 
 				<noscript>
 					<div class="alert alert-danger">
-				<h4 style="text-align: center; color: #d2322d; font-weight: bold;">Wymagana obsługa JavaScript!</h4>
-    			<p>
-    				Wygląda na to, że Twoja przeglądarka nie obsługuje języka JavaScript lub ta funkcjonalność została wyłączona. 
-    				Zalecamy zmienić przegladarkę lub włączyć obsługę JavaScript, aby móc swobodnie korzystać z naszego serwisu.
-    			</p>
-    			</div>
-    			<?php
-
-    			if(!(isset($_GET['disabled']))) {
-    				echo '<meta HTTP-EQUIV="REFRESH" content="0; url=http://' . Settings::getAdress() . '?disabled=true">';
-				}
-
-    			?>
-     			</noscript>
+						<h4 style="text-align: center; color: #d2322d; font-weight: bold;">Wymagana obsługa JavaScript!</h4>
+						<p>
+						Wygląda na to, że Twoja przeglądarka nie obsługuje języka JavaScript lub ta funkcjonalność została wyłączona. 
+						Zalecamy zmienić przegladarkę lub włączyć obsługę JavaScript, aby móc swobodnie korzystać z naszego serwisu.
+						</p>
+					</div>
+					<?php
+						if(!(isset($_GET['disabled']))) {
+							echo '<meta HTTP-EQUIV="REFRESH" content="0; url=http://' . Settings::getAdress() . '?disabled=true">';
+						}
+					?>
+				</noscript>

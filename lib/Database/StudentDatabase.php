@@ -84,6 +84,12 @@
 			$studentSurName = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentU->getSurName());
 			$code = md5($studentEmail . time());
 			
+			$sql =  "SELECT * FROM Students WHERE Email = '" . $studentEmail . "'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			if($result->num_rows!=0){
+				return false;
+			}
+			
 			$sql =  "SELECT * FROM Students WHERE Code = '" . $code . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			

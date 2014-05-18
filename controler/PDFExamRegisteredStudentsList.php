@@ -10,6 +10,18 @@
 	$uniqeDays = array_unique($examDays);
 	$weekDays = array(1 => "Poniedziałek", 2 => "Wtorek", 3 => "Środa", 4 => "Czwartek", 5 => "Piątek", 6 => "Sobota", 0 => "Niedziela");
 
+	function dayHasRegisteredStudents($examUnitIDList) {
+		$ret = FALSE;
+		foreach ($examUnitIDList as $number =>  $examUnitID) {
+				$examunit = ExamUnitDatabase::getExamUnit($examUnitID);
+				if($examunit->getState() == "locked"){
+					$ret = TRUE;
+					continue;
+				}
+		}
+		return $ret;
+	}
+
 	if($setting == "full") {
 		$html = '<h2>'.$exam->getName().'</h2>';
 		foreach ($uniqeDays as $dayCount => $day) {
@@ -87,7 +99,7 @@
 				$html=$html.'<td style="width:50%;"></td></tr>';
 			}
 			$html=$html.'</tbody></table>';
-			if($dayCount != count($uniqeDays)-1) {
+			if(($dayCount != count($uniqeDays)-1) && (!dayHasRegisteredStudents($examUnitIDList))) {
 				$html=$html.'<pagebreak />';
 			}
 		}
