@@ -37,7 +37,7 @@ if ($securimage->check($captcha_code) == true) {
 	} else {
 		//zapisz wiadomosc
 		$cMessage=$_POST['message'];
-		$cMessage=$cMessage."\n---------------------------------------------------\n".'Email: '.$cSurname."\nImię i Nazwisko: ".$cMail;
+		$cMessage=$cMessage."\n---------------------------------------------------\n".'Email: '.$cMail."\nImię i Nazwisko: ".$cSurname;
 	}
  
 	echo 'captcha code valid'; 

@@ -31,12 +31,20 @@
 			}
 
 ?> 
-<h4>Dane kontaktowe</h4>
-<p>
-	Wydział Fizyki, Astronomii i Informatyki Stosowanej UJ<br>
-	ul. Reymonta 4<br>
-	30-059 Kraków
+<form id="" class="form-horizontal">
+	<div class="form-group">
+		<fieldset style="padding-left:20px;padding-right:20px;">
+			<legend>Informacje kontaktowe</legend>
+		</fieldset>
+	</div>
+
+</form>
+<p style="padding:20px;padding-left:40px;">
+Wydział Fizyki, Astronomii i Informatyki Stosowanej UJ<br>
+ul. Reymonta 4<br>
+30-059 Kraków
 </p>
+
 <form id="contactForm" class="form-horizontal" action="./controler/HandlingContactForm.php" method="post">
 	<div class="form-group">
 		<fieldset style="padding-left:20px;padding-right:20px;">
