@@ -31,9 +31,18 @@ $(document).ready(function() {
 	$('button#add_students').attr("disabled", "disabled");
 
 	$('body').on( 'click', 'a#send', function(){
+
 		var studentID = $(this).parent().parent().first().attr('id');
 		var email = $(this).parent().parent().find("#emails").html();
-		
+
+		$('tr#'+studentID).find('#send').bind('click', false);
+
+		if ($('tr#' + studentID).find('#comment').html() == '') {
+			$('tr#' + studentID).find('#comment').append('<img id="send_animation' + studentID +'" style="height: 12%; width: auto;" src="img/sending.gif"/>');
+			$('#send_animation'+studentID).hide();
+			$('#send_animation'+studentID).fadeIn();
+		}
+
 		$.ajax({
 			type: "POST",
 			url: "lib/Ajax/AjaxSendMailsToStudents.php",
@@ -53,6 +62,11 @@ $(document).ready(function() {
 				alert('Wystąpil błąd przy wysyłaniu maila!');
 			},
 			complete: function() {
+				$('#send_animation'+studentID).hide(300, function(){ 
+					$(this).remove(); 
+				});
+
+				$('tr#'+studentID).find('#send').unbind('click', false);
 			}
 		});
 	});
@@ -187,9 +201,11 @@ $(document).ready(function() {
 });
 
 
-	$('body').on( "click", 'i#remove', function(){
+	$('body').on( "click", 'a#remove', function(){
 
-		var st_id = $(this).parent().parent().parent().first().attr('id');
+		var st_id = $(this).parent().parent().first().attr('id');
+
+		$('tr#'+st_id).find('#remove').bind('click', false);
 
 		$.ajax({
 
@@ -342,7 +358,7 @@ function addStudent(fn, ln, em) {
 					$('table#students tbody').append('<tr class="student" id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
 					first + '</td><td id="lastname">' + 
 					last + '</td><td id="emails">' + 
-					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a><i id="remove" title="Remove" class="glyphicon glyphicon-trash" style="margin-right: 12px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td></tr>');
+					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a id="remove"><i title="Usuń studenta" class="glyphicon glyphicon-trash" style="margin-right: 12px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td><td id="comment" style="padding-left: 10x; padding-right: 0px;"></td></tr>');
 
 					$('tr#'+data[0]).hide();
 					$('tr#'+data[0]).fadeIn(400);
@@ -369,7 +385,5 @@ function addStudent(fn, ln, em) {
 				ld.stop();
 			}
 
-			});
-
-	
+		});
 }

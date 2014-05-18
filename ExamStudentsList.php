@@ -98,7 +98,8 @@
 				<th style="width: 26%;">Imię</th>
 				<th style="width: 26%;">Nazwisko</th>
 				<th>E-mail</th>
-				<th style="text-align:center;">Operacje</th>
+				<th style="text-align:center; width: 5%;">Operacje</th>
+				<th style="width: 5%;"></th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -125,9 +126,9 @@
 			echo '<td id="emails">' . $student->getEmail() . '</td>';
 			echo '<td style="text-align: center;">';
 			
-			echo '<a title="Usuń studenta" style="cursor: pointer; margin-right: 12px;"><i id="remove" class="glyphicon glyphicon-trash"></i></a>';
+			echo '<a id="remove" title="Usuń studenta" style="cursor: pointer; margin-right: 12px;"><i class="glyphicon glyphicon-trash"></i></a>';
 			echo '<a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a>';
-			echo '</td>';
+			echo '</td><td id="comment" style="padding-left: 10px; padding-right: 0px; padding-top: 6px;"></td>';
 			echo '</tr>';
 		}
 	}
