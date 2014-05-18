@@ -3,6 +3,7 @@ $("#contactForm").validate({
 	rules: {
 		subject: "required",
 		message: "required",
+		surname: "required",
 		captcha_code: {
 		required: true,
 		minlength: 6
@@ -15,6 +16,7 @@ $("#contactForm").validate({
 	messages: {
 		subject: "Proszę podać temat",
 		message: "Proszę wpisać treść wiadomości",
+		surname: "Proszę wpisać imię i nazwisko",
 		captcha_code: {
 			required: "Proszę wpisać kod z obrazka",
 			minlength: "Wpisano nieprawidłową ilość znaków"

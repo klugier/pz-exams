@@ -30,7 +30,13 @@
 				unset($_SESSION['successContactForm']);
 			}
 
-		?> 
+?> 
+<h4>Dane kontaktowe</h4>
+<p>
+	Wydział Fizyki, Astronomii i Informatyki Stosowanej UJ<br>
+	ul. Reymonta 4<br>
+	30-059 Kraków
+</p>
 <form id="contactForm" class="form-horizontal" action="./controler/HandlingContactForm.php" method="post">
 	<div class="form-group">
 		<fieldset style="padding-left:20px;padding-right:20px;">
@@ -44,6 +50,16 @@
 				<input class="form-control" type="text" name="email" id="email" placeholder="Wprowadź email">
 			</div>
 			<span class="help-block col-xs-6 col-sm-6 col-md-6" id="email-error-message" >		      
+			</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="control-group">
+			<label class="col-xs-2 col-sm-2 col-md-2  control-label" for="inputSurname">Imię i nazwisko</label>
+			<div class="col-xs-4 col-sm-4 col-md-4 controls">
+				<input class="form-control" type="text" name="surname" id="surname" placeholder="Wprowadź imię i nazwisko">
+			</div>
+			<span class="help-block col-xs-6 col-sm-6 col-md-6" id="surname-error-message" >		      
 			</span>
 		</div>
 	</div>

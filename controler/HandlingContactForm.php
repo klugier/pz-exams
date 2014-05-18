@@ -25,14 +25,21 @@ if ($securimage->check($captcha_code) == true) {
 		$cSubject=$_POST['subject'];
 	}
   
+  	if (empty($_POST['surname'])){
+  		echo 'brak imienia i nazwiska';
+  	} else {
+  		$cSurname=$_POST['surname'];
+  	}
+  
 	if (empty($_POST['message'])){
 		//pusta wiadomosc
 		echo 'brak wiadomosc';
 	} else {
 		//zapisz wiadomosc
 		$cMessage=$_POST['message'];
+		$cMessage=$cMessage."\n---------------------------------------------------\n".'Email: '.$cSurname."\nImię i Nazwisko: ".$cMail;
 	}
-  
+ 
 	echo 'captcha code valid'; 
   
 	//cMail - adres podany w formularzy
@@ -46,5 +53,6 @@ if ($securimage->check($captcha_code) == true) {
 } else {
 	$_SESSION['contactFormErrorCode'] = 'invalidCaptcha';
 }
+
 header('Location: ../Contact.php' );
 ;?>
