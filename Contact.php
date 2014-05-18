@@ -39,10 +39,10 @@
 	</div>
 
 </form>
-<p style="padding:20px;padding-left:40px;">
-Wydział Fizyki, Astronomii i Informatyki Stosowanej UJ<br>
-ul. Reymonta 4<br>
-30-059 Kraków
+<p style="margin-top: -20px; padding-left:40px;">
+PZ-Exams Corporation<br>
+ul. Egzaminów 64<br>
+22-222 Egzaminowo
 </p>
 
 <form id="contactForm" class="form-horizontal" action="./controler/HandlingContactForm.php" method="post">
