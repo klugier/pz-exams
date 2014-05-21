@@ -2,9 +2,22 @@
 
 include_once("../lib/Lib.php");
 
-//print_r($_POST);
+header("content-type:application/json");
+
+function setResponseMessage($msg, $status) {
+		echo json_encode(array("status" => $status, "errorMsg" => $msg));
+}
+
+if (!isset($_SESSION["USER"])) {
+	setResponseMessage('Błąd krytyczny: użytkownik jest niezalogowany.', 'error');
+	return;
+}
 
 if(isset($_POST['exam_name']) && isset($_POST['exam_duration'])) {
+	if (!DatabaseConnector::isConnected()) {
+			setResponseMessage('Wystąpił błąd przy połączeniu z bazą!', 'error');
+			return;
+	}
 
 	$exam = new Exam();
 	$userID = unserialize($_SESSION['USER'])->getID();
@@ -20,17 +33,19 @@ if(isset($_POST['exam_name']) && isset($_POST['exam_duration'])) {
 	$exam->setActivated(0);
 
 	if (ExamDatabase::insertExam($userID, $exam)) {
-		//echo 'Wpisano egzamin';
 		$new_exam_id = DatabaseConnector::getLastInsertedID();
 
 		addUnits($new_exam_id);
 
 		addStudents($new_exam_id);
+
+		setResponseMessage('Pomyślnie dodano egzamin', 'error');
+		return;
 	} else {
-		//echo 'Blad przy wpisywaniu egzaminu';
+		setResponseMessage('Wystapił błąd podczas wpisywania danych do bazy.', 'error');
+		return;
 	}
 
-	header('Content-Type: application/json');
 	echo json_encode(true);
 
 	}
@@ -51,7 +66,6 @@ if(isset($_POST['students_emails']) && isset($_POST['firstnames']) && isset($_PO
 		$student->setSurName($l_names[$i]);
 
 			if (StudentDatabase::insertStudent($student)) {
-				//echo '<br/>Wpisano studenta';
 
 				$record = new Record();
 				$record->setStudentID(DatabaseConnector::getLastInsertedID());
@@ -64,9 +78,6 @@ if(isset($_POST['students_emails']) && isset($_POST['firstnames']) && isset($_PO
 				}
 
 			} else if (StudentDatabase::getStudentID($student) != null){
-				//echo '<br/>Blad przy wpisywaniu studenta';
-
-				//echo StudentDatabase::getStudentID($student);
 
 				$record = new Record();
 				$record->setStudentID(StudentDatabase::getStudentID($student));

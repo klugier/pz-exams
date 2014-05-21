@@ -38,7 +38,7 @@ $(document).ready(function() {
 		$('tr#'+studentID).find('#send').bind('click', false);
 
 		if ($('tr#' + studentID).find('#comment').html() == '') {
-			$('tr#' + studentID).find('#comment').append('<img id="send_animation' + studentID +'" style="height: 12%; width: auto;" src="img/sending.gif"/>');
+			$('tr#' + studentID).find('#comment').append('<img id="send_animation' + studentID +'" style="height: 50%; width: auto;" src="img/sending.gif"/>');
 			$('#send_animation'+studentID).hide();
 			$('#send_animation'+studentID).fadeIn();
 		}
@@ -53,13 +53,13 @@ $(document).ready(function() {
 			},
 			success: function (data) {
 				if(data['status'] == 'failed'){
-					bootbox.alert('<div class="alert alert-danger"><strong>'+ data['errorMsg'] +'</strong></div>');		
+					bootbox.alert('<div class="alert alert-danger" style="margin-top: 4%; margin-bottom: 0%;"><strong>'+ data['errorMsg'] +'</strong></div>');		
 				} else {
-					bootbox.alert('<div class="alert alert-success">Mail został wysłany na adres <b>'+ email +'</b>!</div>');
+					bootbox.alert('<div class="alert alert-success" style="margin-top: 4%; margin-bottom: 0%;">Mail został wysłany na adres <b>'+ email +'</b>!</div>');
 				}
 			},
 			error: function (error) {
-				alert('Wystąpil błąd przy wysyłaniu maila!');
+				bootbox.alert('<div class="alert alert-danger" style="margin-top: 4%; margin-bottom: 0%;"><strong>Wystąpił błąd przy wysyłaniu maila!</strong></div>');		
 			},
 			complete: function() {
 				$('#send_animation'+studentID).hide(300, function(){ 
@@ -72,6 +72,10 @@ $(document).ready(function() {
 	});
 
 	$('button#sendEmails').click( function() {
+
+		$(this).attr('disabled', true);
+		$(this).html('<img id="send_animation" style="height: 5%; width: auto;" src="img/sending-white.gif"/>');
+
 		$.ajax({
 			type: "POST",
 			url: "lib/Ajax/AjaxSendMailsToStudents.php",
@@ -82,15 +86,17 @@ $(document).ready(function() {
 			},
 			success: function (data) {
 				if(data['status'] == 'failed'){
-					bootbox.alert('<div class="alert alert-danger"><strong>'+ data['errorMsg'] +'</strong></div>');		
+					bootbox.alert('<div class="alert alert-danger" style="margin-top: 4%; margin-bottom: 0%;"><strong>'+ data['errorMsg'] +'</strong></div>');		
 				} else {
-					bootbox.alert('<div class="alert alert-success"><strong>Maile zostały wysłane do studentów z listy!</strong></div>');	
+					bootbox.alert('<div class="alert alert-success" style="margin-top: 4%; margin-bottom: 0%;"><strong>Maile zostały wysłane do studentów z listy!</strong></div>');	
 				}				
 			},
 			error: function (error) {
 				alert('Wystapil blad przy wysyłaniu mailów!');
 			},
 			complete: function() {
+				$('button#sendEmails').html('Wyślij email do wszystkich <i class="glyphicon glyphicon-envelope"></i>');
+				$('button#sendEmails').removeAttr('disabled');
 			}
 		});
 	});
@@ -358,7 +364,7 @@ function addStudent(fn, ln, em) {
 					$('table#students tbody').append('<tr class="student" id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
 					first + '</td><td id="lastname">' + 
 					last + '</td><td id="emails">' + 
-					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a id="remove"><i title="Usuń studenta" class="glyphicon glyphicon-trash" style="margin-right: 12px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td><td id="comment" style="padding-left: 10x; padding-right: 0px;"></td></tr>');
+					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a id="remove"><i title="Usuń studenta" class="glyphicon glyphicon-trash" style="margin-right: 12px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td><td id="comment" style="padding-left: 10x; padding-right: 0px; padding-top: 6px;"></td></tr>');
 
 					$('tr#'+data[0]).hide();
 					$('tr#'+data[0]).fadeIn(400);

@@ -87,8 +87,6 @@ function back_to_stage1()
 
 $( document ).ready(function() {
 
-	Ladda.bind('button#confirm');
-
 	$('button#add_students').attr("disabled", "disabled");
 
 	$('#stage2').hide();
@@ -186,6 +184,10 @@ $( document ).ready(function() {
 							lastnameStr += " " + elems[j].trim();
 						}
 
+						if (lastnameStr == '') {
+							lastnameStr = '-';
+						}
+
 						if (!repThis) {
 							$('table#st').css('display', '');
 							$('table#st tbody').append('<tr class="student" id="' + (counter++) + '"><td id="number" style="text-align: center;">' + counter + '.</td><td id="fn">' + firstnameStr + '</td><td id="ln">' + lastnameStr + '</td><td id="em">' + emailToAppend + '</td><td><a title="Usuń studenta" style="cursor: pointer; margin-left: 38%;"><i id="remove" class="glyphicon glyphicon-trash" style="text-align: center;"></i></a></td></tr>');
@@ -242,7 +244,7 @@ $( document ).ready(function() {
 
 	$('button#confirm').click(function(e){
 
-		// var l = Ladda.create( document.querySelector( 'button#confirm' ) );
+		var ld = Ladda.create(document.querySelector('button#confirm'));
 
 		var unlocked_units = new Object();
 
@@ -281,13 +283,22 @@ $( document ).ready(function() {
 			unlocked_units : unlocked_units,
 		},
 		success: function (data) {
-			alert('Pomyślnie dodano egzamin. Możesz już dokonać aktywacji na Twojej liście egzaminów.');
+
+			if(data['status'] == 'error') {
+				bootbox.alert('<div class="alert alert-success" style="margin-top: 4%; margin-bottom: 0%;">' + data['errorMsg'] + '.</strong></div>');
+			} else {
+				bootbox.alert('<div class="alert alert-success" style="margin-top: 4%; margin-bottom: 0%;"><strong>Pomyślnie dodano egzamin.</strong></div>');
+			}
+
+			setInterval(function(){
+				window.location = 'ExamList.php';
+			}, 2000);
 		},
 		error: function (error) {
-			alert('Wystąpił blad przy dodawaniu egzaminu.');
+			bootbox.alert('<div class="alert alert-danger" style="margin-top: 4%; margin-bottom: 0%;"><strong>Wystąpił błąd przy dodawaniu egzaminu.</strong></div>');
 		},
 		complete: function() {
-			window.location = 'ExamList.php';
+			ld.stop();
 		}
 
 		});
