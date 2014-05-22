@@ -75,6 +75,7 @@ CREATE TABLE `Records` (
 	`StudentID`  INT,
 	`ExamID`     INT,
 	`ExamUnitID` INT          NULL,
+	`IsSended`   BOOLEAN      NOT NULL,
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`StudentID`) REFERENCES `Students` (`ID`),
 	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`) ON DELETE CASCADE
