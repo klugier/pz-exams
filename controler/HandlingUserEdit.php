@@ -41,7 +41,6 @@
 			$_SESSION['formErrorCode'] = 'databaseError';
 		}}
         ( $_POST['genderEdit'] == "Kobieta" ) ? $user2->setGender("female") : $user2->setGender("male") ;
-		echo $user2->getGender("female");
         if($user2->getGender() != $user->getGender()){
         if (UserDatabase::updateUserGender($user, $user2->getGender())) { 
             $_SESSION['formSuccessCode3'] = 'genderChanged';

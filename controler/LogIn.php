@@ -16,7 +16,11 @@
 			{
 				if(UserDatabase::checkActivated($basicUser)){
 					$_SESSION['USER'] = serialize($basicUser);
-					header('Location: ../UserSite.php');	
+					if($basicUser->getRight() == "examiner"){
+						header('Location: ../UserSite.php');
+					}else{
+						header('Location: ../AdminSite.php');
+					}
 				} else {
 					$_SESSION['ERROR'] = 3;
 					header('Location: ../index.php');
