@@ -71,11 +71,11 @@ CREATE TABLE `Students` (
 ) ENGINE=InnoDB;
 
 CREATE TABLE `Records` (
-	`ID`         INT          AUTO_INCREMENT,
-	`StudentID`  INT,
-	`ExamID`     INT,
-	`ExamUnitID` INT          NULL,
-	`msgSent`   BOOLEAN      NOT NULL,
+	`ID`          INT          AUTO_INCREMENT,
+	`StudentID`   INT,
+	`ExamID`      INT,
+	`ExamUnitID`  INT          NULL,
+	`MessageSent` BOOLEAN      NOT NULL,
 	PRIMARY KEY (`ID`),
 	FOREIGN KEY (`StudentID`) REFERENCES `Students` (`ID`),
 	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`) ON DELETE CASCADE
