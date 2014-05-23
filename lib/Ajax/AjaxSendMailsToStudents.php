@@ -58,7 +58,9 @@
 				if(!mailer($email,'cos nieistotnego',"PZ-Exams", "Nowy egzamin", $messageBody, true)){
 					$msg = "Wystąpił błąd przy wysyłaniu maili!";
 					handlingError($msg);
-				} 		
+				}
+				RecordDatabase::messageSent($studentID, $_POST['examID']);
+
 			}
 		}
 		handlingSuccess1();
@@ -105,6 +107,7 @@
 			
 				
 		if(mailer($email,'cos nieistotnego',"PZ-Exams", "Nowy egzamin", $messageBody, true)){
+			RecordDatabase::messageSent($_POST['studentID'], $_POST['examID']);
 			handlingSuccess2();
 			return;
 		} else {
