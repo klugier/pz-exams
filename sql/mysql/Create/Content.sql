@@ -25,7 +25,7 @@ INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('3', '2014-0
 INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('3', '2014-06-18', '10:00:00', '10:15:00', 'unlocked');
 INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('3', '2014-06-18', '10:15:00', '10:30:00', 'unlocked');
 INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('7', '2015-06-18', '08:00:00', '08:10:00', 'locked');
-INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('7', '2015-06-18', '08:20:00', '08:30:00', 'locked');
+INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('7', '2015-06-18', '08:20:00', '08:30:00', 'unlocked');
 INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('8', '2015-06-18', '08:00:00', '08:20:00', 'unlocked');
 INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('9', '2014-06-19', '09:00:00', '09:30:00', 'unlocked');
 INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('9', '2014-06-20', '09:00:00', '09:30:00', 'unlocked');
