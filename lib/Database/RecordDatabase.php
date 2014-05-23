@@ -49,7 +49,7 @@
 				$record->setStudentID($row['StudentID']);
 				$record->setExamID($row['ExamID']);
 				$record->setExamUnitID($row['ExamUnitID']);
-				$record->setIsSent($row['IsSended']);
+				$record->setIsSent($row['MessageSent']);
 			}
 			
 			return $record;
@@ -191,7 +191,7 @@
 			$studentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentIDU);
 			$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
 			
-			$sql = "Select * from Records WHERE ID  = '" . $examID . "' AND StudentID = '" . $studentID . "'";
+			$sql = "Select * from Records WHERE ExamID  = '" . $examID . "' AND StudentID = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			if ($result->num_rows == 0) { 
 				return false;
