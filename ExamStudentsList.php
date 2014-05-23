@@ -136,7 +136,7 @@
 			}
 
 
-			echo '<td style="text-align: center;">' . $issent_info . '</td>';
+			echo '<td id="is_sent" style="text-align: center;">' . $issent_info . '</td>';
 			echo '<td style="text-align: center;">';
 			
 			echo '<a id="remove" title="Usuń studenta" style="cursor: pointer; margin-right: 12px;"><i class="glyphicon glyphicon-trash"></i></a>';

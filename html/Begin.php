@@ -63,7 +63,7 @@
 				">
 
 				<noscript>
-					<div class="alert alert-danger">
+					<div class="alert alert-danger" style="width: 70%; margin-left: auto; margin-right: auto; text-align: justify;">
 						<h4 style="text-align: center; color: #d2322d; font-weight: bold;">Wymagana obsługa JavaScript!</h4>
 						<p>
 						Wygląda na to, że Twoja przeglądarka nie obsługuje języka JavaScript lub ta funkcjonalność została wyłączona. 

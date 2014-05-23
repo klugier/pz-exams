@@ -27,6 +27,7 @@
 			$record = new Record();
 			$record->setStudentID($new_student_id);
 			$record->setExamID($exam_id);
+			$record->setIsSent(0);
 
 			if(RecordDatabase::insertRecord($record)) {
 				//echo '<br/>Wpisano rekord';
@@ -53,6 +54,7 @@
 			$record = new Record();
 			$record->setStudentID(StudentDatabase::getStudentID($student));
 			$record->setExamID($exam_id);
+			$record->setIsSent(0);
 
 			if(RecordDatabase::insertRecord($record)) {
 				//echo '<br/>Wpisano rekord';
