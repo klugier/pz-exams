@@ -27,10 +27,10 @@
 
 <div id="buttons">
 	<span>
-		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#student_list_modal">Dodaj studentów</button>
-		<button type="button" class="btn btn-warning btn-sm" id="sendEmails" style="min-width: 16%;">Wyślij email do wszystkich <i class="glyphicon glyphicon-envelope"></i></button>
+		<button type="button" class="btn btn-primary btn-sm" id="display_modal" data-toggle="modal" data-target="#student_list_modal">Dodaj studentów</button>
+		<button type="button" class="btn btn-warning btn-sm" id="sendEmails" style="min-width: 16%;">Wyślij email do wszystkich</button>
 		
-		<a class="btn btn-primary btn-sm pull-right" href="controler/PDFExamStudentsList.php?examID=<?php echo $exam->getID(); ?>" role="button" name="examStudentsListPDFGlyph" id="examStudentsListPDFGlyph" title="Pobierz PDF" value=<?php echo "\"".$exam->getID()."\""; ?>\><i class="glyphicon glyphicon-download"></i> <b>PDF</b></a>
+		<a class="btn btn-primary btn-sm pull-right" style="font-weight: bold;" href="controler/PDFExamStudentsList.php?examID=<?php echo $exam->getID(); ?>" role="button" name="examStudentsListPDFGlyph" id="examStudentsListPDFGlyph" title="Pobierz PDF" value=<?php echo "\"".$exam->getID()."\""; ?>\><i class="glyphicon glyphicon-download"></i> Pobierz w PDF</a>
 	</span>
 </div>
 

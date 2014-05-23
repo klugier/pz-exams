@@ -73,6 +73,21 @@ $(document).ready(function() {
 
 	$('button#sendEmails').click( function() {
 
+		$(this).after('<span id="sending_info" style="margin-left: 10px; font-weight: bold;">Trwa wysyłanie, proszę czekać...</span>');
+		$('#sending_info').hide();
+		$('#sending_info').fadeIn();
+
+		$('a#remove').each(function(index, element) {
+			$(element).bind('click', false);
+		});
+
+		$('a#send').each(function(index, element) {
+			$(element).bind('click', false);
+		});
+
+		$('#display_modal').attr('disabled', true);
+		$('#examStudentsListPDFGlyph').attr('disabled', true);
+
 		$(this).attr('disabled', true);
 		$(this).html('<img id="send_animation" style="height: 5%; width: auto;" src="img/sending-white.gif"/>');
 
@@ -95,8 +110,23 @@ $(document).ready(function() {
 				alert('Wystapil blad przy wysyłaniu mailów!');
 			},
 			complete: function() {
-				$('button#sendEmails').html('Wyślij email do wszystkich <i class="glyphicon glyphicon-envelope"></i>');
+				$('button#sendEmails').html('Wyślij email do wszystkich');
 				$('button#sendEmails').removeAttr('disabled');
+
+				$('a#remove').each(function(index, element) {
+					$(element).unbind('click', false);
+				});
+
+				$('a#send').each(function(index, element) {
+					$(element).unbind('click', false);
+				});
+
+				$('#display_modal').removeAttr('disabled');
+				$('#examStudentsListPDFGlyph').removeAttr('disabled');
+
+				$('#sending_info').hide(300, function(){ 
+						$('#sending_info').remove(); 
+				});
 			}
 		});
 	});
@@ -364,7 +394,7 @@ function addStudent(fn, ln, em) {
 					$('table#students tbody').append('<tr class="student" id="' + data[0] + '"><td id="number" style="text-align: center;">' + nr +'.</td><td id="firstname">' + 
 					first + '</td><td id="lastname">' + 
 					last + '</td><td id="emails">' + 
-					data[3] + '</td><td style="text-align:center; vertical-align:middle;"><a id="remove"><i title="Usuń studenta" class="glyphicon glyphicon-trash" style="margin-right: 12px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td><td id="comment" style="padding-left: 10x; padding-right: 0px; padding-top: 6px;"></td></tr>');
+					data[3] + '</td><td style="text-align: center;"></td><td style="text-align:center; vertical-align:middle;"><a id="remove"><i title="Usuń studenta" class="glyphicon glyphicon-trash" style="margin-right: 12px; cursor: pointer;"></i></a><a id="send" title="Wyślij wiadomość z kodem dostępu do studenta" style="cursor: pointer;"><i class="glyphicon glyphicon-envelope"></i></a></td><td id="comment" style="padding-left: 10x; padding-right: 0px; padding-top: 6px;"></td></tr>');
 
 					$('tr#'+data[0]).hide();
 					$('tr#'+data[0]).fadeIn(400);

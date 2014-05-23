@@ -39,7 +39,7 @@ if(isset($_POST['exam_name']) && isset($_POST['exam_duration'])) {
 
 		addStudents($new_exam_id);
 
-		setResponseMessage('Pomyślnie dodano egzamin', 'error');
+		setResponseMessage('Pomyślnie dodano egzamin', 'success');
 		return;
 	} else {
 		setResponseMessage('Wystapił błąd podczas wpisywania danych do bazy.', 'error');

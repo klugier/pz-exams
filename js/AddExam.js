@@ -287,7 +287,9 @@ $( document ).ready(function() {
 			if(data['status'] == 'error') {
 				bootbox.alert('<div class="alert alert-success" style="margin-top: 4%; margin-bottom: 0%;">' + data['errorMsg'] + '.</strong></div>');
 			} else {
-				bootbox.alert('<div class="alert alert-success" style="margin-top: 4%; margin-bottom: 0%;"><strong>Pomyślnie dodano egzamin.</strong></div>');
+				bootbox.alert('<div class="alert alert-success" style="margin-top: 4%; margin-bottom: 0%;"><strong>Pomyślnie dodano egzamin.</strong></div>', function() {
+					window.location = 'ExamList.php';
+				});
 			}
 
 			setInterval(function(){
