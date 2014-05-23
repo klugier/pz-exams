@@ -28,6 +28,11 @@ class Record
 	{
 		return $this->examUnitID;
 	}
+
+	public function getIsSent()
+	{
+		return $this->isSent;
+	}
 	
 	// *****************************************************
 	
@@ -50,6 +55,11 @@ class Record
 	{
 		$this->examUnitID = $examUnitID;
 	}
+
+	public function setIsSent($isSent)
+	{
+		$this->isSent = $isSent;
+	}
 	
 	
 	// *****************************************************
@@ -58,6 +68,7 @@ class Record
 	private $studentID;
 	private $examID;
 	private $examUnitID;
+	private $isSent;
 }
 
 ?>

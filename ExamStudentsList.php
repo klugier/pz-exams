@@ -98,6 +98,7 @@
 				<th style="width: 26%;">Imię</th>
 				<th style="width: 26%;">Nazwisko</th>
 				<th>E-mail</th>
+				<th style="text-align: center;">Wysłano</th>
 				<th style="text-align:center; width: 5%;">Operacje</th>
 				<th style="width: 5%;"></th>
 			</tr>
@@ -124,6 +125,18 @@
 			echo '<td id="firstname">' . $fName . '</td>';
 			echo '<td id="lastname">' . $lName . '</td>';
 			echo '<td id="emails">' . $student->getEmail() . '</td>';
+
+			
+			$record_id = RecordDatabase::getRecordID($id, $student->getID());
+			$record = RecordDatabase::getRecord($record_id);
+			$issent_info = 'Nie';
+
+			if ($record->getIsSent() == 1) {
+				$issent_info = 'Tak';
+			}
+
+
+			echo '<td style="text-align: center;">' . $issent_info . '</td>';
 			echo '<td style="text-align: center;">';
 			
 			echo '<a id="remove" title="Usuń studenta" style="cursor: pointer; margin-right: 12px;"><i class="glyphicon glyphicon-trash"></i></a>';

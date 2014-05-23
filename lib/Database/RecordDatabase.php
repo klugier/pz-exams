@@ -49,6 +49,7 @@
 				$record->setStudentID($row['StudentID']);
 				$record->setExamID($row['ExamID']);
 				$record->setExamUnitID($row['ExamUnitID']);
+				$record->setIsSent($row['IsSended']);
 			}
 			
 			return $record;
@@ -238,11 +239,14 @@
 		{
 			$recordStudentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getStudentID());
 			$recordExamID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getExamID());
+			$recordIsSent = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getIsSent());
+
 			
 			$values = "('"	. $recordStudentID . "','"
-			                . $recordExamID .  "')";
+			                . $recordExamID . "', '"
+			                . $recordIsSent . "')";
 			
-			$sql =  "INSERT INTO Records (StudentID, ExamID) VALUES $values";
+			$sql =  "INSERT INTO Records (StudentID, ExamID, IsSended) VALUES $values";
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		} 
 		

@@ -70,6 +70,7 @@ if(isset($_POST['students_emails']) && isset($_POST['firstnames']) && isset($_PO
 				$record = new Record();
 				$record->setStudentID(DatabaseConnector::getLastInsertedID());
 				$record->setExamID($exam_id);
+				$record->setIsSent(0);
 
 				if(RecordDatabase::insertRecord($record)) {
 					//echo '<br/>Wpisano rekord';
@@ -82,6 +83,7 @@ if(isset($_POST['students_emails']) && isset($_POST['firstnames']) && isset($_PO
 				$record = new Record();
 				$record->setStudentID(StudentDatabase::getStudentID($student));
 				$record->setExamID($exam_id);
+				$record->setIsSent(0);
 
 				if(RecordDatabase::insertRecord($record)) {
 					//echo '<br/>Wpisano rekord';
