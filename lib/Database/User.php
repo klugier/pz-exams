@@ -78,6 +78,16 @@ class BasicUser
 	{
 		 $this->surname = $surname ;
 	}
+
+	public function getRight()
+	{
+		return $this->right;
+	}
+	
+	public function setRight($right)
+	{
+		 $this->right = $right ;
+	}
 	
 	protected $id;
 	protected $email;
@@ -86,6 +96,7 @@ class BasicUser
 	protected $activation_code;
 	protected $firstName; 
 	protected $surname;
+	protected $right;
 }
 
 class User extends BasicUser
@@ -104,6 +115,7 @@ class User extends BasicUser
 		echo "Name: "     . $this->firstName . "<br /> " ;  
 		echo "Surname: "  . $this->surname   . "<br /> " ;
 		echo "Gender: "   . $this->gender    . "<br /> " ;
+		echo "Rights: "   . $this->right    . "<br /> " ;
 	} 
 	
 	public function getGender()

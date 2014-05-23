@@ -37,7 +37,8 @@
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 $basicUser->setID($row['ID']);                
                 $basicUser->setFirstName($row['FirstName']);
-                $basicUser->setSurname($row['Surname']);                
+                $basicUser->setSurname($row['Surname']);       
+				$basicUser->setRight($row['Rights']);                
 
                 return true;
             }
@@ -82,6 +83,31 @@
             // echo($sql);
     
             return DatabaseConnector::getConnection()->query($sql) ? true : false;
+        }
+		
+		static public function getAllUsers()
+        {
+            $sql = "SELECT * FROM Users";
+            $result = DatabaseConnector::getConnection()->query($sql);
+            if (!$result) {
+                return null;
+            }
+
+			$i = 0;
+			while ($row = $result->fetch_array(MYSQLI_NUM)) {
+				$resultUser = new User(); 
+				$resultUser->setID($row[0]);
+				$resultUser->setEmail($row[1]);
+				$resultUser->setActivated($row[3]);
+				$resultUser->setPassword($row[2]);
+				$resultUser->setFirstName($row[5]);
+				$resultUser->setSurname($row[6]);
+				$resultUser->setGender($row[9]);
+				$resultUser->setRight($row[8]);
+				$users[$i] = $resultUser; 
+				$i++;
+			}
+			return $users;
         } 
     
         static public function getUser($idU)
@@ -103,6 +129,7 @@
             $resultUser->setFirstName($row['FirstName']);
             $resultUser->setSurname($row['Surname']);
             $resultUser->setGender($row['Gender']);
+			$resultUser->setRight($row['Rights']);
     
             return $resultUser;
         }
@@ -162,6 +189,21 @@
 			
              $sql = "UPDATE Users SET 
              Gender  = '" . $gender . "'
+             WHERE ID = '" . $userID . "'";
+    
+             return DatabaseConnector::getConnection()->query($sql) ? true : false;
+         }
+
+		 /*
+         * Aktualizacja praw usera
+         */
+		 static public function updateUserRights($userU, $rightsU)
+         { 
+			$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getID());
+			$rights = mysqli_real_escape_string(DatabaseConnector::getConnection(), $rightsU);
+			
+             $sql = "UPDATE Users SET 
+             Rights  = '" . $rights . "'
              WHERE ID = '" . $userID . "'";
     
              return DatabaseConnector::getConnection()->query($sql) ? true : false;

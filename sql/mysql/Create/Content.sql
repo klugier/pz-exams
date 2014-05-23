@@ -2,7 +2,7 @@
 
 INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) VALUES ('test@uj.edu.pl','b444ac06613fc8d63795be9ad0beaf55011936ac',True,'Mariusz','Testowicz', 'private', 'examiner','male' , '2014/03/28');
 INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) VALUES ('antek.egzaminator@uj.edu.pl','b444ac06613fc8d63795be9ad0beaf55011936ac',True,'Antek','Egzaminator', 'private', 'examiner','male' , '2014/03/28');
-
+INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) VALUES ('admin@uj.edu.pl', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 'Admin', 'Nerd', 'private', 'administrator', 'male', '2014-03-28');
 INSERT INTO Exams (UserID, Name, Duration, Activated, EmailsPosted) VALUES ('1', 'Metody Numeryczne I - Egzamin I termin', '0:30:00', True, False);
 INSERT INTO Exams (UserID, Name, Duration, Activated, EmailsPosted) VALUES ('1', 'Metody Numeryczne I - Egzamin II termin', '0:15:00', False, False);
 INSERT INTO Exams (UserID, Name, Duration, Activated, EmailsPosted) VALUES ('1', 'Język C++ - Egzamin I termin', '00:15:00', True, False);
