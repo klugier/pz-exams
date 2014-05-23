@@ -183,6 +183,27 @@
 			return $examCount;
 		}
 		
+		/*
+		 * 
+		 */
+		static public function messageSent($studentIDU, $examIDU)
+		{
+			$studentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentIDU);
+			$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+			
+			$sql = "Select * from Records WHERE ID  = '" . $examID . "' AND StudentID = '" . $studentID . "'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			if ($result->num_rows == 0) { 
+				return false;
+			}
+			
+			$sql = "UPDATE Records SET 
+					MessageSent = '" . 1 . "' 
+					WHERE examID = '" . $examID . "' AND StudentID = '" . $studentID . "'";
+			
+			return DatabaseConnector::getConnection()->query($sql) ? true : false;
+		}
+		
 		static public function recordTransaction($recordID,$examUnitID)
 		{
 			$transaction = DatabaseConnector::getConnection();
