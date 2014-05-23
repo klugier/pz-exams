@@ -260,14 +260,11 @@
 		{
 			$recordStudentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getStudentID());
 			$recordExamID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getExamID());
-			$recordIsSent = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordU->getIsSent());
-
 			
 			$values = "('"	. $recordStudentID . "','"
-			                . $recordExamID . "', '"
-			                . $recordIsSent . "')";
+			                . $recordExamID . "')";
 			
-			$sql =  "INSERT INTO Records (StudentID, ExamID, IsSended) VALUES $values";
+			$sql =  "INSERT INTO Records (StudentID, ExamID) VALUES $values";
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		} 
 		
