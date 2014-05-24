@@ -14,4 +14,8 @@
 		<Host>smtp.gmail.com</Host>
 		<Port>465</Port>
 	</Email>
+	<Authorization>
+		<UseCode>1</UseCode>
+		<Code>1234567890</Code>
+	</Authorization>
 </Settings>

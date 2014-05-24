@@ -47,6 +47,18 @@ final class Settings
 		return self::getInstance()->emailPort;
 	}
 	
+	public static function getAuthorizationUseCode()
+	{
+		return self::getInstance()->authorizationUseCode;
+	}
+	
+	public static function getAuthorizationCode()
+	{
+		return self::getInstance()->authorizationCode;
+	}
+	
+	// ------------------------------------------------------
+	
 	public static function setDebug($debug)
 	{
 		self::getInstance()->debug = $debug;
@@ -81,6 +93,18 @@ final class Settings
 	{
 		self::getInstance()->emailPort = $emailPort;
 	}
+	
+	public static function setAuthorizationUseCode($authorizationUseCode)
+	{
+		self::getInstance()->authorizationUseCode = $authorizationUseCode;
+	}
+	
+	public static function setAuthorizationCode($authorizationCode)
+	{
+		self::getInstance()->authorizationCode = $authorizationCode;
+	}
+	
+	// ------------------------------------------------------
 	
 	private static function getInstance()
 	{
@@ -136,6 +160,12 @@ final class Settings
 			$this->emailHost = $xml->Email->Host;
 			$this->emailPort = (int)$xml->Email->Port;
 		}
+		
+		if ($dom->getElementsByTagName("Authorization")->length > 0) {
+			$useCode = $xml->Authorization->UseCode;
+			$this->authorizationUseCode = ($useCode == 1 ? true : false);
+			$this->authorizationCode = $xml->Authorization->Code;
+		}
 	}
 	
 	private $debug;
@@ -145,6 +175,8 @@ final class Settings
 	private $emailPassword;
 	private $emailHost;
 	private $emailPort;
+	private $authorizationUseCode;
+	private $authorizationCode;
 	
 	private static $instance = false;
 }
