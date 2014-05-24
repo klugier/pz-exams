@@ -199,7 +199,7 @@
 			
 			$sql = "UPDATE Records SET 
 					MessageSent = '" . 1 . "' 
-					WHERE examID = '" . $examID . "' AND StudentID = '" . $studentID . "'";
+					WHERE ExamID = '" . $examID . "' AND StudentID = '" . $studentID . "'";
 			
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		}
