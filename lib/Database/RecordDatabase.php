@@ -165,6 +165,20 @@
 			return $examCount;
 		}
 		
+		static public function adminCountUserStudents(){
+			$sql = "SELECT count(Exams.ID) FROM Records INNER JOIN Exams ON Records.ExamID = Exams.ID";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$examCount=0;
+			
+			if($result!=null){
+				$row = $result->fetch_array(MYSQLI_NUM);
+				$examCount=$row[0];
+			}
+			
+			
+			return $examCount;
+		}
+		
 		/*
 		 * Zwraca liczbe Studentów Egzaminatora zapisanych na egzaminy
 		 */
@@ -183,6 +197,20 @@
 			return $examCount;
 		}
 		
+		static public function adminCountUserStudentsSingedToExams(){
+			$sql = "SELECT count(Exams.ID) FROM Records INNER JOIN Exams ON Records.ExamID = Exams.ID 
+			        WHERE Records.ExamUnitID != 'NULL'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$examCount=0;
+			
+			if($result!=null){
+				$row = $result->fetch_array(MYSQLI_NUM);
+				$examCount=$row[0];
+			}
+			
+			
+			return $examCount;
+		}
 		/*
 		 * 
 		 */
