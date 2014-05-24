@@ -139,7 +139,8 @@ final class Settings
 		$xml = simplexml_load_file($cfgPath);
 		
 		if ($dom->getElementsByTagName("Debug")->length > 0) {
-			$this->debug = $xml->Debug;
+			$debug = $xml->Debug;
+			$this->debug = ($debug == 1 ? true : false);
 		}
 		
 		if ($dom->getElementsByTagName("Domains")->length > 0) {

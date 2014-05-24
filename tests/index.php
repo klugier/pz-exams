@@ -1,3 +1,13 @@
+<?php
+	include_once("../lib/Lib.php");
+	include_once("Communicate.php");
+	
+	if (Settings::getDebug() == false) {
+		Comunicate::printSiteDebugModeDisable();
+		return;
+	}
+?>
+
 <!DOCTYPE HTML>
 
 <html>
@@ -15,7 +25,7 @@
 		<?php
 			if ($handle = opendir('.')) {
 				while (false !== ($entry = readdir($handle))) {
-					if ($entry != "." && $entry != ".." && $entry != basename(__FILE__) && $entry != "TestBegin.php" && $entry != "TestEnd.php") {
+					if ($entry != "." && $entry != ".." && $entry != basename(__FILE__) && $entry != "Communicate.php" && $entry != "TestBegin.php" && $entry != "TestEnd.php") {
 						echo "<li><a href='" . $entry . "'>" . $entry . "</a></li>\n";
 					}
 				}

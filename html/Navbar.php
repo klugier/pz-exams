@@ -14,8 +14,8 @@
 			<li><a	class="navbar-brand"	href="Help.php">Pomoc</a></li>
 			</ul>
 			<?php
-				if	(Settings::getDebug()	==	1)	{
-					echo	"<a	class=\"navbar-brand\"	href=\"tests/Tests.php\">Testy</a>\n";
+				if (Settings::getDebug() == true) {
+					echo "<a class=\"navbar-brand\" href=\"tests/index.php\">Testy</a>\n";
 				}
 			?>
 		</div>
