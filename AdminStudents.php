@@ -17,9 +17,55 @@
 	
 	include("html/AdminPanel.php");
 
-?>
+	$studentList = StudentDatabase::getAllStudents();
 
-<?php
+	if (!is_array($studentList)) {
+		$displayTable = ' style="display: none;"';
+	} else {
+		$displayInfo = ' display: none;"';
+	}
+
+	echo '<div style="margin-top: 5%;"><h3 id="empty_list" style="text-align: center; margin-bottom: 4%;' . $displayInfo . '>Lista studentów jest obecnie pusta</h3>
+		<table class="table" id="students"' . $displayTable . '>
+		<thead>
+			<tr>
+				<th style="text-align: center;">Lp.</th>
+				<th>Imię</th>
+				<th>Nazwisko</th>
+				<th>E-mail</th>
+				<th style="text-align: center;">Ma aktywne egzaminy</th>
+				<th style="text-align: center;">Usuń</th>
+			</tr>
+		</thead>
+		<tbody>';
+
+	if (is_array($studentList)) {
+		foreach ($studentList as $number => $student) {
+			echo '<tr id="' . $student->getID() . '">';
+			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
+
+			$fName = "-";
+			$lName = "-";
+
+			if ($user->getFirstName() != "") {
+				$fName = $student->getFirstName();
+			}
+
+			if ($user->getSurname() != "") {
+				$lName = $student->getSurname();
+			}
+
+			echo '<td id="firstname">' . $fName . '</td>';
+			echo '<td id="lastname">' . $lName . '</td>';
+			echo '<td id="emails">' . $student->getEmail() . '</td>';
+			echo '<td></td>';
+			echo '<td></td>';
+			echo '</tr>';
+		}
+	}
+
+	echo '</tbody></table></div>';
+
 	include("html/End.php");
 	
 	ob_end_flush();

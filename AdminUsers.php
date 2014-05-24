@@ -66,7 +66,13 @@
 			echo '<td id="firstname">' . $fName . '</td>';
 			echo '<td id="lastname">' . $lName . '</td>';
 			echo '<td id="emails">' . $user->getEmail() . '</td>';
-			echo '<td id="rank">' . $user->getRight() . '</td>';
+			echo '<td id="rank">';
+			if($user->getRight() == "examiner"){
+				echo "Egzaminator";
+			}else{
+				echo "Admin";
+			} 
+			echo '</td>';
 			echo '<td></td>';
 			echo '<td></td>';
 			echo '<td></td>';
@@ -74,9 +80,7 @@
 		}
 	}
 
-	echo '		</tbody>
-	</table>
-</div>';
+	echo '</tbody></table></div>';
 
 	include("html/End.php");
 	

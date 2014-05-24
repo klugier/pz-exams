@@ -35,6 +35,27 @@
 			
 			return $student;		
 		}
+
+		static public function getAllStudents()
+        {
+            $sql = "SELECT * FROM Students";
+            $result = DatabaseConnector::getConnection()->query($sql);
+            if (!$result) {
+                return null;
+            }
+
+			$i = 0;
+			while ($row = $result->fetch_array(MYSQLI_NUM)) {
+				$resultUser = new Student(); 
+				$resultUser->setID($row[0]);
+				$resultUser->setEmail($row[1]);
+				$resultUser->setFirstName($row[3]);
+				$resultUser->setSurName($row[4]);
+				$users[$i] = $resultUser; 
+				$i++;
+			}
+			return $users;
+        }
 	
 		static public function getStudentByID($idU)
 		{ 
