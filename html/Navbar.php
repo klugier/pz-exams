@@ -74,10 +74,16 @@
 					</ul>
 				</li>
 				<li	class="navbar-form"	style="margin-left:-20px;	padding-right:	0px;">
-							<form	action="InsertActivationCode.php">
-								<button	type="submit"	class="btn	btn-info"><i class="glyphicon glyphicon-book" style="margin-right: 5px;"></i><b>Rejestracja</b></button>
-			</form>
-		</li>	
+					<?php 
+						if ( Settings::getAuthorizationUseCode() == true ) {
+							echo '<form	action="InsertActivationCode.php">' ;  
+						} else { 
+							echo '<form	action="RegisterForm.php">' ;
+						}
+					?>
+						<button	type="submit"	class="btn	btn-info"><i class="glyphicon glyphicon-book" style="margin-right: 5px;"></i><b>Rejestracja</b></button>
+					</form>
+				</li>	
 		<?php	}	?>
 			</ul>
 		</div>

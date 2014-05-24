@@ -1,10 +1,5 @@
 <?php
 	include_once("lib/Lib.php") ; 
-	include_once("lib/General/Settings.php");
-	
-	if ( Settings::getAuthorizationUseCode() != true ) {
-		header('Location: RegisterForm.php' ); 
-	}
 	
 	$title = "$appName - Wprowadź kod aktywacyjny";
 	$scriptsDefer = array("js/ValidateRegisterForm.js");
@@ -35,7 +30,7 @@
 			<div class="form-group">
 				<label for="activation-code" class="col-xs-2 col-sm-2 col-md-2 control-label">Kod : </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="text" class="form-control" id="activation-code" placeholder="Wprowadź kod aktywacyjny" name="name" value="<?php if(isset($_SESSION['name'])){ echo $_SESSION['name']; } else { echo '';  }?>">
+					<input type="text" class="form-control" id="activation-code" placeholder="Wprowadź kod aktywacyjny" name="activationCode">
 				</div>
 				<span class="help-block" id="error-activation-code-empty-field">
 					
