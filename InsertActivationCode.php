@@ -25,15 +25,14 @@
 				</fieldset>	
 			</div>
 			<div class="form-group"> 
-				<h4 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-7 col-sm-7 col-md-7"> Rejestracja konta w serwisie wymaga wprowadzenia kodu aktywacyjnego, który można uzyskać od administratora.</h4> 
+				<h4 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-10 col-sm-10 col-md-10" style="text-align: center;"> Rejestracja konta w serwisie wymaga wprowadzenia kodu aktywacyjnego, który można uzyskać od administratora.</h4> 
 			</div>
 			<div class="form-group">
-				<label for="activation-code" class="col-xs-2 col-sm-2 col-md-2 control-label">Kod : </label>
-				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="text" class="form-control" id="activation-code" placeholder="Wprowadź kod aktywacyjny" name="activationCode">
-				</div>
-				<span class="help-block" id="error-activation-code-empty-field">
-					
+				<span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-8 col-sm-8 col-md-8">
+					<label for="activation-code" class="col-xs-2 col-sm-2 col-md-2 control-label">Kod</label>
+					<div class="col-xs-8 col-sm-8 col-md-8">
+						<input type="text" class="form-control" id="activation-code" placeholder="Wprowadź kod aktywacyjny" name="activationCode">
+					</div>
 				</span>
 			</div>
 			
@@ -41,8 +40,8 @@
 					
 			<div class="form-group">
 				<div class="row"> 
-					<span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3 col-md-3">
-						<button type="submit" class="btn btn-success btn-lg btn-block" name="submitActivationCodeButton" value="submit">Weryfikuj kod aktywacyjny</button>
+					<span class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-xs-4 col-sm-4 col-md-4">
+						<button type="submit" class="btn btn-success btn btn-block" name="submitActivationCodeButton" value="submit">Weryfikuj kod aktywacyjny</button>
 					</span>
 				</div>
 			</div>
