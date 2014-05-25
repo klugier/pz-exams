@@ -231,6 +231,20 @@
             }
         }
     
+		static public function deleteUser($userIDU)
+		{
+			$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+			
+			$sql = "Select * from Users WHERE ID = '" . $userID . "'";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			if ($result->num_rows == 0) { 
+				return false;
+			}
+			
+			$sql = "Delete from Users WHERE ID  = '" . $userID . "'";
+			return DatabaseConnector::getConnection()->query($sql) ? true : false;
+		}
+	
         // Nie pozwalamy na utworzenie obiektu - Jeżeli zrozumiałeś design to nigdy nie zmienisz tego konstruktora na publiczny ;)
         private function __construct() { }
     }

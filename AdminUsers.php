@@ -41,9 +41,7 @@
 				<th>Nazwisko</th>
 				<th>E-mail</th>
 				<th>Ranga</th>
-				<th style="text-align: center;">Zmień Dane</th>
-				<th style="text-align: center;">Zmień Rangę</th>
-				<th style="text-align: center;">Usuń</th>
+				<th style="text-align: center;">Operacje</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -76,9 +74,11 @@
 			} 
 			echo '</td>';
 			$id = $user->getID();
-			echo "<td style=\"text-align: center;\" id=\"data\"><a href=\"AdminUserEdit.php?UserToEdit=" . $id . "\" id=\"row-edit-id-" . $id . "\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj Użytkownika\"></i></a></td>";
-			echo '<td id="changeRank"></td>';
-			echo '<td id="delete"></td>';
+			echo "<td style=\"text-align: center;\" id=\"data\">" . 
+			"<a href=\"AdminUserEdit.php?UserToEdit=" . $id . "\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj Użytkownika\"></i></a>" .
+			"<a href=\"AdminUserOption.php?UserToRank=" . $id . "\"><i class=\"glyphicon glyphicon-star\" style =\"margin-right: 10px;\" title=\"Zmień rangę\"></i></a>" .
+			"<a href=\"AdminUserOption.php?UserToDelete=" . $id . "\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń użytkownika\"></i></a>";
+			echo "</td>";
 			echo '</tr>';
 		}
 	}
