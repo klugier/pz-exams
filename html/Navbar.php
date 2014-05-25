@@ -75,7 +75,9 @@
 				</li>
 				<li	class="navbar-form"	style="margin-left:-20px;	padding-right:	0px;">
 					<?php 
-						if (Settings::getAuthorizationUseCode() == true) {
+						if (Settings::getAuthorizationUseCode() == true 
+							&& $_SESSION['codeActivationStepCompleted'] !='stepCompleted'
+						) {
 							echo '<form	action="InsertActivationCode.php">';  
 						} else { 
 							echo '<form	action="RegisterForm.php">';

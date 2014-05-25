@@ -48,6 +48,8 @@
 			//$user->setName($_POST['name']);
 			
 			if (UserDatabase::addUser($user)) { 
+				if (  isset($_SESSION['codeActivationStepCompleted']) )  
+					$_SESSION['codeActivationStepCompleted']='stepIncomplited' ; 
 				$_SESSION['formSuccessCode'] = TRUE; 
 				
 				$activationUrl = "http://" . Settings::getAdress() . "/ActivationPage.php?email=" . $user->getEmail() . "&code=" . $user->getActivationCode();
