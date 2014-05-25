@@ -36,6 +36,7 @@
 		<thead>
 			<tr>
 				<th style="text-align: center;">Lp.</th>
+				<th>ID</th>
 				<th>Imię</th>
 				<th>Nazwisko</th>
 				<th>E-mail</th>
@@ -51,7 +52,8 @@
 		foreach ($userList as $number => $user) {
 			echo '<tr id="' . $user->getID() . '">';
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
-
+			echo '<td id="userID">' . $user->getID() . '</td>';
+			
 			$fName = "-";
 			$lName = "-";
 
@@ -73,9 +75,10 @@
 				echo "Admin";
 			} 
 			echo '</td>';
-			echo '<td></td>';
-			echo '<td></td>';
-			echo '<td></td>';
+			$id = $user->getID();
+			echo "<td style=\"text-align: center;\" id=\"data\"><a href=\"AdminUserEdit.php?UserToEdit=" . $id . "\" id=\"row-edit-id-" . $id . "\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj Użytkownika\"></i></a></td>";
+			echo '<td id="changeRank"></td>';
+			echo '<td id="delete"></td>';
 			echo '</tr>';
 		}
 	}
