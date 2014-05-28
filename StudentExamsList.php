@@ -5,7 +5,10 @@
 	include("html/Begin.php");
 	
 	if (!isset($_GET['exam']) || !isset($_GET['code'])) {
+		echo "<div class=\"alert alert-danger\"><b>Strona widoczna jedynie dla przypisanych studentów.</b> Za 3 sekundy zostaniesz przeniesiony na stronę główną.</div>";
+		header("refresh: 3; url=index.php");
 		include("html/End.php");
+
 		ob_end_flush();
 		return;
 	}
@@ -14,8 +17,8 @@
 	$student = StudentDatabase::getStudentByCode($_GET['code']);
 	$recId = RecordDatabase::getRecordID($id, $student->getID());
 	if ($recId == null) {
-		echo "<div class=\"alert alert-danger\"><b>Strona widoczna jedynie dla przypisanych studentów.</b> Za 3 sekundy zostaniesz przeniesiony na stronę poprzednią.</div>";
-		header("refresh: 3; url=StudentExams.php?code=".$_GET['code']);
+		echo "<div class=\"alert alert-danger\"><b>Strona widoczna jedynie dla przypisanych studentów.</b> Za 3 sekundy zostaniesz przeniesiony na stronę główną.</div>";
+		header("refresh: 3; url=index.php");
 		include("html/End.php");
 	
 		ob_end_flush();
