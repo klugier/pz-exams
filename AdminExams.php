@@ -38,7 +38,6 @@
 		<thead>
 			<tr>
 				<th style="text-align: center;">Lp.</th>
-				<th style="text-align: center;">ID</th>
 				<th>Nazwa</th>
 				<th>Czas</th>
 				<th>Egzaminator</th>
@@ -53,7 +52,6 @@
 			$examDays = ExamUnitDatabase::getExamDays($exam->getID());
 			echo '<tr id="' . $exam->getID() . '">';
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
-			echo '<td id="examID" style="text-align: center;">' . $exam->getID() . '</td>';
 			echo '<td id="name">' . $exam->getName() . '</td>';
 			echo '<td style="vertical-align:middle;" id="time">';
 			$j = 0;
