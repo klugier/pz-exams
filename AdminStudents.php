@@ -28,6 +28,10 @@
 	
 	include("html/AdminPanel.php");
 
+	echo "<h2>Lista studentów</h2>";
+	echo "<p>W tym miejscu znajduje się lista wszystkich studentów.</p>";
+	echo "<hr />";
+
 	$studentList = StudentDatabase::getAllStudents();
 
 	if (!is_array($studentList)) {
@@ -41,11 +45,10 @@
 		<thead>
 			<tr>
 				<th style="text-align: center;">Lp.</th>
-				<th style="text-align: center;">ID</th>
 				<th>Imię</th>
 				<th>Nazwisko</th>
 				<th>E-mail</th>
-				<th style="text-align: center;">Ma aktywne egzaminy</th>
+				<th style="text-align: center;">Jest zapisany na egzamin</th>
 				<th style="text-align: center;">Usuń</th>
 			</tr>
 		</thead>
@@ -55,7 +58,6 @@
 		foreach ($studentList as $number => $student) {
 			echo '<tr id="row-id-' . $student->getID() . '">';
 			echo '<td id="row-lp-'. ($number+1) . '" style="text-align: center;">' . ($number+1) .  '.</td>';
-			echo '<td id="studentID" style="text-align: center;">' . $student->getID() . '</td>';
 
 			$fName = "-";
 			$lName = "-";
@@ -80,7 +82,7 @@
 			}
 			echo '</td>';
 			echo "<td style=\"text-align: center;\">" .
-			"<a class=\"btn btn-primary btn-sm\" id=\"row-delete-id-" . $student->getID() . "\" style=\"cursor: pointer;\" title=\"Usuń użytkownika\"><i class=\"glyphicon glyphicon-trash\" ></i></a>";
+			"<a id=\"row-delete-id-" . $student->getID() . "\" style=\"cursor: pointer;\" title=\"Usuń studenta\"><i class=\"glyphicon glyphicon-trash\" ></i></a>";
 			echo "</td>";
 			echo '</tr>';
 		}

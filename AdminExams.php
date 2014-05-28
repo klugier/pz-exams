@@ -17,6 +17,10 @@
 	
 	include("html/AdminPanel.php");
 
+	echo "<h2>Lista egzaminów</h2>";
+	echo "<p>W tym miejscu znajduje się lista wszystkich egzaminów.</p>";
+	echo "<hr />";
+
 	echo '<span style="float: right"><a class="btn btn-primary btn-sm pull-right" href="controler/DeleateExpiredExams.php" title="Usuń przedawnione egzaminy."><i class="glyphicon glyphicon-trash"></i> <b>Usuń przedawnione egzaminy</b></a></span>';
 	
 	$examList = ExamDatabase::getAllExams();
@@ -34,6 +38,7 @@
 		<thead>
 			<tr>
 				<th style="text-align: center;">Lp.</th>
+				<th style="text-align: center;">ID</th>
 				<th>Nazwa</th>
 				<th>Czas</th>
 				<th>Egzaminator</th>
@@ -48,29 +53,26 @@
 			$examDays = ExamUnitDatabase::getExamDays($exam->getID());
 			echo '<tr id="' . $exam->getID() . '">';
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
+			echo '<td id="examID" style="text-align: center;">' . $exam->getID() . '</td>';
 			echo '<td id="name">' . $exam->getName() . '</td>';
 			echo '<td style="vertical-align:middle;" id="time">';
 			$j = 0;
-
-			if($examDays!=null){
-				$uniqeDays = array_unique($examDays);
-			
-				$startDay = null;
-				foreach ($uniqeDays as $day){
-					if($j == 0){
-						$startDay = $day;
-						echo $day;
-					}elseif($j == count($uniqeDays)-1){
-						if(date("Y",strtotime($day)) != date("Y",strtotime($startDay))){
-							echo " do ".date("Y-m-d",strtotime($day));
-						}elseif(date("m",strtotime($day)) != date("m",strtotime($startDay))){
-							echo " do ".date("m-d",strtotime($day));
-						}elseif(date("d",strtotime($day)) != date("d",strtotime($startDay))){
-							echo "/".date("d",strtotime($day));
-						}
+			$uniqeDays = array_unique($examDays);
+			$startDay = null;
+			foreach ($uniqeDays as $day){
+				if($j == 0){
+					$startDay = $day;
+					echo $day;
+				}elseif($j == count($uniqeDays)-1){
+					if(date("Y",strtotime($day)) != date("Y",strtotime($startDay))){
+						echo " do ".date("Y-m-d",strtotime($day));
+					}elseif(date("m",strtotime($day)) != date("m",strtotime($startDay))){
+						echo " do ".date("m-d",strtotime($day));
+					}elseif(date("d",strtotime($day)) != date("d",strtotime($startDay))){
+						echo "/".date("d",strtotime($day));
 					}
-					$j++;
 				}
+				$j++;
 			}
 			echo '</td>';
 			$examinator = UserDatabase::getUser($exam->getUserID());

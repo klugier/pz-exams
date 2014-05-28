@@ -67,7 +67,7 @@
 									<li><a href="ExamList.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-list"></i>  <b>Aktualne egzaminy</b></a></li>
 									<li><a href="ExamListArchives.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-floppy-disk"></i>  <b>Archiwalne egzaminy</b></a></li>
 									<li><a href="UserEdit.php" title="Edytuj profil" id="user_m" style="color:white"><i class="glyphicon glyphicon-cog"></i>  <b>Edytuj Profil</b></a></li>
-									<li><a href="controler/ChangeMode.php" title="Zmień Tryb" id="user_m" style="color:white"><i class="glyphicon glyphicon-star"></i>  <b>Zmień Tryb</b></a></li>
+									<li><a href="controler/ChangeMode.php" title="Zmień Tryb" id="user_m" style="color:white"><i class="glyphicon glyphicon-refresh"></i>  <b>Zmień Tryb</b></a></li>
 								</ul>
 								<?php 
 								}else{
@@ -77,7 +77,7 @@
 									<li><a href="AdminStudents.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-user"></i>  <b>Studenci</b></a></li>
 									<li><a href="AdminExams.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-file"></i>  <b>Egzaminy</b></a></li>
 									<li><a href="UserEdit.php" title="Edytuj profil" id="user_m" style="color:white"><i class="glyphicon glyphicon-cog"></i>  <b>Edytuj Profil</b></a></li>
-									<li><a href="controler/ChangeMode.php" title="Zmień Tryb" id="user_m" style="color:white"><i class="glyphicon glyphicon-star"></i>  <b>Zmień Tryb</b></a></li>
+									<li><a href="controler/ChangeMode.php" title="Zmień Tryb" id="user_m" style="color:white"><i class="glyphicon glyphicon-refresh"></i>  <b>Zmień Tryb</b></a></li>
 								</ul>
 								<?php
 								}
