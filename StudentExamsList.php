@@ -4,12 +4,24 @@
 	$title = "$appName - Widok egzaminu";
 	include("html/Begin.php");
 	
-	if (!isset($_GET['exam'])) {
+	if (!isset($_GET['exam']) || !isset($_GET['code'])) {
 		include("html/End.php");
+		ob_end_flush();
 		return;
 	}
 
 	$id   = $_GET['exam'];
+	$student = StudentDatabase::getStudentByCode($_GET['code']);
+	$recId = RecordDatabase::getRecordID($id, $student->getID());
+	if ($recId == null) {
+		echo "<div class=\"alert alert-danger\"><b>Strona widoczna jedynie dla przypisanych studentów.</b> Za 3 sekundy zostaniesz przeniesiony na stronę poprzednią.</div>";
+		header("refresh: 3; url=StudentExams.php?code=".$_GET['code']);
+		include("html/End.php");
+	
+		ob_end_flush();
+		return;
+	}
+	
 	$exam = ExamDatabase::getExam($id);
 	$examDays = ExamUnitDatabase::getExamDays($id);
 	echo "<h2>";
