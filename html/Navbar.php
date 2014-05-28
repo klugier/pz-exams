@@ -60,14 +60,27 @@
 							</ul>
 							<?php
 							}else{
-							?>
-							<ul class="dropdown-menu" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;" role="menu">
-								<li><a href="AdminUsers.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-star"></i>  <b>Użytkownicy</b></a></li>
-								<li><a href="AdminStudents.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-user"></i>  <b>Studenci</b></a></li>
-								<li><a href="AdminExams.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-file"></i>  <b>Egzaminy</b></a></li>
-								<li><a href="UserEdit.php" title="Edytuj profil" id="user_m" style="color:white"><i class="glyphicon glyphicon-cog"></i>  <b>Edytuj Profil</b></a></li>
-							</ul>
-							<?php
+								if(isset($_SESSION['OPTION']) && ($_SESSION['OPTION']=="exam")){
+								?>
+								<ul class="dropdown-menu" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;" role="menu">
+									<li><a href="AddExam.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-plus"></i>  <b>Dodaj egzamin</b></a></li>
+									<li><a href="ExamList.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-list"></i>  <b>Aktualne egzaminy</b></a></li>
+									<li><a href="ExamListArchives.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-floppy-disk"></i>  <b>Archiwalne egzaminy</b></a></li>
+									<li><a href="UserEdit.php" title="Edytuj profil" id="user_m" style="color:white"><i class="glyphicon glyphicon-cog"></i>  <b>Edytuj Profil</b></a></li>
+									<li><a href="controler/ChangeMode.php" title="Zmień Tryb" id="user_m" style="color:white"><i class="glyphicon glyphicon-star"></i>  <b>Zmień Tryb</b></a></li>
+								</ul>
+								<?php 
+								}else{
+								?>
+								<ul class="dropdown-menu" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;" role="menu">
+									<li><a href="AdminUsers.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-star"></i>  <b>Użytkownicy</b></a></li>
+									<li><a href="AdminStudents.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-user"></i>  <b>Studenci</b></a></li>
+									<li><a href="AdminExams.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-file"></i>  <b>Egzaminy</b></a></li>
+									<li><a href="UserEdit.php" title="Edytuj profil" id="user_m" style="color:white"><i class="glyphicon glyphicon-cog"></i>  <b>Edytuj Profil</b></a></li>
+									<li><a href="controler/ChangeMode.php" title="Zmień Tryb" id="user_m" style="color:white"><i class="glyphicon glyphicon-star"></i>  <b>Zmień Tryb</b></a></li>
+								</ul>
+								<?php
+								}
 							}
 							?>
 						</div>

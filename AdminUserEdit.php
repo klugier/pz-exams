@@ -1,7 +1,8 @@
 <?php
 		include_once("lib/Lib.php");
-	
-	if	(!isset($_SESSION['USER'])	||	$_SESSION['USER']	==	"")	{
+	$user = unserialize($_SESSION['USER']);
+
+	if	(!isset($_SESSION['USER'])	||	$_SESSION['USER']	==	"" || $user->getRight()!="administrator")	{
 		header('Location:	index.php'	);	
 		}else{
 		$user	=	UserDatabase::getUser($_GET['UserToEdit']);
