@@ -84,7 +84,7 @@
 			echo '</td>';
 			$id = $user->getID();
 			echo "<td id=\"data\" style=\"text-align: center;\"><a href=\"AdminUserEdit.php?UserToEdit=" . $id . "\" title=\"Edytuj Użytkownika\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" ></i></a>" .
-			"<a href=\"controler\ChangeRank.php?UserToRank=" . $id . "\" title=\"Zmień rangę\"><i class=\"glyphicon glyphicon-star\" style=\"margin-right: 10px;\" ></i></a>" .
+			"<a href=\"controler/ChangeRank.php?UserToRank=" . $id . "\" title=\"Zmień rangę\"><i class=\"glyphicon glyphicon-star\" style=\"margin-right: 10px;\" ></i></a>" .
 			"<a id=\"row-delete-id-" . $id . "\" style=\"cursor: pointer;\" title=\"Usuń użytkownika\"><i class=\"glyphicon glyphicon-trash\" ></i></a></td>";
 
 			echo '</tr>';
