@@ -30,6 +30,7 @@
 		<thead>
 			<tr>
 				<th style="text-align: center;">Lp.</th>
+				<th style="text-align: center;">ID</th>
 				<th>Imię</th>
 				<th>Nazwisko</th>
 				<th>E-mail</th>
@@ -43,6 +44,7 @@
 		foreach ($studentList as $number => $student) {
 			echo '<tr id="' . $student->getID() . '">';
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
+			echo '<td id="studentID" style="text-align: center;">' . $student->getID() . '</td>';
 
 			$fName = "-";
 			$lName = "-";

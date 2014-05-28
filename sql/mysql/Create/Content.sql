@@ -37,14 +37,14 @@ INSERT INTO Students (Email, Code, FirstName, Surname) VALUES ('a@uj.edu.pl', '1
 INSERT INTO Students (Email, Code, FirstName, Surname) VALUES ('b@uj.edu.pl', 'abc', 'Ewa', 'Testowa');
 INSERT INTO Students (Email, Code, FirstName, Surname) VALUES ('c@uj.edu.pl', 'qwerty', 'Zbigniew', 'Pachel');
 
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 1);
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 2);
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 3);
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 4);
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 7);
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 11);
-INSERT INTO Records (StudentID, ExamID) VALUES (2, 1);
-INSERT INTO Records (StudentID, ExamID, ExamUnitID) VALUES (2, 3, 6);
-INSERT INTO Records (StudentID, ExamID) VALUES (2, 11);
-INSERT INTO Records (StudentID, ExamID, ExamUnitID) VALUES (2, 7, 10);
-INSERT INTO Records (StudentID, ExamID, ExamUnitID) VALUES (3, 7, 11);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 1, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 2, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 3, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 4, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 7, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 11, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (2, 1, True);
+INSERT INTO Records (StudentID, ExamID, ExamUnitID, MessageSent) VALUES (2, 3, 6, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (2, 11, True);
+INSERT INTO Records (StudentID, ExamID, ExamUnitID, MessageSent) VALUES (2, 7, 10, True);
+INSERT INTO Records (StudentID, ExamID, ExamUnitID, MessageSent) VALUES (3, 7, 11, True);

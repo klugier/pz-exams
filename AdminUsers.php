@@ -36,7 +36,7 @@
 		<thead>
 			<tr>
 				<th style="text-align: center;">Lp.</th>
-				<th>ID</th>
+				<th style="text-align: center;">ID</th>
 				<th>Imię</th>
 				<th>Nazwisko</th>
 				<th>E-mail</th>
@@ -50,7 +50,7 @@
 		foreach ($userList as $number => $user) {
 			echo '<tr id="' . $user->getID() . '">';
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
-			echo '<td id="userID">' . $user->getID() . '</td>';
+			echo '<td id="userID" style="text-align: center;">' . $user->getID() . '</td>';
 			
 			$fName = "-";
 			$lName = "-";
