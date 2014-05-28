@@ -8,8 +8,11 @@
 		/* 
 		 * Zwraca ID Recordu jezeli jest przypisany, lub NULL jeżeli nie jest przypisany
 		 */
-		static public function getRecordID($examID, $studentID)
+		static public function getRecordID($examIDU, $studentIDU)
 		{ 
+			$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+			$studentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentIDU);
+			
 			$sql = "Select * from Records WHERE ExamID = '" . $examID . "' AND StudentID  = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$ID = null;
@@ -20,8 +23,10 @@
 			return $ID;
 		}
 
-		static public function getRecordFromUnit($examUnitID)
+		static public function getRecordFromUnit($examUnitIDU)
 		{
+			$examUnitID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examUnitIDU);
+			
 			$sql = "Select * from Records WHERE ExamUnitID  = '" . $examUnitID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$record = null;
@@ -37,8 +42,10 @@
 			return $record;
 		}
 		
-		static public function getRecord($recordID)
+		static public function getRecord($recordIDU)
 		{
+			$recordID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordIDU);
+			
 			$sql = "Select * from Records WHERE ID  = '" . $recordID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$record = null;
@@ -58,7 +65,10 @@
 		/*
 		 * Zwraca listę ID Examinow przypisanych do studenta
 		 */
-		static public function getExamIDList($studentID){
+		static public function getExamIDList($studentIDU){
+		
+			$studentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentIDU);
+
 			$sql = "Select * from Records WHERE StudentID  = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$examID = null;
@@ -74,7 +84,10 @@
 		/*
 		 * Zwraca listę ID Studentów przypisanych do egzaminów
 		 */
-		static public function getStudentIDList($examID){
+		static public function getStudentIDList($examIDU){
+			
+			$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+		
 			$sql = "Select * from Records WHERE ExamID  = '" . $examID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$studentID = null;
@@ -90,7 +103,10 @@
 		/* 
 		 * Zwraca ID ExamUnitsów i Studentów jezeli jest przypisany, lub NULL jeżeli nie jest przypisany
 		 */
-		static public function getExamUnitIDStudentIDList($examID){
+		static public function getExamUnitIDStudentIDList($examIDU){
+		
+			$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+
 			$sql = "Select * from Records WHERE ExamID = '" . $examID . "' AND StudentID  != 'NULL'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$records = null;
@@ -108,7 +124,11 @@
 		/* 
 		 * Zwraca ID ExamUnitsa jezeli jest przypisany, lub NULL jeżeli nie jest przypisany
 		 */
-		static public function getExamUnitID($examID,$studentID){
+		static public function getExamUnitID($examIDU,$studentIDU){
+		
+			$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+			$studentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentIDU);
+
 			$sql = "Select * from Records WHERE ExamID = '" . $examID . "' AND StudentID  = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$examUnitID = null;
@@ -119,8 +139,11 @@
 			return $examUnitID;
 		}
 		
-		static public function countAssignedExamUnits($examID)
+		static public function countAssignedExamUnits($examIDU)
 		{
+		
+			$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+
 			$sql = "SELECT COUNT(ExamID) AS UnitExamsCount FROM Records
 			        WHERE ExamID = '" . $examID . "' AND ExamUnitID != 'NULL'";
 			$result = DatabaseConnector::getConnection()->query($sql);
@@ -132,7 +155,10 @@
 		/*
 		 * Zwraca liczbe Studentów Egzaminatora
 		 */
-		static public function countStudentsByExam($examID){
+		static public function countStudentsByExam($examIDU){
+		
+			$examID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examIDU);
+
 			$sql = "SELECT count(StudentID) FROM Records 
 			        WHERE ExamID = '" . $examID . "'";
 					
@@ -150,7 +176,10 @@
 		/*
 		 * Zwraca liczbe Studentów Egzaminatora
 		 */
-		static public function countUserStudents($userID){
+		static public function countUserStudents($userIDU){
+		
+			$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+
 			$sql = "SELECT count(Exams.ID) FROM Records INNER JOIN Exams ON Records.ExamID = Exams.ID 
 			        WHERE Exams.UserID = '" . $userID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);
@@ -168,7 +197,10 @@
 		/*
 		 * Zwraca liczbe Studentów Egzaminatora zapisanych na egzaminy
 		 */
-		static public function countUserStudentsSingedToExams($userID){
+		static public function countUserStudentsSingedToExams($userIDU){
+		
+			$userID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userIDU);
+
 			$sql = "SELECT count(Exams.ID) FROM Records INNER JOIN Exams ON Records.ExamID = Exams.ID 
 			        WHERE Exams.UserID = '" . $userID . "' AND Records.ExamUnitID != 'NULL'";
 			$result = DatabaseConnector::getConnection()->query($sql);
@@ -204,9 +236,12 @@
 			return DatabaseConnector::getConnection()->query($sql) ? true : false;
 		}
 		
-		static public function recordTransaction($recordID,$examUnitID)
+		static public function recordTransaction($recordIDU,$examUnitIDU)
 		{
 			$transaction = DatabaseConnector::getConnection();
+			
+			$recordID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $recordIDU);
+			$examUnitID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $examUnitIDU);
 			
 			try{			
 				$transaction->autocommit(false);
