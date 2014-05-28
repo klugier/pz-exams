@@ -155,9 +155,9 @@
 		 * Usunięcie egzaminu z bazy danych, wraz ze sprawdzeniem czy dany egzaminator
 		 * zamieścił egzamin i ma do tego uprawnienia
 		 */ 
-		static public function deleteStudent($studentU)
+		static public function deleteStudent($studentIDU)
 		{
-			$studentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentU->getID());
+			$studentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentIDU);
 			
 			$sql = "Select * from Students WHERE ID  = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);

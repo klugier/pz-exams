@@ -3,7 +3,7 @@
 	
 	include_once("lib/Lib.php");
 	$title = "$appName - List studentów";
-	$scripts = array("js/Lib/bootbox.min.js", "js/Lib/spin.min.js", "js/Lib/ladda.min.js");
+	$scripts = array("js/Lib/bootbox.min.js", "js/Lib/spin.min.js", "js/Lib/ladda.min.js", "js/UserList.js");
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
@@ -48,8 +48,8 @@
 
 	if (is_array($userList)) {
 		foreach ($userList as $number => $user) {
-			echo '<tr id="' . $user->getID() . '">';
-			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
+			echo '<tr id=row-id-' . $user->getID() . '>';
+			echo '<td id="row-lp-'. ($number+1) . '" style="text-align: center;">' . ($number+1) .  '.</td>';
 			echo '<td id="userID" style="text-align: center;">' . $user->getID() . '</td>';
 			
 			$fName = "-";
@@ -65,7 +65,7 @@
 
 			echo '<td id="firstname">' . $fName . '</td>';
 			echo '<td id="lastname">' . $lName . '</td>';
-			echo '<td id="emails">' . $user->getEmail() . '</td>';
+			echo '<td id="row-email-id-' . $user->getID()  . '">' . $user->getEmail() . '</td>';
 			echo '<td id="rank">';
 			if($user->getRight() == "examiner"){
 				echo "Egzaminator";
@@ -75,9 +75,9 @@
 			echo '</td>';
 			$id = $user->getID();
 			echo "<td style=\"text-align: center;\" id=\"data\">" . 
-			"<a href=\"AdminUserEdit.php?UserToEdit=" . $id . "\"><i class=\"glyphicon glyphicon-pencil\" style=\"margin-right: 10px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edytuj Użytkownika\"></i></a>" .
-			"<a href=\"AdminUserOption.php?UserToRank=" . $id . "\"><i class=\"glyphicon glyphicon-star\" style =\"margin-right: 10px;\" title=\"Zmień rangę\"></i></a>" .
-			"<a href=\"AdminUserOption.php?UserToDelete=" . $id . "\"><i class=\"glyphicon glyphicon-trash\" title=\"Usuń użytkownika\"></i></a>";
+			"<a class=\"btn btn-primary btn-sm\" href=\"AdminUserEdit.php?UserToEdit=" . $id . "\" style=\"margin-right: 1px;\" title=\"Edytuj Użytkownika\"><i class=\"glyphicon glyphicon-pencil\" data-toggle=\"tooltip\" data-placement=\"top\" ></i></a>" .
+			"<a class=\"btn btn-primary btn-sm\" href=\"controler\ChangeRank.php?UserToRank=" . $id . "\" style=\"margin-right: 1px;\" title=\"Zmień rangę\"><i class=\"glyphicon glyphicon-star\" ></i></a>" .
+			"<a class=\"btn btn-primary btn-sm\" id=\"row-delete-id-" . $id . "\" style=\"cursor: pointer;\" title=\"Usuń użytkownika\"><i class=\"glyphicon glyphicon-trash\" ></i></a>";
 			echo "</td>";
 			echo '</tr>';
 		}

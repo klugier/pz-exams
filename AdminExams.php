@@ -53,22 +53,26 @@
 			echo '<td id="name">' . $exam->getName() . '</td>';
 			echo '<td style="vertical-align:middle;" id="time">';
 			$j = 0;
-			$uniqeDays = array_unique($examDays);
-			$startDay = null;
-			foreach ($uniqeDays as $day){
-				if($j == 0){
-					$startDay = $day;
-					echo $day;
-				}elseif($j == count($uniqeDays)-1){
-					if(date("Y",strtotime($day)) != date("Y",strtotime($startDay))){
-						echo " do ".date("Y-m-d",strtotime($day));
-					}elseif(date("m",strtotime($day)) != date("m",strtotime($startDay))){
-						echo " do ".date("m-d",strtotime($day));
-					}elseif(date("d",strtotime($day)) != date("d",strtotime($startDay))){
-						echo "/".date("d",strtotime($day));
+
+			if($examDays!=null){
+				$uniqeDays = array_unique($examDays);
+			
+				$startDay = null;
+				foreach ($uniqeDays as $day){
+					if($j == 0){
+						$startDay = $day;
+						echo $day;
+					}elseif($j == count($uniqeDays)-1){
+						if(date("Y",strtotime($day)) != date("Y",strtotime($startDay))){
+							echo " do ".date("Y-m-d",strtotime($day));
+						}elseif(date("m",strtotime($day)) != date("m",strtotime($startDay))){
+							echo " do ".date("m-d",strtotime($day));
+						}elseif(date("d",strtotime($day)) != date("d",strtotime($startDay))){
+							echo "/".date("d",strtotime($day));
+						}
 					}
+					$j++;
 				}
-				$j++;
 			}
 			echo '</td>';
 			$examinator = UserDatabase::getUser($exam->getUserID());

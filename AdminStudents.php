@@ -3,7 +3,7 @@
 	
 	include_once("lib/Lib.php");
 	$title = "$appName - List studentów";
-	$scripts = array("js/Lib/bootbox.min.js", "js/Lib/spin.min.js", "js/Lib/ladda.min.js");
+	$scripts = array("js/Lib/bootbox.min.js", "js/Lib/spin.min.js", "js/Lib/ladda.min.js", "js/StudentList.js");
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
@@ -42,8 +42,8 @@
 
 	if (is_array($studentList)) {
 		foreach ($studentList as $number => $student) {
-			echo '<tr id="' . $student->getID() . '">';
-			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
+			echo '<tr id="row-id-' . $student->getID() . '">';
+			echo '<td id="row-lp-'. ($number+1) . '" style="text-align: center;">' . ($number+1) .  '.</td>';
 			echo '<td id="studentID" style="text-align: center;">' . $student->getID() . '</td>';
 
 			$fName = "-";
@@ -59,7 +59,7 @@
 
 			echo '<td id="firstname">' . $fName . '</td>';
 			echo '<td id="lastname">' . $lName . '</td>';
-			echo '<td id="emails">' . $student->getEmail() . '</td>';
+			echo '<td id="row-email-id-' . $student->getID()  . '">' . $student->getEmail() . '</td>';
 			echo '<td style="text-align: center;">';
 			$examIdsList = RecordDatabase::getAssignedExamIDList($student->getID());
 			if(count($examIdsList) == 0){
@@ -68,9 +68,9 @@
 				echo "<b style=\"color: #156815;\">Tak</b>";
 			}
 			echo '</td>';
-			echo '<td style="text-align: center;">
-			<a class="btn btn-primary btn-sm" href="controler/DeleateStudent.php?id='.$student->getID().'" title="Usuń"><i class="glyphicon glyphicon-trash"></i></a>
-			</td>';
+			echo "<td style=\"text-align: center;\">" .
+			"<a class=\"btn btn-primary btn-sm\" id=\"row-delete-id-" . $student->getID() . "\" style=\"cursor: pointer;\" title=\"Usuń użytkownika\"><i class=\"glyphicon glyphicon-trash\" ></i></a>";
+			echo "</td>";
 			echo '</tr>';
 		}
 	}
