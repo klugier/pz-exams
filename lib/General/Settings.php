@@ -4,7 +4,36 @@ final class Settings
 {
 	public static function save()
 	{
+		$xmlDoc = new DOMDocument("1.0", "UTF-8");
+		$xmlDoc->formatOutput = true;
+		$xmlRoot = $xmlDoc->createElement("Settings");
+		$xmlRoot = $xmlDoc->appendChild($xmlRoot);
 		
+		$xmlRoot->appendChild($xmlDoc->createElement("Adress", Settings::getAdress()));
+		$xmlRoot->appendChild($xmlDoc->createElement("Debug", Settings::getDebug()));
+		
+		$xmlDomains = $xmlDoc->createElement("Domains");
+		$domains = Settings::getDomains();
+		foreach ($domains as $domain) {
+			$xmlDomains->appendChild($xmlDoc->createElement("Domain", $domain));
+		}
+		$xmlRoot->appendChild($xmlDomains);
+		
+		$xmlEmail = $xmlDoc->createElement("Email");
+		$xmlEmail->appendChild($xmlDoc->createElement("Adress", Settings::getEmailAdress()));
+		$xmlEmail->appendChild($xmlDoc->createElement("Password", Settings::getEmailPassword()));
+		$xmlEmail->appendChild($xmlDoc->createElement("Host", Settings::getEmailHost()));
+		$xmlEmail->appendChild($xmlDoc->createElement("Port", Settings::getEmailPort()));
+		$xmlRoot->appendChild($xmlEmail);
+		
+		$xmlAuthorization = $xmlDoc->createElement("Authorization");
+		$xmlAuthorization->appendChild($xmlDoc->createElement("UseCode", Settings::getAuthorizationUseCode()));
+		$xmlAuthorization->appendChild($xmlDoc->createElement("Code", Settings::getAuthorizationCode()));
+		$xmlRoot->appendChild($xmlAuthorization);
+		
+		$file = fopen(Settings::getPath(), "w");
+		fwrite($file, str_replace("  ", "\t", $xmlDoc->saveXML()));
+		fclose($file);
 	}
 	
 	public static function getDebug()
