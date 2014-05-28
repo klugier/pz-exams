@@ -25,15 +25,6 @@ CREATE TABLE `Users` (
 	PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB;
 
-/* PersonalSettings */
-CREATE TABLE `UsersSettings` (
-	`ID`     INT AUTO_INCREMENT,
-	`UserID` INT,
-	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`UserID`) REFERENCES `Users` (`ID`),
-	INDEX (`UserID`)
-) ENGINE=InnoDB;
-
 /* Exam */
 CREATE TABLE `Exams` (
 	`ID`           INT          AUTO_INCREMENT,
@@ -43,7 +34,7 @@ CREATE TABLE `Exams` (
 	`Activated`    BOOLEAN      NOT NULL,
 	`EmailsPosted` BOOLEAN      NOT NULL,
 	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`UserID`) REFERENCES `Users` (`ID`),
+	FOREIGN KEY (`UserID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE,
 	INDEX (`UserID`)
 ) ENGINE=InnoDB;
 
@@ -77,6 +68,6 @@ CREATE TABLE `Records` (
 	`ExamUnitID`  INT          NULL,
 	`MessageSent` BOOLEAN      NOT NULL,
 	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`StudentID`) REFERENCES `Students` (`ID`),
+	FOREIGN KEY (`StudentID`) REFERENCES `Students` (`ID`) ON DELETE CASCADE,
 	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
