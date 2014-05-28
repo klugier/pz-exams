@@ -129,10 +129,10 @@
 			
 			$record_id = RecordDatabase::getRecordID($id, $student->getID());
 			$record = RecordDatabase::getRecord($record_id);
-			$issent_info = 'Nie';
+			$issent_info = "<b style=\"color: #801313;\">Nie</b>";
 
 			if ($record->getIsSent() == 1) {
-				$issent_info = 'Tak';
+				$issent_info = "<b style=\"color: #156815;\">Tak</b>";
 			}
 
 

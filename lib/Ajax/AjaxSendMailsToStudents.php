@@ -59,7 +59,10 @@
 					$msg = "Wystąpił błąd przy wysyłaniu maili!";
 					handlingError($msg);
 				}
-				RecordDatabase::messageSent($studentID, $_POST['examID']);
+				if(!(RecordDatabase::messageSent($studentID, $_POST['examID']))){
+					$msg = "Wystąpił błąd przy zmianie danych w bazie";
+					handlingError($msg);
+				}
 
 			}
 		}
@@ -107,7 +110,10 @@
 			
 				
 		if(mailer($email,'cos nieistotnego',"PZ-Exams", "Nowy egzamin", $messageBody, true)){
-			RecordDatabase::messageSent($_POST['studentID'], $_POST['examID']);
+			if(!(RecordDatabase::messageSent($_POST['studentID'], $_POST['examID']))){
+				$msg = "Wystąpił błąd przy zmianie danych w bazie";
+				handlingError($msg);
+			}
 			handlingSuccess2();
 			return;
 		} else {
