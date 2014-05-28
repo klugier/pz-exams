@@ -123,7 +123,7 @@
 		}
 		
 		// Populating
-		echo "<td style=\"text-align: center\"><span title=\"Ilość zapisanych studentów\">" . ExamUnitDatabase::countLockedExamUnits($id)  . "</span>/<span title=\"Ilość studentów\">" . RecordDatabase::countStudentsByExam($id) . "</span>/<span title=\"Ilość miejsc\">" . ExamUnitDatabase::countExamUnits($id) . "</span></td>";
+		echo "<td style=\"text-align: center\"><span title=\"Liczba zapisanych studentów\">" . ExamUnitDatabase::countLockedExamUnits($id)  . "</span>/<span title=\"Liczb studentów\">" . RecordDatabase::countStudentsByExam($id) . "</span>/<span title=\"Liczba miejsc\">" . ExamUnitDatabase::countExamUnits($id) . "</span></td>";
 		
 		echo "</tr>";
 		
