@@ -19,7 +19,11 @@
 		return;
 	}
 	
-	include("html/UserPanel.php");
+	if ($_SESSION['OPTION'] == "") {
+		include("html/AdminPanel.php");
+	}else{
+		include("html/UserPanel.php");
+	}
 	
 	$user = unserialize($_SESSION['USER']);
 	

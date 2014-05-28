@@ -25,16 +25,8 @@
 				<li	class="navbar-form"	style="padding-right:	0px;">
 					<?php
 						$user = unserialize($_SESSION['USER']);
-						if($user->getRight() == "examiner"){
 					?>
 					<form	action="UserSite.php">
-					<?php
-						}else{
-					?>
-					<form	action="AdminSite.php">
-					<?php
-						}
-					?>
 						<div class="btn-group">
 							<button class="btn btn-info"><i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i><b> 
 							<?php

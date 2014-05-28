@@ -10,7 +10,7 @@
 				header('Location: ../UserSite.php'); 
 			}else{
 				$_SESSION['OPTION']="";
-				header('Location: ../AdminSite.php'); 
+				header('Location: ../UserSite.php'); 
 			}
 		}
 
