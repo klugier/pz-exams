@@ -70,6 +70,22 @@
 			}
 			return $examID;
 		}
+
+		/*
+		 * Zwraca listę ID Examinow przypisanych do studenta i posiadających ExamUnit
+		 */
+		static public function getAssignedExamIDList($studentID){
+			$sql = "Select * from Records WHERE StudentID  = '" . $studentID . "' AND ExamUnitID IS NOT NULL AND NOT ExamUnitID = 0";
+			$result = DatabaseConnector::getConnection()->query($sql);
+			$examID = null;
+			
+			$i = 0;
+			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+				$examID[$i] = $row['ExamID']; 
+				$i++;
+			}
+			return $examID;
+		}
 		
 		/*
 		 * Zwraca listę ID Studentów przypisanych do egzaminów

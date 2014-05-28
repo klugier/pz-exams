@@ -60,8 +60,17 @@
 			echo '<td id="firstname">' . $fName . '</td>';
 			echo '<td id="lastname">' . $lName . '</td>';
 			echo '<td id="emails">' . $student->getEmail() . '</td>';
-			echo '<td></td>';
-			echo '<td></td>';
+			echo '<td style="text-align: center;">';
+			$examIdsList = RecordDatabase::getAssignedExamIDList($student->getID());
+			if(count($examIdsList) == 0){
+				echo "<b style=\"color: #801313;\">Nie</b>";
+			}else{
+				echo "<b style=\"color: #156815;\">Tak</b>";
+			}
+			echo '</td>';
+			echo '<td style="text-align: center;">
+			<a class="btn btn-primary btn-sm" href="controler/DeleateStudent.php?id='.$student->getID().'" title="Usuń"><i class="glyphicon glyphicon-trash"></i></a>
+			</td>';
 			echo '</tr>';
 		}
 	}
