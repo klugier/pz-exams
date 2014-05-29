@@ -71,8 +71,8 @@
 		return;
 	}
 		
-	echo "<h2>Lista aktualnych egzaminów</h2>";
-	echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych egzaminów.</p>";
+	echo '<span id="info_if_not_empty"><h2>Lista aktualnych egzaminów</h2>';
+	echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych egzaminów.</p></span>";
 	echo "<hr />";
 	
 	echo '

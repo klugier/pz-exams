@@ -43,6 +43,8 @@ jQuery(document).ready(function($) {
 								$('#current_exams').before('<div id="no_exam" class="alert alert-info"><b>Nie dodałeś jeszcze żadnych egzaminów!</b> Zobacz jakie to proste i <u><b><a href="AddExam.php">utwórz</a></b></u> swój pierwszy egzamin.</div>');
 								$('#no_exam').hide();
 								$('#no_exam').fadeIn();
+
+								$('#info_if_not_empty').hide();
 							}
 
 							$(rowID).hide(300, function(){ 
