@@ -76,7 +76,7 @@
 	echo "<hr />";
 	
 	echo '
-	<table class="table">
+	<table class="table" id="current_exams">
 		<thead>
 			<tr>
 				<th style="text-align: center">Lp.</th>

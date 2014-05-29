@@ -19,7 +19,12 @@ jQuery(document).ready(function($) {
 						status = data.status.trim();
 						
 						if (status === "success") {
-							$(rowID).remove();
+
+							var isEmpty = false;
+
+							if ($('tbody tr').length <= 1) {
+									isEmpty = true;
+							}
 							
 							var lastLp = 0;
 							$("td[id^=row-lp-]").each(function() {
@@ -31,6 +36,19 @@ jQuery(document).ready(function($) {
 								}
 								lastLp = lastLp + 1;
 							});
+
+							if(isEmpty) {
+								$('#current_exams').hide();
+
+								$('#current_exams').before('<div id="no_exam" class="alert alert-info"><b>Nie dodałeś jeszcze żadnych egzaminów!</b> Zobacz jakie to proste i <u><b><a href="AddExam.php">utwórz</a></b></u> swój pierwszy egzamin.</div>');
+								$('#no_exam').hide();
+								$('#no_exam').fadeIn();
+							}
+
+							$(rowID).hide(300, function(){ 
+								$(rowID).remove(); 
+							});
+
 						}
 						else if (status === "failed") {
 							msg = data.errorMsg.trim();
