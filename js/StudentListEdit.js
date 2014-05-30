@@ -8,7 +8,6 @@ var ajax_requests = 0;
 var ld = null;
 
 $(document).ready(function() {
-
 	ld = Ladda.create(document.querySelector('#add_students'));
 
 	if($('tbody .student').length <= 0) {
@@ -31,7 +30,6 @@ $(document).ready(function() {
 	$('button#add_students').attr("disabled", "disabled");
 
 	$('body').on( 'click', 'a#send', function(){
-
 		var studentID = $(this).parent().parent().first().attr('id');
 		var email = $(this).parent().parent().find("#emails").html();
 
@@ -82,8 +80,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('button#sendEmails').click( function() {
-
+	$('button#sendEmails').click(function() {
 		$(this).after('<span id="sending_info" style="margin-left: 10px; font-weight: bold;">Trwa wysyłanie, proszę czekać...</span>');
 		$('#sending_info').hide();
 		$('#sending_info').fadeIn();
@@ -111,7 +108,7 @@ $(document).ready(function() {
 				mails : 1,				
 			},
 			success: function (data) {
-				if(data['status'] == 'failed'){
+				if (data['status'] == 'failed') {
 					bootbox.alert('<div class="alert alert-danger" style="margin-top: 4%; margin-bottom: 0%;"><strong>'+ data['errorMsg'] +'</strong></div>');		
 				} else {
 					bootbox.alert('<div class="alert alert-success" style="margin-top: 4%; margin-bottom: 0%;"><strong>Maile zostały wysłane do studentów z listy!</strong></div>');
@@ -147,7 +144,6 @@ $(document).ready(function() {
 	});
 
 	$('button#add_students').click( function(){
-
 		ld.start();
 
 		var errorCounter = 0;
@@ -182,7 +178,6 @@ $(document).ready(function() {
 					}
 
 					if (elems.length == 1) {
-
 							addStudent("", "", emailToAppend); ajax_requests++;
 												
 							if (!repThis) {				
@@ -191,7 +186,6 @@ $(document).ready(function() {
 							}
 
 					} else {
-
 						var firstnameStr = elems[0].trim();
 						var lastnameStr = "";
 
@@ -217,7 +211,6 @@ $(document).ready(function() {
 		$("div#error_msg").remove();
 
 		if(errorCounter > 0) {
-
 			if (!($("div#error_msg").length > 0)) {
 				$('div#student_input').append('<div id="error_msg" class="form-group has-error" style="margin-top: 10px;"><label class="control-label">Część danych została wprowadzona w niewłaściwym formacie</label></div>');
 				$("div#error_msg").hide();
@@ -253,7 +246,6 @@ $(document).ready(function() {
 
 
 	$('body').on( "click", 'a#remove', function(){
-
 		var st_id = $(this).parent().parent().first().attr('id');
 
 		$('tr#'+st_id).find('#remove').bind('click', false);
@@ -308,14 +300,11 @@ $(document).ready(function() {
 			}
 
 			});
-
 	});
 
 
 	$('a#changeChars').click(function() {
-
 		if ($(this).text() == "Zmień") {
-
 			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
 			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
 			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
@@ -353,7 +342,6 @@ $(document).ready(function() {
 	});
 
 	$('#student_list').keyup(function() {
-
 		if ($('#student_list').val().trim() == "") {
 			$('button#add_students').attr("disabled", "disabled");
 		} else {
@@ -374,9 +362,7 @@ $(document).ready(function() {
 
 
 function addStudent(fn, ln, em) {
-
 		$.ajax({
-
 			type: "POST",
 			url: "lib/Ajax/AjaxStudentAddingRequest.php",
 			dataType: "JSON",
@@ -425,9 +411,7 @@ function addStudent(fn, ln, em) {
 					if (ajax_requests == 0) { 
 						ld.stop(); 
 					}
-
 				}
-
 			},
 			error: function (error) {
 				alert('Wystapil blad przy dodawaniu studenta/ów.');
@@ -435,6 +419,5 @@ function addStudent(fn, ln, em) {
 			complete: function() {
 				ld.stop();
 			}
-
 		});
 }

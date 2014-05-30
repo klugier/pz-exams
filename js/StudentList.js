@@ -2,10 +2,10 @@ jQuery(document).ready(function($) {
 	bootbox.setDefaults({ locale: "pl" });
 	
 	$("a[id^=row-delete-id-]").click(function() {
-		var id       = $(this).attr("id");
+		var id          = $(this).attr("id");
 		var studentID   = id.slice(id.lastIndexOf("-") + 1, id.length);
 		var studentName = $("#row-email-id-" + studentID).html();
-		var rowID    = "#row-id-" + studentID;
+		var rowID       = "#row-id-" + studentID;
 		
 		bootbox.confirm("Czy na pewno chcesz usunąć następującego Studenta <b>\"" + studentName + "\"</b>?", function(result) {
 			if (result) {
