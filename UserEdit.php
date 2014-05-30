@@ -13,12 +13,8 @@
 		$title	=	"$appName	-	Edycja	Danych";
 		$scriptsDefer	=	array("js/ValidateRegisterForm.js");
 		include("html/Begin.php");
-		if($user->getRight() == "examiner"){
-			include("html/UserPanel.php");
-		}
-		if($user->getRight() == "administrator"){
-			include("html/AdminPanel.php");
-		}
+		include("html/UserPanel.php");
+		
 		/*
 		echo	$_SESSION['USER']."</br>";
 		echo	"Object	User	Info	<br	/>	";	
