@@ -7,6 +7,7 @@
 		}else{
 		$user	=	UserDatabase::getUser($_GET['UserToEdit']);
 		$_SESSION['IDEdit'] = $_GET['UserToEdit'];
+		$_SESSION['userEmail'] = $user->getEmail();
 		$_SESSION['nameEdit']	=	$user->getFirstName();
 		$_SESSION['surnameEdit']	=	$user->getSurname();
 		$_SESSION['genderEdit']	=	$user->getGender();
@@ -61,7 +62,7 @@
 	}
 	if	(isset($_SESSION['formSuccessCode3']))	{
 		echo	'<div	class="alert	alert-success">'	;
-		echo	'<a	href="#"	class="close"	data-dismiss="alert">	&times;	</a>'	;		
+		echo	'<a	href="#"	class="close" data-dismiss="alert">	&times;	</a>'	;		
 		if	($_SESSION['formSuccessCode3']	==	'genderChanged')	{	
 			echo	'<strong>Poprawnie	zmieniono	płeć.</strong>';	
 			unset($_SESSION['formSuccessCode3']);
@@ -79,14 +80,22 @@
 		echo	'</div>'	;	
 	}
 ?>
-<h1>Edytuj profil</h1>
+<h1>Edytuj profil użytkownika: <p style="display:inline; color:red;">
+<?php if($_SESSION['nameEdit'] != '' && $_SESSION['surnameEdit'] != ''){
+	echo $_SESSION['nameEdit'].' '.$_SESSION['surnameEdit'];
+} else {
+	echo $_SESSION['userEmail'];
+} 
+?>
+</p></h1>
+
 <hr />
 <form class="form-horizontal" role="form" id="passwd_form" method="post" action="controler/HandlingAdminEdit.php">
 	<fieldset class="col-xs-12	col-sm-12	col-md-12">
 		<legend>Zmiana	hasła</legend>
 		<div class="form-group">
 			<label for="passwd" class="col-xs-2	col-sm-2	col-md-2	control-label">	Nowe	Hasło	</label>
-			<div class="col-xs-4	col-sm-4	col-md-4">
+			<div class="col-xs-4 col-sm-4 col-md-4">
 				<input type="password" required class="form-control	inputPassword" id="passwd" name="passwd" placeholder="Wprowadź Nowe Haslo" title="">
 			</div>
 			<span class="help-block" id="passwd-error-message">
@@ -113,13 +122,13 @@
 		<div class="form-group">
 			<label for="firstname" class="col-xs-2	col-sm-2	col-md-2	control-label">Nowe	Imię</label>
 			<div class="col-xs-4	col-sm-4	col-md-4">
-				<input type="text" class="form-control" id="firstname" placeholder="Wprowadź	Imię" name="nameEdit" value="<?php	if(isset($_SESSION['nameEdit'])){	echo	$_SESSION['nameEdit'];	}	else	{	echo	'';	}?>">
+				<input type="text" class="form-control" id="firstname" placeholder="Wprowadź Imię" name="nameEdit" value="<?php	if(isset($_SESSION['nameEdit'])){	echo	$_SESSION['nameEdit'];	}	else	{	echo	'';	}?>">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="lastname" class="col-xs-2	col-sm-2	col-md-2	control-label">Nowe	Nazwisko</label>
 			<div class="col-xs-4	col-sm-4	col-md-4">
-				<input type="text" class="form-control" id="lastname" placeholder="Wprowadź	Nazwisko" name="surnameEdit" value="<?php	if(isset($_SESSION['surnameEdit'])){	echo	$_SESSION['surnameEdit'];	}	else	{	echo	'';	}?>">
+				<input type="text" class="form-control" id="lastname" placeholder="Wprowadź Nazwisko" name="surnameEdit" value="<?php	if(isset($_SESSION['surnameEdit'])){	echo	$_SESSION['surnameEdit'];	}	else	{	echo	'';	}?>">
 			</div>
 		</div>
 		<div class="form-group">
