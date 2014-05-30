@@ -122,7 +122,7 @@ $(document).ready(function() {
 				alert('Wystapil blad przy wysyłaniu mailów!');
 			},
 			complete: function() {
-				$('button#sendEmails').html('Wyślij email do wszystkich');
+				$('button#sendEmails').html('<i class="glyphicon glyphicon-send" style="margin-right: 5px;"></i>Wyślij email do wszystkich');
 				$('button#sendEmails').removeAttr('disabled');
 
 				$('a#remove').each(function(index, element) {
