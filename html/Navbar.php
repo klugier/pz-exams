@@ -76,8 +76,8 @@
 						<li>	
 							<form	class="form-signin"	role="form"	style="margin-right:10px;margin-left:10px;"	method="post"	action="controler/LogIn.php">
 						<h3	style="text-align:center;	font-weight:bold;	padding-bottom:15px;">Logowanie	do	systemu</h3>
-						<input	type="email"	name="email"	class="form-control"	placeholder="adres email"	required	autofocus	style="margin-bottom:3px;">
-						<input	type="password"	name="pass"	class="form-control"	placeholder="hasło"	required>
+						<input	type="email"	name="email"	class="form-control"	placeholder="Adres e-mail"	required	autofocus	style="margin-bottom:3px;">
+						<input	type="password"	name="pass"	class="form-control"	placeholder="Hasło"	required>
 						<label	class="checkbox">
 						<input	type="checkbox"	value="remember-me">	Zapamiętaj	mnie
 						</label>
