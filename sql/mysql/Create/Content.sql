@@ -1,7 +1,8 @@
 -- Skrypt wstawia do bazy danych przykładowe dane
 
-INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) VALUES ('test@uj.edu.pl','b444ac06613fc8d63795be9ad0beaf55011936ac',True,'Mariusz','Testowicz', 'private', 'examiner','male' , '2014/03/28');
-INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) VALUES ('antek.egzaminator@uj.edu.pl','b444ac06613fc8d63795be9ad0beaf55011936ac',True,'Antek','Egzaminator', 'private', 'examiner','male' , '2014/03/28');
+INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) VALUES ('test@uj.edu.pl','b444ac06613fc8d63795be9ad0beaf55011936ac',True,'Mariusz','Testowicz', 'private', 'examiner','male' , '2014-03-28');
+INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) VALUES ('antek.egzaminator@uj.edu.pl','b444ac06613fc8d63795be9ad0beaf55011936ac',True,'Antek','Egzaminator', 'private', 'examiner','male' , '2014-03-28');
+INSERT INTO Users (Email, Password, Activated, FirstName , Surname, Visibility , Rights , Gender , RegistrationDate) VALUES ('admin@uj.edu.pl', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 'Admin', 'Nerd', 'private', 'administrator', 'male', '2014-03-28');
 
 INSERT INTO Exams (UserID, Name, Duration, Activated, EmailsPosted) VALUES ('1', 'Metody Numeryczne I - Egzamin I termin', '0:30:00', True, False);
 INSERT INTO Exams (UserID, Name, Duration, Activated, EmailsPosted) VALUES ('1', 'Metody Numeryczne I - Egzamin II termin', '0:15:00', False, False);
@@ -35,15 +36,19 @@ INSERT INTO ExamUnits (ExamID, Day, TimeFrom, TimeTo, State) VALUES('11', '2013-
 INSERT INTO Students (Email, Code, FirstName, Surname) VALUES ('a@uj.edu.pl', '123', 'Adam', 'Test');
 INSERT INTO Students (Email, Code, FirstName, Surname) VALUES ('b@uj.edu.pl', 'abc', 'Ewa', 'Testowa');
 INSERT INTO Students (Email, Code, FirstName, Surname) VALUES ('c@uj.edu.pl', 'qwerty', 'Zbigniew', 'Pachel');
+INSERT INTO Students (Email, Code, FirstName, Surname) VALUES ('d@uj.edu.pl', '1qaz', 'A', 'E');
+INSERT INTO Students (Email, Code, FirstName, Surname) VALUES ('e@uj.edu.pl', '2wsx', 'B', 'F');
+INSERT INTO Students (Email, Code, FirstName, Surname) VALUES ('f@uj.edu.pl', '3edc', 'C', 'G');
+INSERT INTO Students (Email, Code, FirstName, Surname) VALUES ('g@uj.edu.pl', '4rfv', 'D', 'H');
 
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 1);
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 2);
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 3);
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 4);
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 7);
-INSERT INTO Records (StudentID, ExamID) VALUES (1, 11);
-INSERT INTO Records (StudentID, ExamID) VALUES (2, 1);
-INSERT INTO Records (StudentID, ExamID, ExamUnitID) VALUES (2, 3, 6);
-INSERT INTO Records (StudentID, ExamID) VALUES (2, 11);
-INSERT INTO Records (StudentID, ExamID, ExamUnitID) VALUES (2, 7, 10);
-INSERT INTO Records (StudentID, ExamID, ExamUnitID) VALUES (3, 7, 11);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 1, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 2, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 3, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 4, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 7, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (1, 11, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (2, 1, True);
+INSERT INTO Records (StudentID, ExamID, ExamUnitID, MessageSent) VALUES (2, 3, 6, True);
+INSERT INTO Records (StudentID, ExamID, MessageSent) VALUES (2, 11, True);
+INSERT INTO Records (StudentID, ExamID, ExamUnitID, MessageSent) VALUES (2, 7, 10, True);
+INSERT INTO Records (StudentID, ExamID, ExamUnitID, MessageSent) VALUES (3, 7, 11, True);

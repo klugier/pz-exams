@@ -71,19 +71,19 @@
 		return;
 	}
 		
-	echo "<h2>Lista aktualnych egzaminów</h2>";
-	echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych egzaminów.</p>";
+	echo '<span id="info_if_not_empty"><h2>Lista aktualnych egzaminów</h2>';
+	echo "<p>W tym miejscu możesz przejrzeć listę swoich aktualnych egzaminów.</p></span>";
 	echo "<hr />";
 	
 	echo '
-	<table class="table">
+	<table class="table" id="current_exams">
 		<thead>
 			<tr>
 				<th style="text-align: center">Lp.</th>
 				<th>Nazwa</th>
 				<th style="text-align: center">Data rozpoczęcia<i class="glyphicon glyphicon-chevron-down" style="margin-left: 5px"></i></th>
 				<th style="text-align: center">Data zakończenia</th>
-				<th style="text-align: center" title="Zapisani studenci / Wprowadzeni studenci / Ilość miejsc">Zapełnienie</th>
+				<th style="text-align: center" title="Zapisani studenci / Wprowadzeni studenci / Liczba miejsc">Zapełnienie</th>
 				<th style="text-align: center">Aktywny</th>
 				<th style="text-align: center">Operacje</th>
 				<th style="text-align: center">Aktywacja</th>
@@ -149,7 +149,7 @@
 		}
 		
 		// Populating
-		echo "<td style=\"text-align: center\"><span title=\"Ilość zapisanych studentów\">" . ExamUnitDatabase::countLockedExamUnits($id)  . "</span>/<span title=\"Ilość studentów\">" . RecordDatabase::countStudentsByExam($id) . "</span>/<span title=\"Ilość miejsc\">" . ExamUnitDatabase::countExamUnits($id) . "</span></td>";
+		echo "<td style=\"text-align: center\"><span title=\"Liczba zapisanych studentów\">" . ExamUnitDatabase::countLockedExamUnits($id)  . "</span>/<span title=\"Liczba studentów\">" . RecordDatabase::countStudentsByExam($id) . "</span>/<span title=\"Liczba miejsc\">" . ExamUnitDatabase::countExamUnits($id) . "</span></td>";
 		
 		// Activated
 		echo "<td id=\"row-activated-id-" . $id . "\" style=\"text-align: center;\">";

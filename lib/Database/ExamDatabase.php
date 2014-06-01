@@ -104,7 +104,28 @@ final class ExamDatabase
         }
         
 		return $exams;
-	}  
+	} 
+	
+	static public function getAllExams()
+	{
+            $sql = "SELECT * FROM Exams";
+            $result = DatabaseConnector::getConnection()->query($sql);
+            if (!$result) {
+                return null;
+            }
+
+			$i = 0;
+			while ($row = $result->fetch_array(MYSQLI_NUM)) {
+				$exam = new Exam(); 
+				$exam->setID($row[0]);
+				$exam->setUserID($row[1]);
+				$exam->setName($row[2]);
+				$exam->setActivated($row[4]);
+				$exams[$i] = $exam; 
+				$i++;
+			}
+		return $exams;
+	} 
     
 	/*
 	 * Zwraca ilość egzaminów danego usera

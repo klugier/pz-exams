@@ -1,6 +1,6 @@
 <?php
 	include_once("lib/Lib.php");
-
+	
 	$title = "$appName - Strona Główna";
 	$scriptsDefer = array("js/index.js");
 	include("html/Begin.php");	

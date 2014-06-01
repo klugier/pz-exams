@@ -35,6 +35,27 @@
 			
 			return $student;		
 		}
+
+		static public function getAllStudents()
+        {
+            $sql = "SELECT * FROM Students";
+            $result = DatabaseConnector::getConnection()->query($sql);
+            if (!$result) {
+                return null;
+            }
+
+			$i = 0;
+			while ($row = $result->fetch_array(MYSQLI_NUM)) {
+				$resultUser = new Student(); 
+				$resultUser->setID($row[0]);
+				$resultUser->setEmail($row[1]);
+				$resultUser->setFirstName($row[3]);
+				$resultUser->setSurName($row[4]);
+				$users[$i] = $resultUser; 
+				$i++;
+			}
+			return $users;
+        }
 	
 		static public function getStudentByID($idU)
 		{ 
@@ -134,9 +155,9 @@
 		 * Usunięcie egzaminu z bazy danych, wraz ze sprawdzeniem czy dany egzaminator
 		 * zamieścił egzamin i ma do tego uprawnienia
 		 */ 
-		static public function deleteStudent($studentU)
+		static public function deleteStudent($studentIDU)
 		{
-			$studentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentU->getID());
+			$studentID = mysqli_real_escape_string(DatabaseConnector::getConnection(), $studentIDU);
 			
 			$sql = "Select * from Students WHERE ID  = '" . $studentID . "'";
 			$result = DatabaseConnector::getConnection()->query($sql);

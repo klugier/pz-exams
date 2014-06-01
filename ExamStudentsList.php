@@ -27,10 +27,9 @@
 
 <div id="buttons">
 	<span>
-		<button type="button" class="btn btn-primary btn-sm" id="display_modal" data-toggle="modal" data-target="#student_list_modal">Dodaj studentów</button>
-		<button type="button" class="btn btn-warning btn-sm" id="sendEmails" style="min-width: 16%;">Wyślij email do wszystkich</button>
-		
-		<a class="btn btn-primary btn-sm pull-right" style="font-weight: bold;" href="controler/PDFExamStudentsList.php?examID=<?php echo $exam->getID(); ?>" role="button" name="examStudentsListPDFGlyph" id="examStudentsListPDFGlyph" title="Pobierz PDF" value=<?php echo "\"".$exam->getID()."\""; ?>\><i class="glyphicon glyphicon-download"></i> Pobierz w PDF</a>
+		<button type="button" class="btn btn-primary btn-sm" id="display_modal" data-toggle="modal" data-target="#student_list_modal" style="font-weight: bold;"><i class="glyphicon glyphicon-plus" style="margin-right: 5px;"></i>Dodaj studentów</button>
+		<button type="button" class="btn btn-warning btn-sm" id="sendEmails" style="min-width: 16%; font-weight: bold;"><i class="glyphicon glyphicon-send" style="margin-right: 5px;"></i>Wyślij email do wszystkich</button>
+		<a class="btn btn-primary btn-sm pull-right" style="font-weight: bold;" href="controler/PDFExamStudentsList.php?examID=<?php echo $exam->getID(); ?>" role="button" name="examStudentsListPDFGlyph" id="examStudentsListPDFGlyph" title="Pobierz PDF" value=<?php echo "\"".$exam->getID()."\""; ?>\><i class="glyphicon glyphicon-download" style="margin-right: 5px;"></i>PDF</a>
 	</span>
 </div>
 
@@ -129,10 +128,10 @@
 			
 			$record_id = RecordDatabase::getRecordID($id, $student->getID());
 			$record = RecordDatabase::getRecord($record_id);
-			$issent_info = 'Nie';
+			$issent_info = "<b style=\"color: #801313;\">Nie</b>";
 
 			if ($record->getIsSent() == 1) {
-				$issent_info = 'Tak';
+				$issent_info = "<b style=\"color: #156815;\">Tak</b>";
 			}
 
 

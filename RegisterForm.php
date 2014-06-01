@@ -5,6 +5,14 @@
 		header('Location: UserSite.php' ); 
 	}
 	
+	if ( Settings::getAuthorizationUseCode() == true 
+		&& isset($_SESSION['codeActivationStepCompleted']) 
+		&&  $_SESSION['codeActivationStepCompleted'] !== 'stepCompleted' 
+	) { 
+		header('Location: InsertActivationCode.php' ); 
+	} 
+	 
+	
 	$title = "$appName - Rejestracja";
 	$scriptsDefer = array("js/ValidateRegisterForm.js");
 	include("html/Begin.php");

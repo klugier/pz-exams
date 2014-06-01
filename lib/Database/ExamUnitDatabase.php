@@ -148,6 +148,24 @@ final class ExamUnitDatabase
 		return $examCount;
 	}
 
+	static public function AdminCountOpenExams($activatedU){
+		$activated = mysqli_real_escape_string(DatabaseConnector::getConnection(), $activatedU);
+		
+		date_default_timezone_set('Europe/Warsaw');
+		$sql = "SELECT count(DISTINCT Exams.ID) FROM ExamUnits INNER JOIN Exams ON ExamUnits.ExamID = Exams.ID 
+		        WHERE Exams.Activated = '" . $activated . "' AND ExamUnits.Day > '" . date("Y/m/d") . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$examCount=0;
+		
+		
+		if($result!=null){
+			$row = $result->fetch_array(MYSQLI_NUM);
+			$examCount=$row[0];
+		}
+		
+		
+		return $examCount;
+	}
 	/*
 	 *	usuwa dzień z wszystkimi exam unitami
 	 */ 

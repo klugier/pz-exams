@@ -4,7 +4,36 @@ final class Settings
 {
 	public static function save()
 	{
+		$xmlDoc = new DOMDocument("1.0", "UTF-8");
+		$xmlDoc->formatOutput = true;
+		$xmlRoot = $xmlDoc->createElement("Settings");
+		$xmlRoot = $xmlDoc->appendChild($xmlRoot);
 		
+		$xmlRoot->appendChild($xmlDoc->createElement("Adress", Settings::getAdress()));
+		$xmlRoot->appendChild($xmlDoc->createElement("Debug", Settings::getDebug()));
+		
+		$xmlDomains = $xmlDoc->createElement("Domains");
+		$domains = Settings::getDomains();
+		foreach ($domains as $domain) {
+			$xmlDomains->appendChild($xmlDoc->createElement("Domain", $domain));
+		}
+		$xmlRoot->appendChild($xmlDomains);
+		
+		$xmlEmail = $xmlDoc->createElement("Email");
+		$xmlEmail->appendChild($xmlDoc->createElement("Adress", Settings::getEmailAdress()));
+		$xmlEmail->appendChild($xmlDoc->createElement("Password", Settings::getEmailPassword()));
+		$xmlEmail->appendChild($xmlDoc->createElement("Host", Settings::getEmailHost()));
+		$xmlEmail->appendChild($xmlDoc->createElement("Port", Settings::getEmailPort()));
+		$xmlRoot->appendChild($xmlEmail);
+		
+		$xmlAuthorization = $xmlDoc->createElement("Authorization");
+		$xmlAuthorization->appendChild($xmlDoc->createElement("UseCode", Settings::getAuthorizationUseCode()));
+		$xmlAuthorization->appendChild($xmlDoc->createElement("Code", Settings::getAuthorizationCode()));
+		$xmlRoot->appendChild($xmlAuthorization);
+		
+		$file = fopen(Settings::getPath(), "w");
+		fwrite($file, str_replace("  ", "\t", $xmlDoc->saveXML()));
+		fclose($file);
 	}
 	
 	public static function getDebug()
@@ -47,6 +76,18 @@ final class Settings
 		return self::getInstance()->emailPort;
 	}
 	
+	public static function getAuthorizationUseCode()
+	{
+		return self::getInstance()->authorizationUseCode;
+	}
+	
+	public static function getAuthorizationCode()
+	{
+		return self::getInstance()->authorizationCode;
+	}
+	
+	// ------------------------------------------------------
+	
 	public static function setDebug($debug)
 	{
 		self::getInstance()->debug = $debug;
@@ -82,6 +123,18 @@ final class Settings
 		self::getInstance()->emailPort = $emailPort;
 	}
 	
+	public static function setAuthorizationUseCode($authorizationUseCode)
+	{
+		self::getInstance()->authorizationUseCode = $authorizationUseCode;
+	}
+	
+	public static function setAuthorizationCode($authorizationCode)
+	{
+		self::getInstance()->authorizationCode = $authorizationCode;
+	}
+	
+	// ------------------------------------------------------
+	
 	private static function getInstance()
 	{
 		$cfgPath = dirname(__FILE__) . "/../../cfg/Settings.xml";
@@ -115,7 +168,8 @@ final class Settings
 		$xml = simplexml_load_file($cfgPath);
 		
 		if ($dom->getElementsByTagName("Debug")->length > 0) {
-			$this->debug = $xml->Debug;
+			$debug = $xml->Debug;
+			$this->debug = ($debug == 1 ? true : false);
 		}
 		
 		if ($dom->getElementsByTagName("Domains")->length > 0) {
@@ -136,6 +190,12 @@ final class Settings
 			$this->emailHost = $xml->Email->Host;
 			$this->emailPort = (int)$xml->Email->Port;
 		}
+		
+		if ($dom->getElementsByTagName("Authorization")->length > 0) {
+			$useCode = $xml->Authorization->UseCode;
+			$this->authorizationUseCode = ($useCode == 1 ? true : false);
+			$this->authorizationCode = $xml->Authorization->Code;
+		}
 	}
 	
 	private $debug;
@@ -145,6 +205,8 @@ final class Settings
 	private $emailPassword;
 	private $emailHost;
 	private $emailPort;
+	private $authorizationUseCode;
+	private $authorizationCode;
 	
 	private static $instance = false;
 }

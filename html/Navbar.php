@@ -14,8 +14,8 @@
 			<li><a	class="navbar-brand"	href="Help.php">Pomoc</a></li>
 			</ul>
 			<?php
-				if	(Settings::getDebug()	==	1)	{
-					echo	"<a	class=\"navbar-brand\"	href=\"tests/Tests.php\">Testy</a>\n";
+				if (Settings::getDebug() == true) {
+					echo "<a class=\"navbar-brand\" href=\"tests/index.php\">Testy</a>\n";
 				}
 			?>
 		</div>
@@ -23,11 +23,13 @@
 			<ul	class="nav	navbar-nav	pull-right"	style="padding-right:	0px;">
 				<?php	if(isset($_SESSION['USER'])	&&	$_SESSION['USER']	!=	""){	?>
 				<li	class="navbar-form"	style="padding-right:	0px;">
+					<?php
+						$user = unserialize($_SESSION['USER']);
+					?>
 					<form	action="UserSite.php">
 						<div class="btn-group">
 							<button class="btn btn-info"><i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i><b> 
 							<?php
-								$user = unserialize($_SESSION['USER']);
 								if ($user->getFirstName() != NULL && $user->getSurname() != NULL)
 									echo ' ' . $user->getFirstName() . ' ' . $user->getSurname();
 								else
@@ -40,10 +42,22 @@
 								<b></b>
 							</button>
 							<ul class="dropdown-menu" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;" role="menu">
+								<li role="presentation" class="dropdown-header" style="margin-left: -10px">Opcję egzaminatora</li>
 								<li><a href="AddExam.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-plus"></i>  <b>Dodaj egzamin</b></a></li>
 								<li><a href="ExamList.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-list"></i>  <b>Aktualne egzaminy</b></a></li>
 								<li><a href="ExamListArchives.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-floppy-disk"></i>  <b>Archiwalne egzaminy</b></a></li>
 								<li><a href="UserEdit.php" title="Edytuj profil" id="user_m" style="color:white"><i class="glyphicon glyphicon-cog"></i>  <b>Edytuj Profil</b></a></li>
+								<?php
+									if ($user->getRight() === "administrator") {
+										echo '<li role="presentation" class="divider"></li>';
+										echo '<li role="presentation" class="dropdown-header" style="margin-left: -10px">Opcję administratora</li>';
+										echo '<li><a href="AdminSystemStats.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-stats" style="margin-right: 4px;"></i><b>Statystyki</b></a></li>';
+										echo '<li><a href="AdminUsers.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-star" style="margin-right: 4px;"></i><b>Użytkownicy</b></a></li>';
+										echo '<li><a href="AdminStudents.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-user" style="margin-right: 4px;"></i><b>Studenci</b></a></li>';
+										echo '<li><a href="AdminExams.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-file" style="margin-right: 4px;"></i><b>Egzaminy</b></a></li>';
+										echo '<li><a href="AdminEdit.php" title="Ustawienia" id="user_m" style="color:white"><i class="glyphicon glyphicon-cog" style="margin-right: 4px;"></i><b>Ustawienia</b></a></li>';
+									}
+								?>
 							</ul>
 						</div>
 					</form>
@@ -62,8 +76,8 @@
 						<li>	
 							<form	class="form-signin"	role="form"	style="margin-right:10px;margin-left:10px;"	method="post"	action="controler/LogIn.php">
 						<h3	style="text-align:center;	font-weight:bold;	padding-bottom:15px;">Logowanie	do	systemu</h3>
-						<input	type="email"	name="email"	class="form-control"	placeholder="adres email"	required	autofocus	style="margin-bottom:3px;">
-						<input	type="password"	name="pass"	class="form-control"	placeholder="hasło"	required>
+						<input	type="email"	name="email"	class="form-control"	placeholder="Adres e-mail"	required	autofocus	style="margin-bottom:3px;">
+						<input	type="password"	name="pass"	class="form-control"	placeholder="Hasło"	required>
 						<label	class="checkbox">
 						<input	type="checkbox"	value="remember-me">	Zapamiętaj	mnie
 						</label>
@@ -74,10 +88,16 @@
 					</ul>
 				</li>
 				<li	class="navbar-form"	style="margin-left:-20px;	padding-right:	0px;">
-							<form	action="RegisterForm.php">
-								<button	type="submit"	class="btn	btn-info"><i class="glyphicon glyphicon-book" style="margin-right: 5px;"></i><b>Rejestracja</b></button>
-			</form>
-		</li>	
+					<?php 
+						if (Settings::getAuthorizationUseCode() == true && $_SESSION['codeActivationStepCompleted'] != 'stepCompleted') {
+							echo '<form	action="InsertActivationCode.php">';  
+						} else { 
+							echo '<form	action="RegisterForm.php">';
+						}
+					?>
+						<button	type="submit" class="btn btn-info"><i class="glyphicon glyphicon-book" style="margin-right: 5px;"></i><b>Rejestracja</b></button>
+					</form>
+				</li>	
 		<?php	}	?>
 			</ul>
 		</div>

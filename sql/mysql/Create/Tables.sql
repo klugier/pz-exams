@@ -8,30 +8,21 @@ DROP TABLE IF EXISTS `Users`;
 
 /* Users */
 CREATE TABLE `Users` (
-	`ID`               INT                                AUTO_INCREMENT,
-	`Email`            VARCHAR (80)                       UNIQUE NOT NULL,
-	`Password`         VARCHAR (50)                       NOT NULL,
-	`Activated`        BOOLEAN                            NOT NULL,
-	`ActivationCode`   VARCHAR (32)                       UNIQUE,
+	`ID`               INT                                         AUTO_INCREMENT,
+	`Email`            VARCHAR (80)                                UNIQUE NOT NULL,
+	`Password`         VARCHAR (50)                                NOT NULL,
+	`Activated`        BOOLEAN                                     NOT NULL,
+	`ActivationCode`   VARCHAR (32)                                UNIQUE,
 	`FirstName`        VARCHAR (50),
 	`Surname`          VARCHAR (70),
-	`Visibility`       ENUM ('private', 'public')         NOT NULL,
-	`Rights`           ENUM ('administrator', 'examiner') NOT NULL,
+	`Visibility`       ENUM ('private', 'public')                  NOT NULL,
+	`Rights`           ENUM ('owner', 'administrator', 'examiner') NOT NULL,
 	`Gender`           ENUM ('female', 'male'),
-	`RegistrationDate` DATE                               NOT NULL,
+	`RegistrationDate` DATE                                        NOT NULL,
 	`University`       VARCHAR(120),
 	`Telephone`        VARCHAR(15),
 	`WebSite`          VARCHAR(150),
 	PRIMARY KEY (`ID`)
-) ENGINE=InnoDB;
-
-/* PersonalSettings */
-CREATE TABLE `UsersSettings` (
-	`ID`     INT AUTO_INCREMENT,
-	`UserID` INT,
-	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`UserID`) REFERENCES `Users` (`ID`),
-	INDEX (`UserID`)
 ) ENGINE=InnoDB;
 
 /* Exam */
@@ -43,7 +34,7 @@ CREATE TABLE `Exams` (
 	`Activated`    BOOLEAN      NOT NULL,
 	`EmailsPosted` BOOLEAN      NOT NULL,
 	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`UserID`) REFERENCES `Users` (`ID`),
+	FOREIGN KEY (`UserID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE,
 	INDEX (`UserID`)
 ) ENGINE=InnoDB;
 
@@ -77,6 +68,6 @@ CREATE TABLE `Records` (
 	`ExamUnitID`  INT          NULL,
 	`MessageSent` BOOLEAN      NOT NULL,
 	PRIMARY KEY (`ID`),
-	FOREIGN KEY (`StudentID`) REFERENCES `Students` (`ID`),
+	FOREIGN KEY (`StudentID`) REFERENCES `Students` (`ID`) ON DELETE CASCADE,
 	FOREIGN KEY (`ExamID`) REFERENCES `Exams` (`ID`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
