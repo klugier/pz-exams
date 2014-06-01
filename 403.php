@@ -19,4 +19,6 @@
 		?>
 	</div>
 </div>
-
+<?php 
+	include("html/End.php");
+?>
