@@ -193,3 +193,44 @@ a.bg-info:hover {
 #slideTitle:hover {
     text-decoration: none;
 }
+
+.response-error-code{
+	background: #f66;
+	text-align: center;
+	border:1em solid #f33;
+	border-radius:32px;
+}
+
+.response-error-code div{
+	padding: 10px 0 10px 0;
+}
+
+.response-error-code h1{
+	background: #fff;
+	font-weight:bold;
+	font-size: 600%;
+	color: #f66;
+	text-shadow: #c33 0 0 10px;
+}
+
+.response-error-code h2{
+	background: #d44;
+	font-weight:bold;
+	font-size: 400%;
+	color: #fff;
+	text-shadow: #c33 0 0 10px;
+}
+.response-error-code a{
+	display:block;
+	background: #c33;
+	font-weight:bold;
+	font-size: 200%;
+	color: #fff;
+	text-decoration:underline
+}
+.response-error-code a:link    {color:#fff;}
+.response-error-code a:visited {color:#fee;}
+.response-error-code a:hover   {color:#fff;text-shadow: #fff 0 0 5px;} 
+.response-error-code a:active  {color:#fff; text-shadow: #fff 0 0 10px;} 
+
+
