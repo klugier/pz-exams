@@ -24,7 +24,7 @@ jQuery( document ).ready(function( $ ) {
 	{ 
 		if  ($errorCode ==  emailFieldErrorType.NOT_AN_EMAIL) {
 			$("#email-error-message").html('<span style="background-color:#F13333;" class="badge pull-left ">!</span>' +
-										   '<span style="padding:5px">Podany adress nie jest emailem.</span>') ; 
+										   '<span style="padding:5px">Podany adress nie jest prawidłowym adresem e-mail.</span>') ; 
 			return ; 
 		} 
 		if  ($errorCode ==  emailFieldErrorType.BAD_DOMAIN) { 

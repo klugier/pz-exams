@@ -2,34 +2,32 @@
 	include_once("lib/Lib.php");   
 	$title = "$appName - Kontakt";
 	$scriptsDefer = array("js/ValidateContactForm.js");
-	$scripts = array("js/Lib/jquery.validate.min.j");
+	$scripts = array("js/Lib/jquery.validate.min.js");
 	include("html/Begin.php");
-	?>
 
-<?php
-			if (isset($_SESSION['contactFormErrorCode'])) {
-				echo '<div class="alert alert-danger">' ;
-				echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
-				if ($_SESSION['contactFormErrorCode'] == 'mailerError') {  
-					echo '<strong>Próba wysłania wiadomości zakończona niepowodzeniem.</strong> '.$_SESSION['mailerErrorInfo']; 
-				} 
-				if ($_SESSION['contactFormErrorCode'] == 'invalidCaptcha') {  
-					echo '<strong>Niepoprawny kod captcha</strong>'; 
-				} 
-				echo '</div>' ; 
-				unset($_SESSION['contactFormErrorCode']);
-			}
+	if (isset($_SESSION['contactFormErrorCode'])) {
+		echo '<div class="alert alert-danger">' ;
+		echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
+		if ($_SESSION['contactFormErrorCode'] == 'mailerError') {  
+			echo '<strong>Próba wysłania wiadomości zakończona niepowodzeniem.</strong> '.$_SESSION['mailerErrorInfo']; 
+		} 
+		if ($_SESSION['contactFormErrorCode'] == 'invalidCaptcha') {  
+			echo '<strong>Niepoprawny kod captcha</strong>'; 
+		} 
+		
+		echo '</div>' ; 
+		unset($_SESSION['contactFormErrorCode']);
+	}
 
-			if (isset($_SESSION['successContactForm'])) {
-				echo '<div class="alert alert-success">' ;
-				echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ;
-				if ($_SESSION['successContactForm'] == 'mailerSuccess') {  
-					echo '<strong>Z powodzeniem wysłano wiadomość!</strong>'; 
-				} 
-				echo '</div>' ; 
-				unset($_SESSION['successContactForm']);
-			}
-
+	if (isset($_SESSION['successContactForm'])) {
+		echo '<div class="alert alert-success">' ;
+		echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ;
+		if ($_SESSION['successContactForm'] == 'mailerSuccess') {  
+			echo '<strong>Z powodzeniem wysłano wiadomość!</strong>'; 
+		} 
+		echo '</div>' ; 
+		unset($_SESSION['successContactForm']);
+	}
 ?> 
 <form id="" class="form-horizontal">
 	<div class="form-group">
@@ -39,7 +37,7 @@
 	</div>
 
 </form>
-<p style="margin-top: -20px; padding-left:40px;">
+<p style="margin-top: -20px; margin-left:40px;">
 PZ-Exams Corporation<br>
 ul. Egzaminów 64<br>
 22-222 Egzaminowo
@@ -51,6 +49,13 @@ ul. Egzaminów 64<br>
 			<legend>Formularz kontaktowy</legend>
 		</fieldset>
 	</div>
+	<p style="margin-top: -20px; margin-left:40px; margin-bottom: 30px;">
+	Jeżeli masz jakiekolwiek pytania odnośnie naszego serwis to uruchomiliśmy specjalny formularz kontaktowy dzięki, któremu możesz skontaktować się z zespołem tworzącym portal
+	<?php
+		echo "$appName.";
+	?>
+	</p>
+	<div style="margin-left: 40px">
 	<div class="form-group">
 		<div class="control-group">
 			<label class="col-xs-2 col-sm-2 col-md-2  control-label" for="inputEmail">Email</label>
@@ -84,15 +89,15 @@ ul. Egzaminów 64<br>
 	<div class="control-group">
 		<div class="form-group">
 			<label class="col-xs-2 col-sm-2 col-md-2  control-label" for="inputMessage">Wiadomość</label>
-			<div class="col-xs-5 col-sm-5 col-md-5 controls">
-				<textarea class="form-control" type="text" name="message" id="message" placeholder="Wprowadź wiadomość" rows="10"></textarea>	
+			<div class="col-xs-4 col-sm-4 col-md-4 controls">
+				<textarea class="form-control" type="text" name="message" id="message" placeholder="Wprowadź wiadomość" rows="10" style="resize: vertical;"></textarea>	
 			</div>
 			<span class="help-block col-xs-4 col-sm-4 col-md-4" id="message-error-message" >
 			</span>
 		</div>
 	</div>
 	<div class="form-group" >
-		<label class="col-xs-2 col-sm-2 col-md-2 control-label"> Przepisz kod z obrazka </label>
+		<label class="col-xs-2 col-sm-2 col-md-2 control-label">Przepisz kod zabezpieczający</label>
 		<div class="col-xs-4 col-sm-4 col-md-4">
 			<img id="captcha" src="lib/SecureImage/securimage_show.php"  class="img-thumbnail .img-rounded:2px" style="margin-right:20px;" alt="CAPTCHA IMAGE" />
 			<div style="display:inline-block;vertical-align:middle;float:none;">
@@ -114,11 +119,11 @@ ul. Egzaminów 64<br>
 	<div class="form-group">
 		<div class="control-group">
 			<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-2 col-sm-2 col-md-2 controls">
-				<button type="submit" class="btn btn-lg btn-block btn-primary">Wyślij</button>
+				<button type="submit" class="btn btn btn-block btn-primary">Wyślij</button>
 			</div>
 		</div>
 	</div>
+	</div>
 </form>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
 
 <?php include ("html/End.php"); ?>

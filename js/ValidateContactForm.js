@@ -5,8 +5,9 @@ $("#contactForm").validate({
 		message: "required",
 		surname: "required",
 		captcha_code: {
-		required: true,
-		minlength: 6
+			required: true,
+			minlength: 6,
+			maxlength: 6
 		},
 		email: {
 			required: true,
@@ -14,16 +15,16 @@ $("#contactForm").validate({
 		}
 	},
 	messages: {
-		subject: "Proszę podać temat",
-		message: "Proszę wpisać treść wiadomości",
-		surname: "Proszę wpisać imię i nazwisko",
+		subject: "Proszę podać temat.",
+		message: "Proszę wpisać treść wiadomości.",
+		surname: "Proszę wpisać imię i nazwisko.",
 		captcha_code: {
-			required: "Proszę wpisać kod z obrazka",
-			minlength: "Wpisano nieprawidłową ilość znaków"
+			required: "Proszę przepisać kod z obrazka.",
+			minlength: "Wpisano nieprawidłową ilość znaków."
 		},
 		email: {
-			required: "Proszę podać swój kontaktowy adres e-mail",
-			email: "Adres powinien posiadać format name@domain.com"
+			required: "Proszę podać kontaktowy adres e-mail.",
+			email: "Podany adress nie jest prawidłowym adresem e-mail."
 		}
 	},
 	//odpowiedzialne za umieszcenie komunikatu wewntrz odpowiedniego element
@@ -43,8 +44,8 @@ $("#contactForm").validate({
 		}
 	},
 
-	//usun komunikat bledu - potrzebne aby zniknal wykrzyknik	
-	success: function(label) {
-		label.parent().empty();
+	//usun komunikat bledu - potrzebne aby zniknal wykrzyknik
+	success: function(element) {
+		element.parent().empty();
 	}
 });
