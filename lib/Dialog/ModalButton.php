@@ -16,6 +16,7 @@
 							<div class="col-sm-3">
 								<input name="duration" type="number" class="form-control" id="duration" placeholder="" maxlength="2" value="">
 							</div>
+							<label class="col-sm-1 control-label"> [min] </label>
 						</div>
       					<div class="form-group">
                 			<label for="dtp_input2" class="col-sm-5 control-label">Dzień</label>
