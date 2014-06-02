@@ -49,7 +49,7 @@ ul. Egzaminów 64<br>
 			<legend>Formularz kontaktowy</legend>
 		</fieldset>
 	</div>
-	<p style="margin-top: -20px; margin-left:40px; margin-bottom: 30px;">
+	<p style="margin-top: -20px; margin-left:40px; margin-bottom: 40px;">
 	Jeżeli masz jakiekolwiek pytania odnośnie naszego serwis to uruchomiliśmy specjalny formularz kontaktowy dzięki, któremu możesz skontaktować się z zespołem tworzącym portal
 	<?php
 		echo "$appName.";
@@ -58,9 +58,9 @@ ul. Egzaminów 64<br>
 	<div style="margin-left: 40px">
 	<div class="form-group">
 		<div class="control-group">
-			<label class="col-xs-2 col-sm-2 col-md-2  control-label" for="inputEmail">Email</label>
+			<label class="col-xs-2 col-sm-2 col-md-2  control-label" for="inputEmail">E-mail</label>
 			<div class="col-xs-4 col-sm-4 col-md-4 controls">
-				<input class="form-control" type="text" name="email" id="email" placeholder="Wprowadź email">
+				<input class="form-control" type="text" name="email" id="email" placeholder="Wprowadź adres e-mail">
 			</div>
 			<span class="help-block col-xs-6 col-sm-6 col-md-6" id="email-error-message" >		      
 			</span>

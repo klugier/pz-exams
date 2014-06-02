@@ -2,14 +2,14 @@
 	include_once("lib/Lib.php");
 	
 	if (isset($_SESSION['USER']) && $_SESSION['USER'] != "") {
-		header('Location: UserSite.php' ); 
+		header('Location: UserSite.php'); 
 	}
 	
 	if ( Settings::getAuthorizationUseCode() == true 
 		&& isset($_SESSION['codeActivationStepCompleted']) 
 		&&  $_SESSION['codeActivationStepCompleted'] !== 'stepCompleted' 
 	) { 
-		header('Location: InsertActivationCode.php' ); 
+		header('Location: InsertActivationCode.php'); 
 	} 
 	 
 	
@@ -23,11 +23,11 @@
 				echo '<div class="alert alert-danger">' ;
 				echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>' ; 
 				if ($_SESSION['formErrorCode'] == 'invalidCaptcha') {  
-					echo '<strong>Uwaga!!! Rejestracja nie powiodła się. Wprowadzony kod jest nieprawidłowy. </strong>'; 
+					echo '<strong>Rejestracja nie powiodła się! Wprowadzony kod jest nieprawidłowy.</strong>'; 
 					unset($_SESSION['formErrorCode']);
 				} 
 				else if ($_SESSION['formErrorCode'] == 'userAlreadyInDB') {  
-					echo '<strong>Uwaga!!! Rejestracja nie powiodła się. Na podany email już zarejestrowano konto. </strong>';
+					echo '<strong>Rejestracja nie powiodła się! Na podany email już zarejestrowano konto.</strong>';
 					unset($_SESSION['formErrorCode']);
 				} 
 				echo '</div>' ; 
@@ -37,7 +37,7 @@
 		<form class="form-horizontal" role="form" id="register_form" method="post" action="controler/HandlingRegisterForm.php">
 			<div class="form-group">
 				<fieldset style="padding-left:20px;padding-right:20px;">
-					<legend>Zarejestruj się</legend>
+					<legend>Rejestracja w serwisie <?php echo "$appName" ?></legend>
 				</fieldset>	
 				<!--<div class="row">
 					<h2 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-5 col-sm-5 col-md-5"> Zarejestruj Konto </h2>
@@ -46,11 +46,17 @@
 					<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-5 col-sm-5 col-md-5">  <hr style="color: #123455;">  </div>
 				</div> -->
 			</div>
+			<p style="margin-top: -20px; margin-left:40px; margin-bottom: 40px;">
+			Witamy w formularzy rejestracyjnym serwisu <?php echo "$appName" ?>! Jest nam niezmiernie miło, że chcesz dołączyć do grona egzaminatorów. Pamiętaj, że nas serwis jest w pełni darmowy i rejestracja w nim nic cię nie kosztuje.
+			<br /> <br />
+			* - pola obowiązkowe przy rejestracji.
+			</p>
 			
+			<div style="margin-left: 40px">
 			<div class="form-group">
 				<label for="email" class="col-xs-2 col-sm-2 col-md-2 control-label">E-mail* </label>
 				<div class="col-xs-4 col-sm-4 col-md-4">
-					<input type="email" required class="form-control" id="email" placeholder="Wprowadź e-mail" title="" name="email" value="<?php if(isset($_SESSION['email'])){ echo $_SESSION['email']; } else { echo '';  }?>">
+					<input type="email" required class="form-control" id="email" placeholder="Wprowadź adres e-mail" title="" name="email" value="<?php if(isset($_SESSION['email'])){ echo $_SESSION['email']; } else { echo '';  }?>">
 				</div> 
 				<span class="help-block" id="email-error-message" >
 					
@@ -128,22 +134,16 @@
 					</span>
 				</div>
 			</div> 
-					
-			<div class="form-group">
-				<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
-					<h6> * - pola obowiązkowe przy rejestracji </h6> 
-				</div> 
-			</div> 	
+			
 			<div class="form-group">
 				<div class="row"> 
-					<span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3 col-md-3">
-						<button type="submit" class="btn btn-success btn-lg btn-block" name="submitButton" value="submit">Zarejestruj konto</button>
+					<span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-2 col-sm-2 col-md-2">
+						<button type="submit" class="btn btn-primary btn-block" name="submitButton" value="submit">Zarejestruj konto</button>
 					</span>
 					<span class="col-xs-2 col-sm-2 col-md-2">
-					  <a href="controler/HandlingRegisterForm.php">
-						<button type="button" class="btn btn-lg btn-primary btn-block" name="clearButton"  >Wyczyść</button>
-					  </a>
+						<button type="button" class="btn btn-default btn-block" name="clearButton" onclick="window.location.href =  'controler/HandlingRegisterForm.php';">Wyczyść</button>
 					</span>
+			</div>
 			</div>
 		</form>
 	</div>
