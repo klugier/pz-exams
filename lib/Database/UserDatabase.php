@@ -162,6 +162,18 @@
              WHERE ID = '" . $userID . "'";
     
              return DatabaseConnector::getConnection()->query($sql) ? true : false;
+         }
+
+         static public function updateUserPassword2($userU, $passwordU)
+         { 
+            $email = mysqli_real_escape_string(DatabaseConnector::getConnection(), $userU->getEmail());
+            $password = mysqli_real_escape_string(DatabaseConnector::getConnection(), $passwordU);
+            $password = sha1($password);
+             $sql = "UPDATE Users SET 
+             Password  = '" . $password . "' 
+             WHERE Email = '" . $email . "'";
+    
+             return DatabaseConnector::getConnection()->query($sql) ? true : false;
          } 
     
          /*

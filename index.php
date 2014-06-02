@@ -28,6 +28,16 @@
 		echo '</div>' ;
 		unset($_SESSION['ERROR']);
 	}
+
+	if (isset($_SESSION['forgottenPass']) && $_SESSION['forgottenPass'] == "success"){
+		echo '<div class="alert alert-success">';
+		echo '<a href="#" class="close" data-dismiss="alert"> &times; </a>'; 
+		
+		echo '<strong>Na podany adres email została wysłana wiadomość z nowym hasłem! </strong>';
+		
+		echo '</div>';
+		unset($_SESSION['forgottenPass']);
+	}
 ?>
 
 <div class="container">

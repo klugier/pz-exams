@@ -79,7 +79,7 @@
 						<input	type="email"	name="email"	class="form-control"	placeholder="Adres e-mail"	required	autofocus	style="margin-bottom:3px;">
 						<input	type="password"	name="pass"	class="form-control"	placeholder="Hasło"	required>
 						<label	class="checkbox">
-						<input	type="checkbox"	value="remember-me">	Zapamiętaj	mnie
+						<a href="ForgottenPassword.php">Zapomniałeś hasła?</a>
 						</label>
 					<button	type="submit"	class="btn	btn-success	btn-lg	btn-block"	style="margin-top:20px;	margin-bottom:5px;"><b>Zaloguj</b></button>
 								</form>
