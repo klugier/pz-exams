@@ -79,7 +79,7 @@
 				<th>Nazwa</th>
 				<th style="text-align: center">Data rozpoczęcia<i class="glyphicon glyphicon-chevron-down" style="margin-left: 5px"></i></th>
 				<th style="text-align: center">Data zakończenia</th>
-				<th style="text-align: center">Zapełnienie</th>
+				<th style="text-align: center" title="Zapisani studenci / Wprowadzeni studenci / Liczba miejsc">Zapełnienie</th>
 			</tr>
 		</thead>
 		<tbody>

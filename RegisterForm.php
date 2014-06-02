@@ -115,20 +115,20 @@
 			</div>
 			<br /> 
 			<div class="form-group" >
-					<label class="col-xs-2 col-sm-2 col-md-2 control-label"> Przepisz kod z obrazka </label>
+					<label class="col-xs-2 col-sm-2 col-md-2 control-label">Przepisz kod zabezpieczający</label>
 					<div class="col-xs-4 col-sm-4 col-md-4">
 						<img id="captcha" src="lib/SecureImage/securimage_show.php"  class="img-thumbnail .img-rounded:2px" style="margin-right:20px;" alt="CAPTCHA IMAGE" />
 						<div style="display:inline-block;vertical-align:middle;float:none;">
-						<a href="#" onclick="document.getElementById('captcha').src = 'lib/SecureImage/securimage_show.php?' + Math.random(); return false"> 
+							<a href="#" onclick="document.getElementById('captcha').src = 'lib/SecureImage/securimage_show.php?' + Math.random(); return false"> 
 							<img id="reload-image" src="lib/SecureImage/images/refresh.png" alt="Odśwież Obrazek" />
-						</a> 
-					</div>
+							</a> 
+						</div>
 					</div>
 			</div>
 			
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
-					<input type="text" class="form-control" name="captcha_code" id="captcha_code"/> 
+					<input type="text" class="form-control" name="captcha_code" id="captcha_code" placeholder="Wprowadź kod znajdujący się na obrazku"/> 
 					<span class="help-block" id="captcha-error-message">
 
 					</span>
@@ -136,7 +136,7 @@
 			</div> 
 			
 			<div class="form-group">
-				<div class="row"> 
+				<div class="control-group"> 
 					<span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-2 col-sm-2 col-md-2">
 						<button type="submit" class="btn btn-primary btn-block" name="submitButton" value="submit">Zarejestruj konto</button>
 					</span>

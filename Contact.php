@@ -50,7 +50,7 @@ ul. Egzaminów 64<br>
 		</fieldset>
 	</div>
 	<p style="margin-top: -20px; margin-left:40px; margin-bottom: 40px;">
-	Jeżeli masz jakiekolwiek pytania odnośnie naszego serwis to uruchomiliśmy specjalny formularz kontaktowy dzięki, któremu możesz skontaktować się z zespołem tworzącym portal
+	Jeżeli masz jakiekolwiek pytania odnośnie naszego serwis to uruchomiliśmy specjalny formularz kontaktowy dzięki, któremu możesz skontaktować się z zespołem tworzącym serwis
 	<?php
 		echo "$appName.";
 	?>
@@ -110,7 +110,7 @@ ul. Egzaminów 64<br>
 	<div class="form-group">
 		<div class="control-group">
 			<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
-				<input type="text" class="form-control" name="captcha_code" id="captcha_code"> 
+				<input type="text" class="form-control" name="captcha_code" id="captcha_code" placeholder="Wprowadź kod znajdujący się na obrazku"> 
 			</div>
 			<span class="help-block col-xs-4 col-sm-4 col-md-4" id="captcha_code-error-message">
 			</span>
