@@ -118,9 +118,12 @@ ul. Egzaminów 64<br>
 	</div>
 	<div class="form-group">
 		<div class="control-group">
-			<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-2 col-sm-2 col-md-2 controls">
+			<span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-2 col-sm-2 col-md-2 controls">
 				<button type="submit" class="btn btn btn-block btn-primary">Wyślij</button>
-			</div>
+			</span>
+			<span class="col-xs-2 col-sm-2 col-md-2">
+				<button type="button" class="btn btn-default btn-block" name="clearButton" onclick="window.location.href = 'Contact.php';">Wyczyść</button>
+			</span>
 		</div>
 	</div>
 	</div>

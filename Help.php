@@ -21,6 +21,7 @@
 		?>
 	</ul>
 </div>
+<!--
 <div class="container col-xs-12 col-sm-12 col-md-12">
 	<h4>Tytuł</h4>		
 	<img src="img/help/06_Rejestracja.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
@@ -70,7 +71,8 @@
 	<h4>Tytuł</h4>		
 	<img src="img/help/05_archiwalne_egzaminy.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
 	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
-</div>	
+</div>
+-->
 <?php
 	include ("html/End.php");
 ?>
