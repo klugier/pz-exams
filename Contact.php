@@ -1,7 +1,7 @@
 <?php
 	include_once("lib/Lib.php");   
 	$title = "$appName - Kontakt";
-	$scriptsDefer = array("js/ValidateContactForm.js");
+	$scriptsDefer = array("js/ValidateContactForm.js","js/ClearContactForm.js");
 	$scripts = array("js/Lib/jquery.validate.min.js");
 	include("html/Begin.php");
 
@@ -122,7 +122,7 @@ ul. Egzaminów 64<br>
 				<button type="submit" class="btn btn btn-block btn-primary">Wyślij</button>
 			</span>
 			<span class="col-xs-2 col-sm-2 col-md-2">
-				<button type="button" class="btn btn-default btn-block" name="clearButton" onclick="window.location.href = 'Contact.php';">Wyczyść</button>
+				<button type="button" class="btn btn-default btn-block" name="clearButton" onclick="clearContactForm();">Wyczyść</button>
 			</span>
 		</div>
 	</div>
