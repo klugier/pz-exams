@@ -79,13 +79,13 @@
 				}
 			}
 			
-			echo '<tr id="' . $exam->getExam()->getID() . '"';
+			echo '<tr style=\"color: #000;\" id="' . $exam->getExam()->getID() . '"';
 			if(date_create($examDays[count($examDays)-1]) < new DateTime("now")){
-				echo "style=\"background: #801313; color: #000;\">";
+				echo "class=\"danger\">";
 			}elseif(date_create($examDays[count($examDays)-1]) > new DateTime("now")){
-				echo "style=\"background: #156815; color: #000;\">";
+				echo "class=\"success\">";
 			}else{
-				echo "style=\"color: #000;\">";
+				echo "class=\"warning\">";
 			}
 			
 			
