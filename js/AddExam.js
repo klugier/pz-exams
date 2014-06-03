@@ -111,17 +111,26 @@ $( document ).ready(function() {
 
 	});
 
-	$('li#exam_option0').click(function(){
+	$('li#exam_option0').click(function() {
 
 		back_to_stage1();
 
-	})
+	});
 
-	$('li#exam_option1').click(function(){
+	$('li#exam_option1').click(function() {
 
 		go_to_stage2();
 		
-	})
+	});
+
+	$("input#exam_name").focusout( function ( event){
+		if ($("input#exam_name").val().trim().length > 5 && $("input#exam_name").val().trim.length < 60) {
+			$('#exam_name_group').toggleClass("has-error has-success");
+
+			$('#exam_name-error-message').fadeOut();
+		}
+
+	});
 
 	$('button#add_students').click( function(){
 
@@ -467,9 +476,9 @@ $( document ).ready(function() {
 
 		if ($(this).text() == "Zmień") {
 
-			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
-			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
-			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
+			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 16px; height: 21px; margin-right: 0px; padding-bottom: 2px; text-align: center;" maxlength="1"/>');
+			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 16px; height: 21px; margin-right: 0px; padding-bottom: 2px; text-align: center;" maxlength="1"/>');
+			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 16px; height: 21px; margin-right: 0px; padding-bottom: 2px; text-align: center;" maxlength="1"/>');
 		
 			$('a#changeChars').text('Zatwierdź');
 
