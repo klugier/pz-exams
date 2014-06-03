@@ -75,7 +75,7 @@
 		</div>
 	</form>
 	<hr style="height:1px;border:none;color:#333;background-color:#333;"/>
-	<p> Uwaga zmiana hramonogramu jest zapisywana bezpośrednio w bazie. Prosimy o rozważne modyfikowanie terminów ! </p>
+	<p>Uwaga zmiana hramonogramu jest zapisywana bezpośrednio w bazie danych. Prosimy o rozważne modyfikowanie terminów!</p>
 	<h3> Edycja harmonogramu </h3>
 	<div class="row col-md-11" style="float:none;margin:0 auto;"> 
 			<br />
