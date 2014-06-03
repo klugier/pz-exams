@@ -15,6 +15,17 @@
 		return;
 	}
 	
+	$user1 = unserialize($_SESSION['USER']);
+	
+	if ($user1->getRight()!="administrator" && $user1->getRight()!="owner") {
+		echo "<div class=\"alert alert-danger\"><b>Brak uprawnień</b> Za 3 sekundy zostaniesz przeniesiony na stronę główną.</div>";
+		header("refresh: 3; url=index.php");
+		include("html/End.php");
+		
+		ob_end_flush();
+		return;
+	}
+	
 	include("html/AdminPanel.php");
 
 	echo "<h2>Lista egzaminów</h2>";

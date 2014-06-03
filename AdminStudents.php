@@ -17,7 +17,7 @@
 	
 	$user = unserialize($_SESSION['USER']);
 	
-	if (!$user->getRight()=="administrator") {
+	if ($user->getRight()!="administrator" && $user->getRight()!="owner") {
 		echo "<div class=\"alert alert-danger\"><b>Brak uprawnień</b> Za 3 sekundy zostaniesz przeniesiony na stronę główną.</div>";
 		header("refresh: 3; url=index.php");
 		include("html/End.php");

@@ -60,6 +60,13 @@ div #creator {
 	font-weight: bold;
 }
 
+a.disabled{
+	pointer-events: none;
+	cursor: default;
+}
+a.disabled > i {
+    opacity: 0.35;
+}
 .center {
     text-align: center;
     margin-left: auto;

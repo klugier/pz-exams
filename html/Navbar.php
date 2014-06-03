@@ -48,7 +48,7 @@
 								<li><a href="ExamListArchives.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-floppy-disk"></i>  <b>Archiwalne egzaminy</b></a></li>
 								<li><a href="UserEdit.php" title="Edytuj profil" id="user_m" style="color:white"><i class="glyphicon glyphicon-cog"></i>  <b>Edytuj Profil</b></a></li>
 								<?php
-									if ($user->getRight() === "administrator") {
+									if ($user->getRight() === "administrator" || $user->getRight() === "owner") {
 										echo '<li role="presentation" class="divider"></li>';
 										echo '<li role="presentation" class="dropdown-header" style="margin-left: -10px">Opcję administratora</li>';
 										echo '<li><a href="AdminSystemStats.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-stats" style="margin-right: 4px;"></i><b>Statystyki</b></a></li>';
