@@ -81,9 +81,9 @@
 			
 			echo '<tr id="' . $exam->getExam()->getID() . '"';
 			if(date_create($examDays[count($examDays)-1]) < new DateTime("now")){
-				echo "style=\"color: #801313;\">";
+				echo "style=\"background: #801313; color: #000;\">";
 			}elseif(date_create($examDays[count($examDays)-1]) > new DateTime("now")){
-				echo "style=\"color: #156815;\">";
+				echo "style=\"background: #156815; color: #000;\">";
 			}else{
 				echo "style=\"color: #000;\">";
 			}
@@ -92,13 +92,7 @@
 			
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
 			echo "<td id=\"name\"><a href=\"AdminExamView.php?id=" . $exam->getExam()->getID() . "\" ";
-			if(date_create($examDays[count($examDays)-1]) < new DateTime("now")){
-				echo "style=\"color: #801313;\">";
-			}elseif(date_create($examDays[count($examDays)-1]) > new DateTime("now")){
-				echo "style=\"color: #156815;\">";
-			}else{
-				echo "style=\"color: #000;\">";
-			}
+			echo "style=\"color: #000;\">";
 			echo $exam->getExam()->getName() . "</a></td>";
 			$j = 0;
 			if ($examDays == null) {
