@@ -79,16 +79,19 @@
 				}
 			}
 			
+			$dayte = new DateTime("now");
 			echo '<tr style=\"color: #000;\" id="' . $exam->getExam()->getID() . '"';
-			if(date_create($examDays[count($examDays)-1]) < new DateTime("now")){
-				echo "class=\"danger\">";
-			}elseif(date_create($examDays[count($examDays)-1]) > new DateTime("now")){
-				echo "class=\"success\">";
-			}else{
-				echo "class=\"warning\">";
+			if($examDays[$examDaysSize - 1] < date("Y-m-d")){
+				if (!$examDaysSize == 0) {
+					echo "class=\"danger\">";
+				}else{
+					echo "class=\"warning\">";
+				}
+			}elseif($examDays[0] < date("Y-m-d")){
+					echo "class=\"success\">";
+				}else{
+					echo "class=\"warning\">";
 			}
-			
-			
 			
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
 			echo "<td id=\"name\"><a href=\"ExamView.php?id=" . $exam->getExam()->getID() . "\" ";
@@ -100,7 +103,7 @@
 				echo "<td style=\"text-align: center\">Brak</td>";
 			} else {
 				echo "<td style=\"text-align: center\">" . $examDays[0] . "</td>";
-				if ($examDaysSize == 0) {
+				if ($examDaysSize === 0) {
 					echo "<td style=\"text-align: center\">Brak</td>";
 				} else {
 					echo "<td style=\"text-align: center\">" . $examDays[$examDaysSize - 1] . "</td>";
