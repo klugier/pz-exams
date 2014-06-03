@@ -32,6 +32,8 @@
 	echo "<p>W tym miejscu znajduje się lista wszystkich studentów.</p>";
 	echo "<hr />";
 
+	echo '<span style="float: right"><a class="btn btn-primary btn-sm pull-right" id="delete-students" style="cursor: pointer;" title="Usuń nieaktywnych studentów."><i class="glyphicon glyphicon-trash"></i> <b>Usuń nieaktywnych studentów</b></a></span>';
+
 	$studentList = StudentDatabase::getAllStudents();
 
 	if (!is_array($studentList)) {

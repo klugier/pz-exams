@@ -48,4 +48,12 @@ jQuery(document).ready(function($) {
 		});
 	});
 	
+	$("a[id^=delete-students]").click(function() {
+		bootbox.confirm("Czy na pewno chcesz usunąć nieaktywnych studentów</b>?", function(result) {
+			if (result) {
+				window.location.href = "controler/DeleateExpiredStudents.php";
+			}
+		});
+	});
+
 });
