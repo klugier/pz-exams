@@ -50,8 +50,8 @@
 				<th>Imię</th>
 				<th>Nazwisko</th>
 				<th>E-mail</th>
-				<th style="text-align: center;">Jest zapisany na egzamin</th>
-				<th style="text-align: center;">Usuń</th>
+				<th style="text-align: center;">Jest zapisany na egzamin/y</th>
+				<th style="text-align: center;">Operację</th>
 			</tr>
 		</thead>
 		<tbody>';
