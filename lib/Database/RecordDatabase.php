@@ -246,8 +246,7 @@
 		}
 		
 		static public function adminCountUserStudentsSingedToExams(){
-			$sql = "SELECT count(Exams.ID) FROM Records INNER JOIN Exams ON Records.ExamID = Exams.ID 
-			        WHERE Records.ExamUnitID != 'NULL'";
+			$sql = "SELECT count(DISTINCT StudentID) FROM Records WHERE ExamUnitID != 'NULL'";
 			$result = DatabaseConnector::getConnection()->query($sql);
 			$examCount=0;
 			

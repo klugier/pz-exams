@@ -190,6 +190,38 @@ final class ExamDatabase
 		return DatabaseConnector::getConnection()->query($sql) ? true : false;
 	}
     
+	static public function adminCountActivated($activatedU)
+	{		
+		$activated = mysqli_real_escape_string(DatabaseConnector::getConnection(), $activatedU);
+		$sql = "SELECT count(ID) FROM Exams WHERE Activated = '" . $activated . "'";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$examCount=0;
+
+		if($result!=null){
+			$row = $result->fetch_array(MYSQLI_NUM);
+			$examCount=$row[0];
+		}
+		
+		
+		return $examCount;
+	}
+	
+	static public function adminCountExams()
+	{		
+		$sql = "Select COUNT(ID) From Exams";
+		$result = DatabaseConnector::getConnection()->query($sql);
+		$examCount=0;
+
+		if($result!=null){
+			$row = $result->fetch_array(MYSQLI_NUM);
+			$examCount=$row[0];
+		}
+		
+		
+		return $examCount;
+	}
+	
+	
 	/*********************************************************************
 	 ********************* Podstawowe funkcje sql ************************
 	 *********************************************************************/

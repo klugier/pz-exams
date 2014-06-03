@@ -77,9 +77,9 @@
 			echo '<td id="row-email-id-' . $user->getID()  . '">' . $user->getEmail() . '</td>';
 			echo '<td id="rank">';
 			if($user->getRight() == "examiner"){
-				echo "Egzaminator";
+				echo "<span style =\"color:rgb(42, 0, 138)\"> Egzaminator </span>";
 			}else{
-				echo "Admin";
+				echo "<span style =\"color:rgb(198, 42, 0)\"> Administrator </span>";;
 			} 
 			echo '</td>';
 			$id = $user->getID();

@@ -34,7 +34,15 @@
 
 	echo '<span style="float: right"><a class="btn btn-primary btn-sm pull-right" id="delete-exams" style="cursor: pointer;" title="Usuń przedawnione egzaminy."><i class="glyphicon glyphicon-trash"></i> <b>Usuń przedawnione egzaminy</b></a></span>';
 	
-	$examList = ExamDatabase::getAllExams();
+	$exams = ExamDatabase::getAllExams();
+	
+	$list = null;
+	$i = 0;
+	foreach ($exams as $exam) {
+		$examList[$i] = new ExamListElement($exam, ExamUnitDatabase::getExamDays($exam->getID()));
+		$i++;
+	}
+	ExamListElement::sortByStartDate($examList);
 	
 	if (!is_array($examList)) {
 		$displayTable = ' style="display: none;"';
@@ -50,58 +58,63 @@
 			<tr>
 				<th style="text-align: center;">Lp.</th>
 				<th>Nazwa</th>
-				<th>Czas</th>
+				<th style="text-align: center">Data rozpoczęcia<i class="glyphicon glyphicon-chevron-down" style="margin-left: 5px"></i></th>
+				<th style="text-align: center">Data zakończenia</th>
 				<th>Egzaminator</th>
-				<th style="text-align: center;">Aktywny</th>
-				<th style="text-align: center;">Przedawniony</th>
 			</tr>
 		</thead>
 		<tbody>';
 	
 	if (is_array($examList)) {
 		foreach ($examList as $number => $exam) {
-			$examDays = ExamUnitDatabase::getExamDays($exam->getID());
-			echo '<tr id="' . $exam->getID() . '">';
-			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
-			echo '<td id="name">' . $exam->getName() . '</td>';
-			echo '<td style="vertical-align:middle;" id="time">';
-			$j = 0;
+			$examDays     = $exam->getExamDates();
+			$examDaysSize = sizeof($examDays);
+				
+			// Is actual exam check
 			if ($examDays != null) {
-				$uniqeDays = array_unique($examDays);
-				$startDay = null;
-				foreach ($uniqeDays as $day) {
-					if($j == 0){
-						$startDay = $day;
-						echo $day;
-					} elseif ($j == count($uniqeDays)-1){
-						if (date("Y",strtotime($day)) != date("Y",strtotime($startDay))) {
-							echo " do ".date("Y-m-d",strtotime($day));
-						} elseif (date("m",strtotime($day)) != date("m",strtotime($startDay))) {
-							echo " do ".date("m-d",strtotime($day));
-						} elseif (date("d",strtotime($day)) != date("d",strtotime($startDay))) {
-							echo "/".date("d",strtotime($day));
-						}
+				if ($currentDate > $examDays[0]) {
+					if ($examDaysSize == 1 || $currentDate > $examDays[$examDaysSize - 1]) {
+						continue;
 					}
-					$j++;
+				}
+			}
+			
+			echo '<tr id="' . $exam->getExam()->getID() . '"';
+			if(date_create($examDays[count($examDays)-1]) < new DateTime("now")){
+				echo "style=\"color: #801313;\">";
+			}elseif(date_create($examDays[count($examDays)-1]) > new DateTime("now")){
+				echo "style=\"color: #156815;\">";
+			}else{
+				echo "style=\"color: #000;\">";
+			}
+			
+			
+			
+			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
+			echo "<td id=\"name\"><a href=\"AdminExamView.php?id=" . $exam->getExam()->getID() . "\" ";
+			if(date_create($examDays[count($examDays)-1]) < new DateTime("now")){
+				echo "style=\"color: #801313;\">";
+			}elseif(date_create($examDays[count($examDays)-1]) > new DateTime("now")){
+				echo "style=\"color: #156815;\">";
+			}else{
+				echo "style=\"color: #000;\">";
+			}
+			echo $exam->getExam()->getName() . "</a></td>";
+			$j = 0;
+			if ($examDays == null) {
+				echo "<td style=\"text-align: center\">Brak</td>";
+				echo "<td style=\"text-align: center\">Brak</td>";
+			} else {
+				echo "<td style=\"text-align: center\">" . $examDays[0] . "</td>";
+				if ($examDaysSize == 0) {
+					echo "<td style=\"text-align: center\">Brak</td>";
+				} else {
+					echo "<td style=\"text-align: center\">" . $examDays[$examDaysSize - 1] . "</td>";
 				}
 			}
 			echo '</td>';
-			$examinator = UserDatabase::getUser($exam->getUserID());
+			$examinator = UserDatabase::getUser($exam->getExam()->getUserID());
 			echo '<td id="examinator">' . $examinator->getFirstName() . " " . $examinator->getSurname() . '</td>';
-			echo '<td style="text-align: center;" id="active">';
-			if($exam->getActivated() == TRUE){
-				echo "<b style=\"color: #156815;\">Tak</b>";
-			}else{
-				echo "<b style=\"color: #801313;\">Nie</b>";
-			} 
-			echo '</td>';
-			echo '<td style="text-align: center;">';
-			if(date_create($examDays[count($examDays)-1]) < new DateTime("now")){
-				echo "<b style=\"color: #156815;\">Tak</b>";
-			}else{
-				echo "<b style=\"color: #801313;\">Nie</b>";
-			}
-			echo '</td>';
 			echo '</tr>';
 		}
 	}

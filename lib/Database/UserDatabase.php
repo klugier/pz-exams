@@ -242,6 +242,21 @@
                 return false;
             }
         }
+		
+		static public function adminCountUsers()
+        {    
+            $sql =  "SELECT Count(ID) From Users";
+			$result = DatabaseConnector::getConnection()->query($sql);
+            $userCount=0;
+
+			if($result!=null){
+				$row = $result->fetch_array(MYSQLI_NUM);
+				$userCount=$row[0];
+			}
+			
+			
+			return $userCount;
+        }
     
 		static public function deleteUser($userIDU)
 		{
