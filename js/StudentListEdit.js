@@ -305,9 +305,9 @@ $(document).ready(function() {
 
 	$('a#changeChars').click(function() {
 		if ($(this).text() == "Zmień") {
-			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
-			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
-			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 16px; height: 20px; margin-right: 0px; text-align: center;" maxlength="1"/>');
+			$('span#char1').html('<input id="charToSet1" type="text" value="' + char1 + '" style="width: 16px; height: 21px; margin-right: 0px; padding-bottom: 2px; text-align: center;" maxlength="1"/>');
+			$('span#char2').html('<input id="charToSet2" type="text" value="' + char2 + '" style="width: 16px; height: 21px; margin-right: 0px; padding-bottom: 2px; text-align: center;" maxlength="1"/>');
+			$('span#separator').html('<input id="separatorToSet" type="text" value="' + separator + '" style="width: 16px; height: 21px; padding-bottom: 2px; margin-right: 0px; text-align: center;" maxlength="1"/>');
 
 			$('a#changeChars').text('Zatwierdź');
 
