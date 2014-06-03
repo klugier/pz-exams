@@ -13,7 +13,7 @@
 		return;
 	}
 	$user1 = unserialize($_SESSION['USER']);
-	if ($user1->getRight()!="administrator" || $user1->getRight()!="owner") {
+	if ($user1->getRight()!="examinator") {
 		include("html/AdminPanel.php");
 		
 		if (!isset($_GET['id'])) {
