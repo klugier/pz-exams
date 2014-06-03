@@ -59,7 +59,7 @@
 	</p> 
 		<ul id="domainsList">';
 	foreach( $xml->Domains->children() as $child) {
-		$listitem_html = '<li>'.$child.'<input type="hidden" name="domains[]" value="' . $child . '" /> '.'</li>';
+		$listitem_html = '<li>'.$child.'<input type="hidden" name="domains[]" value="' . $child . '" /> '.'<a href="#" class="remove_domain">Usuń</a>'.'</li>';
 		echo $listitem_html;
 	}
 	echo '</ul>

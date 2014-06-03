@@ -3,12 +3,12 @@
 include_once("../lib/Lib.php");
 
 $file=simplexml_load_file("../cfg/Settings.xml");
-
-//echo '<body><pre>';
-//print_r($file);
-//echo '</pre>';
-//echo "<hr>";
-
+/*
+echo '<body><pre>';
+print_r($file);
+echo '</pre>';
+echo "<hr>";
+*/
 if(isset($_POST['debug']) == false){
 	$file->Debug = 0;//Is unselected
 }else{
@@ -23,8 +23,15 @@ if(!empty($_POST['domains'])) {
     }
 	$array2 = $_POST['domains'];
 	$result = array_diff($array2, $array);
+	$result2 = array_diff($array, $array2);
 	foreach($result as $check) {
 		$file->Domains->addChild('Domain', $check);
+    }
+	foreach($result2 as $check) {
+		echo $check.'<br>';
+		$res    = $file->xpath('//Domain[.="' . $check . '"]');
+		$parent = $res[0];
+		unset($parent[0]);
     }
 }else{
 	echo "Fail";
@@ -64,11 +71,12 @@ if(isset($_POST['code'])){
 		$file->Authorization->Code = $_POST['code'];
 	}
 }
-
-//echo "<hr>";
-//echo '<pre>';
-//print_r($file);
-//echo '</pre></body>';
+/*
+echo "<hr>";
+echo '<pre>';
+print_r($file);
+echo '</pre></body>';
+*/
 
 $file->asXml('../cfg/Settings.xml');
 header('Location: ../AdminEdit.php' ); 
