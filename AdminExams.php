@@ -103,7 +103,7 @@
 				echo "<td style=\"text-align: center\">Brak</td>";
 			} else {
 				echo "<td style=\"text-align: center\">" . $examDays[0] . "</td>";
-				if ($examDaysSize === 0) {
+				if ($examDaysSize == 0) {
 					echo "<td style=\"text-align: center\">Brak</td>";
 				} else {
 					echo "<td style=\"text-align: center\">" . $examDays[$examDaysSize - 1] . "</td>";
