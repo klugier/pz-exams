@@ -12,21 +12,30 @@
 		ob_end_flush();
 		return;
 	}
-	
-	include("html/UserPanel.php");
-	
-	if (!isset($_GET['id'])) {
-		include("html/End.php");
-		return;
+	$user1 = unserialize($_SESSION['USER']);
+	if ($user1->getRight()!="administrator" || $user1->getRight()!="owner") {
+		include("html/AdminPanel.php");
+		
+		if (!isset($_GET['id'])) {
+			include("html/End.php");
+			return;
+		}
+	}else{
+		include("html/UserPanel.php");
+		
+		if (!isset($_GET['id'])) {
+			include("html/End.php");
+			return;
+		}
+		
+		$userExamList = ExamDatabase::getExamList(unserialize($_SESSION['USER'])->getID());
+		$accessEditExamGranted = false; 
+		foreach ($userExamList as $exam) { 
+			if ( $exam->getID() == $_GET['id'] ) $accessEditExamGranted = true; 
+		} 
+		if (!$accessEditExamGranted)
+			header('Location: ExamList.php');
 	}
-	
-	$userExamList = ExamDatabase::getExamList(unserialize($_SESSION['USER'])->getID());
-	$accessEditExamGranted = false; 
-	foreach ($userExamList as $exam) { 
-		if ( $exam->getID() == $_GET['id'] ) $accessEditExamGranted = true; 
-	} 
-	if (!$accessEditExamGranted)
-		header('Location: ExamList.php');
 	
 	$id   = $_GET['id'];
 	$exam = ExamDatabase::getExam($id);

@@ -91,7 +91,7 @@
 			
 			
 			echo '<td id="number" style="text-align: center;">' . ($number+1) .  '.</td>';
-			echo "<td id=\"name\"><a href=\"AdminExamView.php?id=" . $exam->getExam()->getID() . "\" ";
+			echo "<td id=\"name\"><a href=\"ExamView.php?id=" . $exam->getExam()->getID() . "\" ";
 			echo "style=\"color: #000;\">";
 			echo $exam->getExam()->getName() . "</a></td>";
 			$j = 0;
