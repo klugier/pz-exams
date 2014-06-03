@@ -3,7 +3,7 @@
 	
 	include_once("lib/Lib.php");
 	$title = "$appName - List studentów";
-	$scripts = array("js/Lib/bootbox.min.js", "js/Lib/spin.min.js", "js/Lib/ladda.min.js");
+	$scripts = array("js/Lib/bootbox.min.js", "js/Lib/spin.min.js", "js/Lib/ladda.min.js", "js/ExpiredExams.js");
 	include("html/Begin.php");
 	
 	if (!isset($_SESSION['USER']) || $_SESSION['USER'] == "") {
@@ -32,7 +32,7 @@
 	echo "<p>W tym miejscu znajduje się lista wszystkich egzaminów.</p>";
 	echo "<hr />";
 
-	echo '<span style="float: right"><a class="btn btn-primary btn-sm pull-right" href="controler/DeleateExpiredExams.php" title="Usuń przedawnione egzaminy."><i class="glyphicon glyphicon-trash"></i> <b>Usuń przedawnione egzaminy</b></a></span>';
+	echo '<span style="float: right"><a class="btn btn-primary btn-sm pull-right" id="delete-exams" style="cursor: pointer;" title="Usuń przedawnione egzaminy."><i class="glyphicon glyphicon-trash"></i> <b>Usuń przedawnione egzaminy</b></a></span>';
 	
 	$examList = ExamDatabase::getAllExams();
 	
