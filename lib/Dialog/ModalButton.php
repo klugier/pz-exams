@@ -21,7 +21,7 @@
       					<div class="form-group">
                 			<label for="dtp_input2" class="col-sm-5 control-label">Dzień</label>
                 			<div class="input-group date form_date col-md-6" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    			<input name="date" class="form-control"  id="exam-date" size="16" type="text" value="2014-06-06" readonly>
+                    			<input name="date" class="form-control"  id="exam-date" size="16" type="text" value="" readonly>
                     			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar glyphicon-nonescaped"></span></span>
                 			</div>
@@ -31,7 +31,7 @@
 						<div class="form-group">
                 			<label for="dtp_input3" class="col-sm-5 control-label">Godzina rozpoczęcia</label>
                 			<div class="input-group date form_time col-md-6" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                    			<input name="bHour" class="form-control" id="start-hour" size="16" type="text" value="05:10" readonly>
+                    			<input name="bHour" class="form-control" id="start-hour" size="16" type="text" value="" readonly>
                     			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                 			</div>
@@ -40,7 +40,7 @@
             			<div class="form-group">
 	                		<label for="dtp_input3" class="col-sm-5 control-label">Godzina zakończenia</label>
     	            		<div class="input-group date form_time col-md-6" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-        	            		<input name="eHour" class="form-control" id="end-hour" size="16" type="text" value="08:10" readonly>
+        	            		<input name="eHour" class="form-control" id="end-hour" size="16" type="text" value="" readonly>
             	        		<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                 			</div>
