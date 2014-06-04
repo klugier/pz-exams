@@ -19,7 +19,8 @@ function validateRadio(obj) {
 
 jQuery(document).ready(function ($) {
 
-	$("a#studentEditGlyph").click(function () {
+	function showEdit() {
+		$("div").off("click", "a#studentEditGlyph", showEdit)
 		$("#innerEStudentID").val($('#studentID').val());
 		$("#innerEStudentCode").val($('#studentCode').val());
 
@@ -32,12 +33,14 @@ jQuery(document).ready(function ($) {
 			dataType: "html",
 			cache: false,
 			success: function (html) {
-				$('#studentEditBody').html(html)
+				$('#studentEditBody').html(html);
+				$("div").on("click", "a#studentEditGlyph", showEdit);
 			}
 		});
-	});
+	}
 
-	$("a#signOutGlyph").click(function () {
+	function loadSignOut() {
+		$("div").off("click", "a#signOutGlyph", loadSignOut);
 		$("#innerStudentID").val($('#studentID').val());
 		$("#innerStudentCode").val($('#studentCode').val());
 		$("#innerExamID").val($(this).attr("value"));
@@ -52,13 +55,14 @@ jQuery(document).ready(function ($) {
 			dataType: "html",
 			cache: false,
 			success: function (html) {
-				$('#signOutBody').html(html)
+				$('#signOutBody').html(html);
+				$("div").on("click", "a#signOutGlyph", loadSignOut);
 			}
 		});
-	});
+	}
 
-	$("a#signInGlyph").click(function () {
-
+	function loadSignIn() {
+		$("div").off("click", "a#signInGlyph", loadSignIn);
 		$("#innerIStudentID").val($('#studentID').val());
 		$("#innerIStudentCode").val($('#studentCode').val());
 		$("#innerIExamID").val($(this).attr("value"));
@@ -75,7 +79,7 @@ jQuery(document).ready(function ($) {
 			dataType: "html",
 			cache: false,
 			success: function (html) {
-				$('#signInBody').html(html)
+				$('#signInBody').html(html);
 			}
 		});
 
@@ -86,14 +90,15 @@ jQuery(document).ready(function ($) {
 			dataType: "html",
 			cache: false,
 			success: function (html) {
-				$('#signInFooter').html(html)
+				$('#signInFooter').html(html);
+				$("div").on("click", "a#signInGlyph", loadSignIn);
 			}
 		});
 
-	});
+	}
 
-	$("div").on("click", "a#date", function () {
-
+	function chosenExam() {
+		$("div").off("click", "a#date", chosenExam);
 		var examDate = $(this).attr("examDate");
 		var innerIExamID = $("#innerIExamID").val();
 
@@ -104,7 +109,7 @@ jQuery(document).ready(function ($) {
 			dataType: "html",
 			cache: false,
 			success: function (html) {
-				$('#signInBody').html(html)
+				$('#signInBody').html(html);
 			}
 		});
 
@@ -115,14 +120,15 @@ jQuery(document).ready(function ($) {
 			dataType: "html",
 			cache: false,
 			success: function (html) {
-				$('#signInFooter').html(html)
+				$('#signInFooter').html(html);
+				$("div").on("click", "a#date", chosenExam);
 			}
 		});
 
-	});
+	}
 
-	$("div").on("click", "a#back", function () {
-
+	function getBack() {
+		$("div").off("click", "a#back", getBack);
 		var innerIExamID = $("#innerIExamID").val();
 
 		$.ajax({
@@ -132,7 +138,7 @@ jQuery(document).ready(function ($) {
 			dataType: "html",
 			cache: false,
 			success: function (html) {
-				$('#signInBody').html(html)
+				$('#signInBody').html(html);
 			}
 		});
 
@@ -143,10 +149,21 @@ jQuery(document).ready(function ($) {
 			dataType: "html",
 			cache: false,
 			success: function (html) {
-				$('#signInFooter').html(html)
+				$('#signInFooter').html(html);
+				$("div").on("click", "a#back", getBack);
 			}
 		});
 
-	});
+	}
+
+	$("div").on("click", "a#studentEditGlyph", showEdit);
+
+	$("div").on("click", "a#signOutGlyph", loadSignOut);
+
+	$("div").on("click", "a#signInGlyph", loadSignIn);
+
+	$("div").on("click", "a#date", chosenExam);
+
+	$("div").on("click", "a#back", getBack);
 
 });

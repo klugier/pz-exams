@@ -164,7 +164,7 @@
 					}
 				}
 				echo "</td>";
-				echo '<td style="vertical-align:middle;"><a id="linkS2" style="color: #000; " href="StudentExamsList.php?code='. $_GET['code'] . '&exam=' . $examID . '">' . $exam->getName() . '</a></td>';
+				echo '<td style="vertical-align:middle;"><a style="color: #000" href="StudentExamsList.php?code='. $_GET['code'] . '&exam=' . $examID . '">' . $exam->getName() . '</a></td>';
 				//Liczba osób zapisanych
 				$locked = ExamUnitDatabase::countLockedExamUnits($examID);
 				$total = count($examUnitList);
@@ -195,7 +195,7 @@
 					echo "</div></div></td>";
 					// Zapisz się (Button z id egzaminu)
 					echo "<td class=\"text-center\">";
-					echo "<a class=\"btn btn-success fake-center-button\" href=\"#\" role=\"button\" data-toggle=\"modal\" name=\"signInGlyph\" id=\"signInGlyph\" data-target=\"#signInModal\" title=\"Zapisz się\" value=\"".$exam->getID()."\" examname=\"". $exam->getName() ."\"><i class=\"glyphicon glyphicon-plus\"></i></a>";
+					echo "<a class=\"btn btn-success fake-center-button\" href=\"#\" role=\"button\" data-toggle=\"modal\" id=\"signInGlyph\" data-target=\"#signInModal\" title=\"Zapisz się\" value=\"".$exam->getID()."\" examname=\"". $exam->getName() ."\"><i class=\"glyphicon glyphicon-plus\"></i></a>";
 					echo "</td>";
 				}else{
 					echo "<td  class=\"col-md-3\"><div class=\"progress fake-center\">";
@@ -216,8 +216,8 @@
 	</table>
 	';
 
-	include("lib/Dialog/StudentEditModal.php");
-	include("lib/Dialog/ExamSignOutButton.php");
-	include("lib/Dialog/ExamSignInButton.php");
+	include_once("lib/Dialog/StudentEditModal.php");
+	include_once("lib/Dialog/ExamSignOutButton.php");
+	include_once("lib/Dialog/ExamSignInButton.php");
 	include("html/End.php");
 ?>

@@ -1,4 +1,4 @@
-<div class="modal fade modal-sm" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelSO" aria-hidden="true">
+<div class="modal fade modal-sm" id="signOutModal" name="signOutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelSO" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content container" style="background-color:#BABEC2;">
 			<div class="modal-header">
