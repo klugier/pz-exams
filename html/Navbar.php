@@ -42,7 +42,7 @@
 								<b></b>
 							</button>
 							<ul class="dropdown-menu" style="background: rgba(0,0,0,0.75); box-shadow: 2px 2px 20px #444444;" role="menu">
-								<li role="presentation" class="dropdown-header" style="margin-left: -10px">Opcję egzaminatora</li>
+								<li role="presentation" class="dropdown-header" style="margin-left: -10px">Opcje egzaminatora</li>
 								<li><a href="AddExam.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-plus"></i>  <b>Dodaj egzamin</b></a></li>
 								<li><a href="ExamList.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-list"></i>  <b>Aktualne egzaminy</b></a></li>
 								<li><a href="ExamListArchives.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-floppy-disk"></i>  <b>Archiwalne egzaminy</b></a></li>
@@ -50,8 +50,8 @@
 								<?php
 									if ($user->getRight() === "administrator" || $user->getRight() === "owner") {
 										echo '<li role="presentation" class="divider"></li>';
-										echo '<li role="presentation" class="dropdown-header" style="margin-left: -10px">Opcję administratora</li>';
-										echo '<li><a href="AdminSystemStats.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-stats" style="margin-right: 4px;"></i><b>Statystyki</b></a></li>';
+										echo '<li role="presentation" class="dropdown-header" style="margin-left: -10px">Opcje administratora</li>';
+										echo '<li><a href="AdminSystemStats.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-stats" style="margin-right: 4px;"></i><b>Statystyki serwisu</b></a></li>';
 										echo '<li><a href="AdminUsers.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-star" style="margin-right: 4px;"></i><b>Użytkownicy</b></a></li>';
 										echo '<li><a href="AdminStudents.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-user" style="margin-right: 4px;"></i><b>Studenci</b></a></li>';
 										echo '<li><a href="AdminExams.php" id="user_m" style="color:white"><i class="glyphicon glyphicon-file" style="margin-right: 4px;"></i><b>Egzaminy</b></a></li>';

@@ -86,13 +86,13 @@
 	<fieldset class="col-xs-12	col-sm-12	col-md-12">
 		<legend>Zmiana	hasła</legend>
 		<div class="form-group">
-			<label for="passwd-old" class="col-xs-2	col-sm-2	col-md-2	control-label">	Stare	Hasło	</label>
+			<label for="passwd-old" class="col-xs-2	col-sm-2	col-md-2	control-label">	Stare Hasło	</label>
 			<div class="col-xs-4	col-sm-4	col-md-4">
 				<input type="password" required class="form-control	inputPassword" id="passwd-old" name="passwd-old" placeholder="Wprowadź Stare Haslo" title="">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="passwd" class="col-xs-2	col-sm-2	col-md-2	control-label">	Nowe	Hasło	</label>
+			<label for="passwd" class="col-xs-2	col-sm-2	col-md-2	control-label">	Nowe Hasło</label>
 			<div class="col-xs-4	col-sm-4	col-md-4">
 				<input type="password" required class="form-control	inputPassword" id="passwd" name="passwd" placeholder="Wprowadź Nowe Haslo" title="">
 			</div>
@@ -100,7 +100,7 @@
 			</span>
 		</div>
 		<div class="form-group">
-			<label for="passwd-repat" class="col-xs-2	col-sm-2	col-md-2	control-label">	Potwierdź	Nowe	Hasło	</label>
+			<label for="passwd-repat" class="col-xs-2	col-sm-2	col-md-2	control-label">	Potwierdź Nowe Hasło </label>
 			<div class="col-xs-4	col-sm-4	col-md-4">
 				<input type="password" required class="form-control	inputPassword" id="passwd-repeat" placeholder="Powtórz Nowe Haslo" title="">
 			</div>
@@ -109,28 +109,28 @@
 		</div>
 		<div class="form-group">
 			<span class="col-xs-offset-2	col-sm-offset-2	col-md-offset-2	col-xs-2	col-sm-2	col-md-2">
-				<button type="submit" class="btn	btn-primary" name="submitButtonPassword" value="submit">Zmień	Hasło</button>
+				<button type="submit" class="btn	btn-primary" name="submitButtonPassword" value="submit">Zmień Hasło</button>
 			</span>
 		</div>
 	</fieldset>
 </form>
 <form class="form-horizontal" role="form" id="firstname_form" method="post" action="controler/HandlingUserEdit.php">
 	<fieldset class="col-xs-12	col-sm-12	col-md-12">
-		<legend>Zmiana	ustawień	osobistych</legend>
+		<legend>Zmiana ustawień osobistych</legend>
 		<div class="form-group">
 			<label for="firstname" class="col-xs-2	col-sm-2	col-md-2	control-label">Nowe	Imię</label>
 			<div class="col-xs-4	col-sm-4	col-md-4">
-				<input type="text" class="form-control" id="firstname" placeholder="Wprowadź	Imię" name="nameEdit" value="<?php	if(isset($_SESSION['nameEdit'])){	echo	$_SESSION['nameEdit'];	}	else	{	echo	'';	}?>">
+				<input type="text" class="form-control" id="firstname" placeholder="Wprowadź Imię" name="nameEdit" value="<?php	if(isset($_SESSION['nameEdit'])){	echo	$_SESSION['nameEdit'];	}	else	{	echo	'';	}?>">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="lastname" class="col-xs-2	col-sm-2	col-md-2	control-label">Nowe	Nazwisko</label>
 			<div class="col-xs-4	col-sm-4	col-md-4">
-				<input type="text" class="form-control" id="lastname" placeholder="Wprowadź	Nazwisko" name="surnameEdit" value="<?php	if(isset($_SESSION['surnameEdit'])){	echo	$_SESSION['surnameEdit'];	}	else	{	echo	'';	}?>">
+				<input type="text" class="form-control" id="lastname" placeholder="Wprowadź Nazwisko" name="surnameEdit" value="<?php	if(isset($_SESSION['surnameEdit'])){	echo	$_SESSION['surnameEdit'];	}	else	{	echo	'';	}?>">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="gender" class="col-xs-2	col-sm-2	col-md-2	control-label">Nowa	Płeć	</label>
+			<label for="gender" class="col-xs-2	col-sm-2	col-md-2	control-label">Nowa	Płeć</label>
 			<div class="col-xs-4	col-sm-4	col-md-4">
 				<select class="form-control" id="genderEdit" name="genderEdit">
 					<option><?php	if($_SESSION['genderEdit']	==	'male'){	echo	'Mężczyzna';	}	else	{	echo	'Kobieta';	}?></option>
@@ -140,7 +140,7 @@
 		</div>
 		<div class="form-group">
 			<span class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-3 col-sm-3	col-md-3">
-				<button type="submit" class="btn	btn-primary" name="submitButton" value="submit">Zmień	ustawienia	osobiste</button>
+				<button type="submit" class="btn	btn-primary" name="submitButton" value="submit">Zmień ustawienia osobiste</button>
 			</span>
 		</div>
 	</fieldset>

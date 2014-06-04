@@ -64,7 +64,7 @@
 	$i = 1;
 	
 	$examUnitIDList = ExamUnitDatabase::getExamUnitIDListDay($id, $day);
-
+	$currentStudent = StudentDatabase::getStudentByCode($_GET['code']);
 	foreach ($examUnitIDList as $examUnitID) {
 		echo "<tr class=\"row\">";
 		echo "<td class=\"text-center col-md-1\" style=\"vertical-align:middle;\">" . $i . ".</td>\n";
@@ -77,10 +77,22 @@
 			echo "<td class=\"col-md-9\" style=\"vertical-align:middle;\"> ----- </td>\n";
 		} else {
 			$student = StudentDatabase::getStudentByID($record->getStudentID());
+			if($student -> getID() == $currentStudent -> getID()){
+				echo "DUPA";
+			}
 			if(($student->getFirstName() == NULL) || ($student->getFirstName() == "")){
-				echo "<td class=\"col-md-9\" style=\"vertical-align:middle;\">" . $student->getEmail() . "</td>\n";
+				if($student -> getID() == $currentStudent -> getID()){				
+					echo "<td class=\"col-md-9\" style=\"vertical-align:middle;font-weight:bold;text-decoration:underline; font-style:italic;color:#BF5C4E\">" . $student->getEmail() . "</td>\n";
+				} else {
+					echo "<td class=\"col-md-9\" style=\"vertical-align:middle;\">" . $student->getEmail() . "</td>\n";
+				}
+
 			} else {
-				echo "<td class=\"col-md-9\" style=\"vertical-align:middle;\">" . $student->getFirstName() . " " . $student->getSurName() . "</td>\n";
+				if($student -> getID() == $currentStudent -> getID()){				
+					echo "<td class=\"col-md-9\" style=\"vertical-align:middle; font-weight:bold;font-style:italic; color:#BF5C4E\">" . $student->getFirstName() . " " . $student->getSurName() . "</td>\n";
+				} else {
+					echo "<td class=\"col-md-9\" style=\"vertical-align:middle;\">" . $student->getFirstName() . " " . $student->getSurName() . "</td>\n";
+				}
 			}
 			$student = NULL;
 		}
