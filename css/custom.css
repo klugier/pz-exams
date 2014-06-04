@@ -239,9 +239,11 @@ a.bg-info:hover {
 .response-error-code a:visited {color:#fee;}
 .response-error-code a:hover   {color:#fff;text-shadow: #fff 0 0 5px;} 
 .response-error-code a:active  {color:#fff; text-shadow: #fff 0 0 10px;} 
-#linkS1:hover  {
-    
+#linkS1:hover  {    
+    text-decoration: none;
+    background-color: #BFBFBF;
 }
 #linkS2:hover  {
-    
+    text-decoration: none;
+    background-color: #BFBFBF;
 }
