@@ -41,7 +41,7 @@ $(document).ready(function() {
 		$('#examStudentsListPDFGlyph').attr('disabled', 'disabled');
 
 		if ($('tr#' + studentID).find('#comment').html() == '') {
-			$('tr#' + studentID).find('#comment').append('<img id="send_animation' + studentID +'" style="height: 50%; width: auto;" src="img/sending.gif"/>');
+			$('tr#' + studentID).find('#comment').append('<img id="send_animation' + studentID +'" style="height: 50%; width: auto; margin-left: 18%;" src="img/sending.gif"/>');
 			$('#send_animation'+studentID).hide();
 			$('#send_animation'+studentID).fadeIn();
 		}
@@ -58,7 +58,12 @@ $(document).ready(function() {
 				if(data['status'] == 'failed'){
 					bootbox.alert('<div class="alert alert-danger" style="margin-top: 4%; margin-bottom: 0%;"><strong>'+ data['errorMsg'] +'</strong></div>');		
 				} else {
-					bootbox.alert('<div class="alert alert-success" style="margin-top: 4%; margin-bottom: 0%;">Mail został wysłany na adres <b>'+ email +'</b>!</div>');
+					//bootbox.alert('<div class="alert alert-success" style="margin-top: 4%; margin-bottom: 0%;">Mail został wysłany na adres <b>'+ email +'</b>!</div>');
+					$('tr#' + studentID).find('#comment').append('<span id="success_text' + studentID + '" style="font-size: 14px; color: #5cb85c; font-weight: bold;">Wysłano</span>');
+					$('span#success_text' + studentID).hide();
+					$('span#success_text' + studentID).fadeIn( "slow", function() {
+    					setTimeout(function(){$('span#success_text' + studentID).hide(300, function() { $('span#success_text' + studentID).remove()}); }, 5000);
+  					});
 					$('tr#' + studentID).find('#is_sent').html("<b style=\"color: #156815;\">Tak</b>");
 				}
 			},
@@ -66,8 +71,8 @@ $(document).ready(function() {
 				bootbox.alert('<div class="alert alert-danger" style="margin-top: 4%; margin-bottom: 0%;"><strong>Wystąpił błąd przy wysyłaniu maila!</strong></div>');		
 			},
 			complete: function() {
-				$('#send_animation'+studentID).hide(300, function(){ 
-					$(this).remove(); 
+				$('#send_animation'+studentID).hide(0, function() {
+					$('#send_animation'+studentID).remove();
 				});
 
 				$('tr#'+studentID).find('#send').unbind('click', false);

@@ -94,12 +94,12 @@
 		<thead>
 			<tr>
 				<th style="text-align: center;">Lp.</th>
-				<th style="width: 26%;">Imię</th>
-				<th style="width: 26%;">Nazwisko</th>
+				<th style="width: 24%;">Imię</th>
+				<th style="width: 24%;">Nazwisko</th>
 				<th>E-mail</th>
 				<th style="text-align: center;">Wysłano</th>
 				<th style="text-align:center; width: 5%;">Operacje</th>
-				<th style="width: 5%;"></th>
+				<th style="width: 7%; text-align: center;"></th>
 			</tr>
 		</thead>
 		<tbody>';
