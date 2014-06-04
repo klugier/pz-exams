@@ -89,7 +89,7 @@
 		$examName = $exam -> getName();					
 		$email = $student -> getEmail();
 		$code = $student -> getCode();
-		$mailson = Settings::getEmailAdress();
+		
 
 
 		if($student->getFirstName() == NULL){
@@ -97,7 +97,7 @@
 		} else {
 			$imie = " ".$student -> getFirstName();	
 		}
-		$mailson = Settings::getEmailAdress();
+		
 
 		$studentCodeUrl = "http://" . Settings::getAdress() . "/StudentExams.php?code=" . $code;
 
