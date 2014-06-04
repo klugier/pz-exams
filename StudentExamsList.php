@@ -77,9 +77,7 @@
 			echo "<td class=\"col-md-9\" style=\"vertical-align:middle;\"> ----- </td>\n";
 		} else {
 			$student = StudentDatabase::getStudentByID($record->getStudentID());
-			if($student -> getID() == $currentStudent -> getID()){
-				echo "DUPA";
-			}
+						
 			if(($student->getFirstName() == NULL) || ($student->getFirstName() == "")){
 				if($student -> getID() == $currentStudent -> getID()){				
 					echo "<td class=\"col-md-9\" style=\"vertical-align:middle;font-weight:bold;text-decoration:underline; font-style:italic;color:#BF5C4E\">" . $student->getEmail() . "</td>\n";

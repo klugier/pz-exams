@@ -164,7 +164,7 @@
 					}
 				}
 				echo "</td>";
-				echo '<td style="vertical-align:middle;"><a id="linkS" style="color: #000; " href="StudentExamsList.php?code='. $_GET['code'] . '&exam=' . $examID . '">' . $exam->getName() . '</a></td>';
+				echo '<td style="vertical-align:middle;"><a id="linkS2" style="color: #000; " href="StudentExamsList.php?code='. $_GET['code'] . '&exam=' . $examID . '">' . $exam->getName() . '</a></td>';
 				//Liczba osób zapisanych
 				$locked = ExamUnitDatabase::countLockedExamUnits($examID);
 				$total = count($examUnitList);
