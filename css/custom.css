@@ -240,14 +240,8 @@ a.bg-info:hover {
 .response-error-code a:hover   {color:#fff;text-shadow: #fff 0 0 5px;} 
 .response-error-code a:active  {color:#fff; text-shadow: #fff 0 0 10px;} 
 #linkS1:hover  {
-    font-size: 1.04em;
-    margin-right: -4%;
-    font-style: italic;
     
 }
 #linkS2:hover  {
-    font-size: 1.04em;
-    margin-right: -5.5%;
-    font-style: italic;
     
 }
