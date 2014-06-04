@@ -16,4 +16,4 @@
 	</head>
 	
 	<body>
-		<p><a href="Tests.php">Wróć do listy testów</a></p>
+		<p><a href="index.php">Wróć do listy testów</a></p>

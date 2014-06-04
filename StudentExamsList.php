@@ -36,7 +36,6 @@
 	echo "<h4><i>(" . $exam->getName() . ")</i></h4><hr>";
 	
 	if ($examDays == null) {
-		
 		echo "<div class=\"alert alert-warning\"><strong>Niestety egzamin nie posiada aktualnie żadnych terminów!</strong></div>";
 
 		include("html/End.php");
@@ -66,28 +65,41 @@
 	$examUnitIDList = ExamUnitDatabase::getExamUnitIDListDay($id, $day);
 	$currentStudent = StudentDatabase::getStudentByCode($_GET['code']);
 	foreach ($examUnitIDList as $examUnitID) {
-		echo "<tr class=\"row\">";
-		echo "<td class=\"text-center col-md-1\" style=\"vertical-align:middle;\">" . $i . ".</td>\n";
-
 		$examunit = ExamUnitDatabase::getExamUnit($examUnitID);
-		echo "<td class=\"col-md-2\" style=\"vertical-align:middle;\">" . $examunit->getTimeFrom()." - ". $examunit->getTimeTo() . "</td>\n";
-
 		$record = RecordDatabase::getRecordFromUnit($examUnitID);
-		if($record == NULL){
-			echo "<td class=\"col-md-9\" style=\"vertical-align:middle;\"> ----- </td>\n";
-		} else {
+		
+		$bold = "";
+		if ($record != NULL) {
 			$student = StudentDatabase::getStudentByID($record->getStudentID());
-						
+			if ($student->getID() == $currentStudent->getID()) {
+				echo "<tr class=\"row success\">";
+				$bold = "font-weight:bold;";
+			} else
+				echo "<tr class=\"row\">";
+		}
+		else {
+			echo "<tr class=\"row\">";
+		}
+		
+		echo "<td class=\"text-center col-md-1\" style=\"vertical-align:middle; $bold\">" . $i . ".</td>\n";
+		echo "<td class=\"col-md-2\" style=\"vertical-align:middle; $bold\">" . $examunit->getTimeFrom()." - ". $examunit->getTimeTo() . "</td>\n";
+
+		
+		if($record == NULL)
+			echo "<td class=\"col-md-9\" style=\"vertical-align:middle;\"> ----- </td>\n";
+		else {
+			$student = StudentDatabase::getStudentByID($record->getStudentID());
+			
 			if(($student->getFirstName() == NULL) || ($student->getFirstName() == "")){
-				if($student -> getID() == $currentStudent -> getID()){				
-					echo "<td class=\"col-md-9\" style=\"vertical-align:middle;font-weight:bold;text-decoration:underline; font-style:italic;color:#BF5C4E\">" . $student->getEmail() . "</td>\n";
+				if ($student->getID() == $currentStudent->getID()){				
+					echo "<td class=\"col-md-9\" style=\"vertical-align:middle;font-weight:bold;text-decoration:underline;\">" . $student->getEmail() . "</td>\n";
 				} else {
 					echo "<td class=\"col-md-9\" style=\"vertical-align:middle;\">" . $student->getEmail() . "</td>\n";
 				}
 
 			} else {
-				if($student -> getID() == $currentStudent -> getID()){				
-					echo "<td class=\"col-md-9\" style=\"vertical-align:middle; font-weight:bold;font-style:italic; color:#BF5C4E\">" . $student->getFirstName() . " " . $student->getSurName() . "</td>\n";
+				if ($student->getID() == $currentStudent->getID()) {
+					echo "<td class=\"col-md-9\" style=\"vertical-align:middle; font-weight:bold;\">" . $student->getFirstName() . " " . $student->getSurName() . "</td>\n";
 				} else {
 					echo "<td class=\"col-md-9\" style=\"vertical-align:middle;\">" . $student->getFirstName() . " " . $student->getSurName() . "</td>\n";
 				}
