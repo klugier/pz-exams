@@ -13,7 +13,9 @@
 		return;
 	}
 	$user1 = unserialize($_SESSION['USER']);
-	if ($user1->getRight()!="examiner") {
+	$id   = $_GET['id'];
+	
+	if ($user1->getRight()!="examiner" && !(ExamDatabase::checkIfUserHasExam($user1->getID(),$id))) {
 		include("html/AdminPanel.php");
 		
 		if (!isset($_GET['id'])) {
@@ -37,7 +39,7 @@
 			header('Location: ExamList.php');
 	}
 	
-	$id   = $_GET['id'];
+	
 	$exam = ExamDatabase::getExam($id);
 	$examDays = ExamUnitDatabase::getExamDays($id);
 	echo "<h2>";

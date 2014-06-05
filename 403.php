@@ -5,7 +5,7 @@
 	include("html/Begin.php");
 	$previous = $_SERVER['HTTP_REFERER'];
 ?>
-<h1 style="text-align: center;">BŁĄD 404 - Brak dostępu</h1>
+<h1 style="text-align: center;">BŁĄD 403 - Brak dostępu</h1>
 <hr />
 <div style="text-align: center;">
 	<img src="img/403.png">
