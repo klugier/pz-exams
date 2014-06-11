@@ -32,14 +32,18 @@
 		<li><a href="#logowanie">Logowanie</a></li>				
 		<li><a href="#po_zalogowaniu">Po zalogowaniu</a></li>
 		<li><a href="#menu_rozwijane">Menu rozwijane</a></li>
-		dodaj_egzamin
-		dodaj_termin
-		dodawanie_studentow_pierwszy
-		zmiana_formatu_email
-		dodawanie_maili
-		lista_aktualnych_egzaminow
-		lista_studentow_dla_egzaminu
-		dodaj_kolejnych_do_egzaminu
+		<li><a href="#dodaj_egzamin">Dodawanie egzaminu</a></li>
+		<li><a href="#dodaj_termin">Dodawanie terminów do egzaminu</a></li>
+		<li><a href="#dodawanie_studentow_pierwszy">Dodawanie studentów do egzaminu</a></li>
+		<li><a href="#zmiana_formatu_email">Zmiana formatu e-mail</a></li>
+		<li><a href="#dodawanie_maili">Dodawanie e-maili</a></li>
+		<li><a href="#lista_aktualnych_egzaminow">Lista aktualnych egzaminów</a></li>
+		<li><a href="#lista_studentow_dla_egzaminu">Lista studentów dla egzaminu</a></li>
+		<li><a href="#dodaj_kolejnych_do_egzaminu">Dodaj kolejnych studentów do egzaminu</a></li>
+		<li><a href="#edycja_egzaminu">Edycja egzaminu</a></li>
+		<li><a href="#archiwalna">Archiwalne egzaminy</a></li>
+		<li><a href="#edytuj_profil">Edycja profilu</a></li>
+		<li><a href="#kontaktowy">Formularz kontaktowy</a></li>
 	</ol>
 </div>
 
