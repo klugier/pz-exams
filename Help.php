@@ -27,20 +27,29 @@
 	<h2>Spis treści</h2>
 	<hr/>
 	<ol>
-		<li><a href="#powitalny">Ekran powitalny</a></li>
-		<li><a href="#rejestracja">Rejestracja w systemie</a></li>
-		<li><a href="#logowanie">Logowanie</a></li>				
-		<li><a href="#po_zalogowaniu">Po zalogowaniu</a></li>
-		<li><a href="#menu_rozwijane">Menu rozwijane</a></li>
-		<li><a href="#dodaj_egzamin">Dodawanie egzaminu</a></li>
-		<li><a href="#dodaj_termin">Dodawanie terminów do egzaminu</a></li>
-		<li><a href="#dodawanie_studentow_pierwszy">Dodawanie studentów do egzaminu</a></li>
-		<li><a href="#zmiana_formatu_email">Zmiana formatu e-mail</a></li>
-		<li><a href="#dodawanie_maili">Dodawanie e-maili</a></li>
-		<li><a href="#lista_aktualnych_egzaminow">Lista aktualnych egzaminów</a></li>
-		<li><a href="#lista_studentow_dla_egzaminu">Lista studentów dla egzaminu</a></li>
-		<li><a href="#dodaj_kolejnych_do_egzaminu">Dodaj kolejnych studentów do egzaminu</a></li>
-		<li><a href="#edycja_egzaminu">Edycja egzaminu</a></li>
+		<li>Pierwsze kroki w systemie</li>
+		<ol>
+			<li><a href="#powitalny">Ekran powitalny</a></li>
+			<li><a href="#rejestracja">Rejestracja w systemie</a></li>
+			<li><a href="#logowanie">Logowanie</a></li>				
+			<li><a href="#po_zalogowaniu">Po zalogowaniu</a></li>
+			<li><a href="#menu_rozwijane">Menu rozwijane</a></li>
+		</ol>
+		<li>Dodawanie egzaminów</li>
+		<ol>
+			<li><a href="#dodaj_egzamin">Dodawanie egzaminu</a></li>
+			<li><a href="#dodaj_termin">Dodawanie terminów do egzaminu</a></li>
+			<li><a href="#dodawanie_studentow_pierwszy">Dodawanie studentów do egzaminu</a></li>
+			<li><a href="#zmiana_formatu_email">Zmiana formatu e-mail</a></li>
+			<li><a href="#dodawanie_maili">Dodawanie e-maili</a></li>
+		</ol>
+		<li>Zarządzanie aktualnymi egzaminami</li>
+		<ol>
+			<li><a href="#lista_aktualnych_egzaminow">Lista aktualnych egzaminów</a></li>
+			<li><a href="#lista_studentow_dla_egzaminu">Lista studentów dla egzaminu</a></li>
+			<li><a href="#dodaj_kolejnych_do_egzaminu">Dodaj kolejnych studentów do egzaminu</a></li>
+			<li><a href="#edycja_egzaminu">Edycja egzaminu</a></li>
+		</ol>	
 		<li><a href="#archiwalna">Archiwalne egzaminy</a></li>
 		<li><a href="#edytuj_profil">Edycja profilu</a></li>
 		<li><a href="#kontaktowy">Formularz kontaktowy</a></li>
@@ -83,7 +92,7 @@
 	<a name="menu_rozwijane"></a>
 	<h2>Menu rozwijane</h2>		
 	<hr/>
-	<img src="img/help/02_po_zalogowaniu.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
+	<img src="img/help/02_menu_rozwijane.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
 	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
 </div>
 
