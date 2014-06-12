@@ -130,7 +130,7 @@
 	<h3>Dodaj egzamin</h3>		
 	
 	<img src="img/help/03_dodaj_egzamin.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Należy podać nazwę egzaminu, oraz ilość czasu przeznaczonego na odpytywanie jednego studenta.<br/>Ikona "plus" służy do <a href="dodawanie_terminu">Dodawania terminów egzaminu</a>.</p>
+	<p class="col-xs-4 col-sm-4 col-md-4">Należy podać nazwę egzaminu, oraz ilość czasu przeznaczonego na odpytywanie jednego studenta.<br/>Ikona "plus" służy do <a href="#dodawanie_terminu">Dodawania terminów egzaminu</a>.</p>
 </div>
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
@@ -138,11 +138,11 @@
 	<h3>Dodawanie terminu egzaminu</h3>		
 	
 	<img src="img/help/03_dodawanie_terminu.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
+	<p class="col-xs-4 col-sm-4 col-md-4">Pola to kolejno od góry - ilość minut na odpytanie jednej osoby, dzień odpytywania studentów, godzinę rozpoczęcia odpytywanaia studentów, godzinę zakończenia odpytywania studentów. X" czyści pole.</p>
 </div>
 <div class="container col-xs-12 col-sm-12 col-md-12">
 	<img src="img/help/03_termin_dodano.jpg" alt="" class="col-xs-2 col-sm-2 col-md-2">
-	<p class="col-xs-10 col-sm-10 col-md-10">Po dodaniu terminu istieje możliwość jego usunięcia - ikona "minus".</p>
+	<p class="col-xs-10 col-sm-10 col-md-10">Po dodaniu terminu istieje możliwość jego usunięcia - całego dnia- ikona "minus", lub pojedynczego "odpytywania" - ikona z koszem na śmieci.</p>
 </div>
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
@@ -150,7 +150,7 @@
 	<h3>Formularz dodawanie studentów do egzaminu</h3>		
 	
 	<img src="img/help/03_lista_studentow_pierwszy.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
+	<p class="col-xs-4 col-sm-4 col-md-4">Dodawanie studentów do egzaminu obwa się poprzez wpisanie pojedynczego adresu, bądź całej listy adresów e-mail studentów. Istnieje możliwość przypisania imienia i nazwiska do adresu. Aktualny format wpisywanych adresów można zmienić - patrz <a href="#zmiana_formatu_email">zmiana formatu wprowadzanych adresów</a>.</p>
 </div>
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
@@ -158,7 +158,7 @@
 	<h3>Zmiana formatu wprowadzanych adresów e-mail</h3>		
 	
 	<img src="img/help/03_lista_studentow_format_mail.jpg" alt="" class="col-xs-4 col-sm-4 col-md-4">
-	<p class="col-xs-8 col-sm-8 col-md-8">Treść</p>
+	<p class="col-xs-8 col-sm-8 col-md-8">Standardowy format to: Imię Nazwisko&lt;adres_email&gt;,</p>
 </div>
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
@@ -166,7 +166,7 @@
 	<h3>Dodawanie studentów do egzaminu</h3>
 	
 	<img src="img/help/03_lista_studentow_dodawanie.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
+	<p class="col-xs-4 col-sm-4 col-md-4">Studentów można dodawać pojedynczo, lub wielu naraz. Dla zatwierdzenia wpisanych adresów należy kliknąć przycisk "Dodaj". Aby usunąć wpisany adres z listy - kliknąć ikonę z koszem. Spowoduje to usunięcia studenta z listy. Kliknięcie przycisku "Potwierdź" kończy proces dodoawania studentów i przenosi do <a href="#lista_aktualnych_egzaminow">listy aktualnych egzaminów</a></p>
 </div>
 <h2>Zarządzanie aktualnymi egzaminami</h2>
 <a name="zarzadzanie"></a>
@@ -175,15 +175,16 @@
 	<h3>Lista aktualnych egzaminów</h3>		
 	
 	<img src="img/help/04_lista_aktualnych.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
+	<p class="col-xs-4 col-sm-4 col-md-4">Wyświetla aktualne egzaminy. Istnieje możliwość <a href="#edycja_egzaminu">edycji egzaminu</a> - ikona <img src="img/help/olowek.jpg" alt="ikona edycji"/>, <a href="#lista_studentow_dla_egzaminu">sprawdzenia listy studentów</a>, usunięcia egzaminu -ikona <img src="img/help/kosz.jpg" alt="ikona usuń egzamin"/>.</br>Egzmin można również Aktywować, bądź Dektywować.</p>
 </div>
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
 	<a name="lista_studentow_dla_egzaminu"></a>	
-	<h3>Lista studentów przypisanych do egzaminu, wysyłanie kodów studentom</h3>		
+	<h3>Lista studentów przypisanych do egzaminu, wysyłanie kodów studentom</h3>
 	
 	<img src="img/help/04_lista_studentow.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
+	<p class="col-xs-4 col-sm-4 col-md-4"><img src="img/help/koperta" alt=""/> wysyła studentowi adres z odnośnikiem do egzaminu.<br>
+	<img src="img/help/kosz.jpg" alt=""/> usuwa studenta z listy.<br/>Ponadto istnieje możliwość <a href="#dodaj_kolejnych_do_egzaminu">dodania kolejnych studentów</a> do egzaminu, oraz pobrania listy studentów jako plik pdf.</p>
 </div>
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
@@ -191,7 +192,7 @@
 	<h3>Dodaj kolejnych studentów do egzaminu</h3>		
 	
 	<img src="img/help/04_dodaj_studentow.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
+	<p class="col-xs-4 col-sm-4 col-md-4">Proces jest analogiczny do <a href="#dodawanie_studentow_pierwszy">opisanego wcześniej</a>.</p>
 </div>
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
@@ -199,7 +200,7 @@
 	<h3>Edycja egzaminu</h3>		
 	
 	<img src="img/help/04_edytuj_egzamin.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
+	<p class="col-xs-4 col-sm-4 col-md-4">Strona umożliwia edytowanie parametrów egzaminu. Edycja harmonogramu przebiega podobnie jak <a href="#dodaj_egzamin">opisana wcześniej</a>.</p>
 </div>
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
@@ -207,7 +208,7 @@
 	<h2>Lista archiwalna egzaminów</h2>		
 	
 	<img src="img/help/05_archiwalne.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
+	<p class="col-xs-4 col-sm-4 col-md-4">Ty wylistowane są egzaminy, które już się zakończyły.</p>
 </div>
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
@@ -215,7 +216,7 @@
 	<h2>Edytuj profil</h2>		
 	
 	<img src="img/help/06_edytuj_profil.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
+	<p class="col-xs-4 col-sm-4 col-md-4">Formularz umożliwia zmianę informacji o użytkowniku.</p>
 </div>
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
@@ -223,7 +224,7 @@
 	<h2>Formularz kontaktowy</h2>		
 	
 	<img src="img/help/07_formularz_kontaktowy.jpg" alt="" class="col-xs-8 col-sm-8 col-md-8">
-	<p class="col-xs-4 col-sm-4 col-md-4">Treść</p>
+	<p class="col-xs-4 col-sm-4 col-md-4">Formularz do kontaktu z administracją serwisu.</p>
 </div>
 
 <?php
