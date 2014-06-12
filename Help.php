@@ -4,7 +4,26 @@
 	$title = "$appName - Pomoc";
 	include("html/Begin.php");
 ?> 
-
+<style>
+OL { counter-reset: item }
+OL LI { display: block }
+OL LI:before { content: counters(item, ".") ". "; counter-increment: item }
+    
+BODY {
+    counter-reset: chapter;      /* Create a chapter counter scope */
+}
+H2:before {
+    content:  counter(chapter) ". ";
+    counter-increment: chapter;  /* Add 1 to chapter */
+}
+H2 {
+    counter-reset: section;      /* Set section to 0 */
+}
+H3:before {
+    content: counter(chapter) "." counter(section) " ";
+    counter-increment: section;
+}
+  </style>
 <div class="container"> 
 	<h3>Obsługiwane domeny</h3>
 	
@@ -25,9 +44,9 @@
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
 	<h3>Spis treści</h3>
-	
 	<ol>
-		<li><a href="#pierwsze">Pierwsze kroki w systemie</a></li>
+	
+		<li><a href="#pierwsze">Pierwsze kroki w systemie</a>
 		<ol>
 			<li><a href="#powitalny">Ekran powitalny</a></li>
 			<li><a href="#aktywacja">Kod aktywacyjny</a></li>
@@ -36,7 +55,8 @@
 			<li><a href="#po_zalogowaniu">Po zalogowaniu</a></li>
 			<li><a href="#menu_rozwijane">Menu rozwijane</a></li>
 		</ol>
-		<li><a href="#tworzenie">Tworzenie egzaminów egzaminów</a></li>
+		</li>
+		<li><a href="#tworzenie">Tworzenie egzaminów egzaminów</a>
 		<ol>
 			<li><a href="#dodaj_egzamin">Dodawanie egzaminu</a></li>
 			<li><a href="#dodaj_termin">Dodawanie terminów do egzaminu</a></li>
@@ -44,13 +64,15 @@
 			<li><a href="#zmiana_formatu_email">Zmiana formatu wprowadzanego adresu e-mail</a></li>
 			<li><a href="#dodawanie_maili">Dodawanie studentów do egzaminu</a></li>
 		</ol>
-		<li><a href="#zarzadzanie">Zarządzanie aktualnymi egzaminami</a></li>
+		</li>
+		<li><a href="#zarzadzanie">Zarządzanie aktualnymi egzaminami</a>
 		<ol>
 			<li><a href="#lista_aktualnych_egzaminow">Lista aktualnych egzaminów</a></li>
 			<li><a href="#lista_studentow_dla_egzaminu">Lista studentów dla egzaminu</a></li>
 			<li><a href="#dodaj_kolejnych_do_egzaminu">Dodaj kolejnych studentów do egzaminu</a></li>
 			<li><a href="#edycja_egzaminu">Edycja egzaminu</a></li>
 		</ol>	
+		</li>
 		<li><a href="#archiwalna">Archiwalne egzaminy</a></li>
 		<li><a href="#edytuj_profil">Edycja profilu</a></li>
 		<li><a href="#kontaktowy">Formularz kontaktowy</a></li>
