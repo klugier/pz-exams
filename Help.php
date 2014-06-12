@@ -24,28 +24,14 @@ H3:before {
     counter-increment: section;
 }
   </style>
-<div class="container"> 
-	<h3>Obsługiwane domeny</h3>
-	
-	W chwili obecnej obsługujemy użytkowników posiadających adresy e-mail z następujących domen: <br />
-	<ul>
-		<?php
-			$domains = Settings::getDomains();
-			if ($domains == null) {
-				echo "<li><b>Aktualnie obsługiwane są wszystkie domenu</b></li>";
-			} else {
-				foreach ($domains as $domain) {
-					echo "<li>" . $domain . "</li>\n";
-				}
-			}
-		?>
-	</ul>
-</div>
+
 
 <div class="container col-xs-12 col-sm-12 col-md-12">
-	<h3>Spis treści</h3>
+	<a name="spis"></a>
+	<h2>Spis treści</h2>
 	<ol>
-	
+		<li><a href="#spis">Spis treści</a></li>	
+		<li><a href="#domeny">Obsługiwane domeny</a></li>	
 		<li><a href="#pierwsze">Pierwsze kroki w systemie</a>
 		<ol>
 			<li><a href="#powitalny">Ekran powitalny</a></li>
@@ -78,7 +64,24 @@ H3:before {
 		<li><a href="#kontaktowy">Formularz kontaktowy</a></li>
 	</ol>
 </div>
-
+<div class="container"> 
+	<a name="domeny"></a>
+	<h2>Obsługiwane domeny</h2>
+	
+	W chwili obecnej obsługujemy użytkowników posiadających adresy e-mail z następujących domen: <br />
+	<ul>
+		<?php
+			$domains = Settings::getDomains();
+			if ($domains == null) {
+				echo "<li><b>Aktualnie obsługiwane są wszystkie domenu</b></li>";
+			} else {
+				foreach ($domains as $domain) {
+					echo "<li>" . $domain . "</li>\n";
+				}
+			}
+		?>
+	</ul>
+</div>
 <h2>Pierwsze kroki w systemie</h2>
 <a name="pierwsze"></a>
 <div class="container col-xs-12 col-sm-12 col-md-12">
